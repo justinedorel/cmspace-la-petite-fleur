@@ -1,0 +1,50 @@
+---
+import Base from '../layouts/Base.astro';
+import site from '../data/site.json';
+---
+<Base title={`Mentions légales — ${site.company_name}`}>
+
+<nav class="sticky top-0 z-50 w-full backdrop-blur-md border-b" style={`background-color: ${site.color_bg}e6; border-color: ${site.color_accent}4d;`}>
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex justify-between items-center h-20">
+    <a href="/" class="flex items-center hover:opacity-80 transition-opacity">
+      {site.logo_url
+        ? <img src={site.logo_url} alt={site.company_name} class="h-8 sm:h-10 w-auto object-contain" />
+        : <span class="font-heading text-xl font-bold" style={`color: ${site.color_dark};`}>{site.company_name}</span>
+      }
+    </a>
+    <a href="/" class="text-sm font-medium transition-colors" style={`color: ${site.color_primary};`}>← Retour</a>
+  </div>
+</nav>
+
+<main class="min-h-screen" style={`background-color: ${site.color_bg};`}>
+  <div class="max-w-2xl mx-auto px-6 py-24">
+    <h1 class="font-heading text-4xl font-bold mb-10" style={`color: ${site.color_dark};`}>Mentions légales</h1>
+
+    <h2 class="font-heading text-lg font-semibold mt-8 mb-3" style={`color: ${site.color_dark};`}>Éditeur du site</h2>
+    <p class="text-gray-600 font-light leading-relaxed">{site.legal_status || ''} {site.legal_name || site.company_name}</p>
+    {site.address && <p class="text-gray-600 font-light leading-relaxed mt-1">{site.address}</p>}
+    {site.email && <p class="text-gray-600 font-light leading-relaxed mt-1">Email : <a href={`mailto:${site.email}`} style={`color: ${site.color_primary};`}>{site.email}</a></p>}
+    {site.phone && <p class="text-gray-600 font-light leading-relaxed mt-1">Téléphone : {site.phone}</p>}
+    {site.siret && <p class="text-gray-600 font-light leading-relaxed mt-1">SIRET : {site.siret}</p>}
+
+    <h2 class="font-heading text-lg font-semibold mt-8 mb-3" style={`color: ${site.color_dark};`}>Hébergement</h2>
+    <p class="text-gray-600 font-light leading-relaxed">Ce site est hébergé par Cloudflare Pages, 101 Townsend St, San Francisco, CA 94107, USA.</p>
+
+    <h2 class="font-heading text-lg font-semibold mt-8 mb-3" style={`color: ${site.color_dark};`}>Propriété intellectuelle</h2>
+    <p class="text-gray-600 font-light leading-relaxed">L'ensemble du contenu de ce site est la propriété exclusive de {site.company_name}. Toute reproduction est interdite sans autorisation préalable.</p>
+
+    <h2 class="font-heading text-lg font-semibold mt-8 mb-3" style={`color: ${site.color_dark};`}>Données personnelles</h2>
+    <p class="text-gray-600 font-light leading-relaxed">
+      Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données personnelles.
+      {site.email && <> Pour exercer ce droit, contactez-nous à <a href={`mailto:${site.email}`} style={`color: ${site.color_primary};`}>{site.email}</a>.</>}
+    </p>
+  </div>
+</main>
+
+<footer class="bg-white border-t border-gray-100 py-8">
+  <div class="max-w-2xl mx-auto px-6 text-center">
+    <p class="text-xs text-gray-400 font-light">© {new Date().getFullYear()} {site.company_name}</p>
+  </div>
+</footer>
+
+</Base>
