@@ -4,263 +4,338 @@ import site from '../data/site.json';
 ---
 <Base title={site.seo_title} description={site.seo_description}>
 
-  <div class="loader">
-    <span class="loader-text">{site.loader_text}</span>
-    <div class="loader-bar"></div>
-  </div>
-
-  <nav style="position:fixed;top:0;left:0;width:100%;z-index:1000;padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;mix-blend-mode:difference;">
-    <span class="display" style="color:#fff;font-size:1rem;font-weight:700;letter-spacing:0.1em;">{site.company_name}</span>
-    <div class="nav-links" style="display:flex;gap:2.5rem;">
-      <a href="#services" style="color:#fff;font-size:0.75rem;letter-spacing:0.12em;text-decoration:none;text-transform:uppercase;">Services</a>
-      <a href="#clientele" style="color:#fff;font-size:0.75rem;letter-spacing:0.12em;text-decoration:none;text-transform:uppercase;">Clientèle</a>
-      <a href="#consultation" style="color:#fff;font-size:0.75rem;letter-spacing:0.12em;text-decoration:none;text-transform:uppercase;">Consultation</a>
-      <a href="#contact" style="color:#fff;font-size:0.75rem;letter-spacing:0.12em;text-decoration:none;text-transform:uppercase;">Contact</a>
+  <!-- Navigation -->
+  <header id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+    <div class="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
+      <a href="/" class="font-serif text-2xl tracking-[0.2em] font-light text-dark">{site.company_name}</a>
+      <nav class="hidden md:flex items-center gap-10">
+        <a href="#portfolio" class="font-sans text-xs tracking-[0.18em] uppercase text-dark/70 hover:text-dark transition-colors">Galerie</a>
+        <a href="#flavors" class="font-sans text-xs tracking-[0.18em] uppercase text-dark/70 hover:text-dark transition-colors">Saveurs</a>
+        <a href="#process" class="font-sans text-xs tracking-[0.18em] uppercase text-dark/70 hover:text-dark transition-colors">Processus</a>
+        <a href="#contact" class="font-sans text-xs tracking-[0.18em] uppercase text-dark/70 hover:text-dark transition-colors">Contact</a>
+        <a href={`mailto:${site.email}`} class="font-sans text-xs tracking-[0.18em] uppercase border border-dark/30 text-dark px-5 py-2.5 hover:bg-dark hover:text-bg transition-all duration-300">{site.hero_cta}</a>
+      </nav>
     </div>
-    <button class="nav-mobile-btn" style="display:none;background:none;border:none;cursor:pointer;color:#fff;align-items:center;gap:0.5rem;">
-      <iconify-icon icon="solar:hamburger-menu-linear" width="24"></iconify-icon>
-      <span style="font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;">Menu</span>
-    </button>
-  </nav>
+  </header>
 
-  <div class="wrapper">
-
-    <section style="position:relative;width:100%;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center;">
-      <img
-        src={site.hero_image}
-        alt={site.hero_name_line1}
-        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.45);"
-      />
-      <div style="position:relative;z-index:2;text-align:center;overflow:hidden;padding:0 2rem;">
-        <div style="overflow:hidden;line-height:1;">
-          <h1 class="display hero-line1" style="font-size:clamp(4rem,14vw,13rem);font-weight:700;color:#fff;margin:0;line-height:0.9;transform:translateY(100%);">{site.hero_name_line1}</h1>
-        </div>
-        <div style="overflow:hidden;line-height:1;">
-          <h1 class="display hero-line2" style="font-size:clamp(4rem,14vw,13rem);font-weight:700;color:#fff;margin:0;line-height:0.9;transform:translateY(100%);">{site.hero_name_line2}</h1>
-        </div>
-        <p class="hero-subtitle" style="color:rgba(255,255,255,0.75);font-size:clamp(0.9rem,1.5vw,1.2rem);letter-spacing:0.15em;text-transform:uppercase;margin-top:2rem;opacity:0;">{site.hero_subtitle}</p>
-      </div>
-    </section>
-
-    <section style="padding:8rem 6vw;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;" id="intro">
+  <!-- Hero -->
+  <section class="relative min-h-screen flex items-center overflow-hidden">
+    <div class="absolute inset-0">
+      <img src={site.hero_image} alt={site.hero_title2} class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-dark/20"></div>
+    </div>
+    <div class="relative z-10 max-w-7xl mx-auto px-8 w-full grid md:grid-cols-2 items-center gap-12 pt-24">
       <div>
-        <div style="overflow:hidden;">
-          <h2 class="display split-animate" style="font-size:clamp(2rem,4vw,3.5rem);font-weight:700;line-height:1.1;margin:0 0 1.5rem;">{site.intro_title}</h2>
+        <div class="flex items-center gap-4 mb-8">
+          <span class="font-sans text-xs tracking-[0.2em] uppercase text-white/80 border border-white/30 px-4 py-1.5">{site.hero_badge}</span>
         </div>
-        <p class="display" style="font-size:clamp(0.9rem,1.2vw,1rem);opacity:0.6;letter-spacing:0.08em;text-transform:uppercase;margin:0;">{site.intro_subtitle}</p>
+        <h1 class="font-serif text-6xl md:text-8xl font-light leading-tight text-white mb-2">
+          {site.hero_title1}
+        </h1>
+        <h1 class="font-serif text-6xl md:text-8xl font-light italic leading-tight text-white mb-8">
+          {site.hero_title2}
+        </h1>
+        <p class="font-sans text-sm font-light leading-relaxed text-white/80 max-w-sm mb-10 tracking-wide">
+          {site.hero_subtitle}
+        </p>
+        <a href={`mailto:${site.email}`} class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.18em] uppercase text-white border border-white/60 px-8 py-4 hover:bg-white hover:text-dark transition-all duration-300">
+          {site.hero_cta}
+          <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
+        </a>
       </div>
-      <div>
-        <p style="font-size:1.05rem;line-height:1.8;color:var(--c-dark);opacity:0.85;margin:0 0 3rem;">{site.intro_text}</p>
-        <div style="width:100%;height:1px;background:var(--c-dark);opacity:0.15;margin-bottom:3rem;"></div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;">
-          <div style="display:flex;gap:1rem;align-items:flex-start;">
-            <iconify-icon icon="solar:medal-star-bold" width="28" style="color:var(--c-accent);flex-shrink:0;margin-top:0.2rem;"></iconify-icon>
-            <div>
-              <div class="display" style="font-size:2rem;font-weight:700;line-height:1;">{site.stat1_value}</div>
-              <div style="font-size:0.8rem;opacity:0.6;margin-top:0.3rem;text-transform:uppercase;letter-spacing:0.08em;">{site.stat1_label}</div>
-            </div>
-          </div>
-          <div style="display:flex;gap:1rem;align-items:flex-start;">
-            <iconify-icon icon="solar:users-group-rounded-bold" width="28" style="color:var(--c-accent);flex-shrink:0;margin-top:0.2rem;"></iconify-icon>
-            <div>
-              <div class="display" style="font-size:2rem;font-weight:700;line-height:1;">{site.stat2_value}</div>
-              <div style="font-size:0.8rem;opacity:0.6;margin-top:0.3rem;text-transform:uppercase;letter-spacing:0.08em;">{site.stat2_label}</div>
-            </div>
-          </div>
-          <div style="display:flex;gap:1rem;align-items:flex-start;">
-            <iconify-icon icon="solar:document-add-bold" width="28" style="color:var(--c-accent);flex-shrink:0;margin-top:0.2rem;"></iconify-icon>
-            <div>
-              <div class="display" style="font-size:2rem;font-weight:700;line-height:1;">{site.stat3_value}</div>
-              <div style="font-size:0.8rem;opacity:0.6;margin-top:0.3rem;text-transform:uppercase;letter-spacing:0.08em;">{site.stat3_label}</div>
-            </div>
-          </div>
-          <div style="display:flex;gap:1rem;align-items:flex-start;">
-            <iconify-icon icon="solar:share-circle-bold" width="28" style="color:var(--c-accent);flex-shrink:0;margin-top:0.2rem;"></iconify-icon>
-            <div>
-              <div class="display" style="font-size:2rem;font-weight:700;line-height:1;">{site.stat4_value}</div>
-              <div style="font-size:0.8rem;opacity:0.6;margin-top:0.3rem;text-transform:uppercase;letter-spacing:0.08em;">{site.stat4_label}</div>
-            </div>
+      <div class="hidden md:flex justify-end items-end">
+        <div class="relative w-16 h-16">
+          <div class="w-16 h-16 rounded-full border border-white/40 flex items-center justify-center animate-spin" style="animation-duration: 12s;">
+            <svg viewBox="0 0 100 100" class="w-full h-full absolute inset-0">
+              <defs>
+                <path id="circlePath" d="M 50,50 m -30,0 a 30,30 0 1,1 60,0 a 30,30 0 1,1 -60,0"/>
+              </defs>
+              <text class="fill-white/70" font-size="10" font-family="Jost" letter-spacing="3">
+                <textPath href="#circlePath">{site.hero_badge_rotating} · {site.hero_badge_rotating} ·</textPath>
+              </text>
+            </svg>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
+      <span class="font-sans text-xs tracking-[0.2em] uppercase text-white/50">Découvrir</span>
+      <div class="w-px h-12 bg-white/30"></div>
+    </div>
+  </section>
 
-    <section class="stack-section" id="services">
-      <div style="padding:6rem 6vw 3rem;text-align:center;">
-        <span style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;opacity:0.5;display:block;margin-bottom:1rem;">{site.services_badge}</span>
-        <h2 class="display" style="font-size:clamp(2.5rem,6vw,5rem);font-weight:700;margin:0;">{site.services_title}</h2>
+  <!-- Press -->
+  <section class="py-12 bg-dark">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16">
+        <span class="font-sans text-xs tracking-[0.22em] uppercase text-white/30 whitespace-nowrap">{site.press_label}</span>
+        <div class="w-px h-6 bg-white/20 hidden md:block"></div>
+        <div class="flex items-center gap-10 md:gap-16 flex-wrap justify-center md:justify-start">
+          <span class="font-serif text-2xl font-light italic tracking-wide text-white/60 hover:text-white/90 transition-colors cursor-default">{site.press1}</span>
+          <span class="font-serif text-2xl font-light tracking-[0.15em] text-white/60 hover:text-white/90 transition-colors cursor-default">{site.press2}</span>
+          <span class="font-serif text-2xl font-light italic tracking-wide text-white/60 hover:text-white/90 transition-colors cursor-default">{site.press3}</span>
+          <span class="font-serif text-2xl font-light tracking-[0.15em] text-white/60 hover:text-white/90 transition-colors cursor-default">{site.press4}</span>
+        </div>
       </div>
-      <div class="stack-container">
-        <div class="card-item" data-card="0">
-          <div class="card-inner">
-            <div class="card-content">
-              <div>
-                <span style="font-size:0.7rem;letter-spacing:0.15em;opacity:0.35;text-transform:uppercase;">{site.service1_number}</span>
-                <h3 class="display" style="font-size:clamp(1.8rem,3vw,2.8rem);font-weight:700;margin:1rem 0;line-height:1.1;">{site.service1_title}</h3>
-                <span style="display:inline-block;background:var(--c-accent);color:#fff;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.4rem 1rem;margin-bottom:1.5rem;">{site.service1_tag}</span>
-                <p style="opacity:0.7;line-height:1.75;font-size:0.95rem;">{site.service1_desc}</p>
-              </div>
-              <a href="#contact" style="display:inline-flex;align-items:center;gap:0.75rem;color:#E3E1DC;text-decoration:none;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-top:2rem;border-top:1px solid rgba(255,255,255,0.1);padding-top:1.5rem;">
-                En savoir plus
-                <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-28 md:py-36">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="grid md:grid-cols-2 gap-16 md:gap-24 items-center">
+        <div class="relative">
+          <img src={site.about_image} alt={site.about_title2} class="w-full aspect-[3/4] object-cover" />
+          <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-pink hidden md:block"></div>
+        </div>
+        <div>
+          <span class="font-sans text-xs tracking-[0.22em] uppercase text-muted mb-6 block">{site.about_badge}</span>
+          <h2 class="font-serif text-5xl md:text-6xl font-light leading-tight text-dark mb-2">
+            {site.about_title}
+          </h2>
+          <h2 class="font-serif text-5xl md:text-6xl font-light italic leading-tight text-dark mb-10">
+            {site.about_title2}
+          </h2>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted mb-6 tracking-wide">
+            {site.about_text1}
+          </p>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted mb-10 tracking-wide">
+            {site.about_text2}
+          </p>
+          <a href={`mailto:${site.email}`} class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.18em] uppercase text-dark hover:opacity-60 transition-opacity">
+            {site.about_cta}
+            <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section id="portfolio" class="py-28 bg-sand/20">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="mb-16">
+        <span class="font-sans text-xs tracking-[0.22em] uppercase text-muted mb-4 block">{site.portfolio_badge}</span>
+        <h2 class="font-serif text-5xl md:text-6xl font-light text-dark">
+          {site.portfolio_title} <em class="italic">{site.portfolio_title_em}</em>
+        </h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="group cursor-default">
+          <div class="overflow-hidden mb-5">
+            <img src={site.portfolio1_image} alt={site.portfolio1_title} class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700" />
+          </div>
+          <h3 class="font-serif text-xl font-light text-dark mb-1">{site.portfolio1_title}</h3>
+          <span class="font-sans text-xs tracking-[0.15em] uppercase text-muted">{site.portfolio1_flavor}</span>
+        </div>
+        <div class="group cursor-default md:mt-12">
+          <div class="overflow-hidden mb-5">
+            <img src={site.portfolio2_image} alt={site.portfolio2_title} class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700" />
+          </div>
+          <h3 class="font-serif text-xl font-light text-dark mb-1">{site.portfolio2_title}</h3>
+          <span class="font-sans text-xs tracking-[0.15em] uppercase text-muted">{site.portfolio2_flavor}</span>
+        </div>
+        <div class="group cursor-default">
+          <div class="overflow-hidden mb-5">
+            <img src={site.portfolio3_image} alt={site.portfolio3_title} class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700" />
+          </div>
+          <h3 class="font-serif text-xl font-light text-dark mb-1">{site.portfolio3_title}</h3>
+          <span class="font-sans text-xs tracking-[0.15em] uppercase text-muted">{site.portfolio3_flavor}</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section id="process" class="py-28 md:py-36">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="text-center mb-20">
+        <span class="font-sans text-xs tracking-[0.22em] uppercase text-muted mb-4 block">{site.process_badge}</span>
+        <h2 class="font-serif text-5xl md:text-6xl font-light text-dark mb-5">{site.process_title}</h2>
+        <p class="font-sans text-sm font-light leading-relaxed text-muted max-w-xl mx-auto tracking-wide">{site.process_subtitle}</p>
+      </div>
+      <div class="grid md:grid-cols-4 gap-10 md:gap-8">
+        <div class="relative">
+          <div class="font-serif text-8xl font-light text-sand leading-none mb-6 select-none">01</div>
+          <div class="w-10 h-px bg-dark/20 mb-6"></div>
+          <h3 class="font-serif text-2xl font-light text-dark mb-3">{site.step1_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.step1_desc}</p>
+        </div>
+        <div class="relative">
+          <div class="font-serif text-8xl font-light text-sand leading-none mb-6 select-none">02</div>
+          <div class="w-10 h-px bg-dark/20 mb-6"></div>
+          <h3 class="font-serif text-2xl font-light text-dark mb-3">{site.step2_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.step2_desc}</p>
+        </div>
+        <div class="relative">
+          <div class="font-serif text-8xl font-light text-sand leading-none mb-6 select-none">03</div>
+          <div class="w-10 h-px bg-dark/20 mb-6"></div>
+          <h3 class="font-serif text-2xl font-light text-dark mb-3">{site.step3_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.step3_desc}</p>
+        </div>
+        <div class="relative">
+          <div class="font-serif text-8xl font-light text-sand leading-none mb-6 select-none">04</div>
+          <div class="w-10 h-px bg-dark/20 mb-6"></div>
+          <h3 class="font-serif text-2xl font-light text-dark mb-3">{site.step4_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.step4_desc}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Saveurs -->
+  <section id="flavors" class="py-28 bg-cream/30">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="mb-16">
+        <h2 class="font-serif text-5xl md:text-6xl font-light text-dark">
+          {site.flavors_title} <em class="italic">{site.flavors_title_em}</em>
+        </h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-px bg-sand/50">
+        <div class="bg-bg p-10 md:p-12 hover:bg-pink/20 transition-colors duration-300">
+          <span class="font-sans text-xs tracking-[0.18em] uppercase text-muted border border-sand px-3 py-1 mb-8 inline-block">{site.flavor1_tag}</span>
+          <h3 class="font-serif text-2xl font-light text-dark mb-4">{site.flavor1_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.flavor1_desc}</p>
+        </div>
+        <div class="bg-bg p-10 md:p-12 hover:bg-pink/20 transition-colors duration-300">
+          <span class="font-sans text-xs tracking-[0.18em] uppercase text-muted border border-sand px-3 py-1 mb-8 inline-block">{site.flavor2_tag}</span>
+          <h3 class="font-serif text-2xl font-light text-dark mb-4">{site.flavor2_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.flavor2_desc}</p>
+        </div>
+        <div class="bg-bg p-10 md:p-12 hover:bg-pink/20 transition-colors duration-300">
+          <span class="font-sans text-xs tracking-[0.18em] uppercase text-muted border border-sand px-3 py-1 mb-8 inline-block">{site.flavor3_tag}</span>
+          <h3 class="font-serif text-2xl font-light text-dark mb-4">{site.flavor3_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.flavor3_desc}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Témoignage -->
+  <section class="py-28 md:py-36 bg-dark">
+    <div class="max-w-5xl mx-auto px-8 text-center">
+      <span class="iconify text-sand/40 mb-10 block mx-auto" data-icon="lucide:quote" data-width="40"></span>
+      <blockquote class="font-serif text-3xl md:text-4xl font-light italic leading-relaxed text-white/90 mb-12">
+        &ldquo;{site.testimonial_text}&rdquo;
+      </blockquote>
+      <div class="flex items-center justify-center gap-5">
+        <img src={site.testimonial_image} alt={site.testimonial_name} class="w-12 h-12 rounded-full object-cover grayscale opacity-60" />
+        <div class="text-left">
+          <p class="font-serif text-base font-light text-white/80">{site.testimonial_name}</p>
+          <p class="font-sans text-xs tracking-[0.15em] uppercase text-white/30">{site.testimonial_date}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="contact" class="py-28 md:py-36">
+    <div class="max-w-3xl mx-auto px-8">
+      <div class="mb-16 text-center">
+        <h2 class="font-serif text-5xl md:text-6xl font-light text-dark mb-4">{site.faq_title}</h2>
+        <p class="font-sans text-sm font-light text-muted tracking-wide">{site.faq_subtitle}</p>
+      </div>
+      <div class="divide-y divide-sand/60">
+        <div class="faq-item py-7">
+          <button class="faq-trigger w-full flex items-center justify-between text-left gap-6">
+            <span class="font-serif text-xl font-light text-dark">{site.faq1_q}</span>
+            <span class="iconify faq-icon flex-shrink-0 text-muted transition-transform duration-300" data-icon="lucide:plus" data-width="18"></span>
+          </button>
+          <div class="faq-answer hidden pt-5">
+            <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.faq1_a}</p>
+          </div>
+        </div>
+        <div class="faq-item py-7">
+          <button class="faq-trigger w-full flex items-center justify-between text-left gap-6">
+            <span class="font-serif text-xl font-light text-dark">{site.faq2_q}</span>
+            <span class="iconify faq-icon flex-shrink-0 text-muted transition-transform duration-300" data-icon="lucide:plus" data-width="18"></span>
+          </button>
+          <div class="faq-answer hidden pt-5">
+            <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.faq2_a}</p>
+          </div>
+        </div>
+        <div class="faq-item py-7">
+          <button class="faq-trigger w-full flex items-center justify-between text-left gap-6">
+            <span class="font-serif text-xl font-light text-dark">{site.faq3_q}</span>
+            <span class="iconify faq-icon flex-shrink-0 text-muted transition-transform duration-300" data-icon="lucide:plus" data-width="18"></span>
+          </button>
+          <div class="faq-answer hidden pt-5">
+            <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.faq3_a}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-dark py-16">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="grid md:grid-cols-3 gap-12 mb-14">
+        <div>
+          <p class="font-serif text-3xl font-light text-white tracking-[0.2em] mb-2">{site.company_name}</p>
+          <p class="font-sans text-xs tracking-[0.18em] uppercase text-white/30">{site.company_sub}</p>
+        </div>
+        <div>
+          <p class="font-sans text-xs tracking-[0.18em] uppercase text-white/30 mb-4">Contact</p>
+          <a href={`mailto:${site.email}`} class="font-sans text-sm font-light text-white/60 hover:text-white transition-colors tracking-wide">{site.email}</a>
+        </div>
+        <div>
+          <p class="font-sans text-xs tracking-[0.18em] uppercase text-white/30 mb-4">Suivre</p>
+          <div class="flex gap-5">
+            {site.social_instagram && site.social_instagram !== '#' || site.social_instagram === '#' ? (
+              <a href={site.social_instagram} class="text-white/40 hover:text-white/80 transition-colors">
+                <span class="iconify" data-icon="lucide:instagram" data-width="18"></span>
               </a>
-            </div>
-            <div class="card-img-wrap">
-              <img class="card-img" src={site.service1_image} alt={site.service1_title} />
-            </div>
-          </div>
-        </div>
-        <div class="card-item" data-card="1">
-          <div class="card-inner">
-            <div class="card-content">
-              <div>
-                <span style="font-size:0.7rem;letter-spacing:0.15em;opacity:0.35;text-transform:uppercase;">{site.service2_number}</span>
-                <h3 class="display" style="font-size:clamp(1.8rem,3vw,2.8rem);font-weight:700;margin:1rem 0;line-height:1.1;">{site.service2_title}</h3>
-                <span style="display:inline-block;background:var(--c-accent);color:#fff;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.4rem 1rem;margin-bottom:1.5rem;">{site.service2_tag}</span>
-                <p style="opacity:0.7;line-height:1.75;font-size:0.95rem;">{site.service2_desc}</p>
-              </div>
-              <a href="#contact" style="display:inline-flex;align-items:center;gap:0.75rem;color:#E3E1DC;text-decoration:none;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-top:2rem;border-top:1px solid rgba(255,255,255,0.1);padding-top:1.5rem;">
-                En savoir plus
-                <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
+            ) : null}
+            {site.social_facebook && site.social_facebook !== '#' || site.social_facebook === '#' ? (
+              <a href={site.social_facebook} class="text-white/40 hover:text-white/80 transition-colors">
+                <span class="iconify" data-icon="lucide:facebook" data-width="18"></span>
               </a>
-            </div>
-            <div class="card-img-wrap">
-              <img class="card-img" src={site.service2_image} alt={site.service2_title} />
-            </div>
-          </div>
-        </div>
-        <div class="card-item" data-card="2">
-          <div class="card-inner">
-            <div class="card-content">
-              <div>
-                <span style="font-size:0.7rem;letter-spacing:0.15em;opacity:0.35;text-transform:uppercase;">{site.service3_number}</span>
-                <h3 class="display" style="font-size:clamp(1.8rem,3vw,2.8rem);font-weight:700;margin:1rem 0;line-height:1.1;">{site.service3_title}</h3>
-                <span style="display:inline-block;background:var(--c-accent);color:#fff;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.4rem 1rem;margin-bottom:1.5rem;">{site.service3_tag}</span>
-                <p style="opacity:0.7;line-height:1.75;font-size:0.95rem;">{site.service3_desc}</p>
-              </div>
-              <a href="#contact" style="display:inline-flex;align-items:center;gap:0.75rem;color:#E3E1DC;text-decoration:none;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-top:2rem;border-top:1px solid rgba(255,255,255,0.1);padding-top:1.5rem;">
-                En savoir plus
-                <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
+            ) : null}
+            {site.social_linkedin ? (
+              <a href={site.social_linkedin} class="text-white/40 hover:text-white/80 transition-colors">
+                <span class="iconify" data-icon="lucide:linkedin" data-width="18"></span>
               </a>
-            </div>
-            <div class="card-img-wrap">
-              <img class="card-img" src={site.service3_image} alt={site.service3_title} />
-            </div>
+            ) : null}
           </div>
         </div>
       </div>
-    </section>
-
-    <section id="clientele" style="padding:10rem 6vw;display:grid;grid-template-columns:auto 1fr;gap:6rem;align-items:start;">
-      <div style="width:1px;background:var(--c-dark);opacity:0.2;height:100%;min-height:16rem;"></div>
-      <div>
-        <iconify-icon icon="solar:star-bold" width="36" style="color:var(--c-accent);display:block;margin-bottom:2.5rem;"></iconify-icon>
-        <h2 class="display" style="font-size:clamp(2rem,4.5vw,4rem);font-weight:700;line-height:1.1;margin:0 0 2rem;max-width:28ch;">{site.clientele_title}</h2>
-        <p style="font-size:1.05rem;line-height:1.85;opacity:0.75;max-width:52ch;">{site.clientele_text}</p>
-      </div>
-    </section>
-
-  </div>
-
-  <footer class="footer-sticky" id="contact" style="overflow:hidden;">
-    <div style="position:absolute;inset:0;background-image:url('{site.hero_image}');background-size:cover;background-position:center;opacity:0.08;pointer-events:none;"></div>
-    <div style="position:relative;z-index:2;width:100%;padding:0 6vw;display:flex;flex-direction:column;justify-content:center;height:100%;">
-      <span style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;opacity:0.4;margin-bottom:2rem;">{site.footer_cta}</span>
-      <a href={`tel:${site.phone}`} class="display" style="font-size:6vw;font-weight:700;color:#fff;text-decoration:none;line-height:1;margin-bottom:3rem;display:block;">{site.phone}</a>
-      <p style="opacity:0.5;font-size:0.95rem;max-width:50ch;line-height:1.7;margin-bottom:4rem;">{site.footer_text}</p>
-      <div style="display:flex;gap:3rem;border-top:1px solid rgba(255,255,255,0.1);padding-top:2rem;align-items:center;justify-content:space-between;flex-wrap:wrap;">
-        <nav style="display:flex;gap:2rem;">
-          <a href="#consultation" style="color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;">Consultation</a>
-          <a href="#services" style="color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;">Programmes</a>
-          <a href="#intro" style="color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;">Médias</a>
-          <a href={`mailto:${site.email}`} style="color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;">Contact</a>
-        </nav>
-        <span style="color:rgba(255,255,255,0.3);font-size:0.75rem;">© {new Date().getFullYear()} {site.company_name} — {site.address}</span>
+      <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p class="font-sans text-xs font-light text-white/25 tracking-wide">{site.footer_tagline}</p>
+        <p class="font-sans text-xs text-white/20 tracking-[0.1em]">&copy; {new Date().getFullYear()} {site.company_name}</p>
       </div>
     </div>
   </footer>
 
-  <style>
-    @media (max-width: 768px) {
-      nav .nav-links { display: none !important; }
-      .nav-mobile-btn { display: flex !important; }
-      #intro { grid-template-columns: 1fr !important; gap: 3rem !important; }
-      #clientele { grid-template-columns: 1fr !important; }
-      #clientele > div:first-child { display: none !important; }
-    }
-  </style>
-
   <script is:inline>
-    gsap.registerPlugin(ScrollTrigger);
-
-    const lenis = new Lenis({ duration: 1.2, easing: function(t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); }, orientation: 'vertical', smoothWheel: true });
-
-    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
-    requestAnimationFrame(raf);
-
-    lenis.on('scroll', ScrollTrigger.update);
-    gsap.ticker.add(function(time) { lenis.raf(time * 1000); });
-    gsap.ticker.lagSmoothing(0);
-
-    var loadTl = gsap.timeline({
-      onComplete: function() {
-        document.body.style.opacity = 1;
-        initSite();
-      }
-    });
-
-    loadTl
-      .to('.loader-bar', { width: '100%', duration: 1.2, ease: 'power2.inOut' })
-      .to('.loader-text', { y: -30, opacity: 0, duration: 0.4, ease: 'power2.in' })
-      .to('.loader', { yPercent: -100, duration: 0.8, ease: 'power3.inOut' });
-
-    function initSite() {
-      gsap.to('.hero-line1', { y: 0, duration: 1.1, ease: 'power3.out', delay: 0.1 });
-      gsap.to('.hero-line2', { y: 0, duration: 1.1, ease: 'power3.out', delay: 0.25 });
-      gsap.to('.hero-subtitle', { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', delay: 0.7 });
-
-      gsap.from('.split-animate', {
-        scrollTrigger: { trigger: '.split-animate', start: 'top 80%' },
-        y: 60, opacity: 0, duration: 0.9, ease: 'power3.out'
-      });
-
-      gsap.from('#intro p', {
-        scrollTrigger: { trigger: '#intro', start: 'top 75%' },
-        y: 40, opacity: 0, duration: 0.9, ease: 'power2.out', delay: 0.2
-      });
-
-      gsap.from('#intro .display', {
-        scrollTrigger: { trigger: '#intro', start: 'top 75%' },
-        y: 20, opacity: 0, duration: 0.7, ease: 'power2.out', stagger: 0.1, delay: 0.35
-      });
-
-      var cards = gsap.utils.toArray('.card-item');
-      cards.forEach(function(card, i) {
-        if (i < cards.length - 1) {
-          ScrollTrigger.create({
-            trigger: cards[i + 1],
-            start: 'top 20%',
-            end: 'bottom top',
-            onEnter: function() {
-              gsap.to(card.querySelector('.card-inner'), { scale: 0.94, opacity: 0.5, duration: 0.5, ease: 'power2.out' });
-            },
-            onLeaveBack: function() {
-              gsap.to(card.querySelector('.card-inner'), { scale: 1, opacity: 1, duration: 0.4, ease: 'power2.out' });
-            }
-          });
+    document.querySelectorAll('.faq-item').forEach(function(item) {
+      var trigger = item.querySelector('.faq-trigger');
+      var answer = item.querySelector('.faq-answer');
+      var icon = item.querySelector('.faq-icon');
+      trigger.addEventListener('click', function() {
+        var isOpen = !answer.classList.contains('hidden');
+        document.querySelectorAll('.faq-answer').forEach(function(a) { a.classList.add('hidden'); });
+        document.querySelectorAll('.faq-icon').forEach(function(i) {
+          i.setAttribute('data-icon', 'lucide:plus');
+          i.style.transform = '';
+        });
+        if (!isOpen) {
+          answer.classList.remove('hidden');
+          icon.setAttribute('data-icon', 'lucide:minus');
         }
       });
+    });
 
-      gsap.from('#clientele h2', {
-        scrollTrigger: { trigger: '#clientele', start: 'top 75%' },
-        y: 50, opacity: 0, duration: 1, ease: 'power3.out'
-      });
-
-      gsap.from('#clientele p', {
-        scrollTrigger: { trigger: '#clientele', start: 'top 75%' },
-        y: 30, opacity: 0, duration: 0.8, ease: 'power2.out', delay: 0.25
-      });
-    }
+    var nav = document.getElementById('nav');
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 80) {
+        nav.style.backgroundColor = '#f5f2ee';
+        nav.style.boxShadow = '0 1px 0 rgba(0,0,0,0.06)';
+      } else {
+        nav.style.backgroundColor = 'transparent';
+        nav.style.boxShadow = 'none';
+      }
+    });
   </script>
 
 </Base>

@@ -1,41 +1,57 @@
 ---
+export interface Props {
+  title: string;
+  description?: string;
+}
 const { title, description } = Astro.props;
 ---
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{title}</title>
-  <meta name="description" content={description} />
-  <script is:inline src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@400;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css" crossorigin />
-  <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-  <script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-  <script is:inline src="https://unpkg.com/@studio-freight/lenis@1.0.33/dist/lenis.min.js"></script>
-  <script is:inline src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-  <style>
-    :root { --c-bg: #E3E1DC; --c-dark: #121212; --c-accent: #4A5D48; }
-    body { font-family: 'Pretendard', sans-serif; background: var(--c-bg); color: var(--c-dark); opacity: 0; overflow-x: hidden; margin: 0; }
-    .display { font-family: 'Syncopate', sans-serif; }
-    .wrapper { position: relative; z-index: 10; background: var(--c-bg); margin-bottom: 100vh; box-shadow: 0 50px 100px rgba(0,0,0,0.5); }
-    .loader { position: fixed; inset: 0; background: #000; z-index: 10000; display: flex; justify-content: center; align-items: center; color: #fff; }
-    .loader-text { font-family: 'Syncopate', sans-serif; font-size: 4vw; font-weight: 600; letter-spacing: -0.05rem; }
-    .loader-bar { position: absolute; bottom: 0; left: 0; height: 0.25rem; background: #fff; width: 0%; }
-    .stack-section { padding: 10vh 0; background: var(--c-dark); color: #E3E1DC; }
-    .card-item { position: sticky; top: 10vh; height: 80vh; display: flex; align-items: center; justify-content: center; margin-bottom: 5vh; }
-    .card-inner { width: 90%; height: 100%; background: #1a1a1a; border: 1px solid rgba(255,255,255,0.1); display: grid; grid-template-columns: 1fr 1.2fr; overflow: hidden; }
-    .card-content { padding: 4rem; display: flex; flex-direction: column; justify-content: space-between; }
-    .card-img-wrap { position: relative; width: 100%; height: 100%; overflow: hidden; }
-    .card-img { width: 100%; height: 100%; object-fit: cover; }
-    .footer-sticky { position: fixed; bottom: 0; left: 0; width: 100%; height: 100vh; z-index: 1; background: #111; color: #fff; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-    .stack-container { width: 100%; max-width: 1400px; margin: 0 auto; padding-bottom: 10vh; }
-    @media (max-width: 768px) { .card-inner { grid-template-columns: 1fr; } .card-img-wrap { height: 40%; order: -1; } .card-content { padding: 2rem; } }
-  </style>
-</head>
-<body class="antialiased">
-  <slot />
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+    <script is:inline src="https://cdn.tailwindcss.com"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/@iconify/iconify@3/dist/iconify.min.js"></script>
+    <script is:inline>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              bg: '#f5f2ee',
+              dark: '#1a1a1a',
+              muted: '#5a5a5a',
+              pink: '#f2dfdb',
+              sand: '#dfd3c5',
+              cream: '#eadecd',
+            },
+            fontFamily: {
+              serif: ['Cormorant Garamond', 'serif'],
+              sans: ['Jost', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
+    <style>
+      html { scroll-behavior: smooth; }
+      body {
+        background-color: #f5f2ee;
+        color: #1a1a1a;
+        font-family: 'Jost', sans-serif;
+        font-weight: 300;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1, h2, h3, h4 {
+        font-family: 'Cormorant Garamond', serif;
+      }
+    </style>
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
