@@ -2,567 +2,566 @@
 import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
 ---
-<Base title={site.seo_title} description={site.seo_description}>
+<Base>
 
-<!-- Navigation -->
-<nav class="sticky top-0 z-50 w-full backdrop-blur-md border-b" style={`background-color: ${site.color_bg}e6; border-color: ${site.color_accent}4d;`}>
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex justify-between items-center h-20">
-    <a href="/" class="flex items-center hover:opacity-80 transition-opacity">
-      {site.logo_url
-        ? <img src={site.logo_url} alt={site.company_name} class="h-8 sm:h-10 w-auto object-contain" />
-        : <span class="font-heading text-xl font-bold" style={`color: ${site.color_dark};`}>{site.company_name}</span>
-      }
-    </a>
-    <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
-      <a href="#services" class="transition-colors hover:opacity-80" style={`color: ${site.color_dark};`}>Services</a>
-      <a href="#feature" class="transition-colors hover:opacity-80" style={`color: ${site.color_dark};`}>Offre</a>
-      <a href="#about" class="transition-colors hover:opacity-80" style={`color: ${site.color_dark};`}>À propos</a>
-      <a href="#contact-form" class="transition-colors hover:opacity-80" style={`color: ${site.color_dark};`}>Contact</a>
+  <!-- Forme de fond logo (coin haut gauche) -->
+  <div class="absolute top-0 left-0 bg-forest w-[260px] h-[220px] rounded-br-[120px] z-30 hidden lg:block pointer-events-none"></div>
+
+  <!-- Navigation -->
+  <nav class="absolute top-0 w-full z-40 px-6 lg:px-12 py-8 flex items-center justify-between pointer-events-auto">
+    <div class="relative z-50 flex items-center gap-3 group cursor-pointer lg:w-[240px] lg:justify-center">
+      <div class="flex flex-col items-center">
+        <svg width="40" height="48" viewBox="0 0 40 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-2 lg:stroke-caramel stroke-forest lg:fill-none fill-forest/10">
+          <path d="M20 2L4 16V46H36V16L20 2Z" stroke-width="1.5"></path>
+          <path d="M12 46V24C12 19.5817 15.5817 16 20 16C24.4183 16 28 19.5817 28 24V46" stroke-width="1.5"></path>
+          <circle cx="20" cy="30" r="4" stroke-width="1.5"></circle>
+          <path d="M16 36C16 33.7909 17.7909 32 20 32C22.2091 32 24 33.7909 24 36" stroke-width="1.5"></path>
+        </svg>
+        <div class="text-center">
+          <span class="block text-sm tracking-[0.2em] uppercase lg:text-caramel text-forest font-medium">{site.company_name}</span>
+          <span class="block text-xs tracking-[0.1em] uppercase lg:text-caramel/70 text-forest/70 mt-1">{site.tagline}</span>
+        </div>
+      </div>
     </div>
-    <div class="flex items-center gap-4">
-      <a href="#contact-form" class="text-white text-sm font-semibold px-5 py-2.5 rounded-lg shadow-sm transition-all duration-200 hover:opacity-90" style={`background-color: ${site.color_primary};`}>
-        Nous contacter
+
+    <div class="hidden lg:flex items-center space-x-10">
+      <a href="#experience" class="text-sm tracking-wide hover:text-caramel transition-colors">Notre Expérience</a>
+      <a href="#suites" class="text-sm tracking-wide hover:text-caramel transition-colors">Suites &amp; Services</a>
+      <a href="#wellness" class="text-sm tracking-wide hover:text-caramel transition-colors">Bien-être</a>
+      <a href="#gallery" class="text-sm tracking-wide hover:text-caramel transition-colors">Galerie</a>
+      <a href="#about" class="text-sm tracking-wide hover:text-caramel transition-colors">À propos</a>
+    </div>
+
+    <div class="flex items-center gap-4 z-50">
+      <a href="#book" class="hidden md:flex items-center gap-2 bg-caramel text-white px-6 py-2.5 rounded-full text-sm tracking-wide hover:bg-caramel-light transition-colors group">
+        {site.hero_cta}
+        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+      </a>
+      <button id="menu-btn" class="p-2.5 border border-forest/20 rounded-full hover:bg-forest/5 transition-colors lg:bg-transparent bg-white">
+        <i data-lucide="menu" class="w-5 h-5 text-forest"></i>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Menu mobile -->
+  <div id="mobile-menu" class="fixed inset-0 bg-forest z-50 transform translate-x-full transition-transform duration-500 ease-in-out flex flex-col justify-center items-center">
+    <button id="close-menu-btn" class="absolute top-8 right-6 p-2 text-cream hover:text-caramel transition-colors">
+      <i data-lucide="x" class="w-8 h-8"></i>
+    </button>
+    <div class="flex flex-col items-center gap-8 text-cream">
+      <a href="#experience" class="font-serif text-3xl tracking-tight hover:text-caramel transition-colors mobile-link">Notre Expérience</a>
+      <a href="#suites" class="font-serif text-3xl tracking-tight hover:text-caramel transition-colors mobile-link">Suites &amp; Services</a>
+      <a href="#wellness" class="font-serif text-3xl tracking-tight hover:text-caramel transition-colors mobile-link">Bien-être</a>
+      <a href="#gallery" class="font-serif text-3xl tracking-tight hover:text-caramel transition-colors mobile-link">Galerie</a>
+      <a href="#about" class="font-serif text-3xl tracking-tight hover:text-caramel transition-colors mobile-link">À propos</a>
+      <a href="#book" class="mt-8 border border-caramel text-caramel px-8 py-3 rounded-full text-base tracking-wide hover:bg-caramel hover:text-white transition-colors mobile-link">
+        {site.hero_cta}
       </a>
     </div>
   </div>
-</nav>
 
-<!-- Hero Section -->
-<section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden"
-  style={`background-image: url('${site.hero_bg_image}'); background-attachment: fixed; background-position: center; background-repeat: no-repeat; background-size: cover;`}>
-  <div class="absolute inset-0 bg-black/60 backdrop-blur-[2px]"></div>
-  <div class="relative z-10 w-full max-w-4xl mx-auto px-6 sm:px-8 lg:px-12 flex flex-col items-center text-center mt-16 md:mt-24 pb-16">
-    <div data-aos="fade-up" data-aos-duration="1200" class="flex flex-col items-center w-full">
-      <div class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full glass-card mb-8 animate-glow">
-        <span class="w-2.5 h-2.5 rounded-full animate-pulse" style={`background-color: ${site.color_accent};`}></span>
-        <span class="text-xs font-bold tracking-widest uppercase" style={`color: ${site.color_accent};`}>{site.hero_badge}</span>
+  <!-- Hero -->
+  <section class="relative min-h-screen pt-32 lg:pt-0 flex items-center lg:items-stretch flex-col lg:flex-row">
+    <div class="w-full lg:w-[50%] px-6 lg:pl-32 lg:pr-8 flex flex-col justify-center relative z-10 py-12 lg:pt-40 lg:pb-32">
+      <div class="flex items-center gap-4 mb-8 mt-12 lg:mt-0">
+        <div class="w-12 h-[1px] bg-caramel"></div>
+        <span class="text-xs uppercase tracking-[0.15em] text-caramel font-medium">{site.hero_badge}</span>
       </div>
-      <h1 class="font-heading text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1] text-white mb-6 drop-shadow-2xl">
-        {site.hero_title}<br class="hidden sm:block" />
-        <span class="text-transparent bg-clip-text italic font-light" style={`background-image: linear-gradient(to right, ${site.color_accent}, white);`}>
-          {site.hero_title_italic}
-        </span>
+
+      <h1 class="font-serif text-5xl lg:text-7xl xl:text-[5rem] tracking-tight text-forest leading-[1.1] mb-8 font-normal">
+        {site.hero_title}<br>
+        Taillé pour<span class="italic text-caramel"> {site.hero_title_italic}</span>
       </h1>
-      <p class="text-lg sm:text-xl text-white/80 mb-10 leading-relaxed max-w-2xl font-light mx-auto">{site.hero_subtitle}</p>
-      <div class="flex flex-col sm:flex-row items-center gap-6 justify-center mb-16 w-full">
-        <a href="#services" class="w-full sm:w-auto text-sm font-bold px-8 py-4 rounded-full hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
-          style={`background-color: ${site.color_accent}; color: ${site.color_primary}; box-shadow: 0 0 30px rgba(232,217,181,0.3);`}>
-          {site.hero_cta_primary}
-          <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
-        </a>
-        <a href="#contact-form" class="w-full sm:w-auto glass-card text-white text-sm font-semibold px-8 py-4 rounded-full hover:bg-white/20 transition-all duration-300 flex items-center justify-center">
-          {site.hero_cta_secondary}
-        </a>
-      </div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6 w-full max-w-2xl mx-auto">
-        <div class="glass-card p-5 rounded-3xl flex items-center gap-4 hover:scale-105 transition-transform text-left bg-white/10 border border-white/20 backdrop-blur-md">
-          <div class="p-4 rounded-full shrink-0" style={`background-color: ${site.color_primary}cc;`}>
-            <iconify-icon icon={site.hero_stat1_icon} width="28" style={`color: ${site.color_accent};`}></iconify-icon>
-          </div>
-          <div>
-            <p class="text-base font-bold text-white">{site.hero_stat1_value}</p>
-            <p class="text-xs text-white/70 font-medium">{site.hero_stat1_label}</p>
-          </div>
-        </div>
-        <div class="glass-card p-5 rounded-3xl flex items-center gap-4 hover:scale-105 transition-transform text-left bg-white/10 border border-white/20 backdrop-blur-md">
-          <div class="p-4 rounded-full shrink-0" style={`background-color: ${site.color_accent}cc;`}>
-            <iconify-icon icon={site.hero_stat2_icon} width="28" style={`color: ${site.color_primary};`}></iconify-icon>
-          </div>
-          <div>
-            <p class="text-base font-bold text-white">{site.hero_stat2_value}</p>
-            <p class="text-xs text-white/70 font-medium">{site.hero_stat2_label}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- Marquee Trust Strip -->
-<section class="py-8 border-y overflow-hidden" style={`background-color: ${site.color_primary}; border-color: ${site.color_accent}33;`}>
-  <div class="flex whitespace-nowrap animate-[marquee_25s_linear_infinite] items-center gap-20" style={`color: ${site.color_accent};`}>
-    <div class="flex items-center gap-20 text-lg font-heading tracking-widest uppercase">
-      {site.marquee_items.map((item: any) => (
-        <span class="flex items-center gap-3 font-semibold">
-          <iconify-icon icon={item.icon} width="28"></iconify-icon>
-          {item.text}
-        </span>
-      ))}
-    </div>
-    <div class="flex items-center gap-20 text-lg font-heading tracking-widest uppercase" aria-hidden="true">
-      {site.marquee_items.map((item: any) => (
-        <span class="flex items-center gap-3 font-semibold">
-          <iconify-icon icon={item.icon} width="28"></iconify-icon>
-          {item.text}
-        </span>
-      ))}
-    </div>
-  </div>
-</section>
+      <p class="text-base lg:text-lg text-forest/70 max-w-md mb-12 leading-relaxed font-light">{site.hero_subtitle}</p>
 
-<!-- About / Process Section -->
-<section id="about" class="py-32 relative" style={`background-color: ${site.color_dark}; background-image: radial-gradient(900px 420px at 20% 10%, ${site.color_primary}40, transparent 60%), radial-gradient(800px 380px at 85% 35%, ${site.color_accent}2e, transparent 55%);`}>
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 mb-20 text-center">
-    <h2 class="font-heading text-5xl font-semibold tracking-tight text-white mb-6">
-      {site.about_title}
-      <span class="italic font-light" style={`color: ${site.color_accent};`}>{site.about_title_italic}</span>
-    </h2>
-    <p class="text-gray-400 max-w-2xl mx-auto text-lg font-light leading-relaxed">{site.about_subtitle}</p>
-  </div>
-  <div class="max-w-4xl mx-auto relative px-6">
-    <div class="sticky top-32 pt-12 pb-48">
-      <div class="space-y-32">
-        <div class="flex flex-col md:flex-row items-center gap-10 bg-white/5 backdrop-blur-xl border border-white/10 p-10 rounded-[2rem] sticky top-32 shadow-2xl transition-all hover:bg-white/10">
-          <div class="w-20 h-20 shrink-0 rounded-full flex items-center justify-center shadow-lg" style={`background-color: ${site.color_accent}; color: ${site.color_primary};`}>
-            <h3 class="text-3xl font-bold font-heading">01</h3>
-          </div>
-          <div>
-            <h4 class="text-3xl font-semibold text-white mb-3 font-heading tracking-tight">{site.about_step1_title}</h4>
-            <p class="text-gray-400 leading-relaxed font-light">{site.about_step1_desc}</p>
-          </div>
+      <div class="flex items-center gap-4 mb-20 lg:mb-32 group cursor-pointer w-max">
+        <div class="w-12 h-12 rounded-full bg-caramel flex items-center justify-center text-white group-hover:bg-forest transition-colors duration-300">
+          <i data-lucide="arrow-down-right" class="w-5 h-5"></i>
         </div>
-        <div class="flex flex-col md:flex-row items-center gap-10 p-10 rounded-[2rem] sticky top-40 shadow-2xl transition-all border" style={`background-color: ${site.color_primary}; border-color: ${site.color_primary}cc;`}>
-          <div class="w-20 h-20 shrink-0 bg-white rounded-full flex items-center justify-center shadow-lg" style={`color: ${site.color_primary};`}>
-            <h3 class="text-3xl font-bold font-heading">02</h3>
-          </div>
-          <div>
-            <h4 class="text-3xl font-semibold text-white mb-3 font-heading tracking-tight">{site.about_step2_title}</h4>
-            <p class="text-white/80 leading-relaxed font-light">{site.about_step2_desc}</p>
-          </div>
+        <span class="text-xs uppercase tracking-widest font-medium group-hover:text-caramel transition-colors duration-300">{site.hero_discover}</span>
+      </div>
+
+      <!-- Features -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-forest/10 lg:border-none lg:pt-0 relative w-max mx-auto lg:mx-0">
+        <div class="flex flex-col items-center lg:items-start gap-4 px-4 border-r border-forest/10">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" class="text-forest">
+            <path d="M4 12L16 3L28 12V29H4V12Z"></path>
+            <path d="M16 12C18.2091 12 20 13.7909 20 16C20 18.2091 16 22 16 22C16 22 12 18.2091 12 16C12 13.7909 13.7909 12 16 12Z"></path>
+          </svg>
+          <span class="text-xs tracking-wider uppercase text-center lg:text-left leading-tight text-forest/80">{site.hero_feat1}</span>
         </div>
-        <div class="flex flex-col md:flex-row items-center gap-10 p-10 rounded-[2rem] sticky top-48 shadow-2xl transition-all border" style={`background-color: ${site.color_accent}; border-color: ${site.color_accent}cc; color: ${site.color_dark};`}>
-          <div class="w-20 h-20 shrink-0 rounded-full flex items-center justify-center text-white shadow-lg" style={`background-color: ${site.color_primary};`}>
-            <h3 class="text-3xl font-bold font-heading">03</h3>
-          </div>
-          <div>
-            <h4 class="text-3xl font-semibold mb-3 font-heading tracking-tight" style={`color: ${site.color_dark};`}>{site.about_step3_title}</h4>
-            <p class="leading-relaxed font-light" style={`color: ${site.color_dark}cc;`}>{site.about_step3_desc}</p>
-          </div>
+        <div class="flex flex-col items-center lg:items-start gap-4 px-4 border-r border-forest/10">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" class="text-forest">
+            <path d="M16 4C16 4 11 8 11 14C11 19 16 28 16 28C16 28 21 19 21 14C21 8 16 4 16 4Z"></path>
+            <path d="M16 28C16 28 8 26 5 20C2 14 6 10 6 10C6 10 10 14 11 14"></path>
+            <path d="M16 28C16 28 24 26 27 20C30 14 26 10 26 10C26 10 22 14 21 14"></path>
+          </svg>
+          <span class="text-xs tracking-wider uppercase text-center lg:text-left leading-tight text-forest/80">{site.hero_feat2}</span>
+        </div>
+        <div class="flex flex-col items-center lg:items-start gap-4 px-4 border-r border-forest/10">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" class="text-forest">
+            <circle cx="16" cy="16" r="12"></circle>
+            <path d="M16 4C16 4 20 9 20 16C20 23 16 28 16 28C16 28 12 23 12 16C12 9 16 4 16 4Z"></path>
+            <path d="M4 16H28"></path>
+          </svg>
+          <span class="text-xs tracking-wider uppercase text-center lg:text-left leading-tight text-forest/80">{site.hero_feat3}</span>
+        </div>
+        <div class="flex flex-col items-center lg:items-start gap-4 px-4">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" class="text-forest">
+            <rect x="4" y="8" width="24" height="18" rx="2"></rect>
+            <circle cx="16" cy="17" r="4"></circle>
+            <path d="M12 8V6C12 4.89543 12.8954 4 14 4H18C19.1046 4 20 4.89543 20 6V8"></path>
+          </svg>
+          <span class="text-xs tracking-wider uppercase text-center lg:text-left leading-tight text-forest/80">{site.hero_feat4}</span>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- Services / Products Section -->
-<section id="services" class="py-32" style={`background-color: ${site.color_bg};`}>
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-    <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-      <div class="max-w-2xl">
-        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6" style={`background-color: ${site.color_primary}1a;`}>
-          <span class="text-xs font-bold tracking-widest uppercase" style={`color: ${site.color_primary};`}>Catalogue</span>
+    <!-- Image hero droite -->
+    <div class="w-full lg:w-[50%] relative lg:absolute lg:right-0 lg:top-0 h-[60vh] lg:h-full overflow-hidden mt-12 lg:mt-0">
+      <div class="absolute inset-0 lg:rounded-tl-[250px] lg:rounded-bl-[50px] overflow-hidden bg-cream-dark">
+        <img src={site.hero_image_url} alt={site.company_name} class="w-full h-full object-cover object-center lg:object-[center_20%] opacity-90 mix-blend-multiply">
+        <div class="absolute top-[15%] lg:top-[25%] right-[10%] lg:right-[20%] text-center opacity-80">
+          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" class="mx-auto mb-2 stroke-caramel">
+            <path d="M8 24L20 8L32 24" stroke-width="1.5"></path>
+            <path d="M12 24V32H28V24" stroke-width="1.5"></path>
+            <circle cx="20" cy="16" r="2" stroke-width="1.5"></circle>
+          </svg>
+          <p class="text-xs tracking-widest text-caramel font-medium leading-loose uppercase">Confort<br>Soins<br>Compagnie<br>— Toujours</p>
         </div>
-        <h2 class="font-heading text-5xl font-semibold tracking-tight" style={`color: ${site.color_dark};`}>
-          {site.services_title} <span class="italic font-light">{site.services_title_italic}</span>
-        </h2>
       </div>
-      <a href="#contact-form" class="group inline-flex items-center gap-2 font-semibold text-sm border-b-2 pb-1 transition-all" style={`color: ${site.color_primary}; border-color: ${site.color_primary};`}>
-        Voir tout le catalogue
-        <iconify-icon icon="solar:arrow-right-linear" class="group-hover:translate-x-1 transition-transform" width="18"></iconify-icon>
-      </a>
-    </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {[
-        { title: site.service1_title, desc: site.service1_desc, image: site.service1_image },
-        { title: site.service2_title, desc: site.service2_desc, image: site.service2_image },
-        { title: site.service3_title, desc: site.service3_desc, image: site.service3_image },
-        { title: site.service4_title, desc: site.service4_desc, image: site.service4_image },
-      ].map((s) => (
-        <div class="group relative overflow-hidden rounded-[2rem] aspect-[4/5] reveal-on-hover shadow-lg cursor-pointer">
-          <img src={s.image} alt={s.title} class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent"></div>
-          <div class="absolute inset-x-0 bottom-0 p-8">
-            <h3 class="font-heading text-3xl font-semibold text-white mb-2 tracking-tight">{s.title}</h3>
-            <div class="reveal-content">
-              <p class="text-sm text-white/80 mb-5 font-light leading-relaxed">{s.desc}</p>
-              <span class="inline-flex items-center gap-2 bg-white/20 backdrop-blur-md px-5 py-2.5 rounded-full text-xs font-bold text-white hover:bg-white/30 transition-colors">
-                En savoir plus
-                <iconify-icon icon="solar:alt-arrow-right-linear"></iconify-icon>
-              </span>
-            </div>
-          </div>
+      <div class="absolute bottom-[-20px] lg:bottom-[10%] right-[10%] lg:right-[15%] z-20 flex items-center justify-center">
+        <div class="absolute -right-8 -bottom-8 w-32 h-32 text-caramel/40">
+          <svg width="100%" height="100%" viewBox="0 0 100 100">
+            <pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+              <circle cx="2" cy="2" r="2" fill="currentColor"></circle>
+            </pattern>
+            <rect x="0" y="0" width="100" height="100" fill="url(#dots)"></rect>
+          </svg>
         </div>
-      ))}
+        <div class="w-48 h-48 lg:w-56 lg:h-56 bg-forest rounded-full flex flex-col items-center justify-center text-center p-6 relative shadow-2xl">
+          <p class="text-cream text-lg lg:text-xl font-serif leading-snug tracking-tight mb-4 font-light">{site.hero_badge_text}</p>
+          <i data-lucide="heart" class="w-6 h-6 text-caramel"></i>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Feature / Brand Showcase -->
-<section id="feature" class="py-32 relative overflow-hidden" style={`background-color: #111827;`}>
-  <div class="absolute inset-0 opacity-40 mix-blend-overlay" style={`background-image: url('${site.feature_bg_image}'); background-size: cover; background-position: center; background-attachment: fixed;`}></div>
-  <div class="absolute -left-1/4 top-0 w-1/2 h-full blur-3xl opacity-60" style={`background: linear-gradient(to right, ${site.color_primary}, transparent);`}></div>
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
-    <div class="grid lg:grid-cols-2 gap-20 items-center">
-      <div data-aos="fade-right">
-        <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/5 backdrop-blur-md border border-white/10 mb-8">
-          <iconify-icon icon="solar:crown-star-bold-duotone" width="20" style={`color: ${site.color_accent};`}></iconify-icon>
-          <span class="text-xs font-bold tracking-widest uppercase" style={`color: ${site.color_accent};`}>{site.feature_badge}</span>
-        </div>
-        <h2 class="font-heading text-6xl sm:text-7xl font-semibold tracking-tighter text-white mb-6 leading-none">
-          {site.feature_name}<br />
-          <span class="italic font-light" style={`color: ${site.color_accent};`}>{site.feature_subtitle}</span>
-        </h2>
-        <p class="text-xl text-gray-300 mb-10 leading-relaxed max-w-lg font-light">{site.feature_desc}</p>
-        <div class="grid grid-cols-2 gap-6 mb-12">
-          <div class="bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-sm hover:bg-white/10 transition-colors">
-            <iconify-icon icon="solar:ruler-bold-duotone" width="36" class="mb-4" style={`color: ${site.color_accent};`}></iconify-icon>
-            <h4 class="text-lg text-white font-semibold mb-1">{site.feature_point1_title}</h4>
-            <p class="text-sm text-gray-400 font-light">{site.feature_point1_sub}</p>
-          </div>
-          <div class="bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-sm hover:bg-white/10 transition-colors">
-            <iconify-icon icon="solar:hourglass-bold-duotone" width="36" class="mb-4" style={`color: ${site.color_accent};`}></iconify-icon>
-            <h4 class="text-lg text-white font-semibold mb-1">{site.feature_point2_title}</h4>
-            <p class="text-sm text-gray-400 font-light">{site.feature_point2_sub}</p>
-          </div>
-        </div>
-        <a href="#contact-form" class="text-base font-bold px-10 py-4 rounded-full hover:scale-105 transition-all inline-flex items-center gap-2" style={`background-color: ${site.color_accent}; color: ${site.color_dark}; box-shadow: 0 0 30px rgba(232,217,181,0.3);`}>
-          {site.feature_cta}
-          <iconify-icon icon="solar:box-bold-duotone" width="20"></iconify-icon>
+  <!-- Notre Philosophie -->
+  <section id="experience" class="py-32 bg-forest text-cream relative overflow-hidden">
+    <div class="absolute top-0 right-0 w-1/2 h-full bg-forest-light/20 rounded-l-full blur-3xl transform translate-x-1/4"></div>
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      <div>
+        <span class="text-caramel uppercase tracking-widest text-xs font-medium block mb-6">{site.about_tagline}</span>
+        <h2 class="font-serif text-4xl lg:text-6xl tracking-tight mb-8 font-normal leading-tight">{site.about_title}</h2>
+        <p class="text-base lg:text-lg text-cream/80 mb-8 font-light leading-relaxed">{site.about_text1}</p>
+        <p class="text-base lg:text-lg text-cream/80 mb-12 font-light leading-relaxed">{site.about_text2}</p>
+        <a href="#about" class="inline-flex items-center gap-4 text-caramel uppercase tracking-widest text-xs font-medium group">
+          {site.about_link}
+          <span class="w-10 h-[1px] bg-caramel group-hover:w-16 transition-all duration-300"></span>
         </a>
       </div>
-      <div class="relative flex justify-center" data-aos="zoom-in">
-        <div class="absolute inset-0 rounded-full blur-[120px] opacity-20" style={`background-color: ${site.color_accent};`}></div>
-        <div class="w-full max-w-sm relative group z-10 mx-auto">
-          <div class="transform rotate-3 group-hover:rotate-0 group-hover:-translate-y-4 group-hover:scale-105 transition-all duration-700 ease-out animate-float rounded-[2.5rem] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.6)] border border-white/10 relative cursor-pointer">
-            <img src={site.feature_image} alt={site.feature_name} class="w-full h-auto object-cover scale-105 group-hover:scale-100 transition-transform duration-700" />
-            <div class="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-white/20 pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity duration-700"></div>
+      <div class="relative h-[600px] w-full">
+        <div class="absolute top-0 right-0 w-3/4 h-[80%] rounded-[2rem] overflow-hidden shadow-2xl">
+          <img src={site.about_image1_url} alt={site.about_tagline} class="w-full h-full object-cover">
+        </div>
+        <div class="absolute bottom-0 left-0 w-3/5 h-[50%] rounded-[2rem] overflow-hidden shadow-2xl border-4 border-forest">
+          <img src={site.about_image2_url} alt={site.about_tagline} class="w-full h-full object-cover">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Suites -->
+  <section id="suites" class="py-32 bg-cream">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+        <div>
+          <span class="text-caramel uppercase tracking-widest text-xs font-medium block mb-4">{site.suites_tagline}</span>
+          <h2 class="font-serif text-4xl lg:text-5xl tracking-tight text-forest font-normal">{site.suites_title}</h2>
+        </div>
+        <a href="#book" class="border border-forest text-forest px-8 py-3 rounded-full text-xs uppercase tracking-widest hover:bg-forest hover:text-cream transition-colors">
+          {site.suites_cta}
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Suite 1 -->
+        <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 group">
+          <div class="h-64 overflow-hidden relative">
+            <img src={site.suite1_image_url} alt={site.suite1_name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-4 py-1.5 rounded-full text-xs font-medium tracking-wide">{site.suite1_price}</div>
+          </div>
+          <div class="p-8">
+            <h3 class="font-serif text-2xl tracking-tight text-forest mb-3">{site.suite1_name}</h3>
+            <p class="text-base text-forest/70 mb-6 font-light">{site.suite1_desc}</p>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center gap-3 text-sm text-forest/80"><i data-lucide="check" class="w-4 h-4 text-caramel"></i>{site.suite1_feat1}</li>
+              <li class="flex items-center gap-3 text-sm text-forest/80"><i data-lucide="check" class="w-4 h-4 text-caramel"></i>{site.suite1_feat2}</li>
+              <li class="flex items-center gap-3 text-sm text-forest/80"><i data-lucide="check" class="w-4 h-4 text-caramel"></i>{site.suite1_feat3}</li>
+            </ul>
+            <a href="#book" class="block w-full text-center bg-cream-dark text-forest py-3 rounded-full text-xs uppercase tracking-widest font-medium hover:bg-caramel hover:text-white transition-colors">Réserver</a>
+          </div>
+        </div>
+
+        <!-- Suite 2 (populaire) -->
+        <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 group relative">
+          <div class="absolute top-0 left-0 w-full h-1 bg-caramel z-10"></div>
+          <div class="h-64 overflow-hidden relative">
+            <img src={site.suite2_image_url} alt={site.suite2_name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-4 py-1.5 rounded-full text-xs font-medium tracking-wide">{site.suite2_price}</div>
+            <div class="absolute top-4 left-4 bg-caramel text-white px-3 py-1 rounded-full text-[10px] uppercase tracking-widest font-medium">Populaire</div>
+          </div>
+          <div class="p-8">
+            <h3 class="font-serif text-2xl tracking-tight text-forest mb-3">{site.suite2_name}</h3>
+            <p class="text-base text-forest/70 mb-6 font-light">{site.suite2_desc}</p>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center gap-3 text-sm text-forest/80"><i data-lucide="check" class="w-4 h-4 text-caramel"></i>{site.suite2_feat1}</li>
+              <li class="flex items-center gap-3 text-sm text-forest/80"><i data-lucide="check" class="w-4 h-4 text-caramel"></i>{site.suite2_feat2}</li>
+              <li class="flex items-center gap-3 text-sm text-forest/80"><i data-lucide="check" class="w-4 h-4 text-caramel"></i>{site.suite2_feat3}</li>
+            </ul>
+            <a href="#book" class="block w-full text-center bg-caramel text-white py-3 rounded-full text-xs uppercase tracking-widest font-medium hover:bg-forest transition-colors">Réserver</a>
+          </div>
+        </div>
+
+        <!-- Suite 3 -->
+        <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 group">
+          <div class="h-64 overflow-hidden relative">
+            <img src={site.suite3_image_url} alt={site.suite3_name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-4 py-1.5 rounded-full text-xs font-medium tracking-wide">{site.suite3_price}</div>
+          </div>
+          <div class="p-8">
+            <h3 class="font-serif text-2xl tracking-tight text-forest mb-3">{site.suite3_name}</h3>
+            <p class="text-base text-forest/70 mb-6 font-light">{site.suite3_desc}</p>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center gap-3 text-sm text-forest/80"><i data-lucide="check" class="w-4 h-4 text-caramel"></i>{site.suite3_feat1}</li>
+              <li class="flex items-center gap-3 text-sm text-forest/80"><i data-lucide="check" class="w-4 h-4 text-caramel"></i>{site.suite3_feat2}</li>
+              <li class="flex items-center gap-3 text-sm text-forest/80"><i data-lucide="check" class="w-4 h-4 text-caramel"></i>{site.suite3_feat3}</li>
+            </ul>
+            <a href="#book" class="block w-full text-center bg-cream-dark text-forest py-3 rounded-full text-xs uppercase tracking-widest font-medium hover:bg-caramel hover:text-white transition-colors">Réserver</a>
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Why Choose Us -->
-<section class="py-32 bg-white">
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <h2 class="font-heading text-5xl font-semibold tracking-tight mb-6" style={`color: ${site.color_dark};`}>
-        {site.whyus_title} <span class="italic font-light" style={`color: ${site.color_primary};`}>{site.whyus_title_colored}</span>
-      </h2>
-      <p class="text-gray-500 text-xl font-light leading-relaxed">{site.whyus_subtitle}</p>
-    </div>
-    <div class="grid lg:grid-cols-12 gap-10 items-stretch">
-      <div class="lg:col-span-5">
-        <div class="relative overflow-hidden rounded-[2.5rem] border border-gray-100 p-10 shadow-sm h-full" style={`background-color: ${site.color_bg};`}>
-          <div class="absolute -top-24 -right-24 w-72 h-72 blur-3xl rounded-full opacity-60" style={`background-color: ${site.color_accent};`}></div>
-          <div class="absolute -bottom-24 -left-24 w-72 h-72 blur-3xl rounded-full opacity-10" style={`background-color: ${site.color_primary};`}></div>
-          <div class="relative">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-gray-100 mb-8">
-              <iconify-icon icon="solar:shield-check-bold-duotone" width="18" style={`color: ${site.color_primary};`}></iconify-icon>
-              <span class="text-xs font-semibold tracking-widest uppercase" style={`color: ${site.color_primary};`}>{site.whyus_card_badge}</span>
-            </div>
-            <h3 class="font-heading text-3xl font-semibold tracking-tight mb-4" style={`color: ${site.color_dark};`}>{site.whyus_card_title}</h3>
-            <p class="text-gray-600 font-light leading-relaxed mb-8">{site.whyus_card_subtitle}</p>
-            <div class="space-y-4">
-              {[
-                { title: site.whyus_item1_title, desc: site.whyus_item1_desc, icon: 'solar:document-text-bold-duotone', bg: `${site.color_primary}1a` },
-                { title: site.whyus_item2_title, desc: site.whyus_item2_desc, icon: 'solar:checklist-minimalistic-bold-duotone', bg: `${site.color_accent}66` },
-                { title: site.whyus_item3_title, desc: site.whyus_item3_desc, icon: 'solar:global-bold-duotone', bg: `${site.color_primary}1a` },
-              ].map((item) => (
-                <div class="flex gap-4 rounded-2xl bg-white border border-gray-100 p-5">
-                  <div class="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={`background-color: ${item.bg};`}>
-                    <iconify-icon icon={item.icon} width="22" style={`color: ${site.color_primary};`}></iconify-icon>
-                  </div>
-                  <div>
-                    <p class="text-sm font-semibold" style={`color: ${site.color_dark};`}>{item.title}</p>
-                    <p class="text-sm text-gray-500 font-light leading-relaxed">{item.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div class="mt-10 flex flex-col sm:flex-row gap-4">
-              <a href="#contact-form" class="text-white text-sm font-semibold px-7 py-3.5 rounded-full transition-colors inline-flex items-center justify-center gap-2 shadow-sm" style={`background-color: ${site.color_primary};`}>
-                Nous contacter
-                <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
-              </a>
-              <a href="#services" class="bg-white text-sm font-semibold px-7 py-3.5 rounded-full border border-gray-100 hover:border-gray-200 transition-colors inline-flex items-center justify-center gap-2" style={`color: ${site.color_dark};`}>
-                Voir les services
-                <iconify-icon icon="solar:alt-arrow-right-linear" width="18"></iconify-icon>
-              </a>
-            </div>
-          </div>
+  <!-- Bien-être & Spa -->
+  <section id="wellness" class="py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+      <div class="order-2 lg:order-1 relative">
+        <div class="aspect-[3/4] rounded-t-full rounded-b-[2rem] overflow-hidden bg-cream">
+          <img src={site.wellness_image_url} alt={site.wellness_tagline} class="w-full h-full object-cover">
+        </div>
+        <div class="absolute -bottom-10 -right-10 w-48 h-48 bg-caramel rounded-full hidden lg:flex items-center justify-center p-6 text-center text-white">
+          <p class="font-serif text-lg tracking-tight leading-snug">{site.wellness_float_text}</p>
         </div>
       </div>
-      <div class="lg:col-span-7">
-        <div class="grid sm:grid-cols-2 gap-6">
-          <div class="rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-sm bg-white">
-            <div class="relative">
-              <img src={site.whyus_image1} alt={site.whyus_image1_title} class="w-full h-56 object-cover" />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
-              <div class="absolute left-6 bottom-6 right-6">
-                <p class="text-white font-heading text-lg font-semibold tracking-tight">{site.whyus_image1_title}</p>
-                <p class="text-white/80 text-sm font-light leading-relaxed">{site.whyus_image1_sub}</p>
-              </div>
-            </div>
-          </div>
-          <div class="rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-sm bg-white">
-            <div class="relative">
-              <img src={site.whyus_image2} alt={site.whyus_image2_title} class="w-full h-56 object-cover" />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
-              <div class="absolute left-6 bottom-6 right-6">
-                <p class="text-white font-heading text-lg font-semibold tracking-tight">{site.whyus_image2_title}</p>
-                <p class="text-white/80 text-sm font-light leading-relaxed">{site.whyus_image2_sub}</p>
-              </div>
-            </div>
-          </div>
-          <div class="sm:col-span-2 rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-sm" style={`background-color: ${site.color_bg};`}>
-            <div class="grid md:grid-cols-2">
-              <div class="p-10">
-                <p class="text-xs font-semibold tracking-widest uppercase" style={`color: ${site.color_primary};`}>Ce que vous obtenez</p>
-                <h4 class="font-heading text-3xl font-semibold tracking-tight mt-3" style={`color: ${site.color_dark};`}>{site.whyus_results_title}</h4>
-                <p class="text-gray-600 font-light leading-relaxed mt-4">{site.whyus_results_sub}</p>
-                <ul class="mt-6 space-y-3 text-sm text-gray-600 font-light">
-                  {[site.whyus_result1, site.whyus_result2, site.whyus_result3].map((r) => (
-                    <li class="flex gap-2">
-                      <span class="mt-1 w-1.5 h-1.5 rounded-full shrink-0" style={`background-color: ${site.color_primary};`}></span>
-                      <span>{r}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div class="relative">
-                <img src={site.whyus_image3} alt="Résultats" class="w-full h-full object-cover" />
-                <div class="absolute inset-0" style={`background: linear-gradient(to right, ${site.color_bg}, ${site.color_bg}4d, transparent);`}></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Testimonial -->
-<section class="py-32 overflow-hidden relative" style={`background-color: ${site.color_accent};`}>
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
-    <div class="grid md:grid-cols-2 gap-20 items-center">
-      <div data-aos="fade-right">
-        <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/50 backdrop-blur-md mb-8">
-          <span class="text-xs font-bold tracking-widest uppercase" style={`color: ${site.color_primary};`}>Témoignages</span>
-        </div>
-        <h2 class="font-heading text-5xl sm:text-6xl font-bold tracking-tight mb-6 leading-[1.1]" style={`color: ${site.color_dark};`}>
-          {site.testimonial_section_title}<br />
-          <span class="italic font-light">{site.testimonial_section_italic}</span>
-        </h2>
-        <p class="text-xl mb-10 font-light leading-relaxed" style={`color: ${site.color_dark}b3;`}>{site.testimonial_section_sub}</p>
-      </div>
-      <div class="bg-white rounded-[2.5rem] p-10 sm:p-14 shadow-2xl relative" data-aos="fade-left">
-        <iconify-icon icon="solar:quote-right-bold-duotone" width="80" class="absolute top-10 right-10 opacity-30" style={`color: ${site.color_accent};`}></iconify-icon>
-        <div class="flex gap-1.5 mb-8" style={`color: #9C6B3F;`}>
-          {Array(5).fill(0).map(() => <iconify-icon icon="solar:star-bold" width="20"></iconify-icon>)}
-        </div>
-        <p class="text-2xl sm:text-3xl font-heading font-medium mb-10 leading-snug tracking-tight" style={`color: ${site.color_dark};`}>
-          "{site.testimonial_text}"
-        </p>
-        <div class="flex items-center gap-5">
-          <div class="w-16 h-16 rounded-full bg-gray-200 overflow-hidden shadow-inner">
-            {site.testimonial_avatar
-              ? <img src={site.testimonial_avatar} alt={site.testimonial_name} class="w-full h-full object-cover" />
-              : <div class="w-full h-full flex items-center justify-center text-2xl font-bold" style={`background-color: ${site.color_primary}; color: white;`}>{site.testimonial_name[0]}</div>
-            }
-          </div>
-          <div>
-            <h4 class="font-bold text-lg" style={`color: ${site.color_dark};`}>{site.testimonial_name}</h4>
-            <p class="text-sm text-gray-500 font-medium">{site.testimonial_role}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Trust Badges -->
-<section class="py-12 border-y bg-white/50" style={`border-color: ${site.color_accent}66;`}>
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-16 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
-    {[
-      { icon: 'solar:verified-check-linear', label: site.trust_badge1 },
-      { icon: 'solar:diploma-verified-linear', label: site.trust_badge2 },
-      { icon: 'solar:globe-linear', label: site.trust_badge3 },
-    ].map((b) => (
-      <div class="flex items-center gap-3">
-        <iconify-icon icon={b.icon} width="32" style={`color: ${site.color_primary};`}></iconify-icon>
-        <span class="font-heading text-lg font-medium" style={`color: ${site.color_dark};`}>{b.label}</span>
-      </div>
-    ))}
-  </div>
-</section>
-
-<!-- CTA Banner -->
-<section class="py-16" style={`background-color: ${site.color_dark};`}>
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-    <div class="rounded-[2.5rem] overflow-hidden border border-white/10 p-10 sm:p-12 relative" style={`background: linear-gradient(to bottom right, ${site.color_primary}, ${site.color_dark}, #111827);`}>
-      <div class="absolute -top-24 -right-24 w-72 h-72 blur-3xl rounded-full opacity-25" style={`background-color: ${site.color_accent};`}></div>
-      <div class="relative grid lg:grid-cols-12 gap-10 items-center">
-        <div class="lg:col-span-8">
-          <h2 class="font-heading text-3xl sm:text-4xl font-semibold tracking-tight text-white">{site.cta_title}</h2>
-          <p class="text-white/70 text-lg font-light leading-relaxed mt-4 max-w-2xl">{site.cta_subtitle}</p>
-        </div>
-        <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-4 lg:items-end">
-          <a href="#contact-form" class="text-sm font-semibold px-8 py-4 rounded-full transition-colors inline-flex items-center justify-center gap-2" style={`background-color: ${site.color_accent}; color: ${site.color_primary}; box-shadow: 0 0 30px rgba(232,217,181,0.25);`}>
-            {site.cta_primary}
-            <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
-          </a>
-          <a href="#services" class="glass-card text-white text-sm font-semibold px-8 py-4 rounded-full hover:bg-white/15 transition-colors inline-flex items-center justify-center gap-2">
-            {site.cta_secondary}
-            <iconify-icon icon="solar:alt-arrow-right-linear" width="18"></iconify-icon>
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Contact Form -->
-<section class="py-24 bg-white" id="contact-form">
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-    <div class="grid lg:grid-cols-12 gap-10 items-start">
-      <div class="lg:col-span-5">
-        <div class="sticky top-28">
-          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6" style={`background-color: ${site.color_primary}1a;`}>
-            <iconify-icon icon="solar:chat-round-dots-bold-duotone" width="18" style={`color: ${site.color_primary};`}></iconify-icon>
-            <span class="text-xs font-semibold tracking-widest uppercase" style={`color: ${site.color_primary};`}>Contact</span>
-          </div>
-          <h2 class="font-heading text-4xl sm:text-5xl font-semibold tracking-tight" style={`color: ${site.color_dark};`}>{site.contact_title}</h2>
-          <p class="text-gray-600 text-lg font-light leading-relaxed mt-5">{site.contact_subtitle}</p>
-          <div class="mt-10 space-y-4">
-            {site.email && (
-              <div class="flex items-start gap-3">
-                <iconify-icon icon="solar:letter-bold-duotone" width="18" class="mt-0.5" style={`color: ${site.color_primary};`}></iconify-icon>
-                <div>
-                  <p class="text-sm font-semibold" style={`color: ${site.color_dark};`}>Email</p>
-                  <a href={`mailto:${site.email}`} class="text-sm text-gray-600 font-light hover:underline">{site.email}</a>
-                </div>
-              </div>
-            )}
-            {site.phone && (
-              <div class="flex items-start gap-3">
-                <iconify-icon icon="solar:phone-bold-duotone" width="18" class="mt-0.5" style={`color: ${site.color_primary};`}></iconify-icon>
-                <div>
-                  <p class="text-sm font-semibold" style={`color: ${site.color_dark};`}>Téléphone</p>
-                  <a href={`tel:${site.phone}`} class="text-sm text-gray-600 font-light hover:underline">{site.phone}</a>
-                </div>
-              </div>
-            )}
-            {site.address && (
-              <div class="flex items-start gap-3">
-                <iconify-icon icon="solar:map-point-bold-duotone" width="18" class="mt-0.5" style="color: #9C6B3F;"></iconify-icon>
-                <div>
-                  <p class="text-sm font-semibold" style={`color: ${site.color_dark};`}>Adresse</p>
-                  <p class="text-sm text-gray-600 font-light">{site.address}</p>
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-      </div>
-      <div class="lg:col-span-7">
-        <form class="border border-gray-100 rounded-[2.5rem] p-8 sm:p-10 shadow-sm" style={`background-color: ${site.color_bg};`}>
-          <div class="grid sm:grid-cols-2 gap-5">
-            <div>
-              <label class="text-xs font-semibold tracking-tight" style={`color: ${site.color_dark};`} for="cfName">Nom complet</label>
-              <input id="cfName" type="text" class="mt-2 w-full bg-white border border-gray-200 rounded-2xl px-5 py-3.5 text-sm focus:outline-none focus:ring-2" placeholder="Votre nom" style={`focus:ring-color: ${site.color_primary}4d;`} />
+      <div class="order-1 lg:order-2">
+        <span class="text-caramel uppercase tracking-widest text-xs font-medium block mb-4">{site.wellness_tagline}</span>
+        <h2 class="font-serif text-4xl lg:text-5xl tracking-tight text-forest mb-8 font-normal leading-tight">{site.wellness_title}</h2>
+        <p class="text-base lg:text-lg text-forest/70 mb-12 font-light leading-relaxed">{site.wellness_text}</p>
+        <div class="space-y-6">
+          <div class="pb-6 border-b border-forest/10 flex items-start gap-6">
+            <div class="w-12 h-12 rounded-full bg-cream flex items-center justify-center flex-shrink-0 text-caramel">
+              <i data-lucide="droplets" class="w-5 h-5"></i>
             </div>
             <div>
-              <label class="text-xs font-semibold tracking-tight" style={`color: ${site.color_dark};`} for="cfEmail">Email</label>
-              <input id="cfEmail" type="email" class="mt-2 w-full bg-white border border-gray-200 rounded-2xl px-5 py-3.5 text-sm focus:outline-none focus:ring-2" placeholder="nom@entreprise.com" />
-            </div>
-            <div>
-              <label class="text-xs font-semibold tracking-tight" style={`color: ${site.color_dark};`} for="cfCompany">Entreprise</label>
-              <input id="cfCompany" type="text" class="mt-2 w-full bg-white border border-gray-200 rounded-2xl px-5 py-3.5 text-sm focus:outline-none focus:ring-2" placeholder="Nom de l'entreprise" />
-            </div>
-            <div>
-              <label class="text-xs font-semibold tracking-tight" style={`color: ${site.color_dark};`} for="cfPhone">Téléphone</label>
-              <input id="cfPhone" type="tel" class="mt-2 w-full bg-white border border-gray-200 rounded-2xl px-5 py-3.5 text-sm focus:outline-none focus:ring-2" placeholder="+33 6 00 00 00 00" />
-            </div>
-            <div class="sm:col-span-2">
-              <label class="text-xs font-semibold tracking-tight" style={`color: ${site.color_dark};`} for="cfMessage">Message</label>
-              <textarea id="cfMessage" rows={5} class="mt-2 w-full bg-white border border-gray-200 rounded-2xl px-5 py-3.5 text-sm focus:outline-none focus:ring-2" placeholder="Décrivez votre besoin..."></textarea>
+              <h4 class="font-serif text-xl tracking-tight text-forest mb-2">{site.service1_title}</h4>
+              <p class="text-sm text-forest/70 font-light">{site.service1_desc}</p>
             </div>
           </div>
-          <div class="mt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <p class="text-xs text-gray-500 font-light">En soumettant ce formulaire, vous acceptez d'être contacté.</p>
-            <button type="button" class="text-white text-sm font-semibold px-8 py-4 rounded-full transition-colors shadow-sm inline-flex items-center gap-2" style={`background-color: ${site.color_primary};`}>
-              Envoyer
-              <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
+          <div class="pb-6 border-b border-forest/10 flex items-start gap-6">
+            <div class="w-12 h-12 rounded-full bg-cream flex items-center justify-center flex-shrink-0 text-caramel">
+              <i data-lucide="scissors" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h4 class="font-serif text-xl tracking-tight text-forest mb-2">{site.service2_title}</h4>
+              <p class="text-sm text-forest/70 font-light">{site.service2_desc}</p>
+            </div>
+          </div>
+          <div class="flex items-start gap-6">
+            <div class="w-12 h-12 rounded-full bg-cream flex items-center justify-center flex-shrink-0 text-caramel">
+              <i data-lucide="activity" class="w-5 h-5"></i>
+            </div>
+            <div>
+              <h4 class="font-serif text-xl tracking-tight text-forest mb-2">{site.service3_title}</h4>
+              <p class="text-sm text-forest/70 font-light">{site.service3_desc}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Une journée au Haven -->
+  <section class="py-32 bg-forest text-cream">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 text-center mb-20">
+      <span class="text-caramel uppercase tracking-widest text-xs font-medium block mb-4">{site.schedule_tagline}</span>
+      <h2 class="font-serif text-4xl lg:text-5xl tracking-tight font-normal">{site.schedule_title}</h2>
+      <p class="text-base text-cream/70 max-w-2xl mx-auto mt-6 font-light">{site.schedule_subtitle}</p>
+    </div>
+    <div class="max-w-7xl mx-auto px-6 lg:px-12 relative">
+      <div class="absolute top-1/2 left-0 w-full h-[1px] bg-cream/10 hidden lg:block -translate-y-1/2"></div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
+        <div class="text-center group">
+          <div class="w-24 h-24 mx-auto rounded-full border border-cream/20 bg-forest flex items-center justify-center mb-6 group-hover:border-caramel transition-colors duration-300 relative">
+            <span class="absolute -top-3 bg-forest px-2 text-caramel text-xs tracking-widest font-medium">{site.time1}</span>
+            <i data-lucide="sun" class="w-8 h-8 text-cream group-hover:text-caramel transition-colors"></i>
+          </div>
+          <h4 class="font-serif text-xl tracking-tight mb-3">{site.schedule1_title}</h4>
+          <p class="text-sm text-cream/60 font-light px-4">{site.schedule1_desc}</p>
+        </div>
+        <div class="text-center group">
+          <div class="w-24 h-24 mx-auto rounded-full border border-cream/20 bg-forest flex items-center justify-center mb-6 group-hover:border-caramel transition-colors duration-300 relative">
+            <span class="absolute -top-3 bg-forest px-2 text-caramel text-xs tracking-widest font-medium">{site.time2}</span>
+            <i data-lucide="users" class="w-8 h-8 text-cream group-hover:text-caramel transition-colors"></i>
+          </div>
+          <h4 class="font-serif text-xl tracking-tight mb-3">{site.schedule2_title}</h4>
+          <p class="text-sm text-cream/60 font-light px-4">{site.schedule2_desc}</p>
+        </div>
+        <div class="text-center group">
+          <div class="w-24 h-24 mx-auto rounded-full border border-cream/20 bg-forest flex items-center justify-center mb-6 group-hover:border-caramel transition-colors duration-300 relative">
+            <span class="absolute -top-3 bg-forest px-2 text-caramel text-xs tracking-widest font-medium">{site.time3}</span>
+            <i data-lucide="puzzle" class="w-8 h-8 text-cream group-hover:text-caramel transition-colors"></i>
+          </div>
+          <h4 class="font-serif text-xl tracking-tight mb-3">{site.schedule3_title}</h4>
+          <p class="text-sm text-cream/60 font-light px-4">{site.schedule3_desc}</p>
+        </div>
+        <div class="text-center group">
+          <div class="w-24 h-24 mx-auto rounded-full border border-cream/20 bg-forest flex items-center justify-center mb-6 group-hover:border-caramel transition-colors duration-300 relative">
+            <span class="absolute -top-3 bg-forest px-2 text-caramel text-xs tracking-widest font-medium">{site.time4}</span>
+            <i data-lucide="moon" class="w-8 h-8 text-cream group-hover:text-caramel transition-colors"></i>
+          </div>
+          <h4 class="font-serif text-xl tracking-tight mb-3">{site.schedule4_title}</h4>
+          <p class="text-sm text-cream/60 font-light px-4">{site.schedule4_desc}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Témoignages -->
+  <section class="py-32 bg-cream-dark">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="text-center mb-16">
+        <span class="text-caramel uppercase tracking-widest text-xs font-medium block mb-4">{site.testimonials_tagline}</span>
+        <h2 class="font-serif text-4xl lg:text-5xl tracking-tight text-forest font-normal">{site.testimonials_title}</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        {[
+          { text: site.testimonial1_text, name: site.testimonial1_name, detail: site.testimonial1_detail },
+          { text: site.testimonial2_text, name: site.testimonial2_name, detail: site.testimonial2_detail },
+          { text: site.testimonial3_text, name: site.testimonial3_name, detail: site.testimonial3_detail },
+        ].map((t) => (
+          <div class="bg-white p-10 rounded-2xl shadow-sm relative">
+            <i data-lucide="quote" class="absolute top-6 right-6 w-12 h-12 text-cream stroke-[1]"></i>
+            <div class="flex gap-1 mb-6 text-caramel">
+              {[1,2,3,4,5].map(() => <i data-lucide="star" class="w-4 h-4 fill-current"></i>)}
+            </div>
+            <p class="text-base text-forest/80 font-serif italic leading-relaxed mb-8 relative z-10">"{t.text}"</p>
+            <div class="flex items-center gap-4">
+              <div class="w-10 h-10 rounded-full bg-cream flex items-center justify-center text-forest font-serif font-medium text-lg">
+                {t.name.charAt(0)}
+              </div>
+              <div>
+                <p class="text-sm font-medium text-forest">{t.name}</p>
+                <p class="text-xs text-forest/60">{t.detail}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Galerie -->
+  <section id="gallery" class="py-32 bg-white">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+        <div>
+          <span class="text-caramel uppercase tracking-widest text-xs font-medium block mb-4">{site.gallery_tagline}</span>
+          <h2 class="font-serif text-4xl lg:text-5xl tracking-tight text-forest font-normal">{site.gallery_title}</h2>
+        </div>
+        <div class="flex gap-4">
+          <button class="w-12 h-12 rounded-full border border-forest/20 flex items-center justify-center text-forest hover:bg-forest hover:text-white transition-colors">
+            <i data-lucide="arrow-left" class="w-5 h-5"></i>
+          </button>
+          <button class="w-12 h-12 rounded-full border border-forest/20 flex items-center justify-center text-forest hover:bg-forest hover:text-white transition-colors">
+            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
+        <div class="col-span-2 row-span-2 rounded-2xl overflow-hidden relative group">
+          <img src={site.gallery_image1_url} alt="Galerie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+          <div class="absolute inset-0 bg-forest/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+        </div>
+        <div class="rounded-2xl overflow-hidden relative group">
+          <img src={site.gallery_image2_url} alt="Galerie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+        </div>
+        <div class="rounded-2xl overflow-hidden relative group">
+          <img src={site.about_image1_url} alt="Galerie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+        </div>
+        <div class="col-span-2 rounded-2xl overflow-hidden relative group">
+          <img src={site.gallery_image3_url} alt="Galerie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-32 bg-cream">
+    <div class="max-w-3xl mx-auto px-6 lg:px-12">
+      <div class="text-center mb-16">
+        <h2 class="font-serif text-4xl lg:text-5xl tracking-tight text-forest font-normal mb-6">{site.faq_title}</h2>
+        <p class="text-base text-forest/70 font-light">{site.faq_subtitle}</p>
+      </div>
+      <div class="space-y-4">
+        {[
+          { q: site.faq1_q, a: site.faq1_a },
+          { q: site.faq2_q, a: site.faq2_a },
+          { q: site.faq3_q, a: site.faq3_a },
+          { q: site.faq4_q, a: site.faq4_a },
+        ].map((item) => (
+          <div class="bg-white rounded-2xl overflow-hidden shadow-sm">
+            <button onclick="toggleFAQ(this)" class="w-full px-8 py-6 flex items-center justify-between text-left focus:outline-none">
+              <span class="font-serif text-xl tracking-tight text-forest">{item.q}</span>
+              <i data-lucide="chevron-down" class="w-5 h-5 text-caramel transition-transform duration-300"></i>
             </button>
+            <div class="faq-content hidden px-8 pb-6 text-base text-forest/70 font-light leading-relaxed">{item.a}</div>
           </div>
-        </form>
+        ))}
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Final CTA Section -->
-<section id="contact" class="py-32 relative overflow-hidden" style={`background-color: ${site.color_primary};`}>
-  <div class="absolute inset-0 bg-black/50 mix-blend-overlay z-0" style={`background-image: url('${site.contact_bg_image}'); background-attachment: fixed; background-size: cover; background-position: center;`}></div>
-  <div class="absolute inset-0 z-0" style={`background: linear-gradient(to top, ${site.color_primary}, ${site.color_primary}cc, transparent);`}></div>
-  <div class="max-w-4xl mx-auto px-6 sm:px-8 text-center relative z-10" data-aos="zoom-in">
-    <div class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-8 animate-bounce">
-      <iconify-icon icon="solar:rocket-bold-duotone" width="20" style={`color: ${site.color_accent};`}></iconify-icon>
-      <span class="text-xs font-bold tracking-widest uppercase" style={`color: ${site.color_accent};`}>Travaillons ensemble</span>
+  <!-- CTA -->
+  <section id="book" class="py-24 bg-caramel relative overflow-hidden">
+    <div class="absolute inset-0 opacity-10">
+      <svg width="100%" height="100%">
+        <pattern id="pattern-circles" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+          <circle cx="20" cy="20" r="1" fill="currentColor"></circle>
+        </pattern>
+        <rect x="0" y="0" width="100%" height="100%" fill="url(#pattern-circles)"></rect>
+      </svg>
     </div>
-    <h2 class="font-heading text-5xl sm:text-7xl font-bold tracking-tight text-white mb-8 drop-shadow-lg leading-[1.1]">
-      {site.contact_cta_title}
-      <span class="italic font-light" style={`color: ${site.color_accent};`}>{site.contact_cta_italic}</span>
-    </h2>
-    <p class="text-gray-200 text-xl font-light mb-12 max-w-2xl mx-auto drop-shadow-md leading-relaxed">{site.contact_cta_sub}</p>
-    <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
-      <a href="#contact-form" class="w-full sm:w-auto text-lg font-bold px-10 py-5 rounded-full hover:scale-105 transition-all flex items-center justify-center gap-3" style={`background-color: ${site.color_accent}; color: ${site.color_primary}; box-shadow: 0 0 40px rgba(232,217,181,0.4);`}>
-        {site.contact_cta_primary}
-        <iconify-icon icon="solar:arrow-right-linear" width="24"></iconify-icon>
-      </a>
-      <a href="#services" class="w-full sm:w-auto glass-card text-white border border-white/30 text-lg font-semibold px-10 py-5 rounded-full hover:bg-white/20 transition-all flex items-center justify-center gap-3">
-        {site.contact_cta_secondary}
-        <iconify-icon icon="solar:box-bold-duotone" width="24"></iconify-icon>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- Footer -->
-<footer class="bg-white border-t border-gray-100 pt-16 pb-8">
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
-      <div class="md:col-span-1">
-        <a href="/" class="block mb-6 hover:opacity-80 transition-opacity">
-          {site.logo_url
-            ? <img src={site.logo_url} alt={site.company_name} class="h-12 w-auto object-contain" />
-            : <span class="font-heading text-xl font-bold" style={`color: ${site.color_dark};`}>{site.company_name}</span>
-          }
+    <div class="max-w-4xl mx-auto px-6 relative z-10 text-center text-white">
+      <h2 class="font-serif text-5xl lg:text-6xl tracking-tight mb-8 font-normal">{site.cta_title}</h2>
+      <p class="text-lg lg:text-xl text-white/80 mb-12 font-light">{site.cta_subtitle}</p>
+      <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
+        <a href={`mailto:${site.email}`} class="bg-forest text-cream px-10 py-4 rounded-full text-sm uppercase tracking-widest font-medium hover:bg-forest-light transition-colors w-full sm:w-auto">
+          {site.cta_btn}
         </a>
-        <p class="text-xs text-gray-500 leading-relaxed font-light mb-6 pr-4">{site.tagline}</p>
-        <div class="flex items-center gap-4 text-gray-400">
-          {site.social_linkedin && <a href={site.social_linkedin} class="transition-colors hover:opacity-80" style={`color: ${site.color_primary};`}><iconify-icon icon="solar:minimalistic-linkedin-linear" width="20"></iconify-icon></a>}
-          {site.email && <a href={`mailto:${site.email}`} class="transition-colors hover:opacity-80" style={`color: ${site.color_primary};`}><iconify-icon icon="solar:letter-linear" width="20"></iconify-icon></a>}
-          {site.phone && <a href={`tel:${site.phone}`} class="transition-colors hover:opacity-80" style={`color: ${site.color_primary};`}><iconify-icon icon="solar:phone-linear" width="20"></iconify-icon></a>}
+        <a href={`tel:${site.phone}`} class="flex items-center gap-2 text-white hover:text-forest transition-colors text-sm uppercase tracking-widest font-medium">
+          <i data-lucide="phone" class="w-4 h-4"></i>
+          {site.phone}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-forest text-cream/70 pt-24 pb-12">
+    <div class="max-w-7xl mx-auto px-6 lg:px-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 border-b border-cream/10 pb-16">
+        <div class="lg:col-span-1">
+          <div class="flex items-center gap-3 mb-6">
+            <svg width="24" height="28" viewBox="0 0 40 48" fill="none" class="stroke-caramel">
+              <path d="M20 2L4 16V46H36V16L20 2Z" stroke-width="2"></path>
+              <path d="M12 46V24C12 19.5817 15.5817 16 20 16C24.4183 16 28 19.5817 28 24V46" stroke-width="2"></path>
+            </svg>
+            <span class="text-sm tracking-[0.2em] uppercase text-cream font-medium">{site.company_name}</span>
+          </div>
+          <p class="text-sm font-light leading-relaxed mb-6">{site.footer_desc}</p>
+          <div class="flex gap-4">
+            <a href={site.social_instagram} class="w-10 h-10 rounded-full border border-cream/20 flex items-center justify-center hover:bg-caramel hover:border-caramel hover:text-white transition-all">
+              <i data-lucide="instagram" class="w-4 h-4"></i>
+            </a>
+            <a href={site.social_facebook} class="w-10 h-10 rounded-full border border-cream/20 flex items-center justify-center hover:bg-caramel hover:border-caramel hover:text-white transition-all">
+              <i data-lucide="facebook" class="w-4 h-4"></i>
+            </a>
+          </div>
+        </div>
+        <div>
+          <h5 class="text-cream text-xs uppercase tracking-widest font-medium mb-6">Explorer</h5>
+          <ul class="space-y-4 text-sm font-light">
+            <li><a href="#suites" class="hover:text-caramel transition-colors">Nos Suites</a></li>
+            <li><a href="#wellness" class="hover:text-caramel transition-colors">Services Spa</a></li>
+            <li><a href="#experience" class="hover:text-caramel transition-colors">Notre Philosophie</a></li>
+            <li><a href="#gallery" class="hover:text-caramel transition-colors">Galerie</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="text-cream text-xs uppercase tracking-widest font-medium mb-6">Informations</h5>
+          <ul class="space-y-4 text-sm font-light">
+            <li><a href="#" class="hover:text-caramel transition-colors">FAQ</a></li>
+            <li><a href="#" class="hover:text-caramel transition-colors">Conditions requises</a></li>
+            <li><a href="#" class="hover:text-caramel transition-colors">Tarifs</a></li>
+            <li><a href="/mentions-legales" class="hover:text-caramel transition-colors">Mentions légales</a></li>
+          </ul>
+        </div>
+        <div>
+          <h5 class="text-cream text-xs uppercase tracking-widest font-medium mb-6">Nous rendre visite</h5>
+          <ul class="space-y-4 text-sm font-light">
+            <li class="flex items-start gap-3">
+              <i data-lucide="map-pin" class="w-5 h-5 text-caramel shrink-0 mt-0.5"></i>
+              <span>{site.address}<br>{site.address2}</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="phone" class="w-5 h-5 text-caramel shrink-0"></i>
+              <span>{site.phone}</span>
+            </li>
+            <li class="flex items-center gap-3">
+              <i data-lucide="mail" class="w-5 h-5 text-caramel shrink-0"></i>
+              <span>{site.email}</span>
+            </li>
+          </ul>
         </div>
       </div>
-      <div>
-        <h4 class="font-heading text-sm font-semibold mb-4 tracking-tight" style={`color: ${site.color_dark};`}>Navigation</h4>
-        <ul class="space-y-3">
-          <li><a href="/" class="text-xs text-gray-500 transition-colors hover:opacity-80" style={`hover:color: ${site.color_primary};`}>Accueil</a></li>
-          <li><a href="#services" class="text-xs text-gray-500 transition-colors">Services</a></li>
-          <li><a href="#about" class="text-xs text-gray-500 transition-colors">À propos</a></li>
-          <li><a href="#contact-form" class="text-xs text-gray-500 transition-colors">Contact</a></li>
-        </ul>
-      </div>
-      <div>
-        <h4 class="font-heading text-sm font-semibold mb-4 tracking-tight" style={`color: ${site.color_dark};`}>Légal</h4>
-        <ul class="space-y-3">
-          <li><a href="/mentions-legales" class="text-xs text-gray-500 transition-colors">Mentions légales</a></li>
-          {site.email && <li><a href={`mailto:${site.email}`} class="text-xs text-gray-500 transition-colors">{site.email}</a></li>}
-          {site.address && <li class="text-xs text-gray-500">{site.address}</li>}
-        </ul>
+      <div class="flex flex-col md:flex-row justify-between items-center text-xs font-light">
+        <p>© {new Date().getFullYear()} {site.company_name}. Tous droits réservés.</p>
+        <div class="flex gap-6 mt-4 md:mt-0">
+          <a href="/mentions-legales" class="hover:text-cream transition-colors">Mentions légales</a>
+        </div>
       </div>
     </div>
-    <div class="pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4">
-      <p class="text-xs text-gray-400 font-light">
-        © {new Date().getFullYear()} {site.company_name}{site.legal_status ? ` — ${site.legal_status}` : ''}
-      </p>
-      {site.siret && <p class="text-xs text-gray-400 font-light">SIRET : {site.siret}</p>}
-    </div>
-  </div>
-</footer>
+  </footer>
+
+  <script is:inline>
+    lucide.createIcons({ attributes: { 'stroke-width': 1.5 } });
+
+    const menuBtn = document.getElementById('menu-btn');
+    const closeMenuBtn = document.getElementById('close-menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileLinks = document.querySelectorAll('.mobile-link');
+
+    function toggleMenu() {
+      const isClosed = mobileMenu.classList.contains('translate-x-full');
+      if (isClosed) {
+        mobileMenu.classList.remove('translate-x-full');
+        document.body.style.overflow = 'hidden';
+      } else {
+        mobileMenu.classList.add('translate-x-full');
+        document.body.style.overflow = '';
+      }
+    }
+
+    menuBtn.addEventListener('click', toggleMenu);
+    closeMenuBtn.addEventListener('click', toggleMenu);
+    mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+    function toggleFAQ(button) {
+      const content = button.nextElementSibling;
+      const icon = button.querySelector('i');
+      document.querySelectorAll('.faq-content').forEach(el => {
+        if (el !== content && !el.classList.contains('hidden')) {
+          el.classList.add('hidden');
+          el.previousElementSibling.querySelector('i').classList.remove('rotate-180');
+        }
+      });
+      content.classList.toggle('hidden');
+      icon.classList.toggle('rotate-180');
+    }
+  </script>
 
 </Base>

@@ -1,5 +1,6 @@
 {
-  "name": "agriculture-fmcg-site",
+  "name": "cmspace-luxury-services",
+  "type": "module",
   "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
@@ -7,6 +8,6 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "astro": "^4.16.0"
+    "astro": "^4.15.0"
   }
 }
