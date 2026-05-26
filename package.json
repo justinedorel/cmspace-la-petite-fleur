@@ -1,5 +1,5 @@
 {
-  "name": "patisserie-site",
+  "name": "atlas-marketing-site",
   "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
