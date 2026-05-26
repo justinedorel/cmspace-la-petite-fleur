@@ -1,6 +1,5 @@
 {
-  "name": "cmspace-luxury-services",
-  "type": "module",
+  "name": "nutritionist-site",
   "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",
@@ -8,6 +7,6 @@
     "preview": "astro preview"
   },
   "dependencies": {
-    "astro": "^4.15.0"
+    "astro": "^4.16.0"
   }
 }

@@ -1,2 +1,7 @@
 import { defineConfig } from 'astro/config';
-export default defineConfig({});
+import site from './src/data/site.json';
+
+export default defineConfig({
+  site: site.website || 'https://monsite.fr',
+  output: 'static',
+});

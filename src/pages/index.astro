@@ -2,565 +2,264 @@
 import Base from '../layouts/Base.astro';
 import site from '../data/site.json';
 ---
-<Base>
+<Base title={site.seo_title} description={site.seo_description}>
 
-  <!-- Forme de fond logo (coin haut gauche) -->
-  <div class="absolute top-0 left-0 bg-forest w-[260px] h-[220px] rounded-br-[120px] z-30 hidden lg:block pointer-events-none"></div>
-
-  <!-- Navigation -->
-  <nav class="absolute top-0 w-full z-40 px-6 lg:px-12 py-8 flex items-center justify-between pointer-events-auto">
-    <div class="relative z-50 flex items-center gap-3 group cursor-pointer lg:w-[240px] lg:justify-center">
-      <div class="flex flex-col items-center">
-        <svg width="40" height="48" viewBox="0 0 40 48" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-2 lg:stroke-caramel stroke-forest lg:fill-none fill-forest/10">
-          <path d="M20 2L4 16V46H36V16L20 2Z" stroke-width="1.5"></path>
-          <path d="M12 46V24C12 19.5817 15.5817 16 20 16C24.4183 16 28 19.5817 28 24V46" stroke-width="1.5"></path>
-          <circle cx="20" cy="30" r="4" stroke-width="1.5"></circle>
-          <path d="M16 36C16 33.7909 17.7909 32 20 32C22.2091 32 24 33.7909 24 36" stroke-width="1.5"></path>
-        </svg>
-        <div class="text-center">
-          <span class="block text-sm tracking-[0.2em] uppercase lg:text-caramel text-forest font-medium">{site.company_name}</span>
-          <span class="block text-xs tracking-[0.1em] uppercase lg:text-caramel/70 text-forest/70 mt-1">{site.tagline}</span>
-        </div>
-      </div>
-    </div>
-
-    <div class="hidden lg:flex items-center space-x-10">
-      <a href="#experience" class="text-sm tracking-wide hover:text-caramel transition-colors">Notre Expérience</a>
-      <a href="#suites" class="text-sm tracking-wide hover:text-caramel transition-colors">Suites &amp; Services</a>
-      <a href="#wellness" class="text-sm tracking-wide hover:text-caramel transition-colors">Bien-être</a>
-      <a href="#gallery" class="text-sm tracking-wide hover:text-caramel transition-colors">Galerie</a>
-      <a href="#about" class="text-sm tracking-wide hover:text-caramel transition-colors">À propos</a>
-    </div>
-
-    <div class="flex items-center gap-4 z-50">
-      <a href="#book" class="hidden md:flex items-center gap-2 bg-caramel text-white px-6 py-2.5 rounded-full text-sm tracking-wide hover:bg-caramel-light transition-colors group">
-        {site.hero_cta}
-        <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-      </a>
-      <button id="menu-btn" class="p-2.5 border border-forest/20 rounded-full hover:bg-forest/5 transition-colors lg:bg-transparent bg-white">
-        <i data-lucide="menu" class="w-5 h-5 text-forest"></i>
-      </button>
-    </div>
-  </nav>
-
-  <!-- Menu mobile -->
-  <div id="mobile-menu" class="fixed inset-0 bg-forest z-50 transform translate-x-full transition-transform duration-500 ease-in-out flex flex-col justify-center items-center">
-    <button id="close-menu-btn" class="absolute top-8 right-6 p-2 text-cream hover:text-caramel transition-colors">
-      <i data-lucide="x" class="w-8 h-8"></i>
-    </button>
-    <div class="flex flex-col items-center gap-8 text-cream">
-      <a href="#experience" class="font-serif text-3xl tracking-tight hover:text-caramel transition-colors mobile-link">Notre Expérience</a>
-      <a href="#suites" class="font-serif text-3xl tracking-tight hover:text-caramel transition-colors mobile-link">Suites &amp; Services</a>
-      <a href="#wellness" class="font-serif text-3xl tracking-tight hover:text-caramel transition-colors mobile-link">Bien-être</a>
-      <a href="#gallery" class="font-serif text-3xl tracking-tight hover:text-caramel transition-colors mobile-link">Galerie</a>
-      <a href="#about" class="font-serif text-3xl tracking-tight hover:text-caramel transition-colors mobile-link">À propos</a>
-      <a href="#book" class="mt-8 border border-caramel text-caramel px-8 py-3 rounded-full text-base tracking-wide hover:bg-caramel hover:text-white transition-colors mobile-link">
-        {site.hero_cta}
-      </a>
-    </div>
+  <div class="loader">
+    <span class="loader-text">{site.loader_text}</span>
+    <div class="loader-bar"></div>
   </div>
 
-  <!-- Hero -->
-  <section class="relative min-h-screen pt-32 lg:pt-0 flex items-center lg:items-stretch flex-col lg:flex-row">
-    <div class="w-full lg:w-[50%] px-6 lg:pl-32 lg:pr-8 flex flex-col justify-center relative z-10 py-12 lg:pt-40 lg:pb-32">
-      <div class="flex items-center gap-4 mb-8 mt-12 lg:mt-0">
-        <div class="w-12 h-[1px] bg-caramel"></div>
-        <span class="text-xs uppercase tracking-[0.15em] text-caramel font-medium">{site.hero_badge}</span>
-      </div>
-
-      <h1 class="font-serif text-5xl lg:text-7xl xl:text-[5rem] tracking-tight text-forest leading-[1.1] mb-8 font-normal">
-        {site.hero_title}<br>
-        Taillé pour<span class="italic text-caramel"> {site.hero_title_italic}</span>
-      </h1>
-
-      <p class="text-base lg:text-lg text-forest/70 max-w-md mb-12 leading-relaxed font-light">{site.hero_subtitle}</p>
-
-      <div class="flex items-center gap-4 mb-20 lg:mb-32 group cursor-pointer w-max">
-        <div class="w-12 h-12 rounded-full bg-caramel flex items-center justify-center text-white group-hover:bg-forest transition-colors duration-300">
-          <i data-lucide="arrow-down-right" class="w-5 h-5"></i>
-        </div>
-        <span class="text-xs uppercase tracking-widest font-medium group-hover:text-caramel transition-colors duration-300">{site.hero_discover}</span>
-      </div>
-
-      <!-- Features -->
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-forest/10 lg:border-none lg:pt-0 relative w-max mx-auto lg:mx-0">
-        <div class="flex flex-col items-center lg:items-start gap-4 px-4 border-r border-forest/10">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" class="text-forest">
-            <path d="M4 12L16 3L28 12V29H4V12Z"></path>
-            <path d="M16 12C18.2091 12 20 13.7909 20 16C20 18.2091 16 22 16 22C16 22 12 18.2091 12 16C12 13.7909 13.7909 12 16 12Z"></path>
-          </svg>
-          <span class="text-xs tracking-wider uppercase text-center lg:text-left leading-tight text-forest/80">{site.hero_feat1}</span>
-        </div>
-        <div class="flex flex-col items-center lg:items-start gap-4 px-4 border-r border-forest/10">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" class="text-forest">
-            <path d="M16 4C16 4 11 8 11 14C11 19 16 28 16 28C16 28 21 19 21 14C21 8 16 4 16 4Z"></path>
-            <path d="M16 28C16 28 8 26 5 20C2 14 6 10 6 10C6 10 10 14 11 14"></path>
-            <path d="M16 28C16 28 24 26 27 20C30 14 26 10 26 10C26 10 22 14 21 14"></path>
-          </svg>
-          <span class="text-xs tracking-wider uppercase text-center lg:text-left leading-tight text-forest/80">{site.hero_feat2}</span>
-        </div>
-        <div class="flex flex-col items-center lg:items-start gap-4 px-4 border-r border-forest/10">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" class="text-forest">
-            <circle cx="16" cy="16" r="12"></circle>
-            <path d="M16 4C16 4 20 9 20 16C20 23 16 28 16 28C16 28 12 23 12 16C12 9 16 4 16 4Z"></path>
-            <path d="M4 16H28"></path>
-          </svg>
-          <span class="text-xs tracking-wider uppercase text-center lg:text-left leading-tight text-forest/80">{site.hero_feat3}</span>
-        </div>
-        <div class="flex flex-col items-center lg:items-start gap-4 px-4">
-          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.5" class="text-forest">
-            <rect x="4" y="8" width="24" height="18" rx="2"></rect>
-            <circle cx="16" cy="17" r="4"></circle>
-            <path d="M12 8V6C12 4.89543 12.8954 4 14 4H18C19.1046 4 20 4.89543 20 6V8"></path>
-          </svg>
-          <span class="text-xs tracking-wider uppercase text-center lg:text-left leading-tight text-forest/80">{site.hero_feat4}</span>
-        </div>
-      </div>
+  <nav style="position:fixed;top:0;left:0;width:100%;z-index:1000;padding:1.5rem 3rem;display:flex;justify-content:space-between;align-items:center;mix-blend-mode:difference;">
+    <span class="display" style="color:#fff;font-size:1rem;font-weight:700;letter-spacing:0.1em;">{site.company_name}</span>
+    <div class="nav-links" style="display:flex;gap:2.5rem;">
+      <a href="#services" style="color:#fff;font-size:0.75rem;letter-spacing:0.12em;text-decoration:none;text-transform:uppercase;">Services</a>
+      <a href="#clientele" style="color:#fff;font-size:0.75rem;letter-spacing:0.12em;text-decoration:none;text-transform:uppercase;">Clientèle</a>
+      <a href="#consultation" style="color:#fff;font-size:0.75rem;letter-spacing:0.12em;text-decoration:none;text-transform:uppercase;">Consultation</a>
+      <a href="#contact" style="color:#fff;font-size:0.75rem;letter-spacing:0.12em;text-decoration:none;text-transform:uppercase;">Contact</a>
     </div>
+    <button class="nav-mobile-btn" style="display:none;background:none;border:none;cursor:pointer;color:#fff;align-items:center;gap:0.5rem;">
+      <iconify-icon icon="solar:hamburger-menu-linear" width="24"></iconify-icon>
+      <span style="font-size:0.7rem;letter-spacing:0.15em;text-transform:uppercase;">Menu</span>
+    </button>
+  </nav>
 
-    <!-- Image hero droite -->
-    <div class="w-full lg:w-[50%] relative lg:absolute lg:right-0 lg:top-0 h-[60vh] lg:h-full overflow-hidden mt-12 lg:mt-0">
-      <div class="absolute inset-0 lg:rounded-tl-[250px] lg:rounded-bl-[50px] overflow-hidden bg-cream-dark">
-        <img src={site.hero_image_url} alt={site.company_name} class="w-full h-full object-cover object-center lg:object-[center_20%] opacity-90 mix-blend-multiply">
-        <div class="absolute top-[15%] lg:top-[25%] right-[10%] lg:right-[20%] text-center opacity-80">
-          <svg width="40" height="40" viewBox="0 0 40 40" fill="none" class="mx-auto mb-2 stroke-caramel">
-            <path d="M8 24L20 8L32 24" stroke-width="1.5"></path>
-            <path d="M12 24V32H28V24" stroke-width="1.5"></path>
-            <circle cx="20" cy="16" r="2" stroke-width="1.5"></circle>
-          </svg>
-          <p class="text-xs tracking-widest text-caramel font-medium leading-loose uppercase">Confort<br>Soins<br>Compagnie<br>— Toujours</p>
-        </div>
-      </div>
-      <div class="absolute bottom-[-20px] lg:bottom-[10%] right-[10%] lg:right-[15%] z-20 flex items-center justify-center">
-        <div class="absolute -right-8 -bottom-8 w-32 h-32 text-caramel/40">
-          <svg width="100%" height="100%" viewBox="0 0 100 100">
-            <pattern id="dots" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-              <circle cx="2" cy="2" r="2" fill="currentColor"></circle>
-            </pattern>
-            <rect x="0" y="0" width="100" height="100" fill="url(#dots)"></rect>
-          </svg>
-        </div>
-        <div class="w-48 h-48 lg:w-56 lg:h-56 bg-forest rounded-full flex flex-col items-center justify-center text-center p-6 relative shadow-2xl">
-          <p class="text-cream text-lg lg:text-xl font-serif leading-snug tracking-tight mb-4 font-light">{site.hero_badge_text}</p>
-          <i data-lucide="heart" class="w-6 h-6 text-caramel"></i>
-        </div>
-      </div>
-    </div>
-  </section>
+  <div class="wrapper">
 
-  <!-- Notre Philosophie -->
-  <section id="experience" class="py-32 bg-forest text-cream relative overflow-hidden">
-    <div class="absolute top-0 right-0 w-1/2 h-full bg-forest-light/20 rounded-l-full blur-3xl transform translate-x-1/4"></div>
-    <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+    <section style="position:relative;width:100%;height:100vh;overflow:hidden;display:flex;flex-direction:column;justify-content:center;align-items:center;">
+      <img
+        src={site.hero_image}
+        alt={site.hero_name_line1}
+        style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:brightness(0.45);"
+      />
+      <div style="position:relative;z-index:2;text-align:center;overflow:hidden;padding:0 2rem;">
+        <div style="overflow:hidden;line-height:1;">
+          <h1 class="display hero-line1" style="font-size:clamp(4rem,14vw,13rem);font-weight:700;color:#fff;margin:0;line-height:0.9;transform:translateY(100%);">{site.hero_name_line1}</h1>
+        </div>
+        <div style="overflow:hidden;line-height:1;">
+          <h1 class="display hero-line2" style="font-size:clamp(4rem,14vw,13rem);font-weight:700;color:#fff;margin:0;line-height:0.9;transform:translateY(100%);">{site.hero_name_line2}</h1>
+        </div>
+        <p class="hero-subtitle" style="color:rgba(255,255,255,0.75);font-size:clamp(0.9rem,1.5vw,1.2rem);letter-spacing:0.15em;text-transform:uppercase;margin-top:2rem;opacity:0;">{site.hero_subtitle}</p>
+      </div>
+    </section>
+
+    <section style="padding:8rem 6vw;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;" id="intro">
       <div>
-        <span class="text-caramel uppercase tracking-widest text-xs font-medium block mb-6">{site.about_tagline}</span>
-        <h2 class="font-serif text-4xl lg:text-6xl tracking-tight mb-8 font-normal leading-tight">{site.about_title}</h2>
-        <p class="text-base lg:text-lg text-cream/80 mb-8 font-light leading-relaxed">{site.about_text1}</p>
-        <p class="text-base lg:text-lg text-cream/80 mb-12 font-light leading-relaxed">{site.about_text2}</p>
-        <a href="#about" class="inline-flex items-center gap-4 text-caramel uppercase tracking-widest text-xs font-medium group">
-          {site.about_link}
-          <span class="w-10 h-[1px] bg-caramel group-hover:w-16 transition-all duration-300"></span>
-        </a>
+        <div style="overflow:hidden;">
+          <h2 class="display split-animate" style="font-size:clamp(2rem,4vw,3.5rem);font-weight:700;line-height:1.1;margin:0 0 1.5rem;">{site.intro_title}</h2>
+        </div>
+        <p class="display" style="font-size:clamp(0.9rem,1.2vw,1rem);opacity:0.6;letter-spacing:0.08em;text-transform:uppercase;margin:0;">{site.intro_subtitle}</p>
       </div>
-      <div class="relative h-[600px] w-full">
-        <div class="absolute top-0 right-0 w-3/4 h-[80%] rounded-[2rem] overflow-hidden shadow-2xl">
-          <img src={site.about_image1_url} alt={site.about_tagline} class="w-full h-full object-cover">
-        </div>
-        <div class="absolute bottom-0 left-0 w-3/5 h-[50%] rounded-[2rem] overflow-hidden shadow-2xl border-4 border-forest">
-          <img src={site.about_image2_url} alt={site.about_tagline} class="w-full h-full object-cover">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Suites -->
-  <section id="suites" class="py-32 bg-cream">
-    <div class="max-w-7xl mx-auto px-6 lg:px-12">
-      <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-        <div>
-          <span class="text-caramel uppercase tracking-widest text-xs font-medium block mb-4">{site.suites_tagline}</span>
-          <h2 class="font-serif text-4xl lg:text-5xl tracking-tight text-forest font-normal">{site.suites_title}</h2>
-        </div>
-        <a href="#book" class="border border-forest text-forest px-8 py-3 rounded-full text-xs uppercase tracking-widest hover:bg-forest hover:text-cream transition-colors">
-          {site.suites_cta}
-        </a>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        <!-- Suite 1 -->
-        <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 group">
-          <div class="h-64 overflow-hidden relative">
-            <img src={site.suite1_image_url} alt={site.suite1_name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-4 py-1.5 rounded-full text-xs font-medium tracking-wide">{site.suite1_price}</div>
-          </div>
-          <div class="p-8">
-            <h3 class="font-serif text-2xl tracking-tight text-forest mb-3">{site.suite1_name}</h3>
-            <p class="text-base text-forest/70 mb-6 font-light">{site.suite1_desc}</p>
-            <ul class="space-y-3 mb-8">
-              <li class="flex items-center gap-3 text-sm text-forest/80"><i data-lucide="check" class="w-4 h-4 text-caramel"></i>{site.suite1_feat1}</li>
-              <li class="flex items-center gap-3 text-sm text-forest/80"><i data-lucide="check" class="w-4 h-4 text-caramel"></i>{site.suite1_feat2}</li>
-              <li class="flex items-center gap-3 text-sm text-forest/80"><i data-lucide="check" class="w-4 h-4 text-caramel"></i>{site.suite1_feat3}</li>
-            </ul>
-            <a href="#book" class="block w-full text-center bg-cream-dark text-forest py-3 rounded-full text-xs uppercase tracking-widest font-medium hover:bg-caramel hover:text-white transition-colors">Réserver</a>
-          </div>
-        </div>
-
-        <!-- Suite 2 (populaire) -->
-        <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 group relative">
-          <div class="absolute top-0 left-0 w-full h-1 bg-caramel z-10"></div>
-          <div class="h-64 overflow-hidden relative">
-            <img src={site.suite2_image_url} alt={site.suite2_name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-4 py-1.5 rounded-full text-xs font-medium tracking-wide">{site.suite2_price}</div>
-            <div class="absolute top-4 left-4 bg-caramel text-white px-3 py-1 rounded-full text-[10px] uppercase tracking-widest font-medium">Populaire</div>
-          </div>
-          <div class="p-8">
-            <h3 class="font-serif text-2xl tracking-tight text-forest mb-3">{site.suite2_name}</h3>
-            <p class="text-base text-forest/70 mb-6 font-light">{site.suite2_desc}</p>
-            <ul class="space-y-3 mb-8">
-              <li class="flex items-center gap-3 text-sm text-forest/80"><i data-lucide="check" class="w-4 h-4 text-caramel"></i>{site.suite2_feat1}</li>
-              <li class="flex items-center gap-3 text-sm text-forest/80"><i data-lucide="check" class="w-4 h-4 text-caramel"></i>{site.suite2_feat2}</li>
-              <li class="flex items-center gap-3 text-sm text-forest/80"><i data-lucide="check" class="w-4 h-4 text-caramel"></i>{site.suite2_feat3}</li>
-            </ul>
-            <a href="#book" class="block w-full text-center bg-caramel text-white py-3 rounded-full text-xs uppercase tracking-widest font-medium hover:bg-forest transition-colors">Réserver</a>
-          </div>
-        </div>
-
-        <!-- Suite 3 -->
-        <div class="bg-white rounded-3xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300 group">
-          <div class="h-64 overflow-hidden relative">
-            <img src={site.suite3_image_url} alt={site.suite3_name} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur-sm px-4 py-1.5 rounded-full text-xs font-medium tracking-wide">{site.suite3_price}</div>
-          </div>
-          <div class="p-8">
-            <h3 class="font-serif text-2xl tracking-tight text-forest mb-3">{site.suite3_name}</h3>
-            <p class="text-base text-forest/70 mb-6 font-light">{site.suite3_desc}</p>
-            <ul class="space-y-3 mb-8">
-              <li class="flex items-center gap-3 text-sm text-forest/80"><i data-lucide="check" class="w-4 h-4 text-caramel"></i>{site.suite3_feat1}</li>
-              <li class="flex items-center gap-3 text-sm text-forest/80"><i data-lucide="check" class="w-4 h-4 text-caramel"></i>{site.suite3_feat2}</li>
-              <li class="flex items-center gap-3 text-sm text-forest/80"><i data-lucide="check" class="w-4 h-4 text-caramel"></i>{site.suite3_feat3}</li>
-            </ul>
-            <a href="#book" class="block w-full text-center bg-cream-dark text-forest py-3 rounded-full text-xs uppercase tracking-widest font-medium hover:bg-caramel hover:text-white transition-colors">Réserver</a>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Bien-être & Spa -->
-  <section id="wellness" class="py-32 bg-white">
-    <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-      <div class="order-2 lg:order-1 relative">
-        <div class="aspect-[3/4] rounded-t-full rounded-b-[2rem] overflow-hidden bg-cream">
-          <img src={site.wellness_image_url} alt={site.wellness_tagline} class="w-full h-full object-cover">
-        </div>
-        <div class="absolute -bottom-10 -right-10 w-48 h-48 bg-caramel rounded-full hidden lg:flex items-center justify-center p-6 text-center text-white">
-          <p class="font-serif text-lg tracking-tight leading-snug">{site.wellness_float_text}</p>
-        </div>
-      </div>
-      <div class="order-1 lg:order-2">
-        <span class="text-caramel uppercase tracking-widest text-xs font-medium block mb-4">{site.wellness_tagline}</span>
-        <h2 class="font-serif text-4xl lg:text-5xl tracking-tight text-forest mb-8 font-normal leading-tight">{site.wellness_title}</h2>
-        <p class="text-base lg:text-lg text-forest/70 mb-12 font-light leading-relaxed">{site.wellness_text}</p>
-        <div class="space-y-6">
-          <div class="pb-6 border-b border-forest/10 flex items-start gap-6">
-            <div class="w-12 h-12 rounded-full bg-cream flex items-center justify-center flex-shrink-0 text-caramel">
-              <i data-lucide="droplets" class="w-5 h-5"></i>
-            </div>
+      <div>
+        <p style="font-size:1.05rem;line-height:1.8;color:var(--c-dark);opacity:0.85;margin:0 0 3rem;">{site.intro_text}</p>
+        <div style="width:100%;height:1px;background:var(--c-dark);opacity:0.15;margin-bottom:3rem;"></div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;">
+          <div style="display:flex;gap:1rem;align-items:flex-start;">
+            <iconify-icon icon="solar:medal-star-bold" width="28" style="color:var(--c-accent);flex-shrink:0;margin-top:0.2rem;"></iconify-icon>
             <div>
-              <h4 class="font-serif text-xl tracking-tight text-forest mb-2">{site.service1_title}</h4>
-              <p class="text-sm text-forest/70 font-light">{site.service1_desc}</p>
+              <div class="display" style="font-size:2rem;font-weight:700;line-height:1;">{site.stat1_value}</div>
+              <div style="font-size:0.8rem;opacity:0.6;margin-top:0.3rem;text-transform:uppercase;letter-spacing:0.08em;">{site.stat1_label}</div>
             </div>
           </div>
-          <div class="pb-6 border-b border-forest/10 flex items-start gap-6">
-            <div class="w-12 h-12 rounded-full bg-cream flex items-center justify-center flex-shrink-0 text-caramel">
-              <i data-lucide="scissors" class="w-5 h-5"></i>
-            </div>
+          <div style="display:flex;gap:1rem;align-items:flex-start;">
+            <iconify-icon icon="solar:users-group-rounded-bold" width="28" style="color:var(--c-accent);flex-shrink:0;margin-top:0.2rem;"></iconify-icon>
             <div>
-              <h4 class="font-serif text-xl tracking-tight text-forest mb-2">{site.service2_title}</h4>
-              <p class="text-sm text-forest/70 font-light">{site.service2_desc}</p>
+              <div class="display" style="font-size:2rem;font-weight:700;line-height:1;">{site.stat2_value}</div>
+              <div style="font-size:0.8rem;opacity:0.6;margin-top:0.3rem;text-transform:uppercase;letter-spacing:0.08em;">{site.stat2_label}</div>
             </div>
           </div>
-          <div class="flex items-start gap-6">
-            <div class="w-12 h-12 rounded-full bg-cream flex items-center justify-center flex-shrink-0 text-caramel">
-              <i data-lucide="activity" class="w-5 h-5"></i>
-            </div>
+          <div style="display:flex;gap:1rem;align-items:flex-start;">
+            <iconify-icon icon="solar:document-add-bold" width="28" style="color:var(--c-accent);flex-shrink:0;margin-top:0.2rem;"></iconify-icon>
             <div>
-              <h4 class="font-serif text-xl tracking-tight text-forest mb-2">{site.service3_title}</h4>
-              <p class="text-sm text-forest/70 font-light">{site.service3_desc}</p>
+              <div class="display" style="font-size:2rem;font-weight:700;line-height:1;">{site.stat3_value}</div>
+              <div style="font-size:0.8rem;opacity:0.6;margin-top:0.3rem;text-transform:uppercase;letter-spacing:0.08em;">{site.stat3_label}</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:1rem;align-items:flex-start;">
+            <iconify-icon icon="solar:share-circle-bold" width="28" style="color:var(--c-accent);flex-shrink:0;margin-top:0.2rem;"></iconify-icon>
+            <div>
+              <div class="display" style="font-size:2rem;font-weight:700;line-height:1;">{site.stat4_value}</div>
+              <div style="font-size:0.8rem;opacity:0.6;margin-top:0.3rem;text-transform:uppercase;letter-spacing:0.08em;">{site.stat4_label}</div>
             </div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Une journée au Haven -->
-  <section class="py-32 bg-forest text-cream">
-    <div class="max-w-7xl mx-auto px-6 lg:px-12 text-center mb-20">
-      <span class="text-caramel uppercase tracking-widest text-xs font-medium block mb-4">{site.schedule_tagline}</span>
-      <h2 class="font-serif text-4xl lg:text-5xl tracking-tight font-normal">{site.schedule_title}</h2>
-      <p class="text-base text-cream/70 max-w-2xl mx-auto mt-6 font-light">{site.schedule_subtitle}</p>
-    </div>
-    <div class="max-w-7xl mx-auto px-6 lg:px-12 relative">
-      <div class="absolute top-1/2 left-0 w-full h-[1px] bg-cream/10 hidden lg:block -translate-y-1/2"></div>
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 relative z-10">
-        <div class="text-center group">
-          <div class="w-24 h-24 mx-auto rounded-full border border-cream/20 bg-forest flex items-center justify-center mb-6 group-hover:border-caramel transition-colors duration-300 relative">
-            <span class="absolute -top-3 bg-forest px-2 text-caramel text-xs tracking-widest font-medium">{site.time1}</span>
-            <i data-lucide="sun" class="w-8 h-8 text-cream group-hover:text-caramel transition-colors"></i>
-          </div>
-          <h4 class="font-serif text-xl tracking-tight mb-3">{site.schedule1_title}</h4>
-          <p class="text-sm text-cream/60 font-light px-4">{site.schedule1_desc}</p>
-        </div>
-        <div class="text-center group">
-          <div class="w-24 h-24 mx-auto rounded-full border border-cream/20 bg-forest flex items-center justify-center mb-6 group-hover:border-caramel transition-colors duration-300 relative">
-            <span class="absolute -top-3 bg-forest px-2 text-caramel text-xs tracking-widest font-medium">{site.time2}</span>
-            <i data-lucide="users" class="w-8 h-8 text-cream group-hover:text-caramel transition-colors"></i>
-          </div>
-          <h4 class="font-serif text-xl tracking-tight mb-3">{site.schedule2_title}</h4>
-          <p class="text-sm text-cream/60 font-light px-4">{site.schedule2_desc}</p>
-        </div>
-        <div class="text-center group">
-          <div class="w-24 h-24 mx-auto rounded-full border border-cream/20 bg-forest flex items-center justify-center mb-6 group-hover:border-caramel transition-colors duration-300 relative">
-            <span class="absolute -top-3 bg-forest px-2 text-caramel text-xs tracking-widest font-medium">{site.time3}</span>
-            <i data-lucide="puzzle" class="w-8 h-8 text-cream group-hover:text-caramel transition-colors"></i>
-          </div>
-          <h4 class="font-serif text-xl tracking-tight mb-3">{site.schedule3_title}</h4>
-          <p class="text-sm text-cream/60 font-light px-4">{site.schedule3_desc}</p>
-        </div>
-        <div class="text-center group">
-          <div class="w-24 h-24 mx-auto rounded-full border border-cream/20 bg-forest flex items-center justify-center mb-6 group-hover:border-caramel transition-colors duration-300 relative">
-            <span class="absolute -top-3 bg-forest px-2 text-caramel text-xs tracking-widest font-medium">{site.time4}</span>
-            <i data-lucide="moon" class="w-8 h-8 text-cream group-hover:text-caramel transition-colors"></i>
-          </div>
-          <h4 class="font-serif text-xl tracking-tight mb-3">{site.schedule4_title}</h4>
-          <p class="text-sm text-cream/60 font-light px-4">{site.schedule4_desc}</p>
-        </div>
+    <section class="stack-section" id="services">
+      <div style="padding:6rem 6vw 3rem;text-align:center;">
+        <span style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;opacity:0.5;display:block;margin-bottom:1rem;">{site.services_badge}</span>
+        <h2 class="display" style="font-size:clamp(2.5rem,6vw,5rem);font-weight:700;margin:0;">{site.services_title}</h2>
       </div>
-    </div>
-  </section>
-
-  <!-- Témoignages -->
-  <section class="py-32 bg-cream-dark">
-    <div class="max-w-7xl mx-auto px-6 lg:px-12">
-      <div class="text-center mb-16">
-        <span class="text-caramel uppercase tracking-widest text-xs font-medium block mb-4">{site.testimonials_tagline}</span>
-        <h2 class="font-serif text-4xl lg:text-5xl tracking-tight text-forest font-normal">{site.testimonials_title}</h2>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        {[
-          { text: site.testimonial1_text, name: site.testimonial1_name, detail: site.testimonial1_detail },
-          { text: site.testimonial2_text, name: site.testimonial2_name, detail: site.testimonial2_detail },
-          { text: site.testimonial3_text, name: site.testimonial3_name, detail: site.testimonial3_detail },
-        ].map((t) => (
-          <div class="bg-white p-10 rounded-2xl shadow-sm relative">
-            <i data-lucide="quote" class="absolute top-6 right-6 w-12 h-12 text-cream stroke-[1]"></i>
-            <div class="flex gap-1 mb-6 text-caramel">
-              {[1,2,3,4,5].map(() => <i data-lucide="star" class="w-4 h-4 fill-current"></i>)}
-            </div>
-            <p class="text-base text-forest/80 font-serif italic leading-relaxed mb-8 relative z-10">"{t.text}"</p>
-            <div class="flex items-center gap-4">
-              <div class="w-10 h-10 rounded-full bg-cream flex items-center justify-center text-forest font-serif font-medium text-lg">
-                {t.name.charAt(0)}
-              </div>
+      <div class="stack-container">
+        <div class="card-item" data-card="0">
+          <div class="card-inner">
+            <div class="card-content">
               <div>
-                <p class="text-sm font-medium text-forest">{t.name}</p>
-                <p class="text-xs text-forest/60">{t.detail}</p>
+                <span style="font-size:0.7rem;letter-spacing:0.15em;opacity:0.35;text-transform:uppercase;">{site.service1_number}</span>
+                <h3 class="display" style="font-size:clamp(1.8rem,3vw,2.8rem);font-weight:700;margin:1rem 0;line-height:1.1;">{site.service1_title}</h3>
+                <span style="display:inline-block;background:var(--c-accent);color:#fff;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.4rem 1rem;margin-bottom:1.5rem;">{site.service1_tag}</span>
+                <p style="opacity:0.7;line-height:1.75;font-size:0.95rem;">{site.service1_desc}</p>
               </div>
+              <a href="#contact" style="display:inline-flex;align-items:center;gap:0.75rem;color:#E3E1DC;text-decoration:none;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-top:2rem;border-top:1px solid rgba(255,255,255,0.1);padding-top:1.5rem;">
+                En savoir plus
+                <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
+              </a>
+            </div>
+            <div class="card-img-wrap">
+              <img class="card-img" src={site.service1_image} alt={site.service1_title} />
             </div>
           </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Galerie -->
-  <section id="gallery" class="py-32 bg-white">
-    <div class="max-w-7xl mx-auto px-6 lg:px-12">
-      <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-        <div>
-          <span class="text-caramel uppercase tracking-widest text-xs font-medium block mb-4">{site.gallery_tagline}</span>
-          <h2 class="font-serif text-4xl lg:text-5xl tracking-tight text-forest font-normal">{site.gallery_title}</h2>
         </div>
-        <div class="flex gap-4">
-          <button class="w-12 h-12 rounded-full border border-forest/20 flex items-center justify-center text-forest hover:bg-forest hover:text-white transition-colors">
-            <i data-lucide="arrow-left" class="w-5 h-5"></i>
-          </button>
-          <button class="w-12 h-12 rounded-full border border-forest/20 flex items-center justify-center text-forest hover:bg-forest hover:text-white transition-colors">
-            <i data-lucide="arrow-right" class="w-5 h-5"></i>
-          </button>
-        </div>
-      </div>
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 auto-rows-[200px]">
-        <div class="col-span-2 row-span-2 rounded-2xl overflow-hidden relative group">
-          <img src={site.gallery_image1_url} alt="Galerie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-          <div class="absolute inset-0 bg-forest/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        </div>
-        <div class="rounded-2xl overflow-hidden relative group">
-          <img src={site.gallery_image2_url} alt="Galerie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-        </div>
-        <div class="rounded-2xl overflow-hidden relative group">
-          <img src={site.about_image1_url} alt="Galerie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-        </div>
-        <div class="col-span-2 rounded-2xl overflow-hidden relative group">
-          <img src={site.gallery_image3_url} alt="Galerie" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="py-32 bg-cream">
-    <div class="max-w-3xl mx-auto px-6 lg:px-12">
-      <div class="text-center mb-16">
-        <h2 class="font-serif text-4xl lg:text-5xl tracking-tight text-forest font-normal mb-6">{site.faq_title}</h2>
-        <p class="text-base text-forest/70 font-light">{site.faq_subtitle}</p>
-      </div>
-      <div class="space-y-4">
-        {[
-          { q: site.faq1_q, a: site.faq1_a },
-          { q: site.faq2_q, a: site.faq2_a },
-          { q: site.faq3_q, a: site.faq3_a },
-          { q: site.faq4_q, a: site.faq4_a },
-        ].map((item) => (
-          <div class="bg-white rounded-2xl overflow-hidden shadow-sm">
-            <button onclick="toggleFAQ(this)" class="w-full px-8 py-6 flex items-center justify-between text-left focus:outline-none">
-              <span class="font-serif text-xl tracking-tight text-forest">{item.q}</span>
-              <i data-lucide="chevron-down" class="w-5 h-5 text-caramel transition-transform duration-300"></i>
-            </button>
-            <div class="faq-content hidden px-8 pb-6 text-base text-forest/70 font-light leading-relaxed">{item.a}</div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section id="book" class="py-24 bg-caramel relative overflow-hidden">
-    <div class="absolute inset-0 opacity-10">
-      <svg width="100%" height="100%">
-        <pattern id="pattern-circles" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-          <circle cx="20" cy="20" r="1" fill="currentColor"></circle>
-        </pattern>
-        <rect x="0" y="0" width="100%" height="100%" fill="url(#pattern-circles)"></rect>
-      </svg>
-    </div>
-    <div class="max-w-4xl mx-auto px-6 relative z-10 text-center text-white">
-      <h2 class="font-serif text-5xl lg:text-6xl tracking-tight mb-8 font-normal">{site.cta_title}</h2>
-      <p class="text-lg lg:text-xl text-white/80 mb-12 font-light">{site.cta_subtitle}</p>
-      <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
-        <a href={`mailto:${site.email}`} class="bg-forest text-cream px-10 py-4 rounded-full text-sm uppercase tracking-widest font-medium hover:bg-forest-light transition-colors w-full sm:w-auto">
-          {site.cta_btn}
-        </a>
-        <a href={`tel:${site.phone}`} class="flex items-center gap-2 text-white hover:text-forest transition-colors text-sm uppercase tracking-widest font-medium">
-          <i data-lucide="phone" class="w-4 h-4"></i>
-          {site.phone}
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-forest text-cream/70 pt-24 pb-12">
-    <div class="max-w-7xl mx-auto px-6 lg:px-12">
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16 border-b border-cream/10 pb-16">
-        <div class="lg:col-span-1">
-          <div class="flex items-center gap-3 mb-6">
-            <svg width="24" height="28" viewBox="0 0 40 48" fill="none" class="stroke-caramel">
-              <path d="M20 2L4 16V46H36V16L20 2Z" stroke-width="2"></path>
-              <path d="M12 46V24C12 19.5817 15.5817 16 20 16C24.4183 16 28 19.5817 28 24V46" stroke-width="2"></path>
-            </svg>
-            <span class="text-sm tracking-[0.2em] uppercase text-cream font-medium">{site.company_name}</span>
-          </div>
-          <p class="text-sm font-light leading-relaxed mb-6">{site.footer_desc}</p>
-          <div class="flex gap-4">
-            <a href={site.social_instagram} class="w-10 h-10 rounded-full border border-cream/20 flex items-center justify-center hover:bg-caramel hover:border-caramel hover:text-white transition-all">
-              <i data-lucide="instagram" class="w-4 h-4"></i>
-            </a>
-            <a href={site.social_facebook} class="w-10 h-10 rounded-full border border-cream/20 flex items-center justify-center hover:bg-caramel hover:border-caramel hover:text-white transition-all">
-              <i data-lucide="facebook" class="w-4 h-4"></i>
-            </a>
+        <div class="card-item" data-card="1">
+          <div class="card-inner">
+            <div class="card-content">
+              <div>
+                <span style="font-size:0.7rem;letter-spacing:0.15em;opacity:0.35;text-transform:uppercase;">{site.service2_number}</span>
+                <h3 class="display" style="font-size:clamp(1.8rem,3vw,2.8rem);font-weight:700;margin:1rem 0;line-height:1.1;">{site.service2_title}</h3>
+                <span style="display:inline-block;background:var(--c-accent);color:#fff;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.4rem 1rem;margin-bottom:1.5rem;">{site.service2_tag}</span>
+                <p style="opacity:0.7;line-height:1.75;font-size:0.95rem;">{site.service2_desc}</p>
+              </div>
+              <a href="#contact" style="display:inline-flex;align-items:center;gap:0.75rem;color:#E3E1DC;text-decoration:none;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-top:2rem;border-top:1px solid rgba(255,255,255,0.1);padding-top:1.5rem;">
+                En savoir plus
+                <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
+              </a>
+            </div>
+            <div class="card-img-wrap">
+              <img class="card-img" src={site.service2_image} alt={site.service2_title} />
+            </div>
           </div>
         </div>
-        <div>
-          <h5 class="text-cream text-xs uppercase tracking-widest font-medium mb-6">Explorer</h5>
-          <ul class="space-y-4 text-sm font-light">
-            <li><a href="#suites" class="hover:text-caramel transition-colors">Nos Suites</a></li>
-            <li><a href="#wellness" class="hover:text-caramel transition-colors">Services Spa</a></li>
-            <li><a href="#experience" class="hover:text-caramel transition-colors">Notre Philosophie</a></li>
-            <li><a href="#gallery" class="hover:text-caramel transition-colors">Galerie</a></li>
-          </ul>
-        </div>
-        <div>
-          <h5 class="text-cream text-xs uppercase tracking-widest font-medium mb-6">Informations</h5>
-          <ul class="space-y-4 text-sm font-light">
-            <li><a href="#" class="hover:text-caramel transition-colors">FAQ</a></li>
-            <li><a href="#" class="hover:text-caramel transition-colors">Conditions requises</a></li>
-            <li><a href="#" class="hover:text-caramel transition-colors">Tarifs</a></li>
-            <li><a href="/mentions-legales" class="hover:text-caramel transition-colors">Mentions légales</a></li>
-          </ul>
-        </div>
-        <div>
-          <h5 class="text-cream text-xs uppercase tracking-widest font-medium mb-6">Nous rendre visite</h5>
-          <ul class="space-y-4 text-sm font-light">
-            <li class="flex items-start gap-3">
-              <i data-lucide="map-pin" class="w-5 h-5 text-caramel shrink-0 mt-0.5"></i>
-              <span>{site.address}<br>{site.address2}</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <i data-lucide="phone" class="w-5 h-5 text-caramel shrink-0"></i>
-              <span>{site.phone}</span>
-            </li>
-            <li class="flex items-center gap-3">
-              <i data-lucide="mail" class="w-5 h-5 text-caramel shrink-0"></i>
-              <span>{site.email}</span>
-            </li>
-          </ul>
+        <div class="card-item" data-card="2">
+          <div class="card-inner">
+            <div class="card-content">
+              <div>
+                <span style="font-size:0.7rem;letter-spacing:0.15em;opacity:0.35;text-transform:uppercase;">{site.service3_number}</span>
+                <h3 class="display" style="font-size:clamp(1.8rem,3vw,2.8rem);font-weight:700;margin:1rem 0;line-height:1.1;">{site.service3_title}</h3>
+                <span style="display:inline-block;background:var(--c-accent);color:#fff;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.4rem 1rem;margin-bottom:1.5rem;">{site.service3_tag}</span>
+                <p style="opacity:0.7;line-height:1.75;font-size:0.95rem;">{site.service3_desc}</p>
+              </div>
+              <a href="#contact" style="display:inline-flex;align-items:center;gap:0.75rem;color:#E3E1DC;text-decoration:none;font-size:0.8rem;letter-spacing:0.12em;text-transform:uppercase;margin-top:2rem;border-top:1px solid rgba(255,255,255,0.1);padding-top:1.5rem;">
+                En savoir plus
+                <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
+              </a>
+            </div>
+            <div class="card-img-wrap">
+              <img class="card-img" src={site.service3_image} alt={site.service3_title} />
+            </div>
+          </div>
         </div>
       </div>
-      <div class="flex flex-col md:flex-row justify-between items-center text-xs font-light">
-        <p>© {new Date().getFullYear()} {site.company_name}. Tous droits réservés.</p>
-        <div class="flex gap-6 mt-4 md:mt-0">
-          <a href="/mentions-legales" class="hover:text-cream transition-colors">Mentions légales</a>
-        </div>
+    </section>
+
+    <section id="clientele" style="padding:10rem 6vw;display:grid;grid-template-columns:auto 1fr;gap:6rem;align-items:start;">
+      <div style="width:1px;background:var(--c-dark);opacity:0.2;height:100%;min-height:16rem;"></div>
+      <div>
+        <iconify-icon icon="solar:star-bold" width="36" style="color:var(--c-accent);display:block;margin-bottom:2.5rem;"></iconify-icon>
+        <h2 class="display" style="font-size:clamp(2rem,4.5vw,4rem);font-weight:700;line-height:1.1;margin:0 0 2rem;max-width:28ch;">{site.clientele_title}</h2>
+        <p style="font-size:1.05rem;line-height:1.85;opacity:0.75;max-width:52ch;">{site.clientele_text}</p>
+      </div>
+    </section>
+
+  </div>
+
+  <footer class="footer-sticky" id="contact" style="overflow:hidden;">
+    <div style="position:absolute;inset:0;background-image:url('{site.hero_image}');background-size:cover;background-position:center;opacity:0.08;pointer-events:none;"></div>
+    <div style="position:relative;z-index:2;width:100%;padding:0 6vw;display:flex;flex-direction:column;justify-content:center;height:100%;">
+      <span style="font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;opacity:0.4;margin-bottom:2rem;">{site.footer_cta}</span>
+      <a href={`tel:${site.phone}`} class="display" style="font-size:6vw;font-weight:700;color:#fff;text-decoration:none;line-height:1;margin-bottom:3rem;display:block;">{site.phone}</a>
+      <p style="opacity:0.5;font-size:0.95rem;max-width:50ch;line-height:1.7;margin-bottom:4rem;">{site.footer_text}</p>
+      <div style="display:flex;gap:3rem;border-top:1px solid rgba(255,255,255,0.1);padding-top:2rem;align-items:center;justify-content:space-between;flex-wrap:wrap;">
+        <nav style="display:flex;gap:2rem;">
+          <a href="#consultation" style="color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;">Consultation</a>
+          <a href="#services" style="color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;">Programmes</a>
+          <a href="#intro" style="color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;">Médias</a>
+          <a href={`mailto:${site.email}`} style="color:rgba(255,255,255,0.5);text-decoration:none;font-size:0.75rem;letter-spacing:0.1em;text-transform:uppercase;">Contact</a>
+        </nav>
+        <span style="color:rgba(255,255,255,0.3);font-size:0.75rem;">© {new Date().getFullYear()} {site.company_name} — {site.address}</span>
       </div>
     </div>
   </footer>
 
-  <script is:inline>
-    lucide.createIcons({ attributes: { 'stroke-width': 1.5 } });
-
-    const menuBtn = document.getElementById('menu-btn');
-    const closeMenuBtn = document.getElementById('close-menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-    const mobileLinks = document.querySelectorAll('.mobile-link');
-
-    function toggleMenu() {
-      const isClosed = mobileMenu.classList.contains('translate-x-full');
-      if (isClosed) {
-        mobileMenu.classList.remove('translate-x-full');
-        document.body.style.overflow = 'hidden';
-      } else {
-        mobileMenu.classList.add('translate-x-full');
-        document.body.style.overflow = '';
-      }
+  <style>
+    @media (max-width: 768px) {
+      nav .nav-links { display: none !important; }
+      .nav-mobile-btn { display: flex !important; }
+      #intro { grid-template-columns: 1fr !important; gap: 3rem !important; }
+      #clientele { grid-template-columns: 1fr !important; }
+      #clientele > div:first-child { display: none !important; }
     }
+  </style>
 
-    menuBtn.addEventListener('click', toggleMenu);
-    closeMenuBtn.addEventListener('click', toggleMenu);
-    mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+  <script is:inline>
+    gsap.registerPlugin(ScrollTrigger);
 
-    function toggleFAQ(button) {
-      const content = button.nextElementSibling;
-      const icon = button.querySelector('i');
-      document.querySelectorAll('.faq-content').forEach(el => {
-        if (el !== content && !el.classList.contains('hidden')) {
-          el.classList.add('hidden');
-          el.previousElementSibling.querySelector('i').classList.remove('rotate-180');
+    const lenis = new Lenis({ duration: 1.2, easing: function(t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); }, orientation: 'vertical', smoothWheel: true });
+
+    function raf(time) { lenis.raf(time); requestAnimationFrame(raf); }
+    requestAnimationFrame(raf);
+
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(function(time) { lenis.raf(time * 1000); });
+    gsap.ticker.lagSmoothing(0);
+
+    var loadTl = gsap.timeline({
+      onComplete: function() {
+        document.body.style.opacity = 1;
+        initSite();
+      }
+    });
+
+    loadTl
+      .to('.loader-bar', { width: '100%', duration: 1.2, ease: 'power2.inOut' })
+      .to('.loader-text', { y: -30, opacity: 0, duration: 0.4, ease: 'power2.in' })
+      .to('.loader', { yPercent: -100, duration: 0.8, ease: 'power3.inOut' });
+
+    function initSite() {
+      gsap.to('.hero-line1', { y: 0, duration: 1.1, ease: 'power3.out', delay: 0.1 });
+      gsap.to('.hero-line2', { y: 0, duration: 1.1, ease: 'power3.out', delay: 0.25 });
+      gsap.to('.hero-subtitle', { opacity: 1, y: 0, duration: 0.8, ease: 'power2.out', delay: 0.7 });
+
+      gsap.from('.split-animate', {
+        scrollTrigger: { trigger: '.split-animate', start: 'top 80%' },
+        y: 60, opacity: 0, duration: 0.9, ease: 'power3.out'
+      });
+
+      gsap.from('#intro p', {
+        scrollTrigger: { trigger: '#intro', start: 'top 75%' },
+        y: 40, opacity: 0, duration: 0.9, ease: 'power2.out', delay: 0.2
+      });
+
+      gsap.from('#intro .display', {
+        scrollTrigger: { trigger: '#intro', start: 'top 75%' },
+        y: 20, opacity: 0, duration: 0.7, ease: 'power2.out', stagger: 0.1, delay: 0.35
+      });
+
+      var cards = gsap.utils.toArray('.card-item');
+      cards.forEach(function(card, i) {
+        if (i < cards.length - 1) {
+          ScrollTrigger.create({
+            trigger: cards[i + 1],
+            start: 'top 20%',
+            end: 'bottom top',
+            onEnter: function() {
+              gsap.to(card.querySelector('.card-inner'), { scale: 0.94, opacity: 0.5, duration: 0.5, ease: 'power2.out' });
+            },
+            onLeaveBack: function() {
+              gsap.to(card.querySelector('.card-inner'), { scale: 1, opacity: 1, duration: 0.4, ease: 'power2.out' });
+            }
+          });
         }
       });
-      content.classList.toggle('hidden');
-      icon.classList.toggle('rotate-180');
+
+      gsap.from('#clientele h2', {
+        scrollTrigger: { trigger: '#clientele', start: 'top 75%' },
+        y: 50, opacity: 0, duration: 1, ease: 'power3.out'
+      });
+
+      gsap.from('#clientele p', {
+        scrollTrigger: { trigger: '#clientele', start: 'top 75%' },
+        y: 30, opacity: 0, duration: 0.8, ease: 'power2.out', delay: 0.25
+      });
     }
   </script>
 
