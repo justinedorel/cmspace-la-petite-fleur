@@ -1,58 +1,44 @@
 ---
-export interface Props {
-  title: string;
-  description: string;
-}
+import site from '../data/site.json';
 const { title, description } = Astro.props;
 ---
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" style={`--primary: ${site.color_primary}; --accent: ${site.color_accent}; --bg: ${site.color_bg}; --dark: ${site.color_dark};`}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{title}</title>
-  <meta name="description" content={description} />
+  <title>{title || site.seo_title}</title>
+  <meta name="description" content={description || site.seo_description} />
+  <script is:inline src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap" rel="stylesheet" />
-  <script src="https://cdn.tailwindcss.com" is:inline></script>
-  <script is:inline>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            serif: ['Instrument Serif', 'serif'],
-            sans: ['Inter', 'sans-serif'],
-            display: ['Montserrat', 'sans-serif'],
-          },
-          colors: {
-            rose: { DEFAULT: '#e11d48', light: '#fda4af', pale: '#fff1f2' }
-          }
-        }
-      }
-    }
-  </script>
-  <script src="https://unpkg.com/lucide@latest" is:inline></script>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" />
+  <script is:inline src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <style>
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .fade-up { animation: fadeUp 0.6s ease forwards; }
-    .glass {
-      background: rgba(255,255,255,0.8);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(0,0,0,0.08);
-    }
-    details summary { list-style: none; }
-    details summary::-webkit-details-marker { display: none; }
-    details[open] .faq-chevron { transform: rotate(180deg); }
-    .faq-chevron { transition: transform 0.3s ease; }
+    body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--dark); -webkit-font-smoothing: antialiased; }
+    h1,h2,h3,h4,h5,h6,.font-heading { font-family: 'Manrope', sans-serif; }
+    ::selection { background: var(--primary); color: white; }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+    @keyframes float { 0%,100% { transform: translateY(0) rotate(2deg); } 50% { transform: translateY(-15px) rotate(1deg); } }
+    .animate-float { animation: float 6s ease-in-out infinite; }
+    @keyframes glow { 0%,100% { box-shadow: 0 0 10px rgba(232,217,181,0.2); border-color: rgba(255,255,255,0.2); } 50% { box-shadow: 0 0 30px rgba(232,217,181,0.6); border-color: rgba(232,217,181,0.5); } }
+    .animate-glow { animation: glow 3s infinite; }
+    .glass-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.2); }
+    .reveal-on-hover .reveal-content { max-height: 0; opacity: 0; transition: all 0.5s cubic-bezier(0.4,0,0.2,1); overflow: hidden; }
+    .reveal-on-hover:hover .reveal-content { max-height: 250px; opacity: 1; margin-top: 1rem; }
+    @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
   </style>
 </head>
-<body class="bg-[#FAFAFA] text-gray-900 font-sans antialiased">
+<body>
   <slot />
+  <script is:inline src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script is:inline>
-    lucide.createIcons();
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof AOS !== 'undefined') AOS.init({ once: true, duration: 800, offset: 50 });
+    });
   </script>
 </body>
 </html>
