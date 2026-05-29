@@ -1,0 +1,22 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import site from '../data/site.json';
+---
+<Base title="Message envoyé" noindex={true}>
+  <Header />
+  <section style="min-height:60vh;display:flex;align-items:center;justify-content:center;">
+    <div style="text-align:center;max-width:500px;padding:2rem;">
+      <div style="width:4rem;height:4rem;background:var(--colorAccent);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
+        <span style="color:#fff;font-size:1.75rem;">✓</span>
+      </div>
+      <h1 style="font-size:2rem;color:var(--colorPrimary);margin-bottom:1rem;">Message envoyé !</h1>
+      <p style="color:var(--colorTextMuted);margin-bottom:2rem;line-height:1.7;">
+        Merci de nous avoir contactés. Nous reviendrons vers vous dans les plus brefs délais.
+      </p>
+      <a href="/" class="btn-primary">Retour à l'accueil</a>
+    </div>
+  </section>
+  <Footer />
+</Base>

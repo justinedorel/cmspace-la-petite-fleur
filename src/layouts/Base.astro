@@ -1,57 +1,95 @@
 ---
-export interface Props {
-  title: string;
+import site from '../data/site.json';
+
+interface Props {
+  title?: string;
   description?: string;
+  noindex?: boolean;
 }
-const { title, description } = Astro.props;
+
+const { title = site.seo_title, description = site.seo_description, noindex = false } = Astro.props;
+const canonical = new URL(Astro.url.pathname, Astro.site).toString();
 ---
-<!DOCTYPE html>
+<!doctype html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
-    {description && <meta name="description" content={description} />}
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
-    <script is:inline src="https://cdn.tailwindcss.com"></script>
-    <script is:inline src="https://cdn.jsdelivr.net/npm/@iconify/iconify@3/dist/iconify.min.js"></script>
-    <script is:inline>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              bg: '#f5f2ee',
-              dark: '#1a1a1a',
-              muted: '#5a5a5a',
-              pink: '#f2dfdb',
-              sand: '#dfd3c5',
-              cream: '#eadecd',
-            },
-            fontFamily: {
-              serif: ['Cormorant Garamond', 'serif'],
-              sans: ['Jost', 'sans-serif'],
-            },
-          },
-        },
-      }
-    </script>
-    <style>
-      html { scroll-behavior: smooth; }
-      body {
-        background-color: #f5f2ee;
-        color: #1a1a1a;
-        font-family: 'Jost', sans-serif;
-        font-weight: 300;
-        -webkit-font-smoothing: antialiased;
-      }
-      h1, h2, h3, h4 {
-        font-family: 'Cormorant Garamond', serif;
-      }
-    </style>
-  </head>
-  <body>
-    <slot />
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  {noindex && <meta name="robots" content="noindex,nofollow" />}
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:type" content="website" />
+  <style is:global define:vars={{
+    colorPrimary: site.color_primary,
+    colorAccent: site.color_accent,
+    colorBg: site.color_bg,
+    colorSurface: site.color_surface,
+    colorText: site.color_text,
+    colorTextMuted: site.color_text_muted,
+    fontHeading: site.font_heading,
+    fontBody: site.font_body,
+  }}>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--fontBody);
+      color: var(--colorText);
+      background: var(--colorBg);
+      line-height: 1.6;
+    }
+    h1, h2, h3, h4 {
+      font-family: var(--fontHeading);
+      line-height: 1.2;
+    }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; height: auto; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--colorPrimary); color: #fff;
+      padding: 0.75rem 1.5rem; border-radius: 0.5rem;
+      font-weight: 600; font-size: 0.9rem;
+      transition: opacity 0.2s;
+    }
+    .btn-primary:hover { opacity: 0.85; }
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      border: 2px solid var(--colorPrimary); color: var(--colorPrimary);
+      padding: 0.75rem 1.5rem; border-radius: 0.5rem;
+      font-weight: 600; font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .btn-secondary:hover { background: var(--colorPrimary); color: #fff; }
+    section { padding: 5rem 0; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
+      text-transform: uppercase; color: var(--colorAccent);
+      display: block; margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      color: var(--colorPrimary); margin-bottom: 1rem;
+    }
+    .section-subtitle {
+      font-size: 1.1rem; color: var(--colorTextMuted); max-width: 600px;
+    }
+  </style>
+</head>
+<body>
+  <slot />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": site.schema_type || "LocalBusiness",
+    "name": site.company_name,
+    "description": site.description,
+    "url": site.seo_url,
+    "email": site.email,
+    "telephone": site.phone,
+    "address": { "@type": "PostalAddress", "addressLocality": site.city },
+  })} />
+</body>
 </html>

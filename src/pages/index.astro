@@ -1,341 +1,123 @@
 ---
 import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 ---
-<Base title={site.seo_title} description={site.seo_description}>
-
-  <!-- Navigation -->
-  <header id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
-    <div class="max-w-7xl mx-auto px-8 py-5 flex items-center justify-between">
-      <a href="/" class="font-serif text-2xl tracking-[0.2em] font-light text-dark">{site.company_name}</a>
-      <nav class="hidden md:flex items-center gap-10">
-        <a href="#portfolio" class="font-sans text-xs tracking-[0.18em] uppercase text-dark/70 hover:text-dark transition-colors">Galerie</a>
-        <a href="#flavors" class="font-sans text-xs tracking-[0.18em] uppercase text-dark/70 hover:text-dark transition-colors">Saveurs</a>
-        <a href="#process" class="font-sans text-xs tracking-[0.18em] uppercase text-dark/70 hover:text-dark transition-colors">Processus</a>
-        <a href="#contact" class="font-sans text-xs tracking-[0.18em] uppercase text-dark/70 hover:text-dark transition-colors">Contact</a>
-        <a href={`mailto:${site.email}`} class="font-sans text-xs tracking-[0.18em] uppercase border border-dark/30 text-dark px-5 py-2.5 hover:bg-dark hover:text-bg transition-all duration-300">{site.hero_cta}</a>
-      </nav>
-    </div>
-  </header>
+<Base>
+  <Header />
 
   <!-- Hero -->
-  <section class="relative min-h-screen flex items-center overflow-hidden">
-    <div class="absolute inset-0">
-      <img src={site.hero_image} alt={site.hero_title2} class="w-full h-full object-cover" />
-      <div class="absolute inset-0 bg-dark/20"></div>
-    </div>
-    <div class="relative z-10 max-w-7xl mx-auto px-8 w-full grid md:grid-cols-2 items-center gap-12 pt-24">
+  <section style="background:var(--colorSurface);padding:6rem 0;">
+    <div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
       <div>
-        <div class="flex items-center gap-4 mb-8">
-          <span class="font-sans text-xs tracking-[0.2em] uppercase text-white/80 border border-white/30 px-4 py-1.5">{site.hero_badge}</span>
-        </div>
-        <h1 class="font-serif text-6xl md:text-8xl font-light leading-tight text-white mb-2">
-          {site.hero_title1}
+        <span class="section-label">{site.hero_badge}</span>
+        <h1 style="font-size:clamp(2rem,4vw,3.25rem);color:var(--colorPrimary);margin-bottom:1.5rem;line-height:1.15;">
+          {site.hero_title_italic === 'true'
+            ? <><span>{site.hero_title.split(' ').slice(0,-2).join(' ')}</span> <em style="color:var(--colorAccent);">{site.hero_title.split(' ').slice(-2).join(' ')}</em></>
+            : site.hero_title
+          }
         </h1>
-        <h1 class="font-serif text-6xl md:text-8xl font-light italic leading-tight text-white mb-8">
-          {site.hero_title2}
-        </h1>
-        <p class="font-sans text-sm font-light leading-relaxed text-white/80 max-w-sm mb-10 tracking-wide">
-          {site.hero_subtitle}
-        </p>
-        <a href={`mailto:${site.email}`} class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.18em] uppercase text-white border border-white/60 px-8 py-4 hover:bg-white hover:text-dark transition-all duration-300">
-          {site.hero_cta}
-          <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
-        </a>
-      </div>
-      <div class="hidden md:flex justify-end items-end">
-        <div class="relative w-16 h-16">
-          <div class="w-16 h-16 rounded-full border border-white/40 flex items-center justify-center animate-spin" style="animation-duration: 12s;">
-            <svg viewBox="0 0 100 100" class="w-full h-full absolute inset-0">
-              <defs>
-                <path id="circlePath" d="M 50,50 m -30,0 a 30,30 0 1,1 60,0 a 30,30 0 1,1 -60,0"/>
-              </defs>
-              <text class="fill-white/70" font-size="10" font-family="Jost" letter-spacing="3">
-                <textPath href="#circlePath">{site.hero_badge_rotating} · {site.hero_badge_rotating} ·</textPath>
-              </text>
-            </svg>
-          </div>
+        <p style="font-size:1.15rem;color:var(--colorTextMuted);margin-bottom:2rem;line-height:1.7;">{site.hero_subtitle}</p>
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
+          <a href={site.hero_cta_primary_href} class="btn-primary">{site.hero_cta_primary}</a>
+          <a href="/contact" class="btn-secondary">{site.hero_cta_secondary}</a>
+        </div>
+        <div style="display:flex;gap:2.5rem;margin-top:3rem;">
+          {[
+            { v: site.hero_stat1_value, l: site.hero_stat1_label },
+            { v: site.hero_stat2_value, l: site.hero_stat2_label },
+            { v: site.hero_stat3_value, l: site.hero_stat3_label },
+          ].map(s => (
+            <div>
+              <div style="font-size:1.75rem;font-weight:800;color:var(--colorPrimary);">{s.v}</div>
+              <div style="font-size:0.8rem;color:var(--colorTextMuted);">{s.l}</div>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
-      <span class="font-sans text-xs tracking-[0.2em] uppercase text-white/50">Découvrir</span>
-      <div class="w-px h-12 bg-white/30"></div>
-    </div>
-  </section>
-
-  <!-- Press -->
-  <section class="py-12 bg-dark">
-    <div class="max-w-7xl mx-auto px-8">
-      <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16">
-        <span class="font-sans text-xs tracking-[0.22em] uppercase text-white/30 whitespace-nowrap">{site.press_label}</span>
-        <div class="w-px h-6 bg-white/20 hidden md:block"></div>
-        <div class="flex items-center gap-10 md:gap-16 flex-wrap justify-center md:justify-start">
-          <span class="font-serif text-2xl font-light italic tracking-wide text-white/60 hover:text-white/90 transition-colors cursor-default">{site.press1}</span>
-          <span class="font-serif text-2xl font-light tracking-[0.15em] text-white/60 hover:text-white/90 transition-colors cursor-default">{site.press2}</span>
-          <span class="font-serif text-2xl font-light italic tracking-wide text-white/60 hover:text-white/90 transition-colors cursor-default">{site.press3}</span>
-          <span class="font-serif text-2xl font-light tracking-[0.15em] text-white/60 hover:text-white/90 transition-colors cursor-default">{site.press4}</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- About -->
-  <section id="about" class="py-28 md:py-36">
-    <div class="max-w-7xl mx-auto px-8">
-      <div class="grid md:grid-cols-2 gap-16 md:gap-24 items-center">
-        <div class="relative">
-          <img src={site.about_image} alt={site.about_title2} class="w-full aspect-[3/4] object-cover" />
-          <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-pink hidden md:block"></div>
-        </div>
-        <div>
-          <span class="font-sans text-xs tracking-[0.22em] uppercase text-muted mb-6 block">{site.about_badge}</span>
-          <h2 class="font-serif text-5xl md:text-6xl font-light leading-tight text-dark mb-2">
-            {site.about_title}
-          </h2>
-          <h2 class="font-serif text-5xl md:text-6xl font-light italic leading-tight text-dark mb-10">
-            {site.about_title2}
-          </h2>
-          <p class="font-sans text-sm font-light leading-relaxed text-muted mb-6 tracking-wide">
-            {site.about_text1}
-          </p>
-          <p class="font-sans text-sm font-light leading-relaxed text-muted mb-10 tracking-wide">
-            {site.about_text2}
-          </p>
-          <a href={`mailto:${site.email}`} class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.18em] uppercase text-dark hover:opacity-60 transition-opacity">
-            {site.about_cta}
-            <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
-          </a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Portfolio -->
-  <section id="portfolio" class="py-28 bg-sand/20">
-    <div class="max-w-7xl mx-auto px-8">
-      <div class="mb-16">
-        <span class="font-sans text-xs tracking-[0.22em] uppercase text-muted mb-4 block">{site.portfolio_badge}</span>
-        <h2 class="font-serif text-5xl md:text-6xl font-light text-dark">
-          {site.portfolio_title} <em class="italic">{site.portfolio_title_em}</em>
-        </h2>
-      </div>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="group cursor-default">
-          <div class="overflow-hidden mb-5">
-            <img src={site.portfolio1_image} alt={site.portfolio1_title} class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700" />
-          </div>
-          <h3 class="font-serif text-xl font-light text-dark mb-1">{site.portfolio1_title}</h3>
-          <span class="font-sans text-xs tracking-[0.15em] uppercase text-muted">{site.portfolio1_flavor}</span>
-        </div>
-        <div class="group cursor-default md:mt-12">
-          <div class="overflow-hidden mb-5">
-            <img src={site.portfolio2_image} alt={site.portfolio2_title} class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700" />
-          </div>
-          <h3 class="font-serif text-xl font-light text-dark mb-1">{site.portfolio2_title}</h3>
-          <span class="font-sans text-xs tracking-[0.15em] uppercase text-muted">{site.portfolio2_flavor}</span>
-        </div>
-        <div class="group cursor-default">
-          <div class="overflow-hidden mb-5">
-            <img src={site.portfolio3_image} alt={site.portfolio3_title} class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700" />
-          </div>
-          <h3 class="font-serif text-xl font-light text-dark mb-1">{site.portfolio3_title}</h3>
-          <span class="font-sans text-xs tracking-[0.15em] uppercase text-muted">{site.portfolio3_flavor}</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Process -->
-  <section id="process" class="py-28 md:py-36">
-    <div class="max-w-7xl mx-auto px-8">
-      <div class="text-center mb-20">
-        <span class="font-sans text-xs tracking-[0.22em] uppercase text-muted mb-4 block">{site.process_badge}</span>
-        <h2 class="font-serif text-5xl md:text-6xl font-light text-dark mb-5">{site.process_title}</h2>
-        <p class="font-sans text-sm font-light leading-relaxed text-muted max-w-xl mx-auto tracking-wide">{site.process_subtitle}</p>
-      </div>
-      <div class="grid md:grid-cols-4 gap-10 md:gap-8">
-        <div class="relative">
-          <div class="font-serif text-8xl font-light text-sand leading-none mb-6 select-none">01</div>
-          <div class="w-10 h-px bg-dark/20 mb-6"></div>
-          <h3 class="font-serif text-2xl font-light text-dark mb-3">{site.step1_title}</h3>
-          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.step1_desc}</p>
-        </div>
-        <div class="relative">
-          <div class="font-serif text-8xl font-light text-sand leading-none mb-6 select-none">02</div>
-          <div class="w-10 h-px bg-dark/20 mb-6"></div>
-          <h3 class="font-serif text-2xl font-light text-dark mb-3">{site.step2_title}</h3>
-          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.step2_desc}</p>
-        </div>
-        <div class="relative">
-          <div class="font-serif text-8xl font-light text-sand leading-none mb-6 select-none">03</div>
-          <div class="w-10 h-px bg-dark/20 mb-6"></div>
-          <h3 class="font-serif text-2xl font-light text-dark mb-3">{site.step3_title}</h3>
-          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.step3_desc}</p>
-        </div>
-        <div class="relative">
-          <div class="font-serif text-8xl font-light text-sand leading-none mb-6 select-none">04</div>
-          <div class="w-10 h-px bg-dark/20 mb-6"></div>
-          <h3 class="font-serif text-2xl font-light text-dark mb-3">{site.step4_title}</h3>
-          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.step4_desc}</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Saveurs -->
-  <section id="flavors" class="py-28 bg-cream/30">
-    <div class="max-w-7xl mx-auto px-8">
-      <div class="mb-16">
-        <h2 class="font-serif text-5xl md:text-6xl font-light text-dark">
-          {site.flavors_title} <em class="italic">{site.flavors_title_em}</em>
-        </h2>
-      </div>
-      <div class="grid md:grid-cols-3 gap-px bg-sand/50">
-        <div class="bg-bg p-10 md:p-12 hover:bg-pink/20 transition-colors duration-300">
-          <span class="font-sans text-xs tracking-[0.18em] uppercase text-muted border border-sand px-3 py-1 mb-8 inline-block">{site.flavor1_tag}</span>
-          <h3 class="font-serif text-2xl font-light text-dark mb-4">{site.flavor1_title}</h3>
-          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.flavor1_desc}</p>
-        </div>
-        <div class="bg-bg p-10 md:p-12 hover:bg-pink/20 transition-colors duration-300">
-          <span class="font-sans text-xs tracking-[0.18em] uppercase text-muted border border-sand px-3 py-1 mb-8 inline-block">{site.flavor2_tag}</span>
-          <h3 class="font-serif text-2xl font-light text-dark mb-4">{site.flavor2_title}</h3>
-          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.flavor2_desc}</p>
-        </div>
-        <div class="bg-bg p-10 md:p-12 hover:bg-pink/20 transition-colors duration-300">
-          <span class="font-sans text-xs tracking-[0.18em] uppercase text-muted border border-sand px-3 py-1 mb-8 inline-block">{site.flavor3_tag}</span>
-          <h3 class="font-serif text-2xl font-light text-dark mb-4">{site.flavor3_title}</h3>
-          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.flavor3_desc}</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Témoignage -->
-  <section class="py-28 md:py-36 bg-dark">
-    <div class="max-w-5xl mx-auto px-8 text-center">
-      <span class="iconify text-sand/40 mb-10 block mx-auto" data-icon="lucide:quote" data-width="40"></span>
-      <blockquote class="font-serif text-3xl md:text-4xl font-light italic leading-relaxed text-white/90 mb-12">
-        &ldquo;{site.testimonial_text}&rdquo;
-      </blockquote>
-      <div class="flex items-center justify-center gap-5">
-        <img src={site.testimonial_image} alt={site.testimonial_name} class="w-12 h-12 rounded-full object-cover grayscale opacity-60" />
-        <div class="text-left">
-          <p class="font-serif text-base font-light text-white/80">{site.testimonial_name}</p>
-          <p class="font-sans text-xs tracking-[0.15em] uppercase text-white/30">{site.testimonial_date}</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section id="contact" class="py-28 md:py-36">
-    <div class="max-w-3xl mx-auto px-8">
-      <div class="mb-16 text-center">
-        <h2 class="font-serif text-5xl md:text-6xl font-light text-dark mb-4">{site.faq_title}</h2>
-        <p class="font-sans text-sm font-light text-muted tracking-wide">{site.faq_subtitle}</p>
-      </div>
-      <div class="divide-y divide-sand/60">
-        <div class="faq-item py-7">
-          <button class="faq-trigger w-full flex items-center justify-between text-left gap-6">
-            <span class="font-serif text-xl font-light text-dark">{site.faq1_q}</span>
-            <span class="iconify faq-icon flex-shrink-0 text-muted transition-transform duration-300" data-icon="lucide:plus" data-width="18"></span>
-          </button>
-          <div class="faq-answer hidden pt-5">
-            <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.faq1_a}</p>
-          </div>
-        </div>
-        <div class="faq-item py-7">
-          <button class="faq-trigger w-full flex items-center justify-between text-left gap-6">
-            <span class="font-serif text-xl font-light text-dark">{site.faq2_q}</span>
-            <span class="iconify faq-icon flex-shrink-0 text-muted transition-transform duration-300" data-icon="lucide:plus" data-width="18"></span>
-          </button>
-          <div class="faq-answer hidden pt-5">
-            <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.faq2_a}</p>
-          </div>
-        </div>
-        <div class="faq-item py-7">
-          <button class="faq-trigger w-full flex items-center justify-between text-left gap-6">
-            <span class="font-serif text-xl font-light text-dark">{site.faq3_q}</span>
-            <span class="iconify faq-icon flex-shrink-0 text-muted transition-transform duration-300" data-icon="lucide:plus" data-width="18"></span>
-          </button>
-          <div class="faq-answer hidden pt-5">
-            <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.faq3_a}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer class="bg-dark py-16">
-    <div class="max-w-7xl mx-auto px-8">
-      <div class="grid md:grid-cols-3 gap-12 mb-14">
-        <div>
-          <p class="font-serif text-3xl font-light text-white tracking-[0.2em] mb-2">{site.company_name}</p>
-          <p class="font-sans text-xs tracking-[0.18em] uppercase text-white/30">{site.company_sub}</p>
-        </div>
-        <div>
-          <p class="font-sans text-xs tracking-[0.18em] uppercase text-white/30 mb-4">Contact</p>
-          <a href={`mailto:${site.email}`} class="font-sans text-sm font-light text-white/60 hover:text-white transition-colors tracking-wide">{site.email}</a>
-        </div>
-        <div>
-          <p class="font-sans text-xs tracking-[0.18em] uppercase text-white/30 mb-4">Suivre</p>
-          <div class="flex gap-5">
-            {site.social_instagram && site.social_instagram !== '#' || site.social_instagram === '#' ? (
-              <a href={site.social_instagram} class="text-white/40 hover:text-white/80 transition-colors">
-                <span class="iconify" data-icon="lucide:instagram" data-width="18"></span>
-              </a>
-            ) : null}
-            {site.social_facebook && site.social_facebook !== '#' || site.social_facebook === '#' ? (
-              <a href={site.social_facebook} class="text-white/40 hover:text-white/80 transition-colors">
-                <span class="iconify" data-icon="lucide:facebook" data-width="18"></span>
-              </a>
-            ) : null}
-            {site.social_linkedin ? (
-              <a href={site.social_linkedin} class="text-white/40 hover:text-white/80 transition-colors">
-                <span class="iconify" data-icon="lucide:linkedin" data-width="18"></span>
-              </a>
-            ) : null}
-          </div>
-        </div>
-      </div>
-      <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-        <p class="font-sans text-xs font-light text-white/25 tracking-wide">{site.footer_tagline}</p>
-        <p class="font-sans text-xs text-white/20 tracking-[0.1em]">&copy; {new Date().getFullYear()} {site.company_name}</p>
-      </div>
-    </div>
-  </footer>
-
-  <script is:inline>
-    document.querySelectorAll('.faq-item').forEach(function(item) {
-      var trigger = item.querySelector('.faq-trigger');
-      var answer = item.querySelector('.faq-answer');
-      var icon = item.querySelector('.faq-icon');
-      trigger.addEventListener('click', function() {
-        var isOpen = !answer.classList.contains('hidden');
-        document.querySelectorAll('.faq-answer').forEach(function(a) { a.classList.add('hidden'); });
-        document.querySelectorAll('.faq-icon').forEach(function(i) {
-          i.setAttribute('data-icon', 'lucide:plus');
-          i.style.transform = '';
-        });
-        if (!isOpen) {
-          answer.classList.remove('hidden');
-          icon.setAttribute('data-icon', 'lucide:minus');
+      <div style="border-radius:1rem;overflow:hidden;background:var(--colorPrimary);aspect-ratio:4/3;">
+        {site.hero_image_url
+          ? <img src={site.hero_image_url} alt={site.company_name} style="width:100%;height:100%;object-fit:cover;" />
+          : <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;opacity:0.3;">
+              <span style="color:#fff;font-size:1rem;">{site.company_name}</span>
+            </div>
         }
-      });
-    });
+      </div>
+    </div>
+  </section>
 
-    var nav = document.getElementById('nav');
-    window.addEventListener('scroll', function() {
-      if (window.scrollY > 80) {
-        nav.style.backgroundColor = '#f5f2ee';
-        nav.style.boxShadow = '0 1px 0 rgba(0,0,0,0.06)';
-      } else {
-        nav.style.backgroundColor = 'transparent';
-        nav.style.boxShadow = 'none';
-      }
-    });
-  </script>
+  <!-- Services résumé -->
+  <section>
+    <div class="container">
+      <div style="text-align:center;margin-bottom:3rem;">
+        <span class="section-label">Ce que nous faisons</span>
+        <h2 class="section-title">{site.services_title}</h2>
+        <p class="section-subtitle" style="margin:0 auto;">{site.services_subtitle}</p>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;">
+        {[
+          { title: site.service1_title, desc: site.service1_desc, details: [site.service1_detail1, site.service1_detail2, site.service1_detail3] },
+          { title: site.service2_title, desc: site.service2_desc, details: [site.service2_detail1, site.service2_detail2, site.service2_detail3] },
+          { title: site.service3_title, desc: site.service3_desc, details: [site.service3_detail1, site.service3_detail2, site.service3_detail3] },
+        ].map(s => (
+          <div style="background:var(--colorSurface);border-radius:1rem;padding:2rem;">
+            <h3 style="font-size:1.25rem;color:var(--colorPrimary);margin-bottom:0.75rem;">{s.title}</h3>
+            <p style="font-size:0.9rem;color:var(--colorTextMuted);margin-bottom:1.25rem;">{s.desc}</p>
+            <ul style="list-style:none;display:flex;flex-direction:column;gap:0.5rem;">
+              {s.details.filter(Boolean).map(d => (
+                <li style="font-size:0.85rem;color:var(--colorText);display:flex;align-items:center;gap:0.5rem;">
+                  <span style="color:var(--colorAccent);font-weight:700;">✓</span> {d}
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+      <div style="text-align:center;margin-top:2.5rem;">
+        <a href="/services" class="btn-secondary">Voir tous nos services</a>
+      </div>
+    </div>
+  </section>
 
+  <!-- Témoignages -->
+  <section style="background:var(--colorSurface);">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:3rem;">
+        <span class="section-label">Témoignages</span>
+        <h2 class="section-title">{site.testimonials_title}</h2>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;">
+        {[
+          { name: site.testimonial1_name, role: site.testimonial1_role, text: site.testimonial1_text, rating: site.testimonial1_rating },
+          { name: site.testimonial2_name, role: site.testimonial2_role, text: site.testimonial2_text, rating: site.testimonial2_rating },
+          { name: site.testimonial3_name, role: site.testimonial3_role, text: site.testimonial3_text, rating: site.testimonial3_rating },
+        ].map(t => (
+          <div style="background:var(--colorBg);border-radius:1rem;padding:1.75rem;">
+            <div style="color:var(--colorAccent);font-size:1.1rem;margin-bottom:1rem;">
+              {'★'.repeat(Number(t.rating) || 5)}
+            </div>
+            <p style="font-size:0.95rem;color:var(--colorText);margin-bottom:1.25rem;line-height:1.6;">"{t.text}"</p>
+            <div>
+              <div style="font-weight:700;font-size:0.9rem;color:var(--colorPrimary);">{t.name}</div>
+              <div style="font-size:0.8rem;color:var(--colorTextMuted);">{t.role}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA final -->
+  <section style="background:var(--colorPrimary);color:#fff;">
+    <div class="container" style="text-align:center;">
+      <h2 style="font-size:clamp(1.75rem,3vw,2.5rem);margin-bottom:1rem;">{site.cta_title}</h2>
+      <p style="font-size:1.1rem;opacity:0.8;margin-bottom:2rem;">{site.cta_subtitle}</p>
+      <a href={site.cta_primary_href} style="background:#fff;color:var(--colorPrimary);padding:0.875rem 2rem;border-radius:0.5rem;font-weight:700;font-size:0.95rem;display:inline-block;">
+        {site.cta_primary}
+      </a>
+    </div>
+  </section>
+
+  <Footer />
 </Base>

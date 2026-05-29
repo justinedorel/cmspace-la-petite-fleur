@@ -1,0 +1,81 @@
+---
+import Base from '../layouts/Base.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import site from '../data/site.json';
+const paragraphs = site.about_text_long.split('\n').filter(Boolean);
+const values = [
+  { title: site.about_value1_title, desc: site.about_value1_desc },
+  { title: site.about_value2_title, desc: site.about_value2_desc },
+  { title: site.about_value3_title, desc: site.about_value3_desc },
+];
+const team = [
+  { name: site.about_name1, role: site.about_role1, avatar: site.about_avatar1 },
+  { name: site.about_name2, role: site.about_role2, avatar: site.about_avatar2 },
+].filter(m => m.name);
+---
+<Base title={`À propos — ${site.company_name}`} description={site.about_subtitle}>
+  <Header />
+
+  <section style="background:var(--colorSurface);padding:4rem 0 3rem;">
+    <div class="container">
+      <span class="section-label">Notre histoire</span>
+      <h1 class="section-title">{site.about_title}</h1>
+      <p class="section-subtitle">{site.about_subtitle}</p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start;">
+      <div>
+        {paragraphs.map(p => (
+          <p style="color:var(--colorText);line-height:1.8;margin-bottom:1.25rem;font-size:1.05rem;">{p}</p>
+        ))}
+      </div>
+      <div style="background:var(--colorSurface);border-radius:1rem;aspect-ratio:4/3;overflow:hidden;">
+        {site.about_image_url
+          ? <img src={site.about_image_url} alt={site.company_name} style="width:100%;height:100%;object-fit:cover;" />
+          : <div style="width:100%;height:100%;"></div>
+        }
+      </div>
+    </div>
+  </section>
+
+  {team.length > 0 && (
+    <section style="background:var(--colorSurface);">
+      <div class="container">
+        <h2 class="section-title" style="margin-bottom:2.5rem;">Notre équipe</h2>
+        <div style="display:flex;gap:2rem;flex-wrap:wrap;">
+          {team.map(m => (
+            <div style="text-align:center;flex:1;min-width:200px;">
+              <div style="width:6rem;height:6rem;border-radius:50%;background:var(--colorPrimary);margin:0 auto 1rem;overflow:hidden;">
+                {m.avatar
+                  ? <img src={m.avatar} alt={m.name} style="width:100%;height:100%;object-fit:cover;" />
+                  : <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.5rem;font-weight:700;">{m.name.charAt(0)}</div>
+                }
+              </div>
+              <div style="font-weight:700;color:var(--colorPrimary);">{m.name}</div>
+              <div style="font-size:0.85rem;color:var(--colorTextMuted);">{m.role}</div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section>
+    <div class="container">
+      <h2 class="section-title" style="margin-bottom:2.5rem;">Nos valeurs</h2>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;">
+        {values.filter(v => v.title).map(v => (
+          <div style="background:var(--colorSurface);border-radius:1rem;padding:2rem;border-left:4px solid var(--colorAccent);">
+            <h3 style="font-size:1.1rem;color:var(--colorPrimary);margin-bottom:0.5rem;">{v.title}</h3>
+            <p style="font-size:0.9rem;color:var(--colorTextMuted);">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <Footer />
+</Base>
