@@ -1,44 +1,57 @@
 ---
-import site from '../data/site.json';
+export interface Props {
+  title: string;
+  description?: string;
+}
 const { title, description } = Astro.props;
 ---
 <!DOCTYPE html>
-<html lang="fr" style={`--primary: ${site.color_primary}; --accent: ${site.color_accent}; --bg: ${site.color_bg}; --dark: ${site.color_dark};`}>
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{title || site.seo_title}</title>
-  <meta name="description" content={description || site.seo_description} />
-  <script is:inline src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" />
-  <script is:inline src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
-  <style>
-    body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--dark); -webkit-font-smoothing: antialiased; }
-    h1,h2,h3,h4,h5,h6,.font-heading { font-family: 'Manrope', sans-serif; }
-    ::selection { background: var(--primary); color: white; }
-    ::-webkit-scrollbar { width: 8px; height: 8px; }
-    ::-webkit-scrollbar-track { background: var(--bg); }
-    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
-    @keyframes float { 0%,100% { transform: translateY(0) rotate(2deg); } 50% { transform: translateY(-15px) rotate(1deg); } }
-    .animate-float { animation: float 6s ease-in-out infinite; }
-    @keyframes glow { 0%,100% { box-shadow: 0 0 10px rgba(232,217,181,0.2); border-color: rgba(255,255,255,0.2); } 50% { box-shadow: 0 0 30px rgba(232,217,181,0.6); border-color: rgba(232,217,181,0.5); } }
-    .animate-glow { animation: glow 3s infinite; }
-    .glass-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.2); }
-    .reveal-on-hover .reveal-content { max-height: 0; opacity: 0; transition: all 0.5s cubic-bezier(0.4,0,0.2,1); overflow: hidden; }
-    .reveal-on-hover:hover .reveal-content { max-height: 250px; opacity: 1; margin-top: 1rem; }
-    @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
-  </style>
-</head>
-<body>
-  <slot />
-  <script is:inline src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-  <script is:inline>
-    document.addEventListener('DOMContentLoaded', function() {
-      if (typeof AOS !== 'undefined') AOS.init({ once: true, duration: 800, offset: 50 });
-    });
-  </script>
-</body>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+    <script is:inline src="https://cdn.tailwindcss.com"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/@iconify/iconify@3/dist/iconify.min.js"></script>
+    <script is:inline>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              bg: '#f5f2ee',
+              dark: '#1a1a1a',
+              muted: '#5a5a5a',
+              pink: '#f2dfdb',
+              sand: '#dfd3c5',
+              cream: '#eadecd',
+            },
+            fontFamily: {
+              serif: ['Cormorant Garamond', 'serif'],
+              sans: ['Jost', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
+    <style>
+      html { scroll-behavior: smooth; }
+      body {
+        background-color: #f5f2ee;
+        color: #1a1a1a;
+        font-family: 'Jost', sans-serif;
+        font-weight: 300;
+        -webkit-font-smoothing: antialiased;
+      }
+      h1, h2, h3, h4 {
+        font-family: 'Cormorant Garamond', serif;
+      }
+    </style>
+  </head>
+  <body>
+    <slot />
+  </body>
 </html>
