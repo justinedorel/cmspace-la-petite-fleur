@@ -6,17 +6,19 @@ import site from '../data/site.json';
 ---
 <Base title="Message envoyé" noindex={true}>
   <Header />
-  <section style="min-height:60vh;display:flex;align-items:center;justify-content:center;">
-    <div style="text-align:center;max-width:500px;padding:2rem;">
-      <div style="width:4rem;height:4rem;background:var(--colorAccent);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;">
-        <span style="color:#fff;font-size:1.75rem;">✓</span>
+  <main class="min-h-[60vh] flex items-center justify-center px-6">
+    <div class="text-center max-w-md" data-animate>
+      <div class="w-16 h-16 bg-[var(--color-accent)] rounded-full flex items-center justify-center mx-auto mb-6">
+        <iconify-icon icon="solar:check-circle-linear" class="text-3xl text-white"></iconify-icon>
       </div>
-      <h1 style="font-size:2rem;color:var(--colorPrimary);margin-bottom:1rem;">Message envoyé !</h1>
-      <p style="color:var(--colorTextMuted);margin-bottom:2rem;line-height:1.7;">
+      <h1 class="font-display text-3xl font-medium text-[var(--color-primary)] mb-4">Message envoyé !</h1>
+      <p class="text-[var(--color-text-muted)] leading-relaxed mb-8">
         Merci de nous avoir contactés. Nous reviendrons vers vous dans les plus brefs délais.
       </p>
-      <a href="/" class="btn-primary">Retour à l'accueil</a>
+      <a href="/" class="bg-[var(--color-primary)] text-white px-7 py-3 rounded-xl font-medium text-sm hover:opacity-90 transition-all inline-block">
+        Retour à l'accueil
+      </a>
     </div>
-  </section>
+  </main>
   <Footer />
 </Base>

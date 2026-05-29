@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Fraunces", serif;
+  --font-body: "Inter", sans-serif;
+}
+
+html { scroll-behavior: smooth; overflow-x: hidden; }
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text);
+  overflow-x: hidden;
+}
+
+.font-display { font-family: var(--font-display); }
+
+::selection { background-color: var(--color-primary); color: white; }
+
+[data-animate] {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
+  will-change: opacity, transform;
+}
+[data-animate="fade-left"]  { transform: translateX(50px); }
+[data-animate="fade-right"] { transform: translateX(-50px); }
+[data-animate].is-visible { opacity: 1; transform: translate(0,0); }

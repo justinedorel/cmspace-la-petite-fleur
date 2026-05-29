@@ -1,48 +1,49 @@
 ---
 import site from '../data/site.json';
 const socials = [
-  { key: 'instagram', url: site.social_instagram, label: 'Instagram' },
-  { key: 'facebook', url: site.social_facebook, label: 'Facebook' },
-  { key: 'linkedin', url: site.social_linkedin, label: 'LinkedIn' },
+  { url: site.social_instagram, icon: 'mdi:instagram', label: 'Instagram' },
+  { url: site.social_facebook, icon: 'mdi:facebook', label: 'Facebook' },
+  { url: site.social_linkedin, icon: 'mdi:linkedin', label: 'LinkedIn' },
+  { url: site.social_tiktok, icon: 'mdi:tiktok', label: 'TikTok' },
 ].filter(s => s.url);
 ---
-<footer style="background:var(--colorPrimary);color:#fff;padding:3rem 0 1.5rem;">
-  <div class="container">
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3rem;margin-bottom:2rem;">
+<footer class="bg-[var(--color-primary)] text-white pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-3 gap-10 mb-12">
       <div>
-        <div style="font-family:var(--fontHeading);font-size:1.25rem;font-weight:700;margin-bottom:0.75rem;">
-          {site.company_name}
-        </div>
-        <p style="font-size:0.9rem;opacity:0.75;line-height:1.6;">{site.footer_tagline}</p>
-      </div>
-      <div>
-        <div style="font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.5;margin-bottom:1rem;">Navigation</div>
-        <div style="display:flex;flex-direction:column;gap:0.5rem;">
-          <a href="/" style="font-size:0.9rem;opacity:0.8;hover:opacity:1;">Accueil</a>
-          <a href="/services" style="font-size:0.9rem;opacity:0.8;">Services</a>
-          <a href="/a-propos" style="font-size:0.9rem;opacity:0.8;">À propos</a>
-          <a href="/contact" style="font-size:0.9rem;opacity:0.8;">Contact</a>
-        </div>
-      </div>
-      <div>
-        <div style="font-size:0.8rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;opacity:0.5;margin-bottom:1rem;">Contact</div>
-        <div style="display:flex;flex-direction:column;gap:0.5rem;font-size:0.9rem;opacity:0.8;">
-          {site.email && <span>{site.email}</span>}
-          {site.phone && <span>{site.phone}</span>}
-          {site.city && <span>{site.city}</span>}
-        </div>
+        <div class="font-display text-2xl font-medium mb-3">{site.company_name}</div>
+        <p class="text-white/70 text-sm leading-relaxed">{site.footer_tagline}</p>
         {socials.length > 0 && (
-          <div style="display:flex;gap:1rem;margin-top:1rem;">
+          <div class="flex gap-3 mt-5">
             {socials.map(s => (
-              <a href={s.url} target="_blank" rel="noopener" style="font-size:0.85rem;opacity:0.75;">{s.label}</a>
+              <a href={s.url} target="_blank" rel="noopener"
+                class="w-9 h-9 rounded-lg bg-white/10 hover:bg-white/20 flex items-center justify-center transition-colors">
+                <iconify-icon icon={s.icon} class="text-lg"></iconify-icon>
+              </a>
             ))}
           </div>
         )}
       </div>
+      <div>
+        <div class="text-xs font-semibold uppercase tracking-widest text-white/40 mb-4">Navigation</div>
+        <ul class="space-y-2">
+          {[['Accueil', '/'], ['Services', '/services'], ['À propos', '/a-propos'], ['Contact', '/contact']].map(([l, h]) => (
+            <li><a href={h} class="text-sm text-white/70 hover:text-white transition-colors">{l}</a></li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <div class="text-xs font-semibold uppercase tracking-widest text-white/40 mb-4">Contact</div>
+        <ul class="space-y-2">
+          {site.email && <li><a href={`mailto:${site.email}`} class="text-sm text-white/70 hover:text-white flex items-center gap-2"><iconify-icon icon="solar:letter-linear"></iconify-icon>{site.email}</a></li>}
+          {site.phone && <li><a href={`tel:${site.phone}`} class="text-sm text-white/70 hover:text-white flex items-center gap-2"><iconify-icon icon="solar:phone-linear"></iconify-icon>{site.phone}</a></li>}
+          {site.city && <li class="text-sm text-white/70 flex items-center gap-2"><iconify-icon icon="solar:map-point-linear"></iconify-icon>{site.city}</li>}
+        </ul>
+      </div>
     </div>
-    <div style="border-top:1px solid rgba(255,255,255,0.15);padding-top:1.5rem;display:flex;justify-content:space-between;align-items:center;font-size:0.8rem;opacity:0.5;">
+    <div class="border-t border-white/10 pt-6 flex flex-col md:flex-row justify-between items-center gap-2 text-xs text-white/40">
       <span>© {new Date().getFullYear()} {site.company_name}. {site.footer_legal}</span>
-      <a href="/mentions-legales" style="opacity:0.7;">Mentions légales</a>
+      <a href="/mentions-legales" class="hover:text-white/70 transition-colors">Mentions légales</a>
     </div>
   </div>
 </footer>

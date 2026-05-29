@@ -8,22 +8,28 @@ const nav = [
 ];
 const current = Astro.url.pathname;
 ---
-<header style="background:var(--colorBg);border-bottom:1px solid #e5e7eb;position:sticky;top:0;z-index:100;">
-  <div class="container" style="display:flex;align-items:center;justify-content:space-between;height:4rem;">
-    <a href="/" style="font-family:var(--fontHeading);font-size:1.25rem;font-weight:700;color:var(--colorPrimary);">
-      {site.logo_url ? <img src={site.logo_url} alt={site.company_name} style="height:2.5rem;" /> : site.company_name}
+<header class="fixed w-full top-0 z-50 bg-[var(--color-bg)]/90 backdrop-blur-md border-b border-gray-200/50">
+  <div class="max-w-7xl mx-auto px-6 py-3 flex items-center justify-between">
+    <a href="/" class="font-display text-xl font-medium text-[var(--color-primary)]">
+      {site.logo_url
+        ? <img src={site.logo_url} alt={site.company_name} class="h-10 w-auto" />
+        : site.company_name
+      }
     </a>
-    <nav style="display:flex;align-items:center;gap:2rem;">
+    <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-gray-600">
       {nav.map(item => (
-        <a href={item.href} style={`font-size:0.9rem;font-weight:500;color:${current === item.href ? 'var(--colorAccent)' : 'var(--colorText)'};`}>
+        <a href={item.href}
+          class={`hover:text-[var(--color-primary)] transition-colors ${current === item.href ? 'text-[var(--color-primary)]' : ''}`}>
           {item.label}
         </a>
       ))}
-      {site.nav_cta_href && (
-        <a href={site.nav_cta_href} class="btn-primary" style="padding:0.5rem 1.25rem;font-size:0.85rem;">
-          {site.nav_cta_label}
-        </a>
-      )}
     </nav>
+    {site.nav_cta_href && (
+      <a href={site.nav_cta_href}
+        class="hidden md:inline-flex bg-[var(--color-primary)] text-white px-5 py-2.5 rounded-lg text-sm font-medium hover:opacity-90 transition-all shadow-sm">
+        {site.nav_cta_label}
+      </a>
+    )}
   </div>
 </header>
+<div class="h-[64px]"></div>

@@ -6,118 +6,133 @@ import site from '../data/site.json';
 ---
 <Base>
   <Header />
+  <main>
 
-  <!-- Hero -->
-  <section style="background:var(--colorSurface);padding:6rem 0;">
-    <div class="container" style="display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center;">
-      <div>
-        <span class="section-label">{site.hero_badge}</span>
-        <h1 style="font-size:clamp(2rem,4vw,3.25rem);color:var(--colorPrimary);margin-bottom:1.5rem;line-height:1.15;">
-          {site.hero_title_italic === 'true'
-            ? <><span>{site.hero_title.split(' ').slice(0,-2).join(' ')}</span> <em style="color:var(--colorAccent);">{site.hero_title.split(' ').slice(-2).join(' ')}</em></>
-            : site.hero_title
-          }
-        </h1>
-        <p style="font-size:1.15rem;color:var(--colorTextMuted);margin-bottom:2rem;line-height:1.7;">{site.hero_subtitle}</p>
-        <div style="display:flex;gap:1rem;flex-wrap:wrap;">
-          <a href={site.hero_cta_primary_href} class="btn-primary">{site.hero_cta_primary}</a>
-          <a href="/contact" class="btn-secondary">{site.hero_cta_secondary}</a>
+    <!-- Hero -->
+    <section class="pt-20 pb-24 px-6 bg-[var(--color-surface)] overflow-hidden">
+      <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+        <div class="space-y-7" data-animate>
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--color-primary)]/5 border border-[var(--color-primary)]/10 text-[var(--color-primary)] text-xs font-medium">
+            <iconify-icon icon="solar:star-fall-linear"></iconify-icon>
+            {site.hero_badge}
+          </div>
+          <h1 class="font-display text-5xl lg:text-6xl font-medium tracking-tight text-[var(--color-text)] leading-[1.1]">
+            {site.hero_title_italic === 'true'
+              ? <Fragment set:html={site.hero_title.replace(/(\w+\s+\w+)$/, '<em class="text-[var(--color-accent)]">$1</em>')} />
+              : site.hero_title
+            }
+          </h1>
+          <p class="text-lg text-[var(--color-text-muted)] max-w-lg leading-relaxed">{site.hero_subtitle}</p>
+          <div class="flex flex-wrap gap-4 pt-2">
+            <a href={site.hero_cta_primary_href}
+              class="bg-[var(--color-primary)] text-white px-7 py-3.5 rounded-xl text-sm font-medium hover:opacity-90 transition-all shadow-md flex items-center gap-2">
+              {site.hero_cta_primary}
+              <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+            </a>
+            <a href="/contact"
+              class="border border-[var(--color-primary)] text-[var(--color-primary)] px-7 py-3.5 rounded-xl text-sm font-medium hover:bg-[var(--color-primary)]/5 transition-all">
+              {site.hero_cta_secondary}
+            </a>
+          </div>
+          <div class="flex gap-8 pt-2">
+            {[
+              [site.hero_stat1_value, site.hero_stat1_label],
+              [site.hero_stat2_value, site.hero_stat2_label],
+              [site.hero_stat3_value, site.hero_stat3_label],
+            ].filter(([v]) => v).map(([v, l]) => (
+              <div>
+                <div class="font-display text-3xl font-medium text-[var(--color-primary)]">{v}</div>
+                <div class="text-xs text-[var(--color-text-muted)] mt-1">{l}</div>
+              </div>
+            ))}
+          </div>
         </div>
-        <div style="display:flex;gap:2.5rem;margin-top:3rem;">
+        <div class="relative h-[480px] flex items-center justify-end" data-animate="fade-left">
+          <div class="absolute inset-0 bg-[var(--color-surface)] rounded-[60%_40%_30%_70%/60%_30%_70%_40%] opacity-60 blur-3xl scale-90 translate-x-10"></div>
+          {site.hero_image_url
+            ? <img src={site.hero_image_url} alt={site.company_name}
+                class="relative z-10 w-[85%] h-full object-cover rounded-[60%_40%_30%_70%/60%_30%_70%_40%] shadow-2xl border-4 border-white" />
+            : <div class="relative z-10 w-[85%] h-full bg-[var(--color-primary)]/10 rounded-[60%_40%_30%_70%/60%_30%_70%_40%] flex items-center justify-center">
+                <span class="font-display text-2xl text-[var(--color-primary)]/40">{site.company_name}</span>
+              </div>
+          }
+        </div>
+      </div>
+    </section>
+
+    <!-- Services -->
+    <section class="py-24 px-6">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-14" data-animate>
+          <span class="text-xs font-semibold uppercase tracking-widest text-[var(--color-accent)]">{site.services_subtitle}</span>
+          <h2 class="font-display text-4xl font-medium text-[var(--color-text)] mt-3">{site.services_title}</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
           {[
-            { v: site.hero_stat1_value, l: site.hero_stat1_label },
-            { v: site.hero_stat2_value, l: site.hero_stat2_label },
-            { v: site.hero_stat3_value, l: site.hero_stat3_label },
-          ].map(s => (
-            <div>
-              <div style="font-size:1.75rem;font-weight:800;color:var(--colorPrimary);">{s.v}</div>
-              <div style="font-size:0.8rem;color:var(--colorTextMuted);">{s.l}</div>
+            { title: site.service1_title, desc: site.service1_desc, details: [site.service1_detail1, site.service1_detail2, site.service1_detail3] },
+            { title: site.service2_title, desc: site.service2_desc, details: [site.service2_detail1, site.service2_detail2, site.service2_detail3] },
+            { title: site.service3_title, desc: site.service3_desc, details: [site.service3_detail1, site.service3_detail2, site.service3_detail3] },
+          ].map((s, i) => (
+            <div class="bg-[var(--color-surface)] rounded-2xl p-7 hover:shadow-lg transition-shadow" data-animate style={`transition-delay: ${i * 100}ms`}>
+              <h3 class="font-display text-xl font-medium text-[var(--color-primary)] mb-3">{s.title}</h3>
+              <p class="text-sm text-[var(--color-text-muted)] mb-5 leading-relaxed">{s.desc}</p>
+              <ul class="space-y-2">
+                {s.details.filter(Boolean).map(d => (
+                  <li class="flex items-center gap-2 text-sm text-[var(--color-text)]">
+                    <iconify-icon icon="solar:check-circle-linear" class="text-[var(--color-accent)] shrink-0"></iconify-icon>
+                    {d}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+        <div class="text-center mt-10" data-animate>
+          <a href="/services" class="border border-[var(--color-primary)] text-[var(--color-primary)] px-6 py-3 rounded-xl text-sm font-medium hover:bg-[var(--color-primary)]/5 transition-all">
+            Voir tous nos services
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Témoignages -->
+    <section class="py-24 px-6 bg-[var(--color-surface)]">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center mb-14" data-animate>
+          <span class="text-xs font-semibold uppercase tracking-widest text-[var(--color-accent)]">Avis clients</span>
+          <h2 class="font-display text-4xl font-medium text-[var(--color-text)] mt-3">{site.testimonials_title}</h2>
+        </div>
+        <div class="grid md:grid-cols-3 gap-6">
+          {[
+            { name: site.testimonial1_name, role: site.testimonial1_role, text: site.testimonial1_text, rating: site.testimonial1_rating },
+            { name: site.testimonial2_name, role: site.testimonial2_role, text: site.testimonial2_text, rating: site.testimonial2_rating },
+            { name: site.testimonial3_name, role: site.testimonial3_role, text: site.testimonial3_text, rating: site.testimonial3_rating },
+          ].map((t, i) => (
+            <div class="bg-white rounded-2xl p-7 shadow-sm" data-animate style={`transition-delay: ${i * 100}ms`}>
+              <div class="text-[var(--color-accent)] text-lg mb-4">{'★'.repeat(Number(t.rating) || 5)}</div>
+              <p class="text-sm text-[var(--color-text)] leading-relaxed mb-5">« {t.text} »</p>
+              <div>
+                <div class="font-semibold text-sm text-[var(--color-primary)]">{t.name}</div>
+                <div class="text-xs text-[var(--color-text-muted)]">{t.role}</div>
+              </div>
             </div>
           ))}
         </div>
       </div>
-      <div style="border-radius:1rem;overflow:hidden;background:var(--colorPrimary);aspect-ratio:4/3;">
-        {site.hero_image_url
-          ? <img src={site.hero_image_url} alt={site.company_name} style="width:100%;height:100%;object-fit:cover;" />
-          : <div style="width:100%;height:100%;display:flex;align-items:center;justify-content:center;opacity:0.3;">
-              <span style="color:#fff;font-size:1rem;">{site.company_name}</span>
-            </div>
-        }
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Services résumé -->
-  <section>
-    <div class="container">
-      <div style="text-align:center;margin-bottom:3rem;">
-        <span class="section-label">Ce que nous faisons</span>
-        <h2 class="section-title">{site.services_title}</h2>
-        <p class="section-subtitle" style="margin:0 auto;">{site.services_subtitle}</p>
+    <!-- CTA -->
+    <section class="py-20 px-6 bg-[var(--color-primary)]">
+      <div class="max-w-3xl mx-auto text-center" data-animate>
+        <h2 class="font-display text-4xl font-medium text-white mb-4">{site.cta_title}</h2>
+        <p class="text-white/75 mb-8">{site.cta_subtitle}</p>
+        <a href={site.cta_primary_href}
+          class="bg-white text-[var(--color-primary)] px-8 py-4 rounded-xl font-semibold text-sm hover:bg-white/90 transition-all shadow-lg inline-block">
+          {site.cta_primary}
+        </a>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;">
-        {[
-          { title: site.service1_title, desc: site.service1_desc, details: [site.service1_detail1, site.service1_detail2, site.service1_detail3] },
-          { title: site.service2_title, desc: site.service2_desc, details: [site.service2_detail1, site.service2_detail2, site.service2_detail3] },
-          { title: site.service3_title, desc: site.service3_desc, details: [site.service3_detail1, site.service3_detail2, site.service3_detail3] },
-        ].map(s => (
-          <div style="background:var(--colorSurface);border-radius:1rem;padding:2rem;">
-            <h3 style="font-size:1.25rem;color:var(--colorPrimary);margin-bottom:0.75rem;">{s.title}</h3>
-            <p style="font-size:0.9rem;color:var(--colorTextMuted);margin-bottom:1.25rem;">{s.desc}</p>
-            <ul style="list-style:none;display:flex;flex-direction:column;gap:0.5rem;">
-              {s.details.filter(Boolean).map(d => (
-                <li style="font-size:0.85rem;color:var(--colorText);display:flex;align-items:center;gap:0.5rem;">
-                  <span style="color:var(--colorAccent);font-weight:700;">✓</span> {d}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
-      <div style="text-align:center;margin-top:2.5rem;">
-        <a href="/services" class="btn-secondary">Voir tous nos services</a>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Témoignages -->
-  <section style="background:var(--colorSurface);">
-    <div class="container">
-      <div style="text-align:center;margin-bottom:3rem;">
-        <span class="section-label">Témoignages</span>
-        <h2 class="section-title">{site.testimonials_title}</h2>
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:2rem;">
-        {[
-          { name: site.testimonial1_name, role: site.testimonial1_role, text: site.testimonial1_text, rating: site.testimonial1_rating },
-          { name: site.testimonial2_name, role: site.testimonial2_role, text: site.testimonial2_text, rating: site.testimonial2_rating },
-          { name: site.testimonial3_name, role: site.testimonial3_role, text: site.testimonial3_text, rating: site.testimonial3_rating },
-        ].map(t => (
-          <div style="background:var(--colorBg);border-radius:1rem;padding:1.75rem;">
-            <div style="color:var(--colorAccent);font-size:1.1rem;margin-bottom:1rem;">
-              {'★'.repeat(Number(t.rating) || 5)}
-            </div>
-            <p style="font-size:0.95rem;color:var(--colorText);margin-bottom:1.25rem;line-height:1.6;">"{t.text}"</p>
-            <div>
-              <div style="font-weight:700;font-size:0.9rem;color:var(--colorPrimary);">{t.name}</div>
-              <div style="font-size:0.8rem;color:var(--colorTextMuted);">{t.role}</div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA final -->
-  <section style="background:var(--colorPrimary);color:#fff;">
-    <div class="container" style="text-align:center;">
-      <h2 style="font-size:clamp(1.75rem,3vw,2.5rem);margin-bottom:1rem;">{site.cta_title}</h2>
-      <p style="font-size:1.1rem;opacity:0.8;margin-bottom:2rem;">{site.cta_subtitle}</p>
-      <a href={site.cta_primary_href} style="background:#fff;color:var(--colorPrimary);padding:0.875rem 2rem;border-radius:0.5rem;font-weight:700;font-size:0.95rem;display:inline-block;">
-        {site.cta_primary}
-      </a>
-    </div>
-  </section>
-
+  </main>
   <Footer />
 </Base>
