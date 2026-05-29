@@ -59,7 +59,7 @@ const cssVars = `
     "address": { "@type": "PostalAddress", "addressLocality": site.city },
   })} />
 </head>
-<body>
+<body class={`style-${site.site_style || "professional"}`}>
   <slot />
   <script>
     const obs = new IntersectionObserver((entries) => {

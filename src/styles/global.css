@@ -27,3 +27,59 @@ body {
 [data-animate="fade-left"]  { transform: translateX(50px); }
 [data-animate="fade-right"] { transform: translateX(-50px); }
 [data-animate].is-visible { opacity: 1; transform: translate(0,0); }
+
+/* ── Styles par template ───────────────────────────────────────────────────── */
+
+/* ELEGANT (patisserie, luxury) — formes organiques, léger, espacement généreux */
+body.style-elegant .hero-image {
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+}
+body.style-elegant .service-card {
+  border-radius: 1.5rem;
+  border: none;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+}
+body.style-elegant h1, body.style-elegant h2, body.style-elegant h3 {
+  font-weight: 300;
+  letter-spacing: -0.01em;
+}
+body.style-elegant .hero-badge {
+  background: color-mix(in srgb, var(--color-accent) 15%, transparent);
+  border-color: color-mix(in srgb, var(--color-accent) 30%, transparent);
+  color: color-mix(in srgb, var(--color-primary) 80%, black);
+}
+body.style-elegant section { padding: 6rem 0; }
+
+/* ARTISAN (zeste, boulangerie) — chaleureux, texturé */
+body.style-artisan .hero-image { border-radius: 1rem; }
+body.style-artisan .service-card {
+  border-radius: 0.75rem;
+  border-top: 3px solid var(--color-accent);
+}
+body.style-artisan h1, body.style-artisan h2 { font-weight: 500; }
+
+/* NATURAL (agriculture, wellness, nutritionist) — épuré, terre */
+body.style-natural .hero-image { border-radius: 1.5rem; }
+body.style-natural .service-card {
+  border-radius: 1rem;
+  border-left: 3px solid var(--color-accent);
+}
+body.style-natural h1 { font-weight: 400; letter-spacing: -0.02em; }
+
+/* BOLD (marketing, digital, SaaS) — géométrique, fort */
+body.style-bold .hero-image { border-radius: 0.5rem; }
+body.style-bold .service-card {
+  border-radius: 0.5rem;
+  border: 2px solid var(--color-accent);
+}
+body.style-bold h1, body.style-bold h2 { font-weight: 700; letter-spacing: -0.03em; }
+body.style-bold .btn-primary { border-radius: 0.25rem; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.8rem; }
+
+/* SPORT (superputt, loisirs) — dynamique, vert */
+body.style-sport .hero-image { border-radius: 1rem; transform: rotate(-1deg); }
+body.style-sport .service-card { border-radius: 1rem; }
+body.style-sport h1 { font-weight: 800; }
+
+/* PROFESSIONAL (maritime, default) — propre, sobre */
+body.style-professional .hero-image { border-radius: 0.75rem; }
+body.style-professional .service-card { border-radius: 0.75rem; }
