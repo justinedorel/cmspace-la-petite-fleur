@@ -88,38 +88,8 @@ const canonical = url || siteUrl;
         font-family: 'Jost', sans-serif;
         font-weight: 300;
         -webkit-font-smoothing: antialiased;
-        cursor: none;
       }
       h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; }
-
-      /* ─── Curseur personnalisé ─────────────────────────────────── */
-      .cursor-dot {
-        width: 6px; height: 6px;
-        background: #1a1a1a;
-        border-radius: 50%;
-        position: fixed;
-        top: 0; left: 0;
-        pointer-events: none;
-        z-index: 9999;
-        transform: translate(-50%, -50%);
-        transition: transform 0.1s ease;
-      }
-      .cursor-ring {
-        width: 32px; height: 32px;
-        border: 1px solid rgba(26,26,26,0.4);
-        border-radius: 50%;
-        position: fixed;
-        top: 0; left: 0;
-        pointer-events: none;
-        z-index: 9998;
-        transform: translate(-50%, -50%);
-        transition: left 0.12s ease, top 0.12s ease, width 0.3s ease, height 0.3s ease, border-color 0.3s;
-      }
-      .cursor-ring.hover {
-        width: 56px; height: 56px;
-        border-color: rgba(26,26,26,0.6);
-      }
-      @media (hover: none) { .cursor-dot, .cursor-ring { display: none; } body { cursor: auto; } }
 
       /* ─── Scroll reveal ────────────────────────────────────────── */
       .reveal {
@@ -166,29 +136,9 @@ const canonical = url || siteUrl;
     </style>
   </head>
   <body>
-    <!-- Curseur -->
-    <div class="cursor-dot" id="cursorDot"></div>
-    <div class="cursor-ring" id="cursorRing"></div>
-
     <slot />
 
     <script is:inline>
-      // ── Curseur ──────────────────────────────────────────────────
-      var dot = document.getElementById('cursorDot');
-      var ring = document.getElementById('cursorRing');
-      if (dot && ring && window.matchMedia('(hover: hover)').matches) {
-        document.addEventListener('mousemove', function(e) {
-          dot.style.left  = e.clientX + 'px';
-          dot.style.top   = e.clientY + 'px';
-          ring.style.left = e.clientX + 'px';
-          ring.style.top  = e.clientY + 'px';
-        });
-        document.querySelectorAll('a, button, [data-cursor="hover"]').forEach(function(el) {
-          el.addEventListener('mouseenter', function() { ring.classList.add('hover'); dot.style.opacity = '0'; });
-          el.addEventListener('mouseleave', function() { ring.classList.remove('hover'); dot.style.opacity = '1'; });
-        });
-      }
-
       // ── Scroll reveal ─────────────────────────────────────────────
       var revealObserver = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
