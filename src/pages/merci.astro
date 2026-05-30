@@ -4,31 +4,59 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 ---
-<Base title={`Message reçu — ${site.company_name}`} description={`Merci pour votre message. ${site.company_name} vous contactera prochainement.`}>
+<Base title={`Message envoyé — ${site.company_name}`} description={`Merci pour votre message. L'équipe ${site.company_name} vous répondra bientôt.`}>
 
   <Header />
 
-  <section class="min-h-screen flex items-center justify-center py-40 px-8">
-    <div class="text-center max-w-xl">
-      <div class="w-16 h-px bg-sand mx-auto mb-12"></div>
-      <span class="font-sans text-xs tracking-[0.22em] uppercase text-muted mb-6 block">Confirmation</span>
-      <h1 class="font-serif text-5xl md:text-6xl font-light text-dark mb-6 leading-tight">
-        Message <em class="italic">reçu</em>
+  <section class="py-32 px-6 text-center">
+    <div class="max-w-2xl mx-auto">
+      <!-- Icône de succès -->
+      <div class="inline-flex items-center justify-center w-20 h-20 bg-indigo-50 rounded-2xl mb-8">
+        <i data-lucide="check-circle" class="w-10 h-10 text-accent"></i>
+      </div>
+
+      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4">
+        Message envoyé !
       </h1>
-      <p class="font-sans text-sm font-light leading-relaxed text-muted mb-4 tracking-wide">
-        Merci de nous avoir contactés. Nous avons bien reçu votre demande et nous vous répondrons dans les plus brefs délais.
+      <p class="text-zinc-500 text-lg leading-relaxed mb-10">
+        Merci de nous avoir contactés. Notre équipe a bien reçu votre message et vous répondra dans les plus brefs délais, généralement sous 24h.
       </p>
-      <p class="font-sans text-sm font-light leading-relaxed text-muted mb-12 tracking-wide">
-        {site.footer_tagline}
-      </p>
-      <div class="w-16 h-px bg-sand mx-auto mb-12"></div>
-      <a href="/" class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.18em] uppercase text-dark hover:opacity-60 transition-opacity">
-        Retour à l'accueil
-        <span class="iconify" data-icon="lucide:arrow-left" data-width="14"></span>
-      </a>
+
+      <!-- Stats en rappel -->
+      <div class="inline-flex items-center gap-8 bg-zinc-50 rounded-2xl px-8 py-4 border border-zinc-100 mb-12">
+        <div class="text-center">
+          <div class="text-2xl font-extrabold text-zinc-900">{site.hero_stat1_value}</div>
+          <div class="text-xs text-zinc-500 mt-0.5">{site.hero_stat1_label}</div>
+        </div>
+        <div class="w-px h-8 bg-zinc-200"></div>
+        <div class="text-center">
+          <div class="text-2xl font-extrabold text-zinc-900">{site.hero_stat2_value}</div>
+          <div class="text-xs text-zinc-500 mt-0.5">{site.hero_stat2_label}</div>
+        </div>
+        <div class="w-px h-8 bg-zinc-200"></div>
+        <div class="text-center">
+          <div class="text-2xl font-extrabold text-zinc-900">{site.hero_stat3_value}</div>
+          <div class="text-xs text-zinc-500 mt-0.5">{site.hero_stat3_label}</div>
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
+        <a href="/" class="bg-accent text-white font-semibold rounded-xl px-6 py-3 hover:opacity-90 transition-opacity shadow-lg shadow-indigo-200 flex items-center gap-2">
+          <i data-lucide="home" class="w-4 h-4"></i>
+          Retour à l'accueil
+        </a>
+        <a href="/services" class="border border-zinc-200 text-zinc-700 font-medium rounded-xl px-6 py-3 hover:bg-zinc-50 transition-colors flex items-center gap-2">
+          <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
+          Découvrir nos services
+        </a>
+      </div>
     </div>
   </section>
 
   <Footer />
+
+  <style is:global>
+    html { scroll-behavior: smooth; }
+  </style>
 
 </Base>
