@@ -1,19 +1,33 @@
 ---
 import site from '../data/site.json';
+const nav = [
+  { label: 'Services', href: '/services' },
+  { label: 'À propos', href: '/a-propos' },
+  { label: 'Contact', href: '/contact' },
+];
+const current = Astro.url.pathname;
 ---
-<nav class="sticky top-0 z-50 bg-white border-b border-zinc-100 shadow-sm">
-  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-    <a href="/" class="font-bold text-lg text-zinc-900 tracking-tight">{site.company_name}</a>
-    <div class="hidden md:flex items-center gap-8">
-      <a href="/services" class="text-sm text-zinc-600 hover:text-zinc-900 transition-colors">Services</a>
-      <a href="/a-propos" class="text-sm text-zinc-600 hover:text-zinc-900 transition-colors">À propos</a>
-      <a href="/contact" class="text-sm text-zinc-600 hover:text-zinc-900 transition-colors">Contact</a>
-    </div>
-    <a href="/contact" class="bg-accent text-white text-sm font-medium rounded-lg px-4 py-2 hover:opacity-90 transition-opacity">
-      {site.nav_cta}
+<header class="sticky top-0 z-50 w-full border-b border-zinc-900 bg-zinc-950/80 backdrop-blur-md">
+  <div class="container mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="/" class="text-xl font-medium tracking-tighter text-zinc-100">
+      {site.logo_url
+        ? <img src={site.logo_url} alt={site.company_name} class="h-8 w-auto" />
+        : site.company_name
+      }
+    </a>
+    <nav class="hidden md:flex items-center gap-8 text-sm text-zinc-400">
+      {nav.map(item => (
+        <a href={item.href}
+          class={`hover:text-zinc-100 transition-colors ${current === item.href ? 'text-zinc-100' : ''}`}>
+          {item.label}
+        </a>
+      ))}
+    </nav>
+    <a href="/contact" class="px-4 py-2 text-sm font-medium bg-zinc-100 text-zinc-950 rounded-md hover:bg-zinc-200 transition-colors">
+      Démarrer un projet
     </a>
   </div>
-</nav>
+</header>
 
 <script is:inline>
   (function() {

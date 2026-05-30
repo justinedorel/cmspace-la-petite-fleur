@@ -4,59 +4,31 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 ---
-<Base title={`Message envoyé — ${site.company_name}`} description={`Merci pour votre message. L'équipe ${site.company_name} vous répondra bientôt.`}>
-
+<Base title={`Message envoyé — ${site.company_name}`} description="Votre message a bien été envoyé.">
   <Header />
 
-  <section class="py-32 px-6 text-center">
-    <div class="max-w-2xl mx-auto">
-      <!-- Icône de succès -->
-      <div class="inline-flex items-center justify-center w-20 h-20 bg-indigo-50 rounded-2xl mb-8">
-        <i data-lucide="check-circle" class="w-10 h-10 text-accent"></i>
+  <main class="flex-grow flex items-center justify-center py-32 px-6">
+    <div class="max-w-lg text-center">
+      <div class="h-16 w-16 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center justify-center mx-auto mb-8">
+        <iconify-icon icon="solar:check-circle-linear" class="text-3xl text-emerald-400"></iconify-icon>
       </div>
-
-      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4">
+      <h1 class="text-3xl md:text-4xl font-medium tracking-tight text-zinc-100 mb-4">
         Message envoyé !
       </h1>
-      <p class="text-zinc-500 text-lg leading-relaxed mb-10">
-        Merci de nous avoir contactés. Notre équipe a bien reçu votre message et vous répondra dans les plus brefs délais, généralement sous 24h.
+      <p class="text-zinc-400 mb-10 leading-relaxed">
+        Merci pour votre message. Nous l'avons bien reçu et reviendrons vers vous sous 24h pour planifier un appel découverte.
       </p>
-
-      <!-- Stats en rappel -->
-      <div class="inline-flex items-center gap-8 bg-zinc-50 rounded-2xl px-8 py-4 border border-zinc-100 mb-12">
-        <div class="text-center">
-          <div class="text-2xl font-extrabold text-zinc-900">{site.hero_stat1_value}</div>
-          <div class="text-xs text-zinc-500 mt-0.5">{site.hero_stat1_label}</div>
-        </div>
-        <div class="w-px h-8 bg-zinc-200"></div>
-        <div class="text-center">
-          <div class="text-2xl font-extrabold text-zinc-900">{site.hero_stat2_value}</div>
-          <div class="text-xs text-zinc-500 mt-0.5">{site.hero_stat2_label}</div>
-        </div>
-        <div class="w-px h-8 bg-zinc-200"></div>
-        <div class="text-center">
-          <div class="text-2xl font-extrabold text-zinc-900">{site.hero_stat3_value}</div>
-          <div class="text-xs text-zinc-500 mt-0.5">{site.hero_stat3_label}</div>
-        </div>
-      </div>
-
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-        <a href="/" class="bg-accent text-white font-semibold rounded-xl px-6 py-3 hover:opacity-90 transition-opacity shadow-lg shadow-indigo-200 flex items-center gap-2">
-          <i data-lucide="home" class="w-4 h-4"></i>
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+        <a href="/" class="px-6 py-3 text-sm font-medium bg-zinc-100 text-zinc-950 rounded-md hover:bg-zinc-200 transition-colors flex items-center gap-2">
           Retour à l'accueil
+          <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
         </a>
-        <a href="/services" class="border border-zinc-200 text-zinc-700 font-medium rounded-xl px-6 py-3 hover:bg-zinc-50 transition-colors flex items-center gap-2">
-          <i data-lucide="layout-dashboard" class="w-4 h-4"></i>
-          Découvrir nos services
+        <a href="/services" class="px-6 py-3 text-sm font-medium border border-zinc-800 text-zinc-300 rounded-md hover:bg-zinc-900 hover:text-zinc-100 transition-colors">
+          Voir nos services
         </a>
       </div>
     </div>
-  </section>
+  </main>
 
   <Footer />
-
-  <style is:global>
-    html { scroll-behavior: smooth; }
-  </style>
-
 </Base>

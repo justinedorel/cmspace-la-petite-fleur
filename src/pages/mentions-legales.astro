@@ -4,100 +4,115 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 ---
-<Base title={`Mentions légales — ${site.company_name}`} description={`Mentions légales de ${site.company_name}.`}>
-
+<Base title={`Mentions légales — ${site.company_name}`} description={`Mentions légales de ${site.company_name}`}>
   <Header />
 
-  <!-- PAGE HERO -->
-  <section class="py-16 px-6 bg-zinc-50 border-b border-zinc-100">
-    <div class="max-w-3xl mx-auto">
-      <div class="inline-flex items-center gap-2 bg-indigo-50 text-accent rounded-full text-sm font-medium px-3 py-1 mb-4">
-        <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
-        Informations légales
+  <main class="flex-grow">
+
+    <section class="relative pt-32 pb-20 md:pt-40 md:pb-16 overflow-hidden">
+      <div class="absolute top-0 inset-x-0 h-screen overflow-hidden -z-10 pointer-events-none flex justify-center">
+        <div class="w-full max-w-lg aspect-square bg-zinc-800/20 rounded-full blur-3xl opacity-50 translate-y-[-50%]"></div>
       </div>
-      <h1 class="text-3xl md:text-4xl font-extrabold tracking-tight">Mentions légales</h1>
-    </div>
-  </section>
-
-  <!-- CONTENT -->
-  <section class="py-16 px-6">
-    <div class="max-w-3xl mx-auto space-y-12 text-zinc-700 leading-relaxed">
-
-      <div>
-        <h2 class="text-xl font-bold text-zinc-900 mb-4 flex items-center gap-2">
-          <span class="text-accent font-black">01</span>
-          Éditeur du site
-        </h2>
-        <div class="bg-zinc-50 rounded-2xl border border-zinc-100 p-6 space-y-2 text-sm">
-          <p><span class="font-semibold text-zinc-900">Raison sociale :</span> {site.company_name}</p>
-          {site.address && <p><span class="font-semibold text-zinc-900">Adresse :</span> {site.address}</p>}
-          {site.email && <p><span class="font-semibold text-zinc-900">Email :</span> <a href={`mailto:${site.email}`} class="text-accent hover:underline">{site.email}</a></p>}
-          {site.phone && <p><span class="font-semibold text-zinc-900">Téléphone :</span> {site.phone}</p>}
-          {site.website && <p><span class="font-semibold text-zinc-900">Site web :</span> <a href={site.website} class="text-accent hover:underline">{site.website}</a></p>}
+      <div class="container mx-auto px-6">
+        <div class="max-w-3xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-800 bg-zinc-900/50 text-xs text-zinc-400 mb-8 backdrop-blur-sm">
+            <span class="flex h-2 w-2 rounded-full bg-zinc-500"></span>
+            Informations légales
+          </div>
+          <h1 class="text-4xl md:text-5xl font-medium tracking-tight text-zinc-100 leading-tight mb-6">
+            Mentions légales
+          </h1>
+          <p class="text-zinc-400 font-light">Conformément aux dispositions de la loi n° 2004-575 du 21 juin 2004 pour la Confiance en l'Économie Numérique.</p>
         </div>
       </div>
+    </section>
 
-      <div>
-        <h2 class="text-xl font-bold text-zinc-900 mb-4 flex items-center gap-2">
-          <span class="text-accent font-black">02</span>
-          Hébergement
-        </h2>
-        <div class="bg-zinc-50 rounded-2xl border border-zinc-100 p-6 text-sm">
-          <p>Ce site est hébergé par des prestataires d'infrastructure conformes aux réglementations européennes en vigueur.</p>
+    <section class="pb-24 md:pb-32">
+      <div class="container mx-auto px-6">
+        <div class="max-w-3xl space-y-12">
+
+          <div class="rounded-2xl border border-zinc-900 bg-zinc-950 p-8">
+            <h2 class="text-lg font-medium text-zinc-100 mb-6 flex items-center gap-3">
+              <iconify-icon icon="solar:buildings-linear" class="text-zinc-400"></iconify-icon>
+              Éditeur du site
+            </h2>
+            <dl class="space-y-3 text-sm">
+              <div class="flex flex-col sm:flex-row sm:gap-8">
+                <dt class="text-zinc-500 sm:w-40 flex-shrink-0">Raison sociale</dt>
+                <dd class="text-zinc-300">{site.legal_name || site.company_name}</dd>
+              </div>
+              {site.legal_status && (
+                <div class="flex flex-col sm:flex-row sm:gap-8">
+                  <dt class="text-zinc-500 sm:w-40 flex-shrink-0">Forme juridique</dt>
+                  <dd class="text-zinc-300">{site.legal_status}</dd>
+                </div>
+              )}
+              {site.siret && (
+                <div class="flex flex-col sm:flex-row sm:gap-8">
+                  <dt class="text-zinc-500 sm:w-40 flex-shrink-0">SIRET</dt>
+                  <dd class="text-zinc-300">{site.siret}</dd>
+                </div>
+              )}
+              {site.address && (
+                <div class="flex flex-col sm:flex-row sm:gap-8">
+                  <dt class="text-zinc-500 sm:w-40 flex-shrink-0">Adresse</dt>
+                  <dd class="text-zinc-300">{site.address}</dd>
+                </div>
+              )}
+              {site.email && (
+                <div class="flex flex-col sm:flex-row sm:gap-8">
+                  <dt class="text-zinc-500 sm:w-40 flex-shrink-0">Email</dt>
+                  <dd><a href={`mailto:${site.email}`} class="text-zinc-300 hover:text-zinc-100 transition-colors">{site.email}</a></dd>
+                </div>
+              )}
+              {site.website && (
+                <div class="flex flex-col sm:flex-row sm:gap-8">
+                  <dt class="text-zinc-500 sm:w-40 flex-shrink-0">Site web</dt>
+                  <dd><a href={site.website} class="text-zinc-300 hover:text-zinc-100 transition-colors">{site.website}</a></dd>
+                </div>
+              )}
+            </dl>
+          </div>
+
+          <div class="rounded-2xl border border-zinc-900 bg-zinc-950 p-8">
+            <h2 class="text-lg font-medium text-zinc-100 mb-6 flex items-center gap-3">
+              <iconify-icon icon="solar:server-square-linear" class="text-zinc-400"></iconify-icon>
+              Hébergement
+            </h2>
+            <p class="text-sm text-zinc-400 leading-relaxed">
+              Ce site est hébergé par Cloudflare, Inc. — 101 Townsend St, San Francisco, CA 94107, États-Unis.
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-zinc-900 bg-zinc-950 p-8">
+            <h2 class="text-lg font-medium text-zinc-100 mb-6 flex items-center gap-3">
+              <iconify-icon icon="solar:shield-linear" class="text-zinc-400"></iconify-icon>
+              Données personnelles
+            </h2>
+            <p class="text-sm text-zinc-400 leading-relaxed mb-4">
+              Les informations recueillies via le formulaire de contact sont utilisées uniquement pour répondre à votre demande. Elles ne sont ni cédées ni revendues à des tiers.
+            </p>
+            <p class="text-sm text-zinc-400 leading-relaxed">
+              Conformément à la loi Informatique et Libertés du 6 janvier 1978 modifiée et au Règlement Européen 2016/679 (RGPD), vous disposez d'un droit d'accès, de rectification et de suppression de vos données.
+              {site.email && <> Pour exercer ce droit, contactez-nous à <a href={`mailto:${site.email}`} class="text-zinc-300 hover:text-zinc-100 transition-colors">{site.email}</a>.</>}
+            </p>
+          </div>
+
+          <div class="rounded-2xl border border-zinc-900 bg-zinc-950 p-8">
+            <h2 class="text-lg font-medium text-zinc-100 mb-6 flex items-center gap-3">
+              <iconify-icon icon="solar:copyright-linear" class="text-zinc-400"></iconify-icon>
+              Propriété intellectuelle
+            </h2>
+            <p class="text-sm text-zinc-400 leading-relaxed">
+              L'ensemble des contenus présents sur ce site (textes, images, graphismes, logo) sont la propriété exclusive de {site.company_name}, sauf mention contraire. Toute reproduction, même partielle, est strictement interdite sans autorisation préalable.
+            </p>
+          </div>
+
         </div>
       </div>
+    </section>
 
-      <div>
-        <h2 class="text-xl font-bold text-zinc-900 mb-4 flex items-center gap-2">
-          <span class="text-accent font-black">03</span>
-          Propriété intellectuelle
-        </h2>
-        <div class="bg-zinc-50 rounded-2xl border border-zinc-100 p-6 text-sm space-y-3">
-          <p>L'ensemble des contenus présents sur ce site (textes, images, graphismes, logo, icônes, sons, logiciels…) est la propriété exclusive de {site.company_name} ou de ses partenaires.</p>
-          <p>Toute reproduction, représentation, modification, publication, adaptation de tout ou partie des éléments du site, quel que soit le moyen ou le procédé utilisé, est interdite, sauf autorisation écrite préalable de {site.company_name}.</p>
-        </div>
-      </div>
-
-      <div>
-        <h2 class="text-xl font-bold text-zinc-900 mb-4 flex items-center gap-2">
-          <span class="text-accent font-black">04</span>
-          Données personnelles (RGPD)
-        </h2>
-        <div class="bg-zinc-50 rounded-2xl border border-zinc-100 p-6 text-sm space-y-3">
-          <p>Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification, de suppression et de portabilité de vos données personnelles.</p>
-          <p>Pour exercer ces droits ou pour toute question relative au traitement de vos données, contactez-nous à : <a href={`mailto:${site.email}`} class="text-accent hover:underline">{site.email}</a></p>
-        </div>
-      </div>
-
-      <div>
-        <h2 class="text-xl font-bold text-zinc-900 mb-4 flex items-center gap-2">
-          <span class="text-accent font-black">05</span>
-          Cookies
-        </h2>
-        <div class="bg-zinc-50 rounded-2xl border border-zinc-100 p-6 text-sm space-y-3">
-          <p>Ce site peut utiliser des cookies techniques nécessaires à son bon fonctionnement. Ces cookies ne collectent aucune donnée personnelle à des fins commerciales.</p>
-          <p>Vous pouvez configurer votre navigateur pour bloquer ou supprimer les cookies. Cela peut affecter certaines fonctionnalités du site.</p>
-        </div>
-      </div>
-
-      <div>
-        <h2 class="text-xl font-bold text-zinc-900 mb-4 flex items-center gap-2">
-          <span class="text-accent font-black">06</span>
-          Responsabilité
-        </h2>
-        <div class="bg-zinc-50 rounded-2xl border border-zinc-100 p-6 text-sm space-y-3">
-          <p>{site.company_name} s'efforce de maintenir les informations publiées sur ce site aussi précises et à jour que possible. Toutefois, {site.company_name} ne peut garantir l'exactitude, la complétude et l'actualité des informations diffusées sur ce site.</p>
-          <p>{site.company_name} décline toute responsabilité pour tout dommage résultant de l'utilisation de ce site ou des informations qu'il contient.</p>
-        </div>
-      </div>
-
-    </div>
-  </section>
+  </main>
 
   <Footer />
-
-  <style is:global>
-    html { scroll-behavior: smooth; }
-  </style>
-
 </Base>

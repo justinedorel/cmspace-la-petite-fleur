@@ -4,136 +4,127 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 ---
-<Base title={`À propos — ${site.company_name}`} description={`Découvrez l'histoire et les valeurs de ${site.company_name}.`}>
-
+<Base title={`À propos — ${site.company_name}`} description={site.tagline}>
   <Header />
 
-  <!-- PAGE HERO -->
-  <section class="py-20 px-6 text-center bg-zinc-50">
-    <div class="max-w-3xl mx-auto">
-      <div class="inline-flex items-center gap-2 bg-indigo-50 text-accent rounded-full text-sm font-medium px-3 py-1 mb-6">
-        <i data-lucide="users" class="w-3.5 h-3.5"></i>
-        Notre histoire
-      </div>
-      <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight leading-tight mb-4">
-        À propos de {site.company_name}
-      </h1>
-      <p class="text-zinc-500 text-lg max-w-2xl mx-auto leading-relaxed">
-        {site.tagline}
-      </p>
-    </div>
-  </section>
+  <main class="flex-grow">
 
-  <!-- MISSION -->
-  <section class="py-24 px-6">
-    <div class="max-w-4xl mx-auto">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-        <div>
-          <div class="text-6xl font-black text-accent leading-none mb-6">01</div>
-          <h2 class="text-2xl font-extrabold text-zinc-900 mb-4">Notre mission</h2>
-          <p class="text-zinc-500 leading-relaxed mb-4">
-            {site.hero_desc}
-          </p>
-          <p class="text-zinc-500 leading-relaxed">
-            Fondée sur la conviction que les équipes créatives méritent des outils à la hauteur de leur ambition, {site.company_name} repense entièrement la gestion de projet créatif.
-          </p>
+    <!-- Hero à propos -->
+    <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+      <div class="absolute top-0 inset-x-0 h-screen overflow-hidden -z-10 pointer-events-none flex justify-center">
+        <div class="w-full max-w-lg aspect-square bg-zinc-800/20 rounded-full blur-3xl opacity-50 translate-y-[-50%]"></div>
+      </div>
+      <div class="container mx-auto px-6">
+        <div class="max-w-3xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-800 bg-zinc-900/50 text-xs text-zinc-400 mb-8 backdrop-blur-sm">
+            <span class="flex h-2 w-2 rounded-full bg-emerald-500"></span>
+            Notre histoire
+          </div>
+          <h1 class="text-4xl md:text-6xl font-medium tracking-tight text-zinc-100 leading-tight mb-6">
+            {site.company_name}
+          </h1>
+          <p class="text-lg text-zinc-400 max-w-2xl font-light">{site.tagline}</p>
         </div>
-        <div class="bg-zinc-950 rounded-2xl p-8">
-          <div class="grid grid-cols-2 gap-6">
-            <div class="text-center">
-              <div class="text-3xl font-extrabold text-white mb-1">{site.hero_stat1_value}</div>
-              <div class="text-zinc-500 text-xs">{site.hero_stat1_label}</div>
+      </div>
+    </section>
+
+    <!-- Mission / Valeurs -->
+    <section class="py-24 border-t border-zinc-900">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+          <div>
+            <h2 class="text-3xl font-medium tracking-tight text-zinc-100 mb-6">Notre mission</h2>
+            <p class="text-zinc-400 leading-relaxed mb-6">{site.tagline}</p>
+            <p class="text-zinc-400 leading-relaxed">{site.seo_description}</p>
+          </div>
+          <div class="grid grid-cols-1 gap-4">
+            {[
+              { icon: 'solar:target-linear', title: 'Résultats mesurables', desc: 'Chaque décision est guidée par les données et les objectifs business de nos clients.' },
+              { icon: 'solar:users-group-rounded-linear', title: 'Partenariat long terme', desc: 'Nous nous impliquons comme un partenaire stratégique, pas un simple prestataire.' },
+              { icon: 'solar:shield-check-linear', title: 'Transparence totale', desc: 'Délais, tarifs, méthodes — tout est documenté et communiqué clairement.' },
+            ].map(v => (
+              <div class="p-6 rounded-2xl border border-zinc-900 bg-zinc-950 hover:bg-zinc-900/50 transition-all duration-300 flex items-start gap-4">
+                <div class="h-10 w-10 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300 flex-shrink-0">
+                  <iconify-icon icon={v.icon} class="text-xl"></iconify-icon>
+                </div>
+                <div>
+                  <h3 class="text-sm font-medium text-zinc-100 mb-1">{v.title}</h3>
+                  <p class="text-sm text-zinc-500 leading-relaxed">{v.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="py-20 border-y border-zinc-900 bg-zinc-950/50">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-zinc-900">
+          <div class="flex flex-col items-center text-center px-4">
+            <span class="text-4xl font-medium tracking-tight text-zinc-100 mb-2">{site.stat1_value}</span>
+            <span class="text-sm text-zinc-500">{site.stat1_label}</span>
+          </div>
+          <div class="flex flex-col items-center text-center px-4">
+            <span class="text-4xl font-medium tracking-tight text-zinc-100 mb-2">{site.stat2_value}</span>
+            <span class="text-sm text-zinc-500">{site.stat2_label}</span>
+          </div>
+          <div class="flex flex-col items-center text-center px-4">
+            <span class="text-4xl font-medium tracking-tight text-zinc-100 mb-2">{site.stat3_value}</span>
+            <span class="text-sm text-zinc-500">{site.stat3_label}</span>
+          </div>
+          <div class="flex flex-col items-center text-center px-4">
+            <span class="text-4xl font-medium tracking-tight text-zinc-100 mb-2">{site.stat4_value}</span>
+            <span class="text-sm text-zinc-500">{site.stat4_label}</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Réalisations -->
+    <section class="py-24 md:py-32">
+      <div class="container mx-auto px-6">
+        <div class="max-w-2xl mb-16">
+          <h2 class="text-3xl md:text-4xl font-medium tracking-tight text-zinc-100 mb-4">{site.work_title}</h2>
+          <p class="text-lg text-zinc-400">{site.work_subtitle}</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            { tag: site.case1_tag, icon: site.case1_tag_icon, metric: site.case1_metric, color: site.case1_metric_color, title: site.case1_title, desc: site.case1_desc },
+            { tag: site.case2_tag, icon: site.case2_tag_icon, metric: site.case2_metric, color: site.case2_metric_color, title: site.case2_title, desc: site.case2_desc },
+            { tag: site.case3_tag, icon: site.case3_tag_icon, metric: site.case3_metric, color: site.case3_metric_color, title: site.case3_title, desc: site.case3_desc },
+          ].map(c => (
+            <div class="group relative overflow-hidden rounded-2xl border border-zinc-900 bg-zinc-950 aspect-[4/3] flex flex-col justify-between p-8 hover:border-zinc-700 transition-colors">
+              <div class="absolute inset-0 bg-gradient-to-br from-zinc-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div class="relative z-10 flex items-center gap-2 text-zinc-500 text-sm">
+                <iconify-icon icon={c.icon}></iconify-icon> {c.tag}
+              </div>
+              <div class="relative z-10">
+                <div class={`text-4xl font-medium tracking-tight mb-2 ${c.color}`}>{c.metric}</div>
+                <h3 class="text-lg font-medium text-zinc-100 mb-2">{c.title}</h3>
+                <p class="text-sm text-zinc-400">{c.desc}</p>
+              </div>
             </div>
-            <div class="text-center">
-              <div class="text-3xl font-extrabold text-white mb-1">{site.hero_stat2_value}</div>
-              <div class="text-zinc-500 text-xs">{site.hero_stat2_label}</div>
-            </div>
-            <div class="text-center col-span-2">
-              <div class="text-3xl font-extrabold text-accent mb-1">{site.hero_stat3_value}</div>
-              <div class="text-zinc-500 text-xs">{site.hero_stat3_label}</div>
-            </div>
-          </div>
+          ))}
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- VALEURS -->
-  <section class="py-24 px-6 bg-zinc-50">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16">
-        <div class="text-6xl font-black text-accent leading-none mb-4">02</div>
-        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-4">Nos valeurs</h2>
-        <p class="text-zinc-500 text-lg max-w-2xl mx-auto">Les principes qui guident chacune de nos décisions produit et chaque interaction avec nos clients.</p>
-      </div>
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div class="group p-6 rounded-2xl border border-zinc-100 bg-white hover:border-indigo-100 hover:bg-indigo-50/30 transition-all">
-          <div class="bg-indigo-50 rounded-xl p-3 inline-flex mb-4 group-hover:bg-indigo-100 transition-colors">
-            <i data-lucide="zap" class="w-5 h-5 text-accent"></i>
-          </div>
-          <h3 class="font-bold text-zinc-900 mb-2">Rapidité sans compromis</h3>
-          <p class="text-zinc-500 text-sm leading-relaxed">Chaque fonctionnalité est pensée pour réduire la friction et accélérer votre workflow créatif.</p>
-        </div>
-        <div class="group p-6 rounded-2xl border border-zinc-100 bg-white hover:border-indigo-100 hover:bg-indigo-50/30 transition-all">
-          <div class="bg-indigo-50 rounded-xl p-3 inline-flex mb-4 group-hover:bg-indigo-100 transition-colors">
-            <i data-lucide="shield-check" class="w-5 h-5 text-accent"></i>
-          </div>
-          <h3 class="font-bold text-zinc-900 mb-2">Confiance et transparence</h3>
-          <p class="text-zinc-500 text-sm leading-relaxed">Vos données vous appartiennent. Nous sommes conformes RGPD et transparents sur nos pratiques.</p>
-        </div>
-        <div class="group p-6 rounded-2xl border border-zinc-100 bg-white hover:border-indigo-100 hover:bg-indigo-50/30 transition-all">
-          <div class="bg-indigo-50 rounded-xl p-3 inline-flex mb-4 group-hover:bg-indigo-100 transition-colors">
-            <i data-lucide="heart" class="w-5 h-5 text-accent"></i>
-          </div>
-          <h3 class="font-bold text-zinc-900 mb-2">Centré sur l'humain</h3>
-          <p class="text-zinc-500 text-sm leading-relaxed">Nous construisons pour les équipes, pas pour les tableaux de bord. L'expérience utilisateur est notre obsession.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ÉQUIPE -->
-  <section class="py-24 px-6">
-    <div class="max-w-4xl mx-auto">
-      <div class="text-center mb-16">
-        <div class="text-6xl font-black text-accent leading-none mb-4">03</div>
-        <h2 class="text-3xl md:text-4xl font-extrabold tracking-tight mb-4">Une équipe passionnée</h2>
-        <p class="text-zinc-500 text-lg max-w-2xl mx-auto">Des experts produit, design et ingénierie unis par une même conviction : simplifier la créativité collective.</p>
-      </div>
-      <div class="bg-zinc-950 rounded-2xl p-8 text-center">
-        <p class="text-zinc-400 text-lg leading-relaxed max-w-2xl mx-auto mb-8">
-          Envie de rejoindre l'aventure {site.company_name} ? Nous sommes toujours à la recherche de talents passionnés par les produits créatifs.
-        </p>
-        <a href="/contact" class="inline-flex items-center gap-2 bg-accent text-white font-semibold rounded-xl px-6 py-3 hover:opacity-90 transition-opacity">
-          Nous contacter
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA SECTION -->
-  <section class="py-24 px-6 bg-zinc-950">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="text-3xl md:text-5xl font-extrabold tracking-tight text-white mb-6">{site.cta_title}</h2>
-      <p class="text-zinc-400 text-lg mb-10 leading-relaxed">{site.cta_desc}</p>
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-        <a href="/contact" class="bg-accent text-white font-semibold rounded-xl px-6 py-3 hover:opacity-90 transition-opacity shadow-lg shadow-indigo-900/50 flex items-center gap-2">
+    <!-- CTA -->
+    <section class="py-16 md:py-24 relative overflow-hidden">
+      <div class="absolute inset-0 bg-zinc-900/20 border-y border-zinc-800/50"></div>
+      <div class="container mx-auto px-6 relative z-10 text-center">
+        <h2 class="text-3xl md:text-4xl font-medium tracking-tight text-zinc-100 mb-4">{site.cta_title}</h2>
+        <p class="text-zinc-400 mb-8 max-w-xl mx-auto text-sm">{site.cta_subtitle}</p>
+        <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium bg-zinc-100 text-zinc-950 rounded-md hover:bg-zinc-200 transition-colors">
           {site.cta_primary}
-          <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        </a>
-        <a href="/contact" class="border border-white/20 text-white font-medium rounded-xl px-6 py-3 hover:bg-white/5 transition-colors flex items-center gap-2">
-          <i data-lucide="message-circle" class="w-4 h-4"></i>
-          {site.cta_secondary}
+          <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
         </a>
       </div>
-    </div>
-  </section>
+    </section>
+
+  </main>
 
   <Footer />
-
-  <style is:global>
-    html { scroll-behavior: smooth; }
-  </style>
-
 </Base>
