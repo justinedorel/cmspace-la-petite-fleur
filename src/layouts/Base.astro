@@ -1,27 +1,221 @@
 ---
-const { title, description } = Astro.props;
+export interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  url?: string;
+  type?: string;
+}
+const { title, description = '', image = '', url = '', type = 'website' } = Astro.props;
+import site from '../data/site.json';
+const siteUrl  = (site as any).website || '';
+const ogImage  = image || (site as any).hero_image || '';
+const canonical = url || siteUrl;
 ---
 <!DOCTYPE html>
 <html lang="fr">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{title}</title>
-  <meta name="description" content={description} />
-  <script is:inline src="https://cdn.tailwindcss.com"></script>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
-  <script is:inline src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-  <style>
-    body { font-family: 'Inter', sans-serif; background-color: #09090b; color: #fafafa; -webkit-font-smoothing: antialiased; }
-    ::selection { background-color: #27272a; color: #fafafa; }
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: #09090b; }
-    ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 4px; }
-    ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
-  </style>
-</head>
-<body class="antialiased min-h-screen flex flex-col font-light">
-  <slot />
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    {canonical && <link rel="canonical" href={canonical} />}
+
+    <!-- Open Graph -->
+    <meta property="og:type"        content={type} />
+    <meta property="og:title"       content={title} />
+    <meta property="og:description" content={description} />
+    {ogImage && <meta property="og:image" content={ogImage} />}
+    {canonical && <meta property="og:url" content={canonical} />}
+    <meta property="og:locale"      content="fr_FR" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:title"       content={title} />
+    <meta name="twitter:description" content={description} />
+    {ogImage && <meta name="twitter:image" content={ogImage} />}
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+
+    <script is:inline src="https://cdn.tailwindcss.com"></script>
+    <script is:inline src="https://cdn.jsdelivr.net/npm/@iconify/iconify@3/dist/iconify.min.js"></script>
+    <script is:inline>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              bg:     '#f5f2ee',
+              dark:   '#1a1a1a',
+              muted:  '#5a5a5a',
+              pink:   '#f2dfdb',
+              sand:   '#dfd3c5',
+              cream:  '#eadecd',
+            },
+            fontFamily: {
+              serif: ['Cormorant Garamond', 'serif'],
+              sans:  ['Jost', 'sans-serif'],
+            },
+          },
+        },
+      }
+    </script>
+
+    <!-- JSON-LD Structured Data -->
+    <script is:inline type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": (site as any).company_name,
+      "description": description,
+      "url": canonical,
+      "telephone": (site as any).phone || undefined,
+      "email": (site as any).email || undefined,
+      "address": (site as any).address ? {
+        "@type": "PostalAddress",
+        "streetAddress": (site as any).address,
+      } : undefined,
+      "image": ogImage || undefined,
+    })} />
+
+    <style>
+      *, *::before, *::after { box-sizing: border-box; }
+      html { scroll-behavior: smooth; }
+      body {
+        background-color: #f5f2ee;
+        color: #1a1a1a;
+        font-family: 'Jost', sans-serif;
+        font-weight: 300;
+        -webkit-font-smoothing: antialiased;
+        cursor: none;
+      }
+      h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; }
+
+      /* ─── Curseur personnalisé ─────────────────────────────────── */
+      .cursor-dot {
+        width: 6px; height: 6px;
+        background: #1a1a1a;
+        border-radius: 50%;
+        position: fixed;
+        top: 0; left: 0;
+        pointer-events: none;
+        z-index: 9999;
+        transform: translate(-50%, -50%);
+        transition: transform 0.1s ease;
+      }
+      .cursor-ring {
+        width: 32px; height: 32px;
+        border: 1px solid rgba(26,26,26,0.4);
+        border-radius: 50%;
+        position: fixed;
+        top: 0; left: 0;
+        pointer-events: none;
+        z-index: 9998;
+        transform: translate(-50%, -50%);
+        transition: left 0.12s ease, top 0.12s ease, width 0.3s ease, height 0.3s ease, border-color 0.3s;
+      }
+      .cursor-ring.hover {
+        width: 56px; height: 56px;
+        border-color: rgba(26,26,26,0.6);
+      }
+      @media (hover: none) { .cursor-dot, .cursor-ring { display: none; } body { cursor: auto; } }
+
+      /* ─── Scroll reveal ────────────────────────────────────────── */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
+      }
+      .reveal.visible { opacity: 1; transform: translateY(0); }
+      .reveal-left  { opacity: 0; transform: translateX(-40px); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
+      .reveal-left.visible  { opacity: 1; transform: translateX(0); }
+      .reveal-right { opacity: 0; transform: translateX(40px);  transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
+      .reveal-right.visible { opacity: 1; transform: translateX(0); }
+      .reveal-d1 { transition-delay: 0.08s; }
+      .reveal-d2 { transition-delay: 0.16s; }
+      .reveal-d3 { transition-delay: 0.24s; }
+      .reveal-d4 { transition-delay: 0.32s; }
+
+      /* ─── Parallax hero ────────────────────────────────────────── */
+      .hero-bg { will-change: transform; }
+
+      /* ─── Marquee ──────────────────────────────────────────────── */
+      @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+      .marquee-track { display: flex; white-space: nowrap; animation: marquee 28s linear infinite; }
+
+      /* ─── Image grain overlay ──────────────────────────────────── */
+      .grain::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+        pointer-events: none;
+        opacity: 0.5;
+        mix-blend-mode: overlay;
+      }
+
+      /* ─── Line animate ─────────────────────────────────────────── */
+      .line-grow { transform: scaleX(0); transform-origin: left; transition: transform 0.8s cubic-bezier(0.16,1,0.3,1) 0.2s; }
+      .line-grow.visible { transform: scaleX(1); }
+
+      /* ─── FAQ smooth ───────────────────────────────────────────── */
+      .faq-answer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 0.4s ease, padding 0.3s ease; }
+      .faq-answer.open { grid-template-rows: 1fr; }
+      .faq-inner { overflow: hidden; }
+    </style>
+  </head>
+  <body>
+    <!-- Curseur -->
+    <div class="cursor-dot" id="cursorDot"></div>
+    <div class="cursor-ring" id="cursorRing"></div>
+
+    <slot />
+
+    <script is:inline>
+      // ── Curseur ──────────────────────────────────────────────────
+      var dot = document.getElementById('cursorDot');
+      var ring = document.getElementById('cursorRing');
+      if (dot && ring && window.matchMedia('(hover: hover)').matches) {
+        document.addEventListener('mousemove', function(e) {
+          dot.style.left  = e.clientX + 'px';
+          dot.style.top   = e.clientY + 'px';
+          ring.style.left = e.clientX + 'px';
+          ring.style.top  = e.clientY + 'px';
+        });
+        document.querySelectorAll('a, button, [data-cursor="hover"]').forEach(function(el) {
+          el.addEventListener('mouseenter', function() { ring.classList.add('hover'); dot.style.opacity = '0'; });
+          el.addEventListener('mouseleave', function() { ring.classList.remove('hover'); dot.style.opacity = '1'; });
+        });
+      }
+
+      // ── Scroll reveal ─────────────────────────────────────────────
+      var revealObserver = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+      document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .line-grow').forEach(function(el) {
+        revealObserver.observe(el);
+      });
+
+      // ── Parallax hero ─────────────────────────────────────────────
+      var heroBg = document.querySelector('.hero-bg');
+      if (heroBg) {
+        var ticking = false;
+        window.addEventListener('scroll', function() {
+          if (!ticking) {
+            requestAnimationFrame(function() {
+              heroBg.style.transform = 'translateY(' + (window.scrollY * 0.35) + 'px)';
+              ticking = false;
+            });
+            ticking = true;
+          }
+        }, { passive: true });
+      }
+    </script>
+  </body>
 </html>
