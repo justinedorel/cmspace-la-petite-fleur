@@ -1,57 +1,27 @@
 ---
-export interface Props {
-  title: string;
-  description?: string;
-}
 const { title, description } = Astro.props;
 ---
 <!DOCTYPE html>
 <html lang="fr">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{title}</title>
-    {description && <meta name="description" content={description} />}
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
-    <script is:inline src="https://cdn.tailwindcss.com"></script>
-    <script is:inline src="https://cdn.jsdelivr.net/npm/@iconify/iconify@3/dist/iconify.min.js"></script>
-    <script is:inline>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              bg: '#f5f2ee',
-              dark: '#1a1a1a',
-              muted: '#5a5a5a',
-              pink: '#f2dfdb',
-              sand: '#dfd3c5',
-              cream: '#eadecd',
-            },
-            fontFamily: {
-              serif: ['Cormorant Garamond', 'serif'],
-              sans: ['Jost', 'sans-serif'],
-            },
-          },
-        },
-      }
-    </script>
-    <style>
-      html { scroll-behavior: smooth; }
-      body {
-        background-color: #f5f2ee;
-        color: #1a1a1a;
-        font-family: 'Jost', sans-serif;
-        font-weight: 300;
-        -webkit-font-smoothing: antialiased;
-      }
-      h1, h2, h3, h4 {
-        font-family: 'Cormorant Garamond', serif;
-      }
-    </style>
-  </head>
-  <body>
-    <slot />
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <script is:inline src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <script is:inline src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <style>
+    body { font-family: 'Inter', sans-serif; background-color: #09090b; color: #fafafa; -webkit-font-smoothing: antialiased; }
+    ::selection { background-color: #27272a; color: #fafafa; }
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: #09090b; }
+    ::-webkit-scrollbar-thumb { background: #27272a; border-radius: 4px; }
+    ::-webkit-scrollbar-thumb:hover { background: #3f3f46; }
+  </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col font-light">
+  <slot />
+</body>
 </html>

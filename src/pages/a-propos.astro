@@ -4,128 +4,127 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 ---
-<Base title={`À propos — ${site.company_name}`} description={`${site.about_text1}`}>
-
+<Base title={`À propos — ${site.company_name}`} description={site.tagline}>
   <Header />
 
-  <!-- Hero page -->
-  <section class="pt-40 pb-20">
-    <div class="max-w-7xl mx-auto px-8">
-      <span class="font-sans text-xs tracking-[0.22em] uppercase text-muted mb-4 block">{site.about_badge}</span>
-      <h1 class="font-serif text-5xl md:text-7xl font-light text-dark leading-tight mb-2">
-        {site.about_title}
-      </h1>
-      <h1 class="font-serif text-5xl md:text-7xl font-light italic text-dark leading-tight">
-        {site.about_title2}
-      </h1>
-    </div>
-  </section>
+  <main class="flex-grow">
 
-  <!-- About principal -->
-  <section class="py-16 md:py-24">
-    <div class="max-w-7xl mx-auto px-8">
-      <div class="grid md:grid-cols-2 gap-16 md:gap-24 items-center">
-        <div class="relative">
-          <img src={site.about_image} alt={site.about_title2} class="w-full aspect-[3/4] object-cover" />
-          <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-pink hidden md:block"></div>
-        </div>
-        <div>
-          <p class="font-sans text-sm font-light leading-relaxed text-muted mb-6 tracking-wide">
-            {site.about_text1}
-          </p>
-          <p class="font-sans text-sm font-light leading-relaxed text-muted mb-10 tracking-wide">
-            {site.about_text2}
-          </p>
-          <a href={`mailto:${site.email}`} class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.18em] uppercase text-dark hover:opacity-60 transition-opacity">
-            {site.about_cta}
-            <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
-          </a>
+    <!-- Hero à propos -->
+    <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
+      <div class="absolute top-0 inset-x-0 h-screen overflow-hidden -z-10 pointer-events-none flex justify-center">
+        <div class="w-full max-w-lg aspect-square bg-zinc-800/20 rounded-full blur-3xl opacity-50 translate-y-[-50%]"></div>
+      </div>
+      <div class="container mx-auto px-6">
+        <div class="max-w-3xl">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-800 bg-zinc-900/50 text-xs text-zinc-400 mb-8 backdrop-blur-sm">
+            <span class="flex h-2 w-2 rounded-full bg-emerald-500"></span>
+            Notre histoire
+          </div>
+          <h1 class="text-4xl md:text-6xl font-medium tracking-tight text-zinc-100 leading-tight mb-6">
+            {site.company_name}
+          </h1>
+          <p class="text-lg text-zinc-400 max-w-2xl font-light">{site.tagline}</p>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Presse / Références -->
-  <section class="py-12 bg-dark">
-    <div class="max-w-7xl mx-auto px-8">
-      <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16">
-        <span class="font-sans text-xs tracking-[0.22em] uppercase text-white/30 whitespace-nowrap">{site.press_label}</span>
-        <div class="w-px h-6 bg-white/20 hidden md:block"></div>
-        <div class="flex items-center gap-10 md:gap-16 flex-wrap justify-center md:justify-start">
-          <span class="font-serif text-2xl font-light italic tracking-wide text-white/60 hover:text-white/90 transition-colors cursor-default">{site.press1}</span>
-          <span class="font-serif text-2xl font-light tracking-[0.15em] text-white/60 hover:text-white/90 transition-colors cursor-default">{site.press2}</span>
-          <span class="font-serif text-2xl font-light italic tracking-wide text-white/60 hover:text-white/90 transition-colors cursor-default">{site.press3}</span>
-          <span class="font-serif text-2xl font-light tracking-[0.15em] text-white/60 hover:text-white/90 transition-colors cursor-default">{site.press4}</span>
+    <!-- Mission / Valeurs -->
+    <section class="py-24 border-t border-zinc-900">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16 items-start">
+          <div>
+            <h2 class="text-3xl font-medium tracking-tight text-zinc-100 mb-6">Notre mission</h2>
+            <p class="text-zinc-400 leading-relaxed mb-6">{site.tagline}</p>
+            <p class="text-zinc-400 leading-relaxed">{site.seo_description}</p>
+          </div>
+          <div class="grid grid-cols-1 gap-4">
+            {[
+              { icon: 'solar:target-linear', title: 'Résultats mesurables', desc: 'Chaque décision est guidée par les données et les objectifs business de nos clients.' },
+              { icon: 'solar:users-group-rounded-linear', title: 'Partenariat long terme', desc: 'Nous nous impliquons comme un partenaire stratégique, pas un simple prestataire.' },
+              { icon: 'solar:shield-check-linear', title: 'Transparence totale', desc: 'Délais, tarifs, méthodes — tout est documenté et communiqué clairement.' },
+            ].map(v => (
+              <div class="p-6 rounded-2xl border border-zinc-900 bg-zinc-950 hover:bg-zinc-900/50 transition-all duration-300 flex items-start gap-4">
+                <div class="h-10 w-10 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300 flex-shrink-0">
+                  <iconify-icon icon={v.icon} class="text-xl"></iconify-icon>
+                </div>
+                <div>
+                  <h3 class="text-sm font-medium text-zinc-100 mb-1">{v.title}</h3>
+                  <p class="text-sm text-zinc-500 leading-relaxed">{v.desc}</p>
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Valeurs / Engagement -->
-  <section class="py-28 md:py-36 bg-sand/20">
-    <div class="max-w-7xl mx-auto px-8">
-      <div class="text-center mb-20">
-        <h2 class="font-serif text-4xl md:text-5xl font-light text-dark mb-5">{site.process_title}</h2>
-        <p class="font-sans text-sm font-light leading-relaxed text-muted max-w-xl mx-auto tracking-wide">{site.process_subtitle}</p>
-      </div>
-      <div class="grid md:grid-cols-4 gap-10 md:gap-8">
-        <div class="relative">
-          <div class="font-serif text-8xl font-light text-sand leading-none mb-6 select-none">01</div>
-          <div class="w-10 h-px bg-dark/20 mb-6"></div>
-          <h3 class="font-serif text-2xl font-light text-dark mb-3">{site.step1_title}</h3>
-          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.step1_desc}</p>
-        </div>
-        <div class="relative">
-          <div class="font-serif text-8xl font-light text-sand leading-none mb-6 select-none">02</div>
-          <div class="w-10 h-px bg-dark/20 mb-6"></div>
-          <h3 class="font-serif text-2xl font-light text-dark mb-3">{site.step2_title}</h3>
-          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.step2_desc}</p>
-        </div>
-        <div class="relative">
-          <div class="font-serif text-8xl font-light text-sand leading-none mb-6 select-none">03</div>
-          <div class="w-10 h-px bg-dark/20 mb-6"></div>
-          <h3 class="font-serif text-2xl font-light text-dark mb-3">{site.step3_title}</h3>
-          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.step3_desc}</p>
-        </div>
-        <div class="relative">
-          <div class="font-serif text-8xl font-light text-sand leading-none mb-6 select-none">04</div>
-          <div class="w-10 h-px bg-dark/20 mb-6"></div>
-          <h3 class="font-serif text-2xl font-light text-dark mb-3">{site.step4_title}</h3>
-          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.step4_desc}</p>
+    <!-- Stats -->
+    <section class="py-20 border-y border-zinc-900 bg-zinc-950/50">
+      <div class="container mx-auto px-6">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-zinc-900">
+          <div class="flex flex-col items-center text-center px-4">
+            <span class="text-4xl font-medium tracking-tight text-zinc-100 mb-2">{site.stat1_value}</span>
+            <span class="text-sm text-zinc-500">{site.stat1_label}</span>
+          </div>
+          <div class="flex flex-col items-center text-center px-4">
+            <span class="text-4xl font-medium tracking-tight text-zinc-100 mb-2">{site.stat2_value}</span>
+            <span class="text-sm text-zinc-500">{site.stat2_label}</span>
+          </div>
+          <div class="flex flex-col items-center text-center px-4">
+            <span class="text-4xl font-medium tracking-tight text-zinc-100 mb-2">{site.stat3_value}</span>
+            <span class="text-sm text-zinc-500">{site.stat3_label}</span>
+          </div>
+          <div class="flex flex-col items-center text-center px-4">
+            <span class="text-4xl font-medium tracking-tight text-zinc-100 mb-2">{site.stat4_value}</span>
+            <span class="text-sm text-zinc-500">{site.stat4_label}</span>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Témoignage -->
-  <section class="py-28 md:py-36 bg-dark">
-    <div class="max-w-5xl mx-auto px-8 text-center">
-      <span class="iconify text-sand/40 mb-10 block mx-auto" data-icon="lucide:quote" data-width="40"></span>
-      <blockquote class="font-serif text-3xl md:text-4xl font-light italic leading-relaxed text-white/90 mb-12">
-        &ldquo;{site.testimonial_text}&rdquo;
-      </blockquote>
-      <div class="flex items-center justify-center gap-5">
-        <img src={site.testimonial_image} alt={site.testimonial_name} class="w-12 h-12 rounded-full object-cover grayscale opacity-60" />
-        <div class="text-left">
-          <p class="font-serif text-base font-light text-white/80">{site.testimonial_name}</p>
-          <p class="font-sans text-xs tracking-[0.15em] uppercase text-white/30">{site.testimonial_date}</p>
+    <!-- Réalisations -->
+    <section class="py-24 md:py-32">
+      <div class="container mx-auto px-6">
+        <div class="max-w-2xl mb-16">
+          <h2 class="text-3xl md:text-4xl font-medium tracking-tight text-zinc-100 mb-4">{site.work_title}</h2>
+          <p class="text-lg text-zinc-400">{site.work_subtitle}</p>
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {[
+            { tag: site.case1_tag, icon: site.case1_tag_icon, metric: site.case1_metric, color: site.case1_metric_color, title: site.case1_title, desc: site.case1_desc },
+            { tag: site.case2_tag, icon: site.case2_tag_icon, metric: site.case2_metric, color: site.case2_metric_color, title: site.case2_title, desc: site.case2_desc },
+            { tag: site.case3_tag, icon: site.case3_tag_icon, metric: site.case3_metric, color: site.case3_metric_color, title: site.case3_title, desc: site.case3_desc },
+          ].map(c => (
+            <div class="group relative overflow-hidden rounded-2xl border border-zinc-900 bg-zinc-950 aspect-[4/3] flex flex-col justify-between p-8 hover:border-zinc-700 transition-colors">
+              <div class="absolute inset-0 bg-gradient-to-br from-zinc-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+              <div class="relative z-10 flex items-center gap-2 text-zinc-500 text-sm">
+                <iconify-icon icon={c.icon}></iconify-icon> {c.tag}
+              </div>
+              <div class="relative z-10">
+                <div class={`text-4xl font-medium tracking-tight mb-2 ${c.color}`}>{c.metric}</div>
+                <h3 class="text-lg font-medium text-zinc-100 mb-2">{c.title}</h3>
+                <p class="text-sm text-zinc-400">{c.desc}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CTA contact -->
-  <section class="py-24">
-    <div class="max-w-3xl mx-auto px-8 text-center">
-      <h2 class="font-serif text-4xl md:text-5xl font-light text-dark mb-6">{site.about_cta}</h2>
-      <p class="font-sans text-sm font-light leading-relaxed text-muted mb-10 tracking-wide">{site.tagline}</p>
-      <a href="/contact" class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.18em] uppercase text-dark border border-dark/30 px-8 py-4 hover:bg-dark hover:text-bg transition-all duration-300">
-        {site.hero_cta}
-        <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
-      </a>
-    </div>
-  </section>
+    <!-- CTA -->
+    <section class="py-16 md:py-24 relative overflow-hidden">
+      <div class="absolute inset-0 bg-zinc-900/20 border-y border-zinc-800/50"></div>
+      <div class="container mx-auto px-6 relative z-10 text-center">
+        <h2 class="text-3xl md:text-4xl font-medium tracking-tight text-zinc-100 mb-4">{site.cta_title}</h2>
+        <p class="text-zinc-400 mb-8 max-w-xl mx-auto text-sm">{site.cta_subtitle}</p>
+        <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium bg-zinc-100 text-zinc-950 rounded-md hover:bg-zinc-200 transition-colors">
+          {site.cta_primary}
+          <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
+        </a>
+      </div>
+    </section>
+
+  </main>
 
   <Footer />
-
 </Base>
