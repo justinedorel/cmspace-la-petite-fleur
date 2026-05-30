@@ -38,7 +38,7 @@ const canonical = url || siteUrl;
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500;1,600&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400;700" rel="stylesheet" />
 
     <script is:inline src="https://cdn.tailwindcss.com"></script>
     <script is:inline src="https://cdn.jsdelivr.net/npm/@iconify/iconify@3/dist/iconify.min.js"></script>
@@ -47,16 +47,16 @@ const canonical = url || siteUrl;
         theme: {
           extend: {
             colors: {
-              bg:     '#f5f2ee',
-              dark:   '#1a1a1a',
-              muted:  '#5a5a5a',
-              pink:   '#f2dfdb',
-              sand:   '#dfd3c5',
-              cream:  '#eadecd',
+              bg:     '#FAF8F2',
+              dark:   '#1A1228',
+              muted:  '#4c445a',
+              pink:   '#C9A96E',
+              sand:   '#b5955a',
+              cream:  '#f5f3ed',
             },
             fontFamily: {
-              serif: ['Cormorant Garamond', 'serif'],
-              sans:  ['Jost', 'sans-serif'],
+              serif: ['Playfair Display', 'serif'],
+              sans:  ['Lato', 'sans-serif'],
             },
           },
         },
@@ -83,13 +83,13 @@ const canonical = url || siteUrl;
       *, *::before, *::after { box-sizing: border-box; }
       html { scroll-behavior: smooth; }
       body {
-        background-color: #f5f2ee;
+        background-color: #FAF8F2;
         color: #1a1a1a;
-        font-family: 'Jost', sans-serif;
+        font-family: 'Lato', sans-serif;
         font-weight: 300;
         -webkit-font-smoothing: antialiased;
       }
-      h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; }
+      h1, h2, h3, h4 { font-family: 'Playfair Display', serif; }
 
       /* ─── Scroll reveal ────────────────────────────────────────── */
       .reveal {
