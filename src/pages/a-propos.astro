@@ -3,73 +3,129 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
-const paragraphs = site.about_text_long.split('\n').filter(Boolean);
-const team = [
-  { name: site.about_name1, role: site.about_role1, avatar: site.about_avatar1 },
-  { name: site.about_name2, role: site.about_role2, avatar: site.about_avatar2 },
-].filter(m => m.name);
-const values = [
-  { title: site.about_value1_title, desc: site.about_value1_desc },
-  { title: site.about_value2_title, desc: site.about_value2_desc },
-  { title: site.about_value3_title, desc: site.about_value3_desc },
-].filter(v => v.title);
 ---
-<Base title={`À propos — ${site.company_name}`} description={site.about_subtitle}>
+<Base title={`À propos — ${site.company_name}`} description={`${site.about_text1}`}>
+
   <Header />
-  <main>
-    <section class="pt-20 pb-16 px-6 bg-[var(--color-surface)]">
-      <div class="max-w-7xl mx-auto" data-animate>
-        <span class="text-xs font-semibold uppercase tracking-widest text-[var(--color-accent)]">Notre histoire</span>
-        <h1 class="font-display text-5xl font-medium text-[var(--color-text)] mt-3 mb-4">{site.about_title}</h1>
-        <p class="text-lg text-[var(--color-text-muted)] max-w-xl">{site.about_subtitle}</p>
+
+  <!-- Hero page -->
+  <section class="pt-40 pb-20">
+    <div class="max-w-7xl mx-auto px-8">
+      <span class="font-sans text-xs tracking-[0.22em] uppercase text-muted mb-4 block">{site.about_badge}</span>
+      <h1 class="font-serif text-5xl md:text-7xl font-light text-dark leading-tight mb-2">
+        {site.about_title}
+      </h1>
+      <h1 class="font-serif text-5xl md:text-7xl font-light italic text-dark leading-tight">
+        {site.about_title2}
+      </h1>
+    </div>
+  </section>
+
+  <!-- About principal -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="grid md:grid-cols-2 gap-16 md:gap-24 items-center">
+        <div class="relative">
+          <img src={site.about_image} alt={site.about_title2} class="w-full aspect-[3/4] object-cover" />
+          <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-pink hidden md:block"></div>
+        </div>
+        <div>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted mb-6 tracking-wide">
+            {site.about_text1}
+          </p>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted mb-10 tracking-wide">
+            {site.about_text2}
+          </p>
+          <a href={`mailto:${site.email}`} class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.18em] uppercase text-dark hover:opacity-60 transition-opacity">
+            {site.about_cta}
+            <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
+          </a>
+        </div>
       </div>
-    </section>
-    <section class="py-24 px-6">
-      <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-start">
-        <div data-animate>
-          {paragraphs.map(p => <p class="text-[var(--color-text)] leading-relaxed mb-5">{p}</p>)}
-        </div>
-        <div class="h-80 bg-[var(--color-surface)] rounded-2xl overflow-hidden" data-animate="fade-left">
-          {site.about_image_url && <img src={site.about_image_url} alt={site.company_name} class="w-full h-full object-cover" />}
+    </div>
+  </section>
+
+  <!-- Presse / Références -->
+  <section class="py-12 bg-dark">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16">
+        <span class="font-sans text-xs tracking-[0.22em] uppercase text-white/30 whitespace-nowrap">{site.press_label}</span>
+        <div class="w-px h-6 bg-white/20 hidden md:block"></div>
+        <div class="flex items-center gap-10 md:gap-16 flex-wrap justify-center md:justify-start">
+          <span class="font-serif text-2xl font-light italic tracking-wide text-white/60 hover:text-white/90 transition-colors cursor-default">{site.press1}</span>
+          <span class="font-serif text-2xl font-light tracking-[0.15em] text-white/60 hover:text-white/90 transition-colors cursor-default">{site.press2}</span>
+          <span class="font-serif text-2xl font-light italic tracking-wide text-white/60 hover:text-white/90 transition-colors cursor-default">{site.press3}</span>
+          <span class="font-serif text-2xl font-light tracking-[0.15em] text-white/60 hover:text-white/90 transition-colors cursor-default">{site.press4}</span>
         </div>
       </div>
-    </section>
-    {team.length > 0 && (
-      <section class="py-16 px-6 bg-[var(--color-surface)]">
-        <div class="max-w-7xl mx-auto">
-          <h2 class="font-display text-3xl font-medium text-[var(--color-primary)] mb-10 text-center" data-animate>Notre équipe</h2>
-          <div class="flex flex-wrap justify-center gap-8">
-            {team.map(m => (
-              <div class="text-center" data-animate>
-                <div class="w-24 h-24 rounded-full bg-[var(--color-primary)]/10 mx-auto mb-4 overflow-hidden">
-                  {m.avatar
-                    ? <img src={m.avatar} alt={m.name} class="w-full h-full object-cover" />
-                    : <div class="w-full h-full flex items-center justify-center font-display text-3xl text-[var(--color-primary)]">{m.name.charAt(0)}</div>
-                  }
-                </div>
-                <div class="font-semibold text-[var(--color-primary)]">{m.name}</div>
-                <div class="text-sm text-[var(--color-text-muted)]">{m.role}</div>
-              </div>
-            ))}
-          </div>
+    </div>
+  </section>
+
+  <!-- Valeurs / Engagement -->
+  <section class="py-28 md:py-36 bg-sand/20">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="text-center mb-20">
+        <h2 class="font-serif text-4xl md:text-5xl font-light text-dark mb-5">{site.process_title}</h2>
+        <p class="font-sans text-sm font-light leading-relaxed text-muted max-w-xl mx-auto tracking-wide">{site.process_subtitle}</p>
+      </div>
+      <div class="grid md:grid-cols-4 gap-10 md:gap-8">
+        <div class="relative">
+          <div class="font-serif text-8xl font-light text-sand leading-none mb-6 select-none">01</div>
+          <div class="w-10 h-px bg-dark/20 mb-6"></div>
+          <h3 class="font-serif text-2xl font-light text-dark mb-3">{site.step1_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.step1_desc}</p>
         </div>
-      </section>
-    )}
-    {values.length > 0 && (
-      <section class="py-24 px-6">
-        <div class="max-w-7xl mx-auto">
-          <h2 class="font-display text-3xl font-medium text-[var(--color-primary)] mb-10 text-center" data-animate>Nos valeurs</h2>
-          <div class="grid md:grid-cols-3 gap-6">
-            {values.map((v, i) => (
-              <div class="bg-[var(--color-surface)] rounded-2xl p-7 border-l-4 border-[var(--color-accent)]" data-animate style={`transition-delay: ${i * 100}ms`}>
-                <h3 class="font-display text-xl font-medium text-[var(--color-primary)] mb-2">{v.title}</h3>
-                <p class="text-sm text-[var(--color-text-muted)] leading-relaxed">{v.desc}</p>
-              </div>
-            ))}
-          </div>
+        <div class="relative">
+          <div class="font-serif text-8xl font-light text-sand leading-none mb-6 select-none">02</div>
+          <div class="w-10 h-px bg-dark/20 mb-6"></div>
+          <h3 class="font-serif text-2xl font-light text-dark mb-3">{site.step2_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.step2_desc}</p>
         </div>
-      </section>
-    )}
-  </main>
+        <div class="relative">
+          <div class="font-serif text-8xl font-light text-sand leading-none mb-6 select-none">03</div>
+          <div class="w-10 h-px bg-dark/20 mb-6"></div>
+          <h3 class="font-serif text-2xl font-light text-dark mb-3">{site.step3_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.step3_desc}</p>
+        </div>
+        <div class="relative">
+          <div class="font-serif text-8xl font-light text-sand leading-none mb-6 select-none">04</div>
+          <div class="w-10 h-px bg-dark/20 mb-6"></div>
+          <h3 class="font-serif text-2xl font-light text-dark mb-3">{site.step4_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.step4_desc}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Témoignage -->
+  <section class="py-28 md:py-36 bg-dark">
+    <div class="max-w-5xl mx-auto px-8 text-center">
+      <span class="iconify text-sand/40 mb-10 block mx-auto" data-icon="lucide:quote" data-width="40"></span>
+      <blockquote class="font-serif text-3xl md:text-4xl font-light italic leading-relaxed text-white/90 mb-12">
+        &ldquo;{site.testimonial_text}&rdquo;
+      </blockquote>
+      <div class="flex items-center justify-center gap-5">
+        <img src={site.testimonial_image} alt={site.testimonial_name} class="w-12 h-12 rounded-full object-cover grayscale opacity-60" />
+        <div class="text-left">
+          <p class="font-serif text-base font-light text-white/80">{site.testimonial_name}</p>
+          <p class="font-sans text-xs tracking-[0.15em] uppercase text-white/30">{site.testimonial_date}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA contact -->
+  <section class="py-24">
+    <div class="max-w-3xl mx-auto px-8 text-center">
+      <h2 class="font-serif text-4xl md:text-5xl font-light text-dark mb-6">{site.about_cta}</h2>
+      <p class="font-sans text-sm font-light leading-relaxed text-muted mb-10 tracking-wide">{site.tagline}</p>
+      <a href="/contact" class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.18em] uppercase text-dark border border-dark/30 px-8 py-4 hover:bg-dark hover:text-bg transition-all duration-300">
+        {site.hero_cta}
+        <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
+      </a>
+    </div>
+  </section>
+
   <Footer />
+
 </Base>

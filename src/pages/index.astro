@@ -4,135 +4,279 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 ---
-<Base>
-  <Header />
-  <main>
+<Base title={site.seo_title} description={site.seo_description}>
 
-    <!-- Hero -->
-    <section class="pt-20 pb-24 px-6 bg-[var(--color-surface)] overflow-hidden">
-      <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-        <div class="space-y-7" data-animate>
-          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--color-primary)]/5 border border-[var(--color-primary)]/10 text-[var(--color-primary)] text-xs font-medium">
-            <iconify-icon icon="solar:star-fall-linear"></iconify-icon>
-            {site.hero_badge}
-          </div>
-          <h1 class="font-display text-5xl lg:text-6xl font-medium tracking-tight text-[var(--color-text)] leading-[1.1]">
-            {site.hero_title_italic === 'true'
-              ? <Fragment set:html={site.hero_title.replace(/(\w+\s+\w+)$/, '<em class="text-[var(--color-accent)]">$1</em>')} />
-              : site.hero_title
-            }
-          </h1>
-          <p class="text-lg text-[var(--color-text-muted)] max-w-lg leading-relaxed">{site.hero_subtitle}</p>
-          <div class="flex flex-wrap gap-4 pt-2">
-            <a href={site.hero_cta_primary_href}
-              class="bg-[var(--color-primary)] text-white px-7 py-3.5 rounded-xl text-sm font-medium hover:opacity-90 transition-all shadow-md flex items-center gap-2">
-              {site.hero_cta_primary}
-              <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
-            </a>
-            <a href="/contact"
-              class="border border-[var(--color-primary)] text-[var(--color-primary)] px-7 py-3.5 rounded-xl text-sm font-medium hover:bg-[var(--color-primary)]/5 transition-all">
-              {site.hero_cta_secondary}
-            </a>
-          </div>
-          <div class="flex gap-8 pt-2">
-            {[
-              [site.hero_stat1_value, site.hero_stat1_label],
-              [site.hero_stat2_value, site.hero_stat2_label],
-              [site.hero_stat3_value, site.hero_stat3_label],
-            ].filter(([v]) => v).map(([v, l]) => (
-              <div>
-                <div class="font-display text-3xl font-medium text-[var(--color-primary)]">{v}</div>
-                <div class="text-xs text-[var(--color-text-muted)] mt-1">{l}</div>
-              </div>
-            ))}
-          </div>
+  <Header />
+
+  <!-- Hero -->
+  <section class="relative min-h-screen flex items-center overflow-hidden">
+    <div class="absolute inset-0">
+      <img src={site.hero_image} alt={site.hero_title2} class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-dark/20"></div>
+    </div>
+    <div class="relative z-10 max-w-7xl mx-auto px-8 w-full grid md:grid-cols-2 items-center gap-12 pt-24">
+      <div>
+        <div class="flex items-center gap-4 mb-8">
+          <span class="font-sans text-xs tracking-[0.2em] uppercase text-white/80 border border-white/30 px-4 py-1.5">{site.hero_badge}</span>
         </div>
-        <div class="relative h-[480px] flex items-center justify-end" data-animate="fade-left">
-          <div class="absolute inset-0 bg-[var(--color-surface)] rounded-[60%_40%_30%_70%/60%_30%_70%_40%] opacity-60 blur-3xl scale-90 translate-x-10"></div>
-          {site.hero_image_url
-            ? <img src={site.hero_image_url} alt={site.company_name}
-                class="hero-image relative z-10 w-[85%] h-full object-cover shadow-2xl border-4 border-white" style="border-radius:60% 40% 30% 70% / 60% 30% 70% 40%" />
-            : <div class="hero-image relative z-10 w-[85%] h-full bg-[var(--color-primary)]/10 flex items-center justify-center" style="border-radius:60% 40% 30% 70% / 60% 30% 70% 40%">
-                <span class="font-display text-2xl text-[var(--color-primary)]/40">{site.company_name}</span>
-              </div>
-          }
+        <h1 class="font-serif text-6xl md:text-8xl font-light leading-tight text-white mb-2">
+          {site.hero_title1}
+        </h1>
+        <h1 class="font-serif text-6xl md:text-8xl font-light italic leading-tight text-white mb-8">
+          {site.hero_title2}
+        </h1>
+        <p class="font-sans text-sm font-light leading-relaxed text-white/80 max-w-sm mb-10 tracking-wide">
+          {site.hero_subtitle}
+        </p>
+        <a href={`mailto:${site.email}`} class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.18em] uppercase text-white border border-white/60 px-8 py-4 hover:bg-white hover:text-dark transition-all duration-300">
+          {site.hero_cta}
+          <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
+        </a>
+      </div>
+      <div class="hidden md:flex justify-end items-end">
+        <div class="relative w-16 h-16">
+          <div class="w-16 h-16 rounded-full border border-white/40 flex items-center justify-center animate-spin" style="animation-duration: 12s;">
+            <svg viewBox="0 0 100 100" class="w-full h-full absolute inset-0">
+              <defs>
+                <path id="circlePath" d="M 50,50 m -30,0 a 30,30 0 1,1 60,0 a 30,30 0 1,1 -60,0"/>
+              </defs>
+              <text class="fill-white/70" font-size="10" font-family="Jost" letter-spacing="3">
+                <textPath href="#circlePath">{site.hero_badge_rotating} · {site.hero_badge_rotating} ·</textPath>
+              </text>
+            </svg>
+          </div>
         </div>
       </div>
-    </section>
+    </div>
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10">
+      <span class="font-sans text-xs tracking-[0.2em] uppercase text-white/50">Découvrir</span>
+      <div class="w-px h-12 bg-white/30"></div>
+    </div>
+  </section>
 
-    <!-- Services -->
-    <section class="py-24 px-6">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-14" data-animate>
-          <span class="text-xs font-semibold uppercase tracking-widest text-[var(--color-accent)]">{site.services_subtitle}</span>
-          <h2 class="font-display text-4xl font-medium text-[var(--color-text)] mt-3">{site.services_title}</h2>
+  <!-- Press -->
+  <section class="py-12 bg-dark">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16">
+        <span class="font-sans text-xs tracking-[0.22em] uppercase text-white/30 whitespace-nowrap">{site.press_label}</span>
+        <div class="w-px h-6 bg-white/20 hidden md:block"></div>
+        <div class="flex items-center gap-10 md:gap-16 flex-wrap justify-center md:justify-start">
+          <span class="font-serif text-2xl font-light italic tracking-wide text-white/60 hover:text-white/90 transition-colors cursor-default">{site.press1}</span>
+          <span class="font-serif text-2xl font-light tracking-[0.15em] text-white/60 hover:text-white/90 transition-colors cursor-default">{site.press2}</span>
+          <span class="font-serif text-2xl font-light italic tracking-wide text-white/60 hover:text-white/90 transition-colors cursor-default">{site.press3}</span>
+          <span class="font-serif text-2xl font-light tracking-[0.15em] text-white/60 hover:text-white/90 transition-colors cursor-default">{site.press4}</span>
         </div>
-        <div class="grid md:grid-cols-3 gap-6">
-          {[
-            { title: site.service1_title, desc: site.service1_desc, details: [site.service1_detail1, site.service1_detail2, site.service1_detail3] },
-            { title: site.service2_title, desc: site.service2_desc, details: [site.service2_detail1, site.service2_detail2, site.service2_detail3] },
-            { title: site.service3_title, desc: site.service3_desc, details: [site.service3_detail1, site.service3_detail2, site.service3_detail3] },
-          ].map((s, i) => (
-            <div class="service-card bg-[var(--color-surface)] rounded-2xl p-7 hover:shadow-lg transition-shadow" data-animate style={`transition-delay: ${i * 100}ms`}>
-              <h3 class="font-display text-xl font-medium text-[var(--color-primary)] mb-3">{s.title}</h3>
-              <p class="text-sm text-[var(--color-text-muted)] mb-5 leading-relaxed">{s.desc}</p>
-              <ul class="space-y-2">
-                {s.details.filter(Boolean).map(d => (
-                  <li class="flex items-center gap-2 text-sm text-[var(--color-text)]">
-                    <iconify-icon icon="solar:check-circle-linear" class="text-[var(--color-accent)] shrink-0"></iconify-icon>
-                    {d}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about" class="py-28 md:py-36">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="grid md:grid-cols-2 gap-16 md:gap-24 items-center">
+        <div class="relative">
+          <img src={site.about_image} alt={site.about_title2} class="w-full aspect-[3/4] object-cover" />
+          <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-pink hidden md:block"></div>
         </div>
-        <div class="text-center mt-10" data-animate>
-          <a href="/services" class="border border-[var(--color-primary)] text-[var(--color-primary)] px-6 py-3 rounded-xl text-sm font-medium hover:bg-[var(--color-primary)]/5 transition-all">
-            Voir tous nos services
+        <div>
+          <span class="font-sans text-xs tracking-[0.22em] uppercase text-muted mb-6 block">{site.about_badge}</span>
+          <h2 class="font-serif text-5xl md:text-6xl font-light leading-tight text-dark mb-2">
+            {site.about_title}
+          </h2>
+          <h2 class="font-serif text-5xl md:text-6xl font-light italic leading-tight text-dark mb-10">
+            {site.about_title2}
+          </h2>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted mb-6 tracking-wide">
+            {site.about_text1}
+          </p>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted mb-10 tracking-wide">
+            {site.about_text2}
+          </p>
+          <a href={`mailto:${site.email}`} class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.18em] uppercase text-dark hover:opacity-60 transition-opacity">
+            {site.about_cta}
+            <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
           </a>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Témoignages -->
-    <section class="py-24 px-6 bg-[var(--color-surface)]">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-14" data-animate>
-          <span class="text-xs font-semibold uppercase tracking-widest text-[var(--color-accent)]">Avis clients</span>
-          <h2 class="font-display text-4xl font-medium text-[var(--color-text)] mt-3">{site.testimonials_title}</h2>
+  <!-- Portfolio -->
+  <section id="portfolio" class="py-28 bg-sand/20">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="mb-16">
+        <span class="font-sans text-xs tracking-[0.22em] uppercase text-muted mb-4 block">{site.portfolio_badge}</span>
+        <h2 class="font-serif text-5xl md:text-6xl font-light text-dark">
+          {site.portfolio_title} <em class="italic">{site.portfolio_title_em}</em>
+        </h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="group cursor-default">
+          <div class="overflow-hidden mb-5">
+            <img src={site.portfolio1_image} alt={site.portfolio1_title} class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700" />
+          </div>
+          <h3 class="font-serif text-xl font-light text-dark mb-1">{site.portfolio1_title}</h3>
+          <span class="font-sans text-xs tracking-[0.15em] uppercase text-muted">{site.portfolio1_flavor}</span>
         </div>
-        <div class="grid md:grid-cols-3 gap-6">
-          {[
-            { name: site.testimonial1_name, role: site.testimonial1_role, text: site.testimonial1_text, rating: site.testimonial1_rating },
-            { name: site.testimonial2_name, role: site.testimonial2_role, text: site.testimonial2_text, rating: site.testimonial2_rating },
-            { name: site.testimonial3_name, role: site.testimonial3_role, text: site.testimonial3_text, rating: site.testimonial3_rating },
-          ].map((t, i) => (
-            <div class="service-card bg-white rounded-2xl p-7 shadow-sm" data-animate style={`transition-delay: ${i * 100}ms`}>
-              <div class="text-[var(--color-accent)] text-lg mb-4">{'★'.repeat(Number(t.rating) || 5)}</div>
-              <p class="text-sm text-[var(--color-text)] leading-relaxed mb-5">« {t.text} »</p>
-              <div>
-                <div class="font-semibold text-sm text-[var(--color-primary)]">{t.name}</div>
-                <div class="text-xs text-[var(--color-text-muted)]">{t.role}</div>
-              </div>
-            </div>
-          ))}
+        <div class="group cursor-default md:mt-12">
+          <div class="overflow-hidden mb-5">
+            <img src={site.portfolio2_image} alt={site.portfolio2_title} class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700" />
+          </div>
+          <h3 class="font-serif text-xl font-light text-dark mb-1">{site.portfolio2_title}</h3>
+          <span class="font-sans text-xs tracking-[0.15em] uppercase text-muted">{site.portfolio2_flavor}</span>
+        </div>
+        <div class="group cursor-default">
+          <div class="overflow-hidden mb-5">
+            <img src={site.portfolio3_image} alt={site.portfolio3_title} class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700" />
+          </div>
+          <h3 class="font-serif text-xl font-light text-dark mb-1">{site.portfolio3_title}</h3>
+          <span class="font-sans text-xs tracking-[0.15em] uppercase text-muted">{site.portfolio3_flavor}</span>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- CTA -->
-    <section class="py-20 px-6 bg-[var(--color-primary)]">
-      <div class="max-w-3xl mx-auto text-center" data-animate>
-        <h2 class="font-display text-4xl font-medium text-white mb-4">{site.cta_title}</h2>
-        <p class="text-white/75 mb-8">{site.cta_subtitle}</p>
-        <a href={site.cta_primary_href}
-          class="bg-white text-[var(--color-primary)] px-8 py-4 rounded-xl font-semibold text-sm hover:bg-white/90 transition-all shadow-lg inline-block">
-          {site.cta_primary}
-        </a>
+  <!-- Process -->
+  <section id="process" class="py-28 md:py-36">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="text-center mb-20">
+        <span class="font-sans text-xs tracking-[0.22em] uppercase text-muted mb-4 block">{site.process_badge}</span>
+        <h2 class="font-serif text-5xl md:text-6xl font-light text-dark mb-5">{site.process_title}</h2>
+        <p class="font-sans text-sm font-light leading-relaxed text-muted max-w-xl mx-auto tracking-wide">{site.process_subtitle}</p>
       </div>
-    </section>
+      <div class="grid md:grid-cols-4 gap-10 md:gap-8">
+        <div class="relative">
+          <div class="font-serif text-8xl font-light text-sand leading-none mb-6 select-none">01</div>
+          <div class="w-10 h-px bg-dark/20 mb-6"></div>
+          <h3 class="font-serif text-2xl font-light text-dark mb-3">{site.step1_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.step1_desc}</p>
+        </div>
+        <div class="relative">
+          <div class="font-serif text-8xl font-light text-sand leading-none mb-6 select-none">02</div>
+          <div class="w-10 h-px bg-dark/20 mb-6"></div>
+          <h3 class="font-serif text-2xl font-light text-dark mb-3">{site.step2_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.step2_desc}</p>
+        </div>
+        <div class="relative">
+          <div class="font-serif text-8xl font-light text-sand leading-none mb-6 select-none">03</div>
+          <div class="w-10 h-px bg-dark/20 mb-6"></div>
+          <h3 class="font-serif text-2xl font-light text-dark mb-3">{site.step3_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.step3_desc}</p>
+        </div>
+        <div class="relative">
+          <div class="font-serif text-8xl font-light text-sand leading-none mb-6 select-none">04</div>
+          <div class="w-10 h-px bg-dark/20 mb-6"></div>
+          <h3 class="font-serif text-2xl font-light text-dark mb-3">{site.step4_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.step4_desc}</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-  </main>
+  <!-- Saveurs -->
+  <section id="flavors" class="py-28 bg-cream/30">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="mb-16">
+        <h2 class="font-serif text-5xl md:text-6xl font-light text-dark">
+          {site.flavors_title} <em class="italic">{site.flavors_title_em}</em>
+        </h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-px bg-sand/50">
+        <div class="bg-bg p-10 md:p-12 hover:bg-pink/20 transition-colors duration-300">
+          <span class="font-sans text-xs tracking-[0.18em] uppercase text-muted border border-sand px-3 py-1 mb-8 inline-block">{site.flavor1_tag}</span>
+          <h3 class="font-serif text-2xl font-light text-dark mb-4">{site.flavor1_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.flavor1_desc}</p>
+        </div>
+        <div class="bg-bg p-10 md:p-12 hover:bg-pink/20 transition-colors duration-300">
+          <span class="font-sans text-xs tracking-[0.18em] uppercase text-muted border border-sand px-3 py-1 mb-8 inline-block">{site.flavor2_tag}</span>
+          <h3 class="font-serif text-2xl font-light text-dark mb-4">{site.flavor2_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.flavor2_desc}</p>
+        </div>
+        <div class="bg-bg p-10 md:p-12 hover:bg-pink/20 transition-colors duration-300">
+          <span class="font-sans text-xs tracking-[0.18em] uppercase text-muted border border-sand px-3 py-1 mb-8 inline-block">{site.flavor3_tag}</span>
+          <h3 class="font-serif text-2xl font-light text-dark mb-4">{site.flavor3_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.flavor3_desc}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Témoignage -->
+  <section class="py-28 md:py-36 bg-dark">
+    <div class="max-w-5xl mx-auto px-8 text-center">
+      <span class="iconify text-sand/40 mb-10 block mx-auto" data-icon="lucide:quote" data-width="40"></span>
+      <blockquote class="font-serif text-3xl md:text-4xl font-light italic leading-relaxed text-white/90 mb-12">
+        &ldquo;{site.testimonial_text}&rdquo;
+      </blockquote>
+      <div class="flex items-center justify-center gap-5">
+        <img src={site.testimonial_image} alt={site.testimonial_name} class="w-12 h-12 rounded-full object-cover grayscale opacity-60" />
+        <div class="text-left">
+          <p class="font-serif text-base font-light text-white/80">{site.testimonial_name}</p>
+          <p class="font-sans text-xs tracking-[0.15em] uppercase text-white/30">{site.testimonial_date}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="contact" class="py-28 md:py-36">
+    <div class="max-w-3xl mx-auto px-8">
+      <div class="mb-16 text-center">
+        <h2 class="font-serif text-5xl md:text-6xl font-light text-dark mb-4">{site.faq_title}</h2>
+        <p class="font-sans text-sm font-light text-muted tracking-wide">{site.faq_subtitle}</p>
+      </div>
+      <div class="divide-y divide-sand/60">
+        <div class="faq-item py-7">
+          <button class="faq-trigger w-full flex items-center justify-between text-left gap-6">
+            <span class="font-serif text-xl font-light text-dark">{site.faq1_q}</span>
+            <span class="iconify faq-icon flex-shrink-0 text-muted transition-transform duration-300" data-icon="lucide:plus" data-width="18"></span>
+          </button>
+          <div class="faq-answer hidden pt-5">
+            <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.faq1_a}</p>
+          </div>
+        </div>
+        <div class="faq-item py-7">
+          <button class="faq-trigger w-full flex items-center justify-between text-left gap-6">
+            <span class="font-serif text-xl font-light text-dark">{site.faq2_q}</span>
+            <span class="iconify faq-icon flex-shrink-0 text-muted transition-transform duration-300" data-icon="lucide:plus" data-width="18"></span>
+          </button>
+          <div class="faq-answer hidden pt-5">
+            <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.faq2_a}</p>
+          </div>
+        </div>
+        <div class="faq-item py-7">
+          <button class="faq-trigger w-full flex items-center justify-between text-left gap-6">
+            <span class="font-serif text-xl font-light text-dark">{site.faq3_q}</span>
+            <span class="iconify faq-icon flex-shrink-0 text-muted transition-transform duration-300" data-icon="lucide:plus" data-width="18"></span>
+          </button>
+          <div class="faq-answer hidden pt-5">
+            <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.faq3_a}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <Footer />
+
+  <script is:inline>
+    document.querySelectorAll('.faq-item').forEach(function(item) {
+      var trigger = item.querySelector('.faq-trigger');
+      var answer = item.querySelector('.faq-answer');
+      var icon = item.querySelector('.faq-icon');
+      trigger.addEventListener('click', function() {
+        var isOpen = !answer.classList.contains('hidden');
+        document.querySelectorAll('.faq-answer').forEach(function(a) { a.classList.add('hidden'); });
+        document.querySelectorAll('.faq-icon').forEach(function(i) {
+          i.setAttribute('data-icon', 'lucide:plus');
+          i.style.transform = '';
+        });
+        if (!isOpen) {
+          answer.classList.remove('hidden');
+          icon.setAttribute('data-icon', 'lucide:minus');
+        }
+      });
+    });
+  </script>
+
 </Base>

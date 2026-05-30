@@ -4,21 +4,31 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 ---
-<Base title="Message envoyé" noindex={true}>
+<Base title={`Message reçu — ${site.company_name}`} description={`Merci pour votre message. ${site.company_name} vous contactera prochainement.`}>
+
   <Header />
-  <main class="min-h-[60vh] flex items-center justify-center px-6">
-    <div class="text-center max-w-md" data-animate>
-      <div class="w-16 h-16 bg-[var(--color-accent)] rounded-full flex items-center justify-center mx-auto mb-6">
-        <iconify-icon icon="solar:check-circle-linear" class="text-3xl text-white"></iconify-icon>
-      </div>
-      <h1 class="font-display text-3xl font-medium text-[var(--color-primary)] mb-4">Message envoyé !</h1>
-      <p class="text-[var(--color-text-muted)] leading-relaxed mb-8">
-        Merci de nous avoir contactés. Nous reviendrons vers vous dans les plus brefs délais.
+
+  <section class="min-h-screen flex items-center justify-center py-40 px-8">
+    <div class="text-center max-w-xl">
+      <div class="w-16 h-px bg-sand mx-auto mb-12"></div>
+      <span class="font-sans text-xs tracking-[0.22em] uppercase text-muted mb-6 block">Confirmation</span>
+      <h1 class="font-serif text-5xl md:text-6xl font-light text-dark mb-6 leading-tight">
+        Message <em class="italic">reçu</em>
+      </h1>
+      <p class="font-sans text-sm font-light leading-relaxed text-muted mb-4 tracking-wide">
+        Merci de nous avoir contactés. Nous avons bien reçu votre demande et nous vous répondrons dans les plus brefs délais.
       </p>
-      <a href="/" class="bg-[var(--color-primary)] text-white px-7 py-3 rounded-xl font-medium text-sm hover:opacity-90 transition-all inline-block">
+      <p class="font-sans text-sm font-light leading-relaxed text-muted mb-12 tracking-wide">
+        {site.footer_tagline}
+      </p>
+      <div class="w-16 h-px bg-sand mx-auto mb-12"></div>
+      <a href="/" class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.18em] uppercase text-dark hover:opacity-60 transition-opacity">
         Retour à l'accueil
+        <span class="iconify" data-icon="lucide:arrow-left" data-width="14"></span>
       </a>
     </div>
-  </main>
+  </section>
+
   <Footer />
+
 </Base>
