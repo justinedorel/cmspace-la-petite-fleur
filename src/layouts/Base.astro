@@ -1,113 +1,104 @@
 ---
-import '../styles/global.css';
-const { title, description, image } = Astro.props;
+import site from '../data/site.json';
+const { title, description } = Astro.props;
 ---
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" style={`--primary: ${site.color_primary}; --accent: ${site.color_accent}; --bg: ${site.color_bg}; --dark: ${site.color_dark};`}>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>{title}</title>
-  <meta name="description" content={description} />
-  <!-- OG / Twitter -->
-  <meta property="og:type" content="website" />
-  <meta property="og:title" content={title} />
-  <meta property="og:description" content={description} />
-  {image && <meta property="og:image" content={image} />}
-  <meta property="og:locale" content="fr_FR" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content={title} />
-  <meta name="twitter:description" content={description} />
-  {image && <meta name="twitter:image" content={image} />}
-  <!-- Fonts -->
+  <title>{title || site.seo_title}</title>
+    <meta property="og:type"    content="website" />
+    <meta property="og:title"   content="{title}" />
+    <meta property="og:locale"  content="fr_FR" />
+    <meta name="twitter:card"   content="summary_large_image" />
+  <meta name="description" content={description || site.seo_description} />
+  <script is:inline src="https://cdn.tailwindcss.com"></script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Playball&display=swap" rel="stylesheet" />
-  <!-- Iconify -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet" />
   <script is:inline src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <style>
-    :root {
-      --color-brown:  #4A3219;
-      --color-gold:   #EAB308;
-      --color-cream:  #FFF8E7;
-      --color-white:  #FFFFFF;
-    }
-
-    *, *::before, *::after { box-sizing: border-box; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Inter', sans-serif;
-      background-color: #ffffff;
-      color: #4A3219;
-      -webkit-font-smoothing: antialiased;
-    }
-
-    .font-cursive { font-family: 'Playball', cursive; }
-
-    ::-webkit-scrollbar { width: 0; background: transparent; }
-
-    /* Scroll reveal */
+    body { font-family: 'Inter', sans-serif; background-color: var(--bg); color: var(--dark); -webkit-font-smoothing: antialiased; }
+    h1,h2,h3,h4,h5,h6,.font-heading { font-family: 'Manrope', sans-serif; }
+    ::selection { background: var(--primary); color: white; }
+    ::-webkit-scrollbar { width: 8px; height: 8px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 4px; }
+    @keyframes float { 0%,100% { transform: translateY(0) rotate(2deg); } 50% { transform: translateY(-15px) rotate(1deg); } }
+    .animate-float { animation: float 6s ease-in-out infinite; }
+    @keyframes glow { 0%,100% { box-shadow: 0 0 10px rgba(232,217,181,0.2); border-color: rgba(255,255,255,0.2); } 50% { box-shadow: 0 0 30px rgba(232,217,181,0.6); border-color: rgba(232,217,181,0.5); } }
+    .animate-glow { animation: glow 3s infinite; }
+    .glass-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.2); }
+    .reveal-on-hover .reveal-content { max-height: 0; opacity: 0; transition: all 0.5s cubic-bezier(0.4,0,0.2,1); overflow: hidden; }
+    .reveal-on-hover:hover .reveal-content { max-height: 250px; opacity: 1; margin-top: 1rem; }
+    @keyframes marquee { 0% { transform: translateX(0%); } 100% { transform: translateX(-50%); } }
+  
+    /* ─── Scroll reveal ──────────────────────────────────────── */
     .reveal, .reveal-left, .reveal-right {
       opacity: 0;
-      transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1),
-                  transform 0.9s cubic-bezier(0.16,1,0.3,1);
+      transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1);
     }
-    .reveal        { transform: translateY(36px); }
-    .reveal-left   { transform: translateX(-36px); }
-    .reveal-right  { transform: translateX(36px); }
-    .reveal.visible,
-    .reveal-left.visible,
-    .reveal-right.visible { opacity: 1; transform: none; }
-    .reveal-d1 { transition-delay: 0.08s; }
-    .reveal-d2 { transition-delay: 0.16s; }
-    .reveal-d3 { transition-delay: 0.24s; }
-    .reveal-d4 { transition-delay: 0.32s; }
-
-    /* Line grow */
-    .line-grow {
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.8s cubic-bezier(0.16,1,0.3,1) 0.2s;
-    }
-    .line-grow.visible { transform: scaleX(1); }
-
-    /* Marquee */
-    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-    .marquee-track { display: flex; white-space: nowrap; animation: marquee 28s linear infinite; }
-
-    /* Hero parallax target */
-    .hero-bg { will-change: transform; }
-  </style>
+    .reveal { transform: translateY(36px); }
+    .reveal-left  { transform: translateX(-36px); }
+    .reveal-right { transform: translateX(36px); }
+    .reveal.visible, .reveal-left.visible, .reveal-right.visible { opacity:1; transform:none; }
+    .reveal-d1 { transition-delay:0.08s; } .reveal-d2 { transition-delay:0.16s; }
+    .reveal-d3 { transition-delay:0.24s; } .reveal-d4 { transition-delay:0.32s; }
+    /* ─── Marquee ─────────────────────────────────────────────── */
+    @keyframes marquee { from { transform:translateX(0); } to { transform:translateX(-50%); } }
+    .marquee-track { display:flex; white-space:nowrap; animation:marquee 28s linear infinite; }
+    /* ─── Parallax ────────────────────────────────────────────── */
+    .hero-bg { will-change:transform; }
+    /* ─── FAQ smooth ──────────────────────────────────────────── */
+    .faq-answer-smooth { display:grid; grid-template-rows:0fr; transition:grid-template-rows 0.4s ease; }
+    .faq-answer-smooth.open { grid-template-rows:1fr; }
+    .faq-inner { overflow:hidden; }
+    /* ─── Line animate ────────────────────────────────────────── */
+    .line-grow { transform:scaleX(0); transform-origin:left;
+      transition:transform 0.8s cubic-bezier(0.16,1,0.3,1) 0.2s; }
+    .line-grow.visible { transform:scaleX(1); }
+    /* ─── Portfolio hover ─────────────────────────────────────── */
+    .portfolio-overlay { position:absolute; inset:0; background:rgba(0,0,0,0);
+      transition:background 0.5s ease; display:flex; align-items:flex-end; padding:1.5rem; }
+    .portfolio-card:hover .portfolio-overlay { background:rgba(0,0,0,0.5); }
+    .portfolio-overlay-inner { transform:translateY(1rem); opacity:0;
+      transition:transform 0.5s ease, opacity 0.5s ease; }
+    .portfolio-card:hover .portfolio-overlay-inner { transform:translateY(0); opacity:1; }
+    </style>
 </head>
 <body>
   <slot />
+  <script is:inline src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', function() {
+      if (typeof AOS !== 'undefined') AOS.init({ once: true, duration: 800, offset: 50 });
+    });
+  </script>
 
   <script is:inline>
-    // Scroll reveal
-    (function () {
-      var obs = new IntersectionObserver(function (entries) {
-        entries.forEach(function (e) {
-          if (e.isIntersecting) {
-            e.target.classList.add('visible');
-            obs.unobserve(e.target);
-          }
+    // ── Scroll reveal ──────────────────────────────────────────────────
+    (function() {
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
         });
       }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-      document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .line-grow')
-        .forEach(function (el) { obs.observe(el); });
+      document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .line-grow').forEach(function(el) {
+        obs.observe(el);
+      });
     })();
 
-    // Parallax hero
-    (function () {
+    // ── Parallax hero ──────────────────────────────────────────────────
+    (function() {
       var heroBg = document.querySelector('.hero-bg');
       if (!heroBg) return;
       var ticking = false;
-      window.addEventListener('scroll', function () {
+      window.addEventListener('scroll', function() {
         if (!ticking) {
-          requestAnimationFrame(function () {
-            heroBg.style.transform = 'translateY(' + (window.scrollY * 0.25) + 'px)';
+          requestAnimationFrame(function() {
+            heroBg.style.transform = 'translateY(' + (window.scrollY * 0.32) + 'px)';
             ticking = false;
           });
           ticking = true;
@@ -115,10 +106,10 @@ const { title, description, image } = Astro.props;
       }, { passive: true });
     })();
 
-    // Stat counters
-    (function () {
-      var statObs = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
+    // ── Compteurs animés ───────────────────────────────────────────────
+    (function() {
+      var statObs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(entry) {
           if (!entry.isIntersecting) return;
           var el = entry.target;
           var target = parseInt(el.dataset.target);
@@ -134,7 +125,7 @@ const { title, description, image } = Astro.props;
           statObs.unobserve(el);
         });
       }, { threshold: 0.5 });
-      document.querySelectorAll('.stat-counter').forEach(function (el) { statObs.observe(el); });
+      document.querySelectorAll('.stat-counter').forEach(function(el) { statObs.observe(el); });
     })();
   </script>
 </body>

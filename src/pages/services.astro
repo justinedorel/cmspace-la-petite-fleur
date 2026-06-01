@@ -2,221 +2,124 @@
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
-import Cta from '../components/Cta.astro';
 import site from '../data/site.json';
-
-const waLink = "https://wa.me/" + site.phone.replace(/\s+/g, '').replace('+', '');
-
-const categories = [
-  {
-    slug: 'gateaux',
-    cursive: 'Nos',
-    title: 'Gâteaux',
-    icon: 'solar:star-bold',
-    items: [
-      {
-        name: site.product2_cursive + ' ' + site.product2_title,
-        price: site.product2_price,
-        price_original: site.product2_price_original,
-        rating: site.product2_rating,
-        desc: site.product2_desc,
-        image: site.product2_image,
-      },
-      {
-        name: site.hero_cursive + ' ' + site.hero_title,
-        price: site.hero_price,
-        price_original: site.hero_price_original,
-        rating: site.hero_rating,
-        desc: site.hero_desc,
-        image: site.hero_image,
-      },
-      {
-        name: 'Fondant Chocolat',
-        price: '22€',
-        price_original: '30€',
-        rating: '4.9',
-        desc: "Un cœur coulant au chocolat noir intense, enveloppé d'une coque dorée. Servi tiède avec une quenelle de crème fraîche.",
-        image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=800&auto=format&fit=crop',
-      },
-    ],
-  },
-  {
-    slug: 'tartelettes',
-    cursive: 'Nos',
-    title: 'Tartelettes',
-    icon: 'solar:sun-bold',
-    items: [
-      {
-        name: site.product1_cursive + ' ' + site.product1_title,
-        price: site.product1_price,
-        price_original: site.product1_price_original,
-        rating: site.product1_rating,
-        desc: site.product1_desc,
-        image: site.product1_image,
-      },
-      {
-        name: 'Tartelette Fraise',
-        price: '4€',
-        price_original: '7€',
-        rating: '4.7',
-        desc: 'Crème pâtissière légère à la vanille de Madagascar, garnie de fraises fraîches de saison sur pâte sablée maison.',
-        image: 'https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?q=80&w=800&auto=format&fit=crop',
-      },
-      {
-        name: 'Tartelette Caramel Beurre Salé',
-        price: '4.50€',
-        price_original: '8€',
-        rating: '4.8',
-        desc: 'Pâte sablée croustillante, ganache au caramel onctueux, éclats de fleur de sel de Guérande et pralin croustillant.',
-        image: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?q=80&w=800&auto=format&fit=crop',
-      },
-    ],
-  },
-  {
-    slug: 'macarons',
-    cursive: 'Nos',
-    title: 'Macarons',
-    icon: 'solar:heart-bold',
-    items: [
-      {
-        name: site.product3_cursive + ' ' + site.product3_title,
-        price: site.product3_price,
-        price_original: site.product3_price_original,
-        rating: site.product3_rating,
-        desc: site.product3_desc,
-        image: site.product3_image,
-      },
-      {
-        name: 'Coffret Macarons Assortis',
-        price: '28€',
-        price_original: '38€',
-        rating: '5.0',
-        desc: 'Coffret de 12 macarons aux saveurs variées : vanille, chocolat, pistache, framboise, café et caramel beurre salé.',
-        image: 'https://images.unsplash.com/photo-1502741224143-90386d7f8c82?q=80&w=800&auto=format&fit=crop',
-      },
-    ],
-  },
-  {
-    slug: 'coffrets',
-    cursive: 'Nos',
-    title: 'Coffrets Cadeaux',
-    icon: 'solar:gift-linear',
-    items: [
-      {
-        name: 'Coffret Découverte',
-        price: '35€',
-        price_original: '50€',
-        rating: '5.0',
-        desc: 'Un assortiment de nos meilleures créations : 1 cake, 2 tartelettes et 6 macarons, emballés dans notre boîte kraft signature avec ruban doré.',
-        image: 'https://images.unsplash.com/photo-1488477304112-4944851de03d?q=80&w=800&auto=format&fit=crop',
-      },
-      {
-        name: 'Coffret Prestige',
-        price: '65€',
-        price_original: '85€',
-        rating: '5.0',
-        desc: 'Notre coffret haut de gamme : 1 gâteau entier, 6 tartelettes, 12 macarons et 1 tablette de chocolat artisanal. Parfait pour les grandes occasions.',
-        image: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?q=80&w=800&auto=format&fit=crop',
-      },
-    ],
-  },
-];
 ---
-<Base title={"Nos Créations — " + site.seo_title} description={"Découvrez toutes nos créations artisanales : gâteaux, tartelettes, macarons et coffrets cadeaux. " + site.seo_description} image={site.hero_image}>
-  <Header />
+<Base title={`Services — ${site.company_name}`} description={site.seo_description}>
 
-  <!-- Hero page -->
-  <section class="bg-white py-16 lg:py-20 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 text-center reveal">
-      <div class="font-cursive text-[#EAB308] text-6xl leading-none mb-2">Nos</div>
-      <h1 class="text-5xl lg:text-6xl font-black uppercase text-[#4A3219] leading-none tracking-tight">Créations</h1>
-      <p class="mt-6 max-w-2xl mx-auto text-[#4A3219]/60 leading-relaxed">{site.tagline}</p>
+<Header />
+
+<!-- Page Hero -->
+<section class="py-24 relative overflow-hidden" style={`background-color: ${site.color_dark}; background-image: radial-gradient(900px 420px at 20% 10%, ${site.color_primary}40, transparent 60%), radial-gradient(800px 380px at 85% 35%, ${site.color_accent}2e, transparent 55%);`}>
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
+    <div class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-8">
+      <span class="w-2.5 h-2.5 rounded-full" style={`background-color: ${site.color_accent};`}></span>
+      <span class="text-xs font-bold tracking-widest uppercase" style={`color: ${site.color_accent};`}>Catalogue</span>
     </div>
-  </section>
-
-  <!-- Wave -->
-  <div class="w-full overflow-hidden leading-none">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" class="w-full h-14 block" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,0 C360,60 1080,0 1440,60 L1440,60 L0,60 Z" fill="#FFF8E7" />
-    </svg>
+    <h1 class="font-heading text-5xl sm:text-6xl font-bold tracking-tight text-white mb-6">
+      {site.services_title} <span class="italic font-light" style={`color: ${site.color_accent};`}>{site.services_title_italic}</span>
+    </h1>
+    <p class="text-white/70 text-xl font-light max-w-2xl mx-auto leading-relaxed">{site.seo_description}</p>
   </div>
+</section>
 
-  <!-- Catégories -->
-  {categories.map((cat, catIdx) => (
-    <section id={cat.slug} class={catIdx % 2 === 0 ? "bg-[#FFF8E7] py-16" : "bg-white py-16"}>
-      <div class="max-w-7xl mx-auto px-4">
-
-        <!-- Titre catégorie -->
-        <div class="flex items-center gap-4 mb-10 reveal">
-          <div class="flex items-center justify-center w-12 h-12 rounded-2xl bg-[#EAB308]/10 text-[#EAB308] shrink-0">
-            <iconify-icon icon={cat.icon} class="text-2xl"></iconify-icon>
+<!-- Services Grid -->
+<section class="py-32" style={`background-color: ${site.color_bg};`}>
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+      {[
+        { title: site.service1_title, desc: site.service1_desc, image: site.service1_image },
+        { title: site.service2_title, desc: site.service2_desc, image: site.service2_image },
+        { title: site.service3_title, desc: site.service3_desc, image: site.service3_image },
+        { title: site.service4_title, desc: site.service4_desc, image: site.service4_image },
+      ].map((s) => (
+        <div class="group relative overflow-hidden rounded-[2rem] shadow-lg border border-gray-100 bg-white flex flex-col">
+          <div class="relative overflow-hidden h-72">
+            <img src={s.image} alt={s.title} class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
           </div>
-          <div>
-            <div class="font-cursive text-[#EAB308] text-3xl leading-none">{cat.cursive}</div>
-            <h2 class="text-3xl font-black uppercase text-[#4A3219] leading-tight">{cat.title}</h2>
-          </div>
-        </div>
-
-        <!-- Produits -->
-        <div class="grid md:grid-cols-3 gap-6">
-          {cat.items.map((item, idx) => (
-            <div class={`bg-white rounded-3xl overflow-hidden border border-[#EAB308]/10 shadow-sm hover:shadow-md transition-shadow flex flex-col reveal reveal-d${idx + 1}`}>
-              <div class="relative h-48 overflow-hidden">
-                <img
-                  src={item.image}
-                  alt={item.name}
-                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-                  loading="lazy"
-                />
-                <div class="absolute top-3 right-3 bg-[#EAB308] text-white font-bold text-sm px-3 py-1 rounded-full shadow">
-                  {item.price}
-                  {item.price_original && (
-                    <span class="text-white/60 text-xs line-through ml-1">{item.price_original}</span>
-                  )}
-                </div>
-              </div>
-              <div class="p-5 flex flex-col gap-3 flex-1">
-                <h3 class="font-bold text-[#4A3219] text-lg leading-tight">{item.name}</h3>
-                <div class="flex items-center gap-1">
-                  <div class="flex text-[#EAB308] text-sm">
-                    <iconify-icon icon="solar:star-bold"></iconify-icon>
-                    <iconify-icon icon="solar:star-bold"></iconify-icon>
-                    <iconify-icon icon="solar:star-bold"></iconify-icon>
-                    <iconify-icon icon="solar:star-bold"></iconify-icon>
-                    <iconify-icon icon="solar:star-bold"></iconify-icon>
-                  </div>
-                  <span class="text-[#4A3219]/50 text-xs">{item.rating}/5</span>
-                </div>
-                <p class="text-[#4A3219]/60 text-sm leading-relaxed flex-1">{item.desc}</p>
-                <a href={waLink}
-                   target="_blank"
-                   rel="noopener noreferrer"
-                   class="mt-2 flex items-center justify-center gap-2 bg-[#EAB308] hover:bg-[#ca9b07] text-white font-semibold px-5 py-2.5 rounded-full transition-colors text-sm">
-                  <iconify-icon icon="mdi:whatsapp"></iconify-icon>
-                  Commander
-                </a>
-              </div>
+          <div class="p-8 flex flex-col flex-1">
+            <h3 class="font-heading text-2xl font-semibold mb-3 tracking-tight" style={`color: ${site.color_dark};`}>{s.title}</h3>
+            <p class="text-gray-500 font-light leading-relaxed flex-1">{s.desc}</p>
+            <div class="mt-6">
+              <a href="/contact" class="inline-flex items-center gap-2 text-sm font-semibold border-b-2 pb-0.5 transition-all" style={`color: ${site.color_primary}; border-color: ${site.color_primary};`}>
+                Demander un devis
+                <iconify-icon icon="solar:arrow-right-linear" width="16"></iconify-icon>
+              </a>
             </div>
-          ))}
+          </div>
         </div>
-
-      </div>
-    </section>
-  ))}
-
-  <!-- Navigation catégories (sticky bottom) -->
-  <div class="sticky bottom-4 z-40 flex justify-center pointer-events-none">
-    <nav class="pointer-events-auto flex items-center gap-2 bg-white/90 backdrop-blur border border-[#4A3219]/10 shadow-lg rounded-full px-4 py-2 text-xs font-semibold text-[#4A3219]/70">
-      {categories.map((cat) => (
-        <a href={"#" + cat.slug}
-           class="hover:text-[#EAB308] transition-colors px-2 py-1 rounded-full hover:bg-[#FFF8E7]">
-          {cat.title}
-        </a>
       ))}
-    </nav>
+    </div>
   </div>
+</section>
 
-  <Cta />
-  <Footer />
+<!-- Feature / Brand Showcase -->
+<section class="py-32 relative overflow-hidden" style={`background-color: #111827;`}>
+  <div class="absolute inset-0 opacity-40 mix-blend-overlay" style={`background-image: url('${site.feature_bg_image}'); background-size: cover; background-position: center; background-attachment: fixed;`}></div>
+  <div class="absolute -left-1/4 top-0 w-1/2 h-full blur-3xl opacity-60" style={`background: linear-gradient(to right, ${site.color_primary}, transparent);`}></div>
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-20 items-center">
+      <div data-aos="fade-right">
+        <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/5 backdrop-blur-md border border-white/10 mb-8">
+          <iconify-icon icon="solar:crown-star-bold-duotone" width="20" style={`color: ${site.color_accent};`}></iconify-icon>
+          <span class="text-xs font-bold tracking-widest uppercase" style={`color: ${site.color_accent};`}>{site.feature_badge}</span>
+        </div>
+        <h2 class="font-heading text-6xl sm:text-7xl font-semibold tracking-tighter text-white mb-6 leading-none">
+          {site.feature_name}<br />
+          <span class="italic font-light" style={`color: ${site.color_accent};`}>{site.feature_subtitle}</span>
+        </h2>
+        <p class="text-xl text-gray-300 mb-10 leading-relaxed max-w-lg font-light">{site.feature_desc}</p>
+        <div class="grid grid-cols-2 gap-6 mb-12">
+          <div class="bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-sm hover:bg-white/10 transition-colors">
+            <iconify-icon icon="solar:ruler-bold-duotone" width="36" class="mb-4" style={`color: ${site.color_accent};`}></iconify-icon>
+            <h4 class="text-lg text-white font-semibold mb-1">{site.feature_point1_title}</h4>
+            <p class="text-sm text-gray-400 font-light">{site.feature_point1_sub}</p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-sm hover:bg-white/10 transition-colors">
+            <iconify-icon icon="solar:hourglass-bold-duotone" width="36" class="mb-4" style={`color: ${site.color_accent};`}></iconify-icon>
+            <h4 class="text-lg text-white font-semibold mb-1">{site.feature_point2_title}</h4>
+            <p class="text-sm text-gray-400 font-light">{site.feature_point2_sub}</p>
+          </div>
+        </div>
+        <a href="/contact" class="text-base font-bold px-10 py-4 rounded-full hover:scale-105 transition-all inline-flex items-center gap-2" style={`background-color: ${site.color_accent}; color: ${site.color_dark}; box-shadow: 0 0 30px rgba(232,217,181,0.3);`}>
+          {site.feature_cta}
+          <iconify-icon icon="solar:box-bold-duotone" width="20"></iconify-icon>
+        </a>
+      </div>
+      <div class="relative flex justify-center" data-aos="zoom-in">
+        <div class="absolute inset-0 rounded-full blur-[120px] opacity-20" style={`background-color: ${site.color_accent};`}></div>
+        <div class="w-full max-w-sm relative group z-10 mx-auto">
+          <div class="transform rotate-3 group-hover:rotate-0 group-hover:-translate-y-4 group-hover:scale-105 transition-all duration-700 ease-out animate-float rounded-[2.5rem] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.6)] border border-white/10 relative cursor-pointer">
+            <img src={site.feature_image} alt={site.feature_name} class="w-full h-auto object-cover scale-105 group-hover:scale-100 transition-transform duration-700" />
+            <div class="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-white/20 pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity duration-700"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA Banner -->
+<section class="py-16" style={`background-color: ${site.color_dark};`}>
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+    <div class="rounded-[2.5rem] overflow-hidden border border-white/10 p-10 sm:p-12 relative" style={`background: linear-gradient(to bottom right, ${site.color_primary}, ${site.color_dark}, #111827);`}>
+      <div class="absolute -top-24 -right-24 w-72 h-72 blur-3xl rounded-full opacity-25" style={`background-color: ${site.color_accent};`}></div>
+      <div class="relative grid lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-8">
+          <h2 class="font-heading text-3xl sm:text-4xl font-semibold tracking-tight text-white">{site.cta_title}</h2>
+          <p class="text-white/70 text-lg font-light leading-relaxed mt-4 max-w-2xl">{site.cta_subtitle}</p>
+        </div>
+        <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-4 lg:items-end">
+          <a href="/contact" class="text-sm font-semibold px-8 py-4 rounded-full transition-colors inline-flex items-center justify-center gap-2" style={`background-color: ${site.color_accent}; color: ${site.color_primary}; box-shadow: 0 0 30px rgba(232,217,181,0.25);`}>
+            {site.cta_primary}
+            <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<Footer />
 
 </Base>

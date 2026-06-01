@@ -1,175 +1,219 @@
 ---
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
-import Gallery from '../components/Gallery.astro';
-import Cta from '../components/Cta.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
-
-const values = [
-  {
-    icon: 'solar:heart-linear',
-    title: 'Passion Artisanale',
-    desc: 'Chaque création est façonnée à la main avec soin et générosité, dans le respect des traditions pâtissières françaises transmises de génération en génération.',
-  },
-  {
-    icon: 'solar:leaf-linear',
-    title: 'Ingrédients Locaux',
-    desc: 'Nous sélectionnons minutieusement des ingrédients frais et locaux — farine bio, beurre de Normandie, fruits de saison — pour une qualité incomparable.',
-  },
-  {
-    icon: 'solar:star-linear',
-    title: 'Sur Mesure',
-    desc: 'Chaque commande est unique. Anniversaire, mariage, événement d\'entreprise : nous créons la pièce qui correspondra exactement à votre vision.',
-  },
-];
 ---
-<Base title={"Notre Histoire — " + site.seo_title} description={"Découvrez l'histoire de " + site.company_name + ", " + site.company_sub + ". " + site.story_text1} image={site.story_image}>
-  <Header />
+<Base title={`À propos — ${site.company_name}`} description={site.seo_description}>
 
-  <!-- Hero page -->
-  <section class="bg-white py-16 lg:py-24 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 text-center reveal">
-      <div class="font-cursive text-[#EAB308] text-6xl leading-none mb-2">{site.story_cursive}</div>
-      <h1 class="text-5xl lg:text-6xl font-black uppercase text-[#4A3219] leading-none tracking-tight">{site.story_title}</h1>
-      <p class="mt-6 max-w-xl mx-auto text-[#4A3219]/60 leading-relaxed">{site.tagline}</p>
+<Header />
+
+<!-- Page Hero -->
+<section class="py-24 relative overflow-hidden" style={`background-color: ${site.color_dark}; background-image: radial-gradient(900px 420px at 20% 10%, ${site.color_primary}40, transparent 60%), radial-gradient(800px 380px at 85% 35%, ${site.color_accent}2e, transparent 55%);`}>
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
+    <div class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-8">
+      <span class="w-2.5 h-2.5 rounded-full" style={`background-color: ${site.color_accent};`}></span>
+      <span class="text-xs font-bold tracking-widest uppercase" style={`color: ${site.color_accent};`}>Notre histoire</span>
     </div>
-  </section>
-
-  <!-- Wave -->
-  <div class="w-full overflow-hidden leading-none">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" class="w-full h-14 block" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,0 C360,60 1080,0 1440,60 L1440,60 L0,60 Z" fill="#FFF8E7" />
-    </svg>
+    <h1 class="font-heading text-5xl sm:text-6xl font-bold tracking-tight text-white mb-6">
+      {site.about_title} <span class="italic font-light" style={`color: ${site.color_accent};`}>{site.about_title_italic}</span>
+    </h1>
+    <p class="text-white/70 text-xl font-light max-w-2xl mx-auto leading-relaxed">{site.about_subtitle}</p>
   </div>
+</section>
 
-  <!-- Histoire longue -->
-  <section class="bg-[#FFF8E7] py-20 lg:py-32 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-16 items-center">
-
-      <!-- Image -->
-      <div class="relative flex justify-center reveal-left">
-        <div class="relative">
-          <div class="absolute -inset-8 bg-[#EAB308]/10 rounded-full blur-3xl pointer-events-none"></div>
-          <img
-            src={site.story_image}
-            alt={site.story_title}
-            class="relative w-full max-w-sm h-96 object-cover rounded-3xl border-8 border-[#4A3219]/10 rotate-[-2deg] shadow-2xl"
-            loading="lazy"
-          />
+<!-- Process / Steps Section -->
+<section class="py-32 relative" style={`background-color: ${site.color_dark}; background-image: radial-gradient(900px 420px at 20% 10%, ${site.color_primary}40, transparent 60%), radial-gradient(800px 380px at 85% 35%, ${site.color_accent}2e, transparent 55%);`}>
+  <div class="max-w-4xl mx-auto relative px-6">
+    <div class="sticky top-32 pt-12 pb-48">
+      <div class="space-y-32">
+        <div class="flex flex-col md:flex-row items-center gap-10 bg-white/5 backdrop-blur-xl border border-white/10 p-10 rounded-[2rem] sticky top-32 shadow-2xl transition-all hover:bg-white/10">
+          <div class="w-20 h-20 shrink-0 rounded-full flex items-center justify-center shadow-lg" style={`background-color: ${site.color_accent}; color: ${site.color_primary};`}>
+            <h3 class="text-3xl font-bold font-heading">01</h3>
+          </div>
+          <div>
+            <h4 class="text-3xl font-semibold text-white mb-3 font-heading tracking-tight">{site.about_step1_title}</h4>
+            <p class="text-gray-400 leading-relaxed font-light">{site.about_step1_desc}</p>
+          </div>
         </div>
-      </div>
-
-      <!-- Texte -->
-      <div class="flex flex-col gap-6 reveal-right">
-        <div>
-          <div class="font-cursive text-[#EAB308] text-5xl mb-1">{site.story_cursive}</div>
-          <h2 class="text-4xl font-black uppercase text-[#4A3219]">{site.story_title}</h2>
+        <div class="flex flex-col md:flex-row items-center gap-10 p-10 rounded-[2rem] sticky top-40 shadow-2xl transition-all border" style={`background-color: ${site.color_primary}; border-color: ${site.color_primary}cc;`}>
+          <div class="w-20 h-20 shrink-0 bg-white rounded-full flex items-center justify-center shadow-lg" style={`color: ${site.color_primary};`}>
+            <h3 class="text-3xl font-bold font-heading">02</h3>
+          </div>
+          <div>
+            <h4 class="text-3xl font-semibold text-white mb-3 font-heading tracking-tight">{site.about_step2_title}</h4>
+            <p class="text-white/80 leading-relaxed font-light">{site.about_step2_desc}</p>
+          </div>
         </div>
-        <p class="text-[#4A3219]/70 leading-relaxed">{site.story_text1}</p>
-        <p class="text-[#4A3219]/70 leading-relaxed">{site.story_text2}</p>
-        <p class="text-[#4A3219]/70 leading-relaxed">
-          Aujourd'hui, notre maison accueille chaque jour des gourmands fidèles et de nouvelles têtes curieuses, attirées par les effluves qui s'échappent de l'atelier. Notre équipe partage cette même passion : créer des émotions gustatives qui perdurent bien au-delà de la dernière bouchée.
-        </p>
+        <div class="flex flex-col md:flex-row items-center gap-10 p-10 rounded-[2rem] sticky top-48 shadow-2xl transition-all border" style={`background-color: ${site.color_accent}; border-color: ${site.color_accent}cc; color: ${site.color_dark};`}>
+          <div class="w-20 h-20 shrink-0 rounded-full flex items-center justify-center text-white shadow-lg" style={`background-color: ${site.color_primary};`}>
+            <h3 class="text-3xl font-bold font-heading">03</h3>
+          </div>
+          <div>
+            <h4 class="text-3xl font-semibold mb-3 font-heading tracking-tight" style={`color: ${site.color_dark};`}>{site.about_step3_title}</h4>
+            <p class="leading-relaxed font-light" style={`color: ${site.color_dark}cc;`}>{site.about_step3_desc}</p>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- Fondateur en détail -->
-  <section class="bg-white py-20">
-    <div class="max-w-5xl mx-auto px-4">
-      <div class="grid md:grid-cols-2 gap-12 items-center">
-        <div class="flex flex-col items-center text-center gap-6 reveal">
+<!-- Why Choose Us -->
+<section class="py-32 bg-white">
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="font-heading text-5xl font-semibold tracking-tight mb-6" style={`color: ${site.color_dark};`}>
+        {site.whyus_title} <span class="italic font-light" style={`color: ${site.color_primary};`}>{site.whyus_title_colored}</span>
+      </h2>
+      <p class="text-gray-500 text-xl font-light leading-relaxed">{site.whyus_subtitle}</p>
+    </div>
+    <div class="grid lg:grid-cols-12 gap-10 items-stretch">
+      <div class="lg:col-span-5">
+        <div class="relative overflow-hidden rounded-[2.5rem] border border-gray-100 p-10 shadow-sm h-full" style={`background-color: ${site.color_bg};`}>
+          <div class="absolute -top-24 -right-24 w-72 h-72 blur-3xl rounded-full opacity-60" style={`background-color: ${site.color_accent};`}></div>
+          <div class="absolute -bottom-24 -left-24 w-72 h-72 blur-3xl rounded-full opacity-10" style={`background-color: ${site.color_primary};`}></div>
           <div class="relative">
-            <div class="absolute -inset-4 bg-[#EAB308]/10 rounded-full blur-2xl pointer-events-none"></div>
-            <img
-              src={site.founder_image}
-              alt={site.founder_name}
-              class="relative w-48 h-48 rounded-full object-cover border-4 border-[#EAB308] shadow-xl"
-              loading="lazy"
-            />
-          </div>
-          <div>
-            <div class="font-cursive text-[#EAB308] text-4xl">{site.founder_name}</div>
-            <div class="text-[#4A3219]/60 font-medium">{site.founder_role}</div>
-          </div>
-        </div>
-        <div class="flex flex-col gap-5 reveal-right">
-          <div>
-            <div class="font-cursive text-[#EAB308] text-4xl mb-1">Rencontrez</div>
-            <h2 class="text-3xl font-black uppercase text-[#4A3219]">La Fondatrice</h2>
-          </div>
-          <p class="text-[#4A3219]/70 leading-relaxed">
-            Formée dans les meilleures maisons parisiennes, {site.founder_name} a décidé de mettre son talent au service de sa clientèle locale. Après 5 ans en tant que cheffe pâtissière dans un palace parisien, elle a fondé {site.company_name} avec une conviction : l'excellence artisanale doit être accessible à tous.
-          </p>
-          <p class="text-[#4A3219]/70 leading-relaxed">
-            Son approche est simple — des ingrédients irréprochables, des recettes travaillées, et une attention portée à chaque détail. C'est cette exigence qui a forgé la réputation de la maison {site.company_name}.
-          </p>
-          <div class="flex items-center gap-4 bg-[#FFF8E7] rounded-2xl p-4 border border-[#EAB308]/20">
-            <iconify-icon icon="solar:cup-hot-bold" class="text-[#EAB308] text-3xl shrink-0"></iconify-icon>
-            <p class="text-[#4A3219]/70 text-sm italic">"La pâtisserie, c'est de l'amour rendu comestible."</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Photo atelier -->
-  <section class="bg-[#4A3219] py-20 overflow-hidden relative">
-    <div class="absolute inset-0 opacity-20">
-      <img
-        src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=1600&auto=format&fit=crop"
-        alt="Atelier"
-        class="w-full h-full object-cover"
-        loading="lazy"
-      />
-    </div>
-    <div class="relative max-w-5xl mx-auto px-4 text-center text-white reveal">
-      <div class="font-cursive text-[#EAB308] text-5xl mb-2">Dans nos</div>
-      <h2 class="text-4xl font-black uppercase leading-tight mb-6">Ateliers & Cuisines</h2>
-      <p class="text-white/70 max-w-2xl mx-auto leading-relaxed">
-        Chaque matin dès 4h, notre équipe prend place dans l'atelier pour façonner, cuire et dresser les créations du jour. Tout est préparé le jour même — aucune surgélation, aucun conservateur. La fraîcheur est notre engagement quotidien.
-      </p>
-      <div class="mt-10 grid sm:grid-cols-3 gap-6 max-w-2xl mx-auto">
-        <div class="flex flex-col items-center gap-2">
-          <div class="text-4xl font-black text-[#EAB308]"><span class="stat-counter" data-target="14" data-suffix="ans"></span></div>
-          <div class="text-white/60 text-sm">d'expérience</div>
-        </div>
-        <div class="flex flex-col items-center gap-2">
-          <div class="text-4xl font-black text-[#EAB308]"><span class="stat-counter" data-target="843" data-suffix="+"></span></div>
-          <div class="text-white/60 text-sm">avis 5 étoiles</div>
-        </div>
-        <div class="flex flex-col items-center gap-2">
-          <div class="text-4xl font-black text-[#EAB308]"><span class="stat-counter" data-target="100" data-suffix="%"></span></div>
-          <div class="text-white/60 text-sm">artisanal</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Valeurs -->
-  <section class="bg-[#FFF8E7] py-20">
-    <div class="max-w-5xl mx-auto px-4">
-      <div class="text-center mb-12 reveal">
-        <div class="font-cursive text-[#EAB308] text-5xl mb-2">Ce qui nous</div>
-        <h2 class="text-4xl font-black uppercase text-[#4A3219]">Anime</h2>
-      </div>
-      <div class="grid md:grid-cols-3 gap-6">
-        {values.map((v, i) => (
-          <div class={`bg-white rounded-3xl p-8 border border-[#EAB308]/20 flex flex-col gap-4 reveal reveal-d${i + 1}`}>
-            <div class="flex items-center justify-center w-14 h-14 rounded-2xl bg-[#EAB308]/10 text-[#EAB308]">
-              <iconify-icon icon={v.icon} class="text-3xl"></iconify-icon>
+            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-gray-100 mb-8">
+              <iconify-icon icon="solar:shield-check-bold-duotone" width="18" style={`color: ${site.color_primary};`}></iconify-icon>
+              <span class="text-xs font-semibold tracking-widest uppercase" style={`color: ${site.color_primary};`}>{site.whyus_card_badge}</span>
             </div>
-            <h3 class="text-xl font-bold text-[#4A3219]">{v.title}</h3>
-            <p class="text-[#4A3219]/60 text-sm leading-relaxed">{v.desc}</p>
+            <h3 class="font-heading text-3xl font-semibold tracking-tight mb-4" style={`color: ${site.color_dark};`}>{site.whyus_card_title}</h3>
+            <p class="text-gray-600 font-light leading-relaxed mb-8">{site.whyus_card_subtitle}</p>
+            <div class="space-y-4">
+              {[
+                { title: site.whyus_item1_title, desc: site.whyus_item1_desc, icon: 'solar:document-text-bold-duotone', bg: `${site.color_primary}1a` },
+                { title: site.whyus_item2_title, desc: site.whyus_item2_desc, icon: 'solar:checklist-minimalistic-bold-duotone', bg: `${site.color_accent}66` },
+                { title: site.whyus_item3_title, desc: site.whyus_item3_desc, icon: 'solar:global-bold-duotone', bg: `${site.color_primary}1a` },
+              ].map((item) => (
+                <div class="flex gap-4 rounded-2xl bg-white border border-gray-100 p-5">
+                  <div class="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={`background-color: ${item.bg};`}>
+                    <iconify-icon icon={item.icon} width="22" style={`color: ${site.color_primary};`}></iconify-icon>
+                  </div>
+                  <div>
+                    <p class="text-sm font-semibold" style={`color: ${site.color_dark};`}>{item.title}</p>
+                    <p class="text-sm text-gray-500 font-light leading-relaxed">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div class="mt-10 flex flex-col sm:flex-row gap-4">
+              <a href="/contact" class="text-white text-sm font-semibold px-7 py-3.5 rounded-full transition-colors inline-flex items-center justify-center gap-2 shadow-sm" style={`background-color: ${site.color_primary};`}>
+                Nous contacter
+                <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
+              </a>
+              <a href="/services" class="bg-white text-sm font-semibold px-7 py-3.5 rounded-full border border-gray-100 hover:border-gray-200 transition-colors inline-flex items-center justify-center gap-2" style={`color: ${site.color_dark};`}>
+                Voir les services
+                <iconify-icon icon="solar:alt-arrow-right-linear" width="18"></iconify-icon>
+              </a>
+            </div>
           </div>
-        ))}
+        </div>
+      </div>
+      <div class="lg:col-span-7">
+        <div class="grid sm:grid-cols-2 gap-6">
+          <div class="rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-sm bg-white">
+            <div class="relative">
+              <img src={site.whyus_image1} alt={site.whyus_image1_title} class="w-full h-56 object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+              <div class="absolute left-6 bottom-6 right-6">
+                <p class="text-white font-heading text-lg font-semibold tracking-tight">{site.whyus_image1_title}</p>
+                <p class="text-white/80 text-sm font-light leading-relaxed">{site.whyus_image1_sub}</p>
+              </div>
+            </div>
+          </div>
+          <div class="rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-sm bg-white">
+            <div class="relative">
+              <img src={site.whyus_image2} alt={site.whyus_image2_title} class="w-full h-56 object-cover" />
+              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
+              <div class="absolute left-6 bottom-6 right-6">
+                <p class="text-white font-heading text-lg font-semibold tracking-tight">{site.whyus_image2_title}</p>
+                <p class="text-white/80 text-sm font-light leading-relaxed">{site.whyus_image2_sub}</p>
+              </div>
+            </div>
+          </div>
+          <div class="sm:col-span-2 rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-sm" style={`background-color: ${site.color_bg};`}>
+            <div class="grid md:grid-cols-2">
+              <div class="p-10">
+                <p class="text-xs font-semibold tracking-widest uppercase" style={`color: ${site.color_primary};`}>Ce que vous obtenez</p>
+                <h4 class="font-heading text-3xl font-semibold tracking-tight mt-3" style={`color: ${site.color_dark};`}>{site.whyus_results_title}</h4>
+                <p class="text-gray-600 font-light leading-relaxed mt-4">{site.whyus_results_sub}</p>
+                <ul class="mt-6 space-y-3 text-sm text-gray-600 font-light">
+                  {[site.whyus_result1, site.whyus_result2, site.whyus_result3].map((r) => (
+                    <li class="flex gap-2">
+                      <span class="mt-1 w-1.5 h-1.5 rounded-full shrink-0" style={`background-color: ${site.color_primary};`}></span>
+                      <span>{r}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div class="relative">
+                <img src={site.whyus_image3} alt="Résultats" class="w-full h-full object-cover" />
+                <div class="absolute inset-0" style={`background: linear-gradient(to right, ${site.color_bg}, ${site.color_bg}4d, transparent);`}></div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <Gallery />
-  <Cta />
-  <Footer />
+<!-- Testimonial -->
+<section class="py-32 overflow-hidden relative" style={`background-color: ${site.color_accent};`}>
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+    <div class="grid md:grid-cols-2 gap-20 items-center">
+      <div data-aos="fade-right">
+        <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/50 backdrop-blur-md mb-8">
+          <span class="text-xs font-bold tracking-widest uppercase" style={`color: ${site.color_primary};`}>Témoignages</span>
+        </div>
+        <h2 class="font-heading text-5xl sm:text-6xl font-bold tracking-tight mb-6 leading-[1.1]" style={`color: ${site.color_dark};`}>
+          {site.testimonial_section_title}<br />
+          <span class="italic font-light">{site.testimonial_section_italic}</span>
+        </h2>
+        <p class="text-xl mb-10 font-light leading-relaxed" style={`color: ${site.color_dark}b3;`}>{site.testimonial_section_sub}</p>
+      </div>
+      <div class="bg-white rounded-[2.5rem] p-10 sm:p-14 shadow-2xl relative" data-aos="fade-left">
+        <iconify-icon icon="solar:quote-right-bold-duotone" width="80" class="absolute top-10 right-10 opacity-30" style={`color: ${site.color_accent};`}></iconify-icon>
+        <div class="flex gap-1.5 mb-8" style={`color: #9C6B3F;`}>
+          {Array(5).fill(0).map(() => <iconify-icon icon="solar:star-bold" width="20"></iconify-icon>)}
+        </div>
+        <p class="text-2xl sm:text-3xl font-heading font-medium mb-10 leading-snug tracking-tight" style={`color: ${site.color_dark};`}>
+          "{site.testimonial_text}"
+        </p>
+        <div class="flex items-center gap-5">
+          <div class="w-16 h-16 rounded-full bg-gray-200 overflow-hidden shadow-inner">
+            {site.testimonial_avatar
+              ? <img src={site.testimonial_avatar} alt={site.testimonial_name} class="w-full h-full object-cover" />
+              : <div class="w-full h-full flex items-center justify-center text-2xl font-bold" style={`background-color: ${site.color_primary}; color: white;`}>{site.testimonial_name[0]}</div>
+            }
+          </div>
+          <div>
+            <h4 class="font-bold text-lg" style={`color: ${site.color_dark};`}>{site.testimonial_name}</h4>
+            <p class="text-sm text-gray-500 font-medium">{site.testimonial_role}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Trust Badges -->
+<section class="py-12 border-y bg-white/50" style={`border-color: ${site.color_accent}66;`}>
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-16 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
+    {[
+      { icon: 'solar:verified-check-linear', label: site.trust_badge1 },
+      { icon: 'solar:diploma-verified-linear', label: site.trust_badge2 },
+      { icon: 'solar:globe-linear', label: site.trust_badge3 },
+    ].map((b) => (
+      <div class="flex items-center gap-3">
+        <iconify-icon icon={b.icon} width="32" style={`color: ${site.color_primary};`}></iconify-icon>
+        <span class="font-heading text-lg font-medium" style={`color: ${site.color_dark};`}>{b.label}</span>
+      </div>
+    ))}
+  </div>
+</section>
+
+<Footer />
 
 </Base>

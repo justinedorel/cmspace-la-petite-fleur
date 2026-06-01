@@ -4,78 +4,36 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 ---
-<Base title={"Merci ! — " + site.seo_title} description={site.seo_description}>
+<Base title={`Merci — ${site.company_name}`} description={`Votre message a bien été envoyé à ${site.company_name}.`}>
 
-  <Header />
+<Header />
 
-  <!-- PAGE MERCI -->
-  <section class="bg-white py-24 lg:py-36 overflow-hidden">
-    <div class="max-w-2xl mx-auto px-4 text-center flex flex-col items-center gap-8">
-
-      <!-- Icône de confirmation -->
-      <div class="w-24 h-24 bg-[#EAB308]/10 rounded-full flex items-center justify-center">
-        <iconify-icon icon="solar:check-circle-bold" class="text-[#EAB308] text-5xl"></iconify-icon>
-      </div>
-
-      <!-- Titre -->
-      <div>
-        <div class="font-cursive text-[#EAB308] text-6xl leading-none mb-2">Merci !</div>
-        <h1 class="text-4xl lg:text-5xl font-black uppercase text-[#4A3219] leading-tight">Message envoyé</h1>
-      </div>
-
-      <!-- Message -->
-      <div class="bg-[#FFF8E7] rounded-3xl p-8 border border-[#EAB308]/20 w-full">
-        <p class="text-[#4A3219]/70 leading-relaxed text-base">
-          Votre message a bien été transmis à <strong class="text-[#4A3219]">{site.company_name}</strong>.
-          Nous vous répondrons dans les plus brefs délais à l'adresse email que vous avez indiquée.
-        </p>
-      </div>
-
-      <!-- Contact rapide -->
-      <div class="flex flex-col sm:flex-row gap-4 w-full">
-        <a
-          href={"https://wa.me/" + site.phone.replace(/\s+/g, '').replace('+', '')}
-          class="flex-1 flex items-center justify-center gap-2 bg-[#EAB308] hover:bg-[#ca9b07] text-white font-semibold px-6 py-3.5 rounded-full transition-colors shadow-md"
-        >
-          <iconify-icon icon="mdi:whatsapp" class="text-xl"></iconify-icon>
-          Commander par WhatsApp
-        </a>
-        <a
-          href="/"
-          class="flex-1 flex items-center justify-center border-2 border-[#4A3219] text-[#4A3219] hover:bg-[#4A3219] hover:text-white font-semibold px-6 py-3.5 rounded-full transition-colors"
-        >
-          Retour à l'accueil
-        </a>
-      </div>
-
+<main class="min-h-screen flex items-center justify-center py-32 relative overflow-hidden" style={`background-color: ${site.color_bg};`}>
+  <div class="absolute -top-32 -right-32 w-96 h-96 blur-3xl rounded-full opacity-30" style={`background-color: ${site.color_accent};`}></div>
+  <div class="absolute -bottom-32 -left-32 w-96 h-96 blur-3xl rounded-full opacity-10" style={`background-color: ${site.color_primary};`}></div>
+  <div class="relative z-10 max-w-xl mx-auto px-6 text-center">
+    <div class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg" style={`background-color: ${site.color_primary};`}>
+      <iconify-icon icon="solar:check-circle-bold-duotone" width="44" class="text-white" style="color: white;"></iconify-icon>
     </div>
-  </section>
-
-  <!-- WAVE DIVIDER -->
-  <div class="w-full overflow-hidden leading-none">
-    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" class="w-full h-14 block" xmlns="http://www.w3.org/2000/svg">
-      <path d="M0,0 C360,60 1080,0 1440,60 L1440,60 L0,60 Z" fill="#FFF8E7" />
-    </svg>
+    <h1 class="font-heading text-4xl sm:text-5xl font-bold tracking-tight mb-6" style={`color: ${site.color_dark};`}>
+      Merci pour votre message !
+    </h1>
+    <p class="text-gray-600 text-lg font-light leading-relaxed mb-10">
+      Nous avons bien reçu votre demande et nous vous répondrons dans les plus brefs délais.
+    </p>
+    <div class="flex flex-col sm:flex-row justify-center gap-4">
+      <a href="/" class="text-white text-sm font-semibold px-8 py-4 rounded-full transition-all hover:opacity-90 inline-flex items-center justify-center gap-2 shadow-sm" style={`background-color: ${site.color_primary};`}>
+        Retour à l'accueil
+        <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
+      </a>
+      <a href="/services" class="bg-white text-sm font-semibold px-8 py-4 rounded-full border border-gray-200 hover:border-gray-300 transition-colors inline-flex items-center justify-center gap-2" style={`color: ${site.color_dark};`}>
+        Voir les services
+        <iconify-icon icon="solar:alt-arrow-right-linear" width="18"></iconify-icon>
+      </a>
+    </div>
   </div>
+</main>
 
-  <!-- SUGGESTION PRODUITS -->
-  <section class="bg-[#FFF8E7] py-16">
-    <div class="max-w-5xl mx-auto px-4">
-      <div class="text-center mb-10">
-        <div class="font-cursive text-[#EAB308] text-4xl mb-2">En attendant</div>
-        <h2 class="text-3xl font-black uppercase text-[#4A3219]">Découvrez nos créations</h2>
-      </div>
-      <div class="flex justify-center">
-        <a
-          href="/services"
-          class="bg-[#4A3219] hover:bg-[#3a2714] text-white font-semibold px-10 py-3.5 rounded-full transition-colors shadow-md"
-        >
-          VOIR LA CARTE
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <Footer />
+<Footer />
 
 </Base>
