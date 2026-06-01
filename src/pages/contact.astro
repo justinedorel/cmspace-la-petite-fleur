@@ -3,114 +3,230 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
+
+const submitUrl = `https://contact.cmspace.app/submit?to=${site.email}`;
 ---
-<Base title={`Contact — ${site.company_name}`} description={site.cta_subtitle}>
+<Base title={`Contact — ${site.company_name}`} description={`Contactez ${site.company_name}. ${site.tagline}`}>
+
   <Header />
+
+  <!-- Hero page -->
+  <section class="pt-40 pb-16">
+    <div class="max-w-7xl mx-auto px-8">
+      <span class="font-sans text-xs tracking-[0.22em] uppercase text-muted mb-4 block">Contact</span>
+      <h1 class="font-serif text-5xl md:text-7xl font-light text-dark mb-4">
+        {site.hero_cta}
+      </h1>
+      <p class="font-sans text-sm font-light leading-relaxed text-muted max-w-lg tracking-wide">{site.step1_desc}</p>
+    </div>
+  </section>
 
   <!-- Prise de RDV -->
   {site.booking_enabled && site.booking_url && (
-    <section style="padding: 2.5rem 0; background: rgba(var(--color-accent-rgb, 200,169,110), 0.08); border-top: 1px solid rgba(var(--color-accent-rgb, 200,169,110), 0.2); border-bottom: 1px solid rgba(var(--color-accent-rgb, 200,169,110), 0.2);">
-      <div style="max-width: 72rem; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;">
+    <section class="py-12 bg-sand/30 border-y border-accent/20">
+      <div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row items-center justify-between gap-6">
         <div>
-          <p style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.18em; opacity: 0.6; margin-bottom: 0.25rem;">Réservation en ligne</p>
-          <h2 style="font-size: 1.75rem; font-weight: 300; margin: 0;">{site.booking_cta || 'Prendre rendez-vous'}</h2>
-          <p style="font-size: 0.875rem; opacity: 0.7; margin-top: 0.25rem;">{site.booking_subtitle || 'Choisissez votre créneau directement en ligne'}</p>
+          <p class="font-sans text-xs tracking-[0.2em] uppercase text-muted mb-1">Réservation en ligne</p>
+          <h2 class="font-serif text-2xl md:text-3xl font-light text-dark">{site.booking_cta || 'Prendre rendez-vous'}</h2>
+          <p class="font-sans text-sm text-muted mt-1">{site.booking_subtitle || 'Choisissez un créneau directement en ligne'}</p>
         </div>
         <a href={site.booking_url} target="_blank" rel="noopener"
-          style="display: inline-flex; align-items: center; gap: 0.75rem; padding: 1rem 2rem; background: var(--color-primary, #1B2A4A); color: #fff; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; text-decoration: none; transition: opacity 0.2s;"
-          onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
-          Réserver un créneau →
+          class="shrink-0 inline-flex items-center gap-3 font-sans text-xs tracking-[0.18em] uppercase bg-dark text-white px-8 py-4 hover:bg-dark/80 transition-colors">
+          Réserver un créneau
+          <span class="iconify" data-icon="lucide:calendar" data-width="14"></span>
         </a>
       </div>
     </section>
   )}
 
+  <!-- Formulaire + infos -->
+  <section class="py-16 pb-28">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="grid md:grid-cols-2 gap-16 md:gap-24">
 
-
-  <main class="flex-grow">
-
-    <!-- Hero contact -->
-    <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
-      <div class="absolute top-0 inset-x-0 h-screen overflow-hidden -z-10 pointer-events-none flex justify-center">
-        <div class="w-full max-w-lg aspect-square bg-zinc-800/20 rounded-full blur-3xl opacity-50 translate-y-[-50%]"></div>
-      </div>
-      <div class="container mx-auto px-6">
-        <div class="max-w-3xl">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-800 bg-zinc-900/50 text-xs text-zinc-400 mb-8 backdrop-blur-sm">
-            <span class="flex h-2 w-2 rounded-full bg-emerald-500"></span>
-            Démarrons ensemble
-          </div>
-          <h1 class="text-4xl md:text-6xl font-medium tracking-tight text-zinc-100 leading-tight mb-6">
-            {site.cta_title}
-          </h1>
-          <p class="text-lg text-zinc-400 max-w-2xl font-light">{site.cta_subtitle}</p>
+        <!-- Formulaire -->
+        <div>
+          <form
+            method="POST"
+            action={submitUrl}
+            class="flex flex-col gap-7"
+          >
+            <div>
+              <label for="name" class="font-sans text-xs tracking-[0.18em] uppercase text-muted block mb-2">Nom complet</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                class="w-full bg-transparent border-b border-sand/80 focus:border-dark outline-none py-3 font-sans text-sm font-light text-dark tracking-wide transition-colors duration-200 placeholder:text-muted/40"
+                placeholder="Votre nom"
+              />
+            </div>
+            <div>
+              <label for="email" class="font-sans text-xs tracking-[0.18em] uppercase text-muted block mb-2">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full bg-transparent border-b border-sand/80 focus:border-dark outline-none py-3 font-sans text-sm font-light text-dark tracking-wide transition-colors duration-200 placeholder:text-muted/40"
+                placeholder="votre@email.com"
+              />
+            </div>
+            <div>
+              <label for="event_date" class="font-sans text-xs tracking-[0.18em] uppercase text-muted block mb-2">Date de l'événement</label>
+              <input
+                type="text"
+                id="event_date"
+                name="event_date"
+                class="w-full bg-transparent border-b border-sand/80 focus:border-dark outline-none py-3 font-sans text-sm font-light text-dark tracking-wide transition-colors duration-200 placeholder:text-muted/40"
+                placeholder="ex. 15 juin 2026"
+              />
+            </div>
+            <div>
+              <label for="guests" class="font-sans text-xs tracking-[0.18em] uppercase text-muted block mb-2">Nombre d'invités</label>
+              <input
+                type="text"
+                id="guests"
+                name="guests"
+                class="w-full bg-transparent border-b border-sand/80 focus:border-dark outline-none py-3 font-sans text-sm font-light text-dark tracking-wide transition-colors duration-200 placeholder:text-muted/40"
+                placeholder="ex. 80 personnes"
+              />
+            </div>
+            <div>
+              <label for="message" class="font-sans text-xs tracking-[0.18em] uppercase text-muted block mb-2">Votre vision</label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                rows="5"
+                class="w-full bg-transparent border-b border-sand/80 focus:border-dark outline-none py-3 font-sans text-sm font-light text-dark tracking-wide transition-colors duration-200 placeholder:text-muted/40 resize-none"
+                placeholder="Décrivez votre événement, vos goûts, votre esthétique..."
+              ></textarea>
+            </div>
+            <input type="hidden" name="_redirect" value="/merci" />
+            <div>
+              <button
+                type="submit"
+                class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.18em] uppercase text-dark border border-dark/30 px-8 py-4 hover:bg-dark hover:text-bg transition-all duration-300"
+              >
+                Envoyer ma demande
+                <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
+              </button>
+            </div>
+          </form>
         </div>
-      </div>
-    </section>
 
-    <!-- Formulaire + infos -->
-    <section class="pb-24 md:pb-32 relative overflow-hidden">
-      <div class="container mx-auto px-6">
-        <div class="max-w-4xl mx-auto rounded-3xl border border-zinc-800 bg-zinc-950/80 backdrop-blur-xl p-8 md:p-12 shadow-2xl flex flex-col md:flex-row gap-12">
-          <div class="flex-1">
-            <h2 class="text-2xl font-medium tracking-tight text-zinc-100 mb-4">{site.cta_title}</h2>
-            <p class="text-sm text-zinc-400 mb-8">{site.cta_subtitle}</p>
-            <div class="space-y-4 text-sm text-zinc-300">
-              <div class="flex items-start gap-3">
-                <iconify-icon icon="solar:check-circle-linear" class="text-zinc-500 mt-0.5"></iconify-icon>
-                <span>{site.cta_li1}</span>
+        <!-- Informations de contact -->
+        <div class="flex flex-col gap-12">
+          <div>
+            <p class="font-sans text-xs tracking-[0.22em] uppercase text-muted mb-4">Email</p>
+            <a href={`mailto:${site.email}`} class="font-serif text-2xl font-light text-dark hover:opacity-60 transition-opacity">{site.email}</a>
+          </div>
+          {site.address && (
+            <div>
+              <p class="font-sans text-xs tracking-[0.22em] uppercase text-muted mb-4">Adresse</p>
+              <p class="font-serif text-2xl font-light text-dark">{site.address}</p>
+            </div>
+          )}
+          <div>
+            <p class="font-sans text-xs tracking-[0.22em] uppercase text-muted mb-6">{site.process_badge}</p>
+            <div class="flex flex-col gap-6">
+              <div class="flex gap-5 items-start">
+                <div class="font-serif text-3xl font-light text-sand leading-none select-none w-8 flex-shrink-0">01</div>
+                <div>
+                  <h3 class="font-serif text-lg font-light text-dark mb-1">{site.step1_title}</h3>
+                  <p class="font-sans text-xs font-light leading-relaxed text-muted tracking-wide">{site.step1_desc}</p>
+                </div>
               </div>
-              <div class="flex items-start gap-3">
-                <iconify-icon icon="solar:check-circle-linear" class="text-zinc-500 mt-0.5"></iconify-icon>
-                <span>{site.cta_li2}</span>
+              <div class="flex gap-5 items-start">
+                <div class="font-serif text-3xl font-light text-sand leading-none select-none w-8 flex-shrink-0">02</div>
+                <div>
+                  <h3 class="font-serif text-lg font-light text-dark mb-1">{site.step2_title}</h3>
+                  <p class="font-sans text-xs font-light leading-relaxed text-muted tracking-wide">{site.step2_desc}</p>
+                </div>
               </div>
-              <div class="flex items-start gap-3">
-                <iconify-icon icon="solar:check-circle-linear" class="text-zinc-500 mt-0.5"></iconify-icon>
-                <span>{site.cta_li3}</span>
+              <div class="flex gap-5 items-start">
+                <div class="font-serif text-3xl font-light text-sand leading-none select-none w-8 flex-shrink-0">03</div>
+                <div>
+                  <h3 class="font-serif text-lg font-light text-dark mb-1">{site.step3_title}</h3>
+                  <p class="font-sans text-xs font-light leading-relaxed text-muted tracking-wide">{site.step3_desc}</p>
+                </div>
+              </div>
+              <div class="flex gap-5 items-start">
+                <div class="font-serif text-3xl font-light text-sand leading-none select-none w-8 flex-shrink-0">04</div>
+                <div>
+                  <h3 class="font-serif text-lg font-light text-dark mb-1">{site.step4_title}</h3>
+                  <p class="font-sans text-xs font-light leading-relaxed text-muted tracking-wide">{site.step4_desc}</p>
+                </div>
               </div>
             </div>
-            {site.email && (
-              <div class="mt-10 pt-8 border-t border-zinc-900">
-                <p class="text-xs text-zinc-500 mb-3 uppercase tracking-widest">Ou directement par email</p>
-                <a href={`mailto:${site.email}`} class="text-sm text-zinc-300 hover:text-zinc-100 transition-colors flex items-center gap-2">
-                  <iconify-icon icon="solar:letter-linear" class="text-zinc-500"></iconify-icon>
-                  {site.email}
-                </a>
-              </div>
-            )}
           </div>
-          <div class="flex-1 w-full">
-            <form
-              method="POST"
-              action={`https://contact.cmspace.app/submit?to=${site.email}`}
-              class="space-y-4"
-            >
-              <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div class="space-y-1.5">
-                  <label class="text-xs font-medium text-zinc-400 px-1">Nom</label>
-                  <input type="text" name="name" required placeholder="Jean Dupont" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-lg px-4 py-2.5 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-zinc-600 transition-colors" />
-                </div>
-                <div class="space-y-1.5">
-                  <label class="text-xs font-medium text-zinc-400 px-1">Email</label>
-                  <input type="email" name="email" required placeholder="jean@entreprise.fr" class="w-full bg-zinc-900/50 border border-zinc-800 rounded-lg px-4 py-2.5 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-zinc-600 transition-colors" />
-                </div>
-              </div>
-              <div class="space-y-1.5">
-                <label class="text-xs font-medium text-zinc-400 px-1">Votre besoin</label>
-                <textarea rows="4" name="message" required placeholder="Décrivez votre projet..." class="w-full bg-zinc-900/50 border border-zinc-800 rounded-lg px-4 py-3 text-sm text-zinc-100 placeholder:text-zinc-600 focus:outline-none focus:border-zinc-600 transition-colors resize-none"></textarea>
-              </div>
-              <input type="hidden" name="_redirect" value="/merci" />
-              <button type="submit" class="w-full py-3 mt-2 text-sm font-medium bg-zinc-100 text-zinc-950 rounded-lg hover:bg-zinc-200 transition-colors flex items-center justify-center gap-2">
-                {site.cta_primary}
-                <iconify-icon icon="solar:plain-2-linear"></iconify-icon>
-              </button>
-            </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-28 md:py-36 bg-sand/20">
+    <div class="max-w-3xl mx-auto px-8">
+      <div class="mb-16 text-center">
+        <h2 class="font-serif text-4xl md:text-5xl font-light text-dark mb-4">{site.faq_title}</h2>
+        <p class="font-sans text-sm font-light text-muted tracking-wide">{site.faq_subtitle}</p>
+      </div>
+      <div class="divide-y divide-sand/60">
+        <div class="faq-item py-7">
+          <button class="faq-trigger w-full flex items-center justify-between text-left gap-6">
+            <span class="font-serif text-xl font-light text-dark">{site.faq1_q}</span>
+            <span class="iconify faq-icon flex-shrink-0 text-muted transition-transform duration-300" data-icon="lucide:plus" data-width="18"></span>
+          </button>
+          <div class="faq-answer hidden pt-5">
+            <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.faq1_a}</p>
+          </div>
+        </div>
+        <div class="faq-item py-7">
+          <button class="faq-trigger w-full flex items-center justify-between text-left gap-6">
+            <span class="font-serif text-xl font-light text-dark">{site.faq2_q}</span>
+            <span class="iconify faq-icon flex-shrink-0 text-muted transition-transform duration-300" data-icon="lucide:plus" data-width="18"></span>
+          </button>
+          <div class="faq-answer hidden pt-5">
+            <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.faq2_a}</p>
+          </div>
+        </div>
+        <div class="faq-item py-7">
+          <button class="faq-trigger w-full flex items-center justify-between text-left gap-6">
+            <span class="font-serif text-xl font-light text-dark">{site.faq3_q}</span>
+            <span class="iconify faq-icon flex-shrink-0 text-muted transition-transform duration-300" data-icon="lucide:plus" data-width="18"></span>
+          </button>
+          <div class="faq-answer hidden pt-5">
+            <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.faq3_a}</p>
           </div>
         </div>
       </div>
-    </section>
-
-  </main>
+    </div>
+  </section>
 
   <Footer />
+
+  <script is:inline>
+    document.querySelectorAll('.faq-item').forEach(function(item) {
+      var trigger = item.querySelector('.faq-trigger');
+      var answer = item.querySelector('.faq-answer');
+      var icon = item.querySelector('.faq-icon');
+      trigger.addEventListener('click', function() {
+        var isOpen = !answer.classList.contains('hidden');
+        document.querySelectorAll('.faq-answer').forEach(function(a) { a.classList.add('hidden'); });
+        document.querySelectorAll('.faq-icon').forEach(function(i) {
+          i.setAttribute('data-icon', 'lucide:plus');
+          i.style.transform = '';
+        });
+        if (!isOpen) {
+          answer.classList.remove('hidden');
+          icon.setAttribute('data-icon', 'lucide:minus');
+        }
+      });
+    });
+  </script>
+
 </Base>

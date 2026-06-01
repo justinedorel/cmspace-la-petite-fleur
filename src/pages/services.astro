@@ -4,124 +4,150 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 ---
-<Base title={`Services — ${site.company_name}`} description={site.services_subtitle}>
+<Base title={`Saveurs & Services — ${site.company_name}`} description={`Découvrez nos saveurs et créations artisanales. ${site.seo_description}`}>
+
   <Header />
 
-  <main class="flex-grow">
+  <!-- Hero page -->
+  <section class="pt-40 pb-20 bg-sand/20">
+    <div class="max-w-7xl mx-auto px-8">
+      <span class="font-sans text-xs tracking-[0.22em] uppercase text-muted mb-4 block">{site.portfolio_badge}</span>
+      <h1 class="font-serif text-5xl md:text-7xl font-light text-dark mb-6">
+        {site.flavors_title} <em class="italic">{site.flavors_title_em}</em>
+      </h1>
+      <p class="font-sans text-sm font-light leading-relaxed text-muted max-w-xl tracking-wide">{site.process_subtitle}</p>
+    </div>
+  </section>
 
-    <!-- Hero services -->
-    <section class="relative pt-32 pb-20 md:pt-40 md:pb-28 overflow-hidden">
-      <div class="absolute top-0 inset-x-0 h-screen overflow-hidden -z-10 pointer-events-none flex justify-center">
-        <div class="w-full max-w-lg aspect-square bg-zinc-800/20 rounded-full blur-3xl opacity-50 translate-y-[-50%]"></div>
+  <!-- Saveurs -->
+  <section class="py-28">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="mb-16">
+        <h2 class="font-serif text-4xl md:text-5xl font-light text-dark mb-3">
+          {site.flavors_title} <em class="italic">{site.flavors_title_em}</em>
+        </h2>
       </div>
-      <div class="container mx-auto px-6">
-        <div class="max-w-3xl">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-zinc-800 bg-zinc-900/50 text-xs text-zinc-400 mb-8 backdrop-blur-sm">
-            <span class="flex h-2 w-2 rounded-full bg-emerald-500"></span>
-            Nos expertises
-          </div>
-          <h1 class="text-4xl md:text-6xl font-medium tracking-tight text-zinc-100 leading-tight mb-6">
-            {site.services_title}
-          </h1>
-          <p class="text-lg text-zinc-400 max-w-2xl font-light">{site.services_subtitle}</p>
+      <div class="grid md:grid-cols-3 gap-px bg-sand/50">
+        <div class="bg-bg p-10 md:p-12 hover:bg-pink/20 transition-colors duration-300">
+          <span class="font-sans text-xs tracking-[0.18em] uppercase text-muted border border-sand px-3 py-1 mb-8 inline-block">{site.flavor1_tag}</span>
+          <h3 class="font-serif text-2xl font-light text-dark mb-4">{site.flavor1_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.flavor1_desc}</p>
+        </div>
+        <div class="bg-bg p-10 md:p-12 hover:bg-pink/20 transition-colors duration-300">
+          <span class="font-sans text-xs tracking-[0.18em] uppercase text-muted border border-sand px-3 py-1 mb-8 inline-block">{site.flavor2_tag}</span>
+          <h3 class="font-serif text-2xl font-light text-dark mb-4">{site.flavor2_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.flavor2_desc}</p>
+        </div>
+        <div class="bg-bg p-10 md:p-12 hover:bg-pink/20 transition-colors duration-300">
+          <span class="font-sans text-xs tracking-[0.18em] uppercase text-muted border border-sand px-3 py-1 mb-8 inline-block">{site.flavor3_tag}</span>
+          <h3 class="font-serif text-2xl font-light text-dark mb-4">{site.flavor3_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.flavor3_desc}</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Services grid -->
-    <section class="pb-24 md:pb-32">
-      <div class="container mx-auto px-6">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {[
-            { title: site.service1_title, desc: site.service1_desc, icon: site.service1_icon, li1: site.service1_li1, li2: site.service1_li2, li3: site.service1_li3 },
-            { title: site.service2_title, desc: site.service2_desc, icon: site.service2_icon, li1: site.service2_li1, li2: site.service2_li2, li3: site.service2_li3 },
-            { title: site.service3_title, desc: site.service3_desc, icon: site.service3_icon, li1: site.service3_li1, li2: site.service3_li2, li3: site.service3_li3 },
-            { title: site.service4_title, desc: site.service4_desc, icon: site.service4_icon, li1: site.service4_li1, li2: site.service4_li2, li3: site.service4_li3 },
-          ].map(s => (
-            <div class="group p-8 rounded-2xl border border-zinc-900 bg-zinc-950 hover:bg-zinc-900/50 transition-all duration-300">
-              <div class="h-12 w-12 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center text-zinc-300 mb-6 group-hover:text-zinc-50 group-hover:border-zinc-700 transition-colors">
-                <iconify-icon icon={s.icon} class="text-2xl"></iconify-icon>
-              </div>
-              <h3 class="text-xl font-medium tracking-tight text-zinc-100 mb-3">{s.title}</h3>
-              <p class="text-sm text-zinc-400 leading-relaxed mb-6">{s.desc}</p>
-              <ul class="space-y-2 text-sm text-zinc-500">
-                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-zinc-700"></iconify-icon> {s.li1}</li>
-                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-zinc-700"></iconify-icon> {s.li2}</li>
-                <li class="flex items-center gap-2"><iconify-icon icon="solar:check-circle-linear" class="text-zinc-700"></iconify-icon> {s.li3}</li>
-              </ul>
-            </div>
-          ))}
+  <!-- Portfolio / Galerie -->
+  <section class="py-28 bg-sand/20">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="mb-16">
+        <span class="font-sans text-xs tracking-[0.22em] uppercase text-muted mb-4 block">{site.portfolio_badge}</span>
+        <h2 class="font-serif text-4xl md:text-5xl font-light text-dark">
+          {site.portfolio_title} <em class="italic">{site.portfolio_title_em}</em>
+        </h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="group cursor-default">
+          <div class="overflow-hidden mb-5">
+            <img src={site.portfolio1_image} alt={site.portfolio1_title} class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700" />
+          </div>
+          <h3 class="font-serif text-xl font-light text-dark mb-1">{site.portfolio1_title}</h3>
+          <span class="font-sans text-xs tracking-[0.15em] uppercase text-muted">{site.portfolio1_flavor}</span>
+        </div>
+        <div class="group cursor-default md:mt-12">
+          <div class="overflow-hidden mb-5">
+            <img src={site.portfolio2_image} alt={site.portfolio2_title} class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700" />
+          </div>
+          <h3 class="font-serif text-xl font-light text-dark mb-1">{site.portfolio2_title}</h3>
+          <span class="font-sans text-xs tracking-[0.15em] uppercase text-muted">{site.portfolio2_flavor}</span>
+        </div>
+        <div class="group cursor-default">
+          <div class="overflow-hidden mb-5">
+            <img src={site.portfolio3_image} alt={site.portfolio3_title} class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700" />
+          </div>
+          <h3 class="font-serif text-xl font-light text-dark mb-1">{site.portfolio3_title}</h3>
+          <span class="font-sans text-xs tracking-[0.15em] uppercase text-muted">{site.portfolio3_flavor}</span>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Stats -->
-    <section class="py-20 border-y border-zinc-900 bg-zinc-950/50">
-      <div class="container mx-auto px-6">
-        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 divide-x divide-zinc-900">
-          <div class="flex flex-col items-center text-center px-4">
-            <span class="text-4xl font-medium tracking-tight text-zinc-100 mb-2">{site.stat1_value}</span>
-            <span class="text-sm text-zinc-500">{site.stat1_label}</span>
-          </div>
-          <div class="flex flex-col items-center text-center px-4">
-            <span class="text-4xl font-medium tracking-tight text-zinc-100 mb-2">{site.stat2_value}</span>
-            <span class="text-sm text-zinc-500">{site.stat2_label}</span>
-          </div>
-          <div class="flex flex-col items-center text-center px-4">
-            <span class="text-4xl font-medium tracking-tight text-zinc-100 mb-2">{site.stat3_value}</span>
-            <span class="text-sm text-zinc-500">{site.stat3_label}</span>
-          </div>
-          <div class="flex flex-col items-center text-center px-4">
-            <span class="text-4xl font-medium tracking-tight text-zinc-100 mb-2">{site.stat4_value}</span>
-            <span class="text-sm text-zinc-500">{site.stat4_label}</span>
-          </div>
+  <!-- Processus -->
+  <section class="py-28 md:py-36">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="text-center mb-20">
+        <span class="font-sans text-xs tracking-[0.22em] uppercase text-muted mb-4 block">{site.process_badge}</span>
+        <h2 class="font-serif text-4xl md:text-5xl font-light text-dark mb-5">{site.process_title}</h2>
+        <p class="font-sans text-sm font-light leading-relaxed text-muted max-w-xl mx-auto tracking-wide">{site.process_subtitle}</p>
+      </div>
+      <div class="grid md:grid-cols-4 gap-10 md:gap-8">
+        <div class="relative">
+          <div class="font-serif text-8xl font-light text-sand leading-none mb-6 select-none">01</div>
+          <div class="w-10 h-px bg-dark/20 mb-6"></div>
+          <h3 class="font-serif text-2xl font-light text-dark mb-3">{site.step1_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.step1_desc}</p>
+        </div>
+        <div class="relative">
+          <div class="font-serif text-8xl font-light text-sand leading-none mb-6 select-none">02</div>
+          <div class="w-10 h-px bg-dark/20 mb-6"></div>
+          <h3 class="font-serif text-2xl font-light text-dark mb-3">{site.step2_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.step2_desc}</p>
+        </div>
+        <div class="relative">
+          <div class="font-serif text-8xl font-light text-sand leading-none mb-6 select-none">03</div>
+          <div class="w-10 h-px bg-dark/20 mb-6"></div>
+          <h3 class="font-serif text-2xl font-light text-dark mb-3">{site.step3_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.step3_desc}</p>
+        </div>
+        <div class="relative">
+          <div class="font-serif text-8xl font-light text-sand leading-none mb-6 select-none">04</div>
+          <div class="w-10 h-px bg-dark/20 mb-6"></div>
+          <h3 class="font-serif text-2xl font-light text-dark mb-3">{site.step4_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.step4_desc}</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- Case Studies -->
-    <section class="py-24 md:py-32">
-      <div class="container mx-auto px-6">
-        <div class="max-w-2xl mb-16">
-          <h2 class="text-3xl md:text-4xl font-medium tracking-tight text-zinc-100 mb-4">{site.work_title}</h2>
-          <p class="text-lg text-zinc-400">{site.work_subtitle}</p>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {[
-            { tag: site.case1_tag, icon: site.case1_tag_icon, metric: site.case1_metric, color: site.case1_metric_color, title: site.case1_title, desc: site.case1_desc },
-            { tag: site.case2_tag, icon: site.case2_tag_icon, metric: site.case2_metric, color: site.case2_metric_color, title: site.case2_title, desc: site.case2_desc },
-            { tag: site.case3_tag, icon: site.case3_tag_icon, metric: site.case3_metric, color: site.case3_metric_color, title: site.case3_title, desc: site.case3_desc },
-          ].map(c => (
-            <div class="group relative overflow-hidden rounded-2xl border border-zinc-900 bg-zinc-950 aspect-[4/3] flex flex-col justify-between p-8 hover:border-zinc-700 transition-colors">
-              <div class="absolute inset-0 bg-gradient-to-br from-zinc-900/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              <div class="relative z-10 flex items-center gap-2 text-zinc-500 text-sm">
-                <iconify-icon icon={c.icon}></iconify-icon> {c.tag}
-              </div>
-              <div class="relative z-10">
-                <div class={`text-4xl font-medium tracking-tight mb-2 ${c.color}`}>{c.metric}</div>
-                <h3 class="text-lg font-medium text-zinc-100 mb-2">{c.title}</h3>
-                <p class="text-sm text-zinc-400">{c.desc}</p>
-              </div>
-            </div>
-          ))}
+  <!-- Témoignage -->
+  <section class="py-28 md:py-36 bg-dark">
+    <div class="max-w-5xl mx-auto px-8 text-center">
+      <span class="iconify text-sand/40 mb-10 block mx-auto" data-icon="lucide:quote" data-width="40"></span>
+      <blockquote class="font-serif text-3xl md:text-4xl font-light italic leading-relaxed text-white/90 mb-12">
+        &ldquo;{site.testimonial_text}&rdquo;
+      </blockquote>
+      <div class="flex items-center justify-center gap-5">
+        <img src={site.testimonial_image} alt={site.testimonial_name} class="w-12 h-12 rounded-full object-cover grayscale opacity-60" />
+        <div class="text-left">
+          <p class="font-serif text-base font-light text-white/80">{site.testimonial_name}</p>
+          <p class="font-sans text-xs tracking-[0.15em] uppercase text-white/30">{site.testimonial_date}</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- CTA -->
-    <section class="py-16 md:py-24 relative overflow-hidden">
-      <div class="absolute inset-0 bg-zinc-900/20 border-y border-zinc-800/50"></div>
-      <div class="container mx-auto px-6 relative z-10 text-center">
-        <h2 class="text-3xl md:text-4xl font-medium tracking-tight text-zinc-100 mb-4">{site.cta_title}</h2>
-        <p class="text-zinc-400 mb-8 max-w-xl mx-auto text-sm">{site.cta_subtitle}</p>
-        <a href="/contact" class="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium bg-zinc-100 text-zinc-950 rounded-md hover:bg-zinc-200 transition-colors">
-          {site.cta_primary}
-          <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
-        </a>
-      </div>
-    </section>
-
-  </main>
+  <!-- CTA -->
+  <section class="py-24">
+    <div class="max-w-3xl mx-auto px-8 text-center">
+      <h2 class="font-serif text-4xl md:text-5xl font-light text-dark mb-6">{site.about_cta}</h2>
+      <p class="font-sans text-sm font-light leading-relaxed text-muted mb-10 tracking-wide">{site.hero_subtitle}</p>
+      <a href="/contact" class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.18em] uppercase text-dark border border-dark/30 px-8 py-4 hover:bg-dark hover:text-bg transition-all duration-300">
+        {site.hero_cta}
+        <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
+      </a>
+    </div>
+  </section>
 
   <Footer />
+
 </Base>

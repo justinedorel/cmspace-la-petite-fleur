@@ -4,31 +4,31 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 ---
-<Base title={`Message envoyé — ${site.company_name}`} description="Votre message a bien été envoyé.">
+<Base title={`Message reçu — ${site.company_name}`} description={`Merci pour votre message. ${site.company_name} vous contactera prochainement.`}>
+
   <Header />
 
-  <main class="flex-grow flex items-center justify-center py-32 px-6">
-    <div class="max-w-lg text-center">
-      <div class="h-16 w-16 rounded-2xl bg-zinc-900 border border-zinc-800 flex items-center justify-center mx-auto mb-8">
-        <iconify-icon icon="solar:check-circle-linear" class="text-3xl text-emerald-400"></iconify-icon>
-      </div>
-      <h1 class="text-3xl md:text-4xl font-medium tracking-tight text-zinc-100 mb-4">
-        Message envoyé !
+  <section class="min-h-screen flex items-center justify-center py-40 px-8">
+    <div class="text-center max-w-xl">
+      <div class="w-16 h-px bg-sand mx-auto mb-12"></div>
+      <span class="font-sans text-xs tracking-[0.22em] uppercase text-muted mb-6 block">Confirmation</span>
+      <h1 class="font-serif text-5xl md:text-6xl font-light text-dark mb-6 leading-tight">
+        Message <em class="italic">reçu</em>
       </h1>
-      <p class="text-zinc-400 mb-10 leading-relaxed">
-        Merci pour votre message. Nous l'avons bien reçu et reviendrons vers vous sous 24h pour planifier un appel découverte.
+      <p class="font-sans text-sm font-light leading-relaxed text-muted mb-4 tracking-wide">
+        Merci de nous avoir contactés. Nous avons bien reçu votre demande et nous vous répondrons dans les plus brefs délais.
       </p>
-      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="/" class="px-6 py-3 text-sm font-medium bg-zinc-100 text-zinc-950 rounded-md hover:bg-zinc-200 transition-colors flex items-center gap-2">
-          Retour à l'accueil
-          <iconify-icon icon="solar:arrow-right-linear"></iconify-icon>
-        </a>
-        <a href="/services" class="px-6 py-3 text-sm font-medium border border-zinc-800 text-zinc-300 rounded-md hover:bg-zinc-900 hover:text-zinc-100 transition-colors">
-          Voir nos services
-        </a>
-      </div>
+      <p class="font-sans text-sm font-light leading-relaxed text-muted mb-12 tracking-wide">
+        {site.footer_tagline}
+      </p>
+      <div class="w-16 h-px bg-sand mx-auto mb-12"></div>
+      <a href="/" class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.18em] uppercase text-dark hover:opacity-60 transition-opacity">
+        Retour à l'accueil
+        <span class="iconify" data-icon="lucide:arrow-left" data-width="14"></span>
+      </a>
     </div>
-  </main>
+  </section>
 
   <Footer />
+
 </Base>
