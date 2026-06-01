@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  --font-display: "Fraunces", serif;
+  --font-cursive: "Playball", cursive;
   --font-body: "Inter", sans-serif;
 }
 
@@ -9,77 +9,53 @@ html { scroll-behavior: smooth; overflow-x: hidden; }
 
 body {
   font-family: var(--font-body);
-  background-color: var(--color-bg);
-  color: var(--color-text);
+  background-color: #ffffff;
+  color: #4A3219;
+  -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
 
-.font-display { font-family: var(--font-display); }
+.font-cursive { font-family: var(--font-cursive); }
 
-::selection { background-color: var(--color-primary); color: white; }
+::selection { background-color: #EAB308; color: white; }
 
-[data-animate] {
+::-webkit-scrollbar { width: 0; background: transparent; }
+
+/* ── Scroll reveal ───────────────────────────────────────────────────── */
+.reveal,
+.reveal-left,
+.reveal-right {
   opacity: 0;
-  transform: translateY(40px);
-  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
-  will-change: opacity, transform;
+  transition: opacity 0.9s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.9s cubic-bezier(0.16, 1, 0.3, 1);
 }
-[data-animate="fade-left"]  { transform: translateX(50px); }
-[data-animate="fade-right"] { transform: translateX(-50px); }
-[data-animate].is-visible { opacity: 1; transform: translate(0,0); }
+.reveal       { transform: translateY(36px); }
+.reveal-left  { transform: translateX(-36px); }
+.reveal-right { transform: translateX(36px); }
+.reveal.visible,
+.reveal-left.visible,
+.reveal-right.visible { opacity: 1; transform: translate(0, 0); }
 
-/* ── Styles par template ───────────────────────────────────────────────────── */
+/* ── Grain texture overlay ───────────────────────────────────────────── */
+.grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+}
 
-/* ELEGANT (patisserie, luxury) — formes organiques, léger, espacement généreux */
-body.style-elegant .hero-image {
-  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+/* ── Hero background image ───────────────────────────────────────────── */
+.hero-bg {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
 }
-body.style-elegant .service-card {
-  border-radius: 1.5rem;
-  border: none;
-  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
-}
-body.style-elegant h1, body.style-elegant h2, body.style-elegant h3 {
-  font-weight: 300;
-  letter-spacing: -0.01em;
-}
-body.style-elegant .hero-badge {
-  background: color-mix(in srgb, var(--color-accent) 15%, transparent);
-  border-color: color-mix(in srgb, var(--color-accent) 30%, transparent);
-  color: color-mix(in srgb, var(--color-primary) 80%, black);
-}
-body.style-elegant section { padding: 6rem 0; }
 
-/* ARTISAN (zeste, boulangerie) — chaleureux, texturé */
-body.style-artisan .hero-image { border-radius: 1rem; }
-body.style-artisan .service-card {
-  border-radius: 0.75rem;
-  border-top: 3px solid var(--color-accent);
+/* ── Nav glass effect ────────────────────────────────────────────────── */
+.nav-scrolled {
+  backdrop-filter: blur(12px);
+  background-color: rgba(255, 248, 231, 0.95) !important;
+  box-shadow: 0 2px 20px rgba(74, 50, 25, 0.08);
 }
-body.style-artisan h1, body.style-artisan h2 { font-weight: 500; }
-
-/* NATURAL (agriculture, wellness, nutritionist) — épuré, terre */
-body.style-natural .hero-image { border-radius: 1.5rem; }
-body.style-natural .service-card {
-  border-radius: 1rem;
-  border-left: 3px solid var(--color-accent);
-}
-body.style-natural h1 { font-weight: 400; letter-spacing: -0.02em; }
-
-/* BOLD (marketing, digital, SaaS) — géométrique, fort */
-body.style-bold .hero-image { border-radius: 0.5rem; }
-body.style-bold .service-card {
-  border-radius: 0.5rem;
-  border: 2px solid var(--color-accent);
-}
-body.style-bold h1, body.style-bold h2 { font-weight: 700; letter-spacing: -0.03em; }
-body.style-bold .btn-primary { border-radius: 0.25rem; text-transform: uppercase; letter-spacing: 0.05em; font-size: 0.8rem; }
-
-/* SPORT (superputt, loisirs) — dynamique, vert */
-body.style-sport .hero-image { border-radius: 1rem; transform: rotate(-1deg); }
-body.style-sport .service-card { border-radius: 1rem; }
-body.style-sport h1 { font-weight: 800; }
-
-/* PROFESSIONAL (maritime, default) — propre, sobre */
-body.style-professional .hero-image { border-radius: 0.75rem; }
-body.style-professional .service-card { border-radius: 0.75rem; }
