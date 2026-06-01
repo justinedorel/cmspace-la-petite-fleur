@@ -1,115 +1,92 @@
 ---
 import site from '../data/site.json';
 ---
-<header id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
-  <div class="max-w-7xl mx-auto px-6 md:px-8 h-16 md:h-20 flex items-center justify-between">
+<header id="site-header" class="sticky top-0 z-50 bg-white border-b border-[#4A3219]/10 shadow-sm transition-all duration-300">
+  <div class="max-w-7xl mx-auto px-4 py-3 flex items-center justify-between gap-4">
 
     <!-- Logo -->
-    <a href="/" class="font-serif text-xl md:text-2xl tracking-[0.15em] font-light text-white nav-logo transition-colors duration-500">
-      {site.company_name}
+    <a href="/" class="flex items-center gap-3 shrink-0">
+      <div class="grid grid-cols-2 gap-0.5 w-9 h-9">
+        <iconify-icon icon="solar:star-bold" class="text-[#EAB308] text-lg"></iconify-icon>
+        <iconify-icon icon="solar:cup-hot-bold" class="text-[#EAB308] text-lg"></iconify-icon>
+        <iconify-icon icon="solar:heart-bold" class="text-[#EAB308] text-lg"></iconify-icon>
+        <iconify-icon icon="solar:gift-linear" class="text-[#EAB308] text-lg"></iconify-icon>
+      </div>
+      <div>
+        <div class="text-2xl font-bold tracking-tight text-[#4A3219] leading-none">{site.company_name}</div>
+        <div class="text-[10px] tracking-widest text-[#4A3219]/60 uppercase leading-tight">{site.company_sub}</div>
+      </div>
     </a>
 
-    <!-- Navigation desktop -->
-    <nav class="hidden md:flex items-center gap-8">
-      <a href="/services" class="nav-link font-sans text-[11px] tracking-[0.2em] uppercase text-white/80 hover:text-white transition-colors relative group">
-        {(site as any).nav_services_label || 'Services'}
-        <span class="absolute -bottom-0.5 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-300"></span>
-      </a>
-      <a href="/a-propos" class="nav-link font-sans text-[11px] tracking-[0.2em] uppercase text-white/80 hover:text-white transition-colors relative group">
-        À propos
-        <span class="absolute -bottom-0.5 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-300"></span>
-      </a>
-      <a href="/contact" class="nav-link font-sans text-[11px] tracking-[0.2em] uppercase text-white/80 hover:text-white transition-colors relative group">
-        Contact
-        <span class="absolute -bottom-0.5 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-300"></span>
-      </a>
-      <a href="/contact" class="nav-cta font-sans text-[11px] tracking-[0.2em] uppercase border border-white/50 text-white px-6 py-2.5 hover:bg-white hover:text-dark transition-all duration-300 ml-2">
-        {site.hero_cta}
-      </a>
+    <!-- Nav desktop -->
+    <nav class="hidden md:flex items-center gap-6 text-sm font-medium text-[#4A3219]/70">
+      <a href="/" class="hover:text-[#EAB308] transition-colors">Accueil</a>
+      <a href="/services" class="hover:text-[#EAB308] transition-colors">Nos Créations</a>
+      <a href="/a-propos" class="hover:text-[#EAB308] transition-colors">Notre Histoire</a>
+      <a href="/contact" class="hover:text-[#EAB308] transition-colors">Contact</a>
     </nav>
 
-    <!-- Mobile toggle -->
-    <button id="mobile-toggle" class="md:hidden flex flex-col gap-[5px] p-2 group" aria-label="Menu">
-      <span id="m1" class="w-6 h-px bg-white block transition-all duration-400 origin-center"></span>
-      <span id="m2" class="w-4 h-px bg-white block transition-all duration-400 ml-auto"></span>
-      <span id="m3" class="w-6 h-px bg-white block transition-all duration-400 origin-center"></span>
+    <!-- CTA desktop -->
+    <div class="hidden md:flex items-center gap-3 shrink-0">
+      <a href={"tel:" + site.phone}
+         class="flex items-center gap-2 bg-[#FFF8E7] border border-[#EAB308]/40 text-[#4A3219] text-sm font-medium px-4 py-2 rounded-full hover:border-[#EAB308] transition-colors">
+        <iconify-icon icon="solar:phone-linear" class="text-[#EAB308]"></iconify-icon>
+        {site.phone}
+      </a>
+      <a href={"tel:" + site.phone}
+         class="bg-[#EAB308] hover:bg-[#ca9b07] text-white text-sm font-semibold px-5 py-2 rounded-full transition-colors">
+        APPELEZ MAINTENANT
+      </a>
+    </div>
+
+    <!-- Burger mobile -->
+    <button
+      id="burger-btn"
+      aria-label="Menu"
+      class="md:hidden flex items-center justify-center w-10 h-10 rounded-full border border-[#4A3219]/20 text-[#4A3219]">
+      <iconify-icon icon="solar:hamburger-menu-outline" class="text-xl"></iconify-icon>
     </button>
+  </div>
+
+  <!-- Menu mobile -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-[#4A3219]/10 bg-white px-4 py-4 flex flex-col gap-3">
+    <a href="/" class="text-sm font-medium text-[#4A3219]/70 hover:text-[#EAB308] py-2 border-b border-[#4A3219]/5">Accueil</a>
+    <a href="/services" class="text-sm font-medium text-[#4A3219]/70 hover:text-[#EAB308] py-2 border-b border-[#4A3219]/5">Nos Créations</a>
+    <a href="/a-propos" class="text-sm font-medium text-[#4A3219]/70 hover:text-[#EAB308] py-2 border-b border-[#4A3219]/5">Notre Histoire</a>
+    <a href="/contact" class="text-sm font-medium text-[#4A3219]/70 hover:text-[#EAB308] py-2 border-b border-[#4A3219]/5">Contact</a>
+    <a href={"tel:" + site.phone}
+       class="mt-2 flex items-center justify-center gap-2 bg-[#EAB308] hover:bg-[#ca9b07] text-white font-semibold px-5 py-3 rounded-full transition-colors">
+      <iconify-icon icon="solar:phone-linear"></iconify-icon>
+      Appelez maintenant
+    </a>
   </div>
 </header>
 
-<!-- Mobile menu — slide depuis la droite -->
-<div id="mobile-menu" class="fixed inset-0 z-40 pointer-events-none">
-  <div id="mobile-overlay" class="absolute inset-0 bg-dark/60 opacity-0 transition-opacity duration-400 backdrop-blur-sm"></div>
-  <div id="mobile-panel" class="absolute right-0 top-0 h-full w-72 bg-bg flex flex-col pt-24 px-8 pb-8 translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
-    <nav class="flex flex-col gap-8 mb-auto">
-      <a href="/services" class="font-serif text-3xl font-light text-dark hover:opacity-60 transition-opacity">{(site as any).nav_services_label || 'Services'}</a>
-      <a href="/a-propos"  class="font-serif text-3xl font-light text-dark hover:opacity-60 transition-opacity">À propos</a>
-      <a href="/contact"   class="font-serif text-3xl font-light text-dark hover:opacity-60 transition-opacity">Contact</a>
-    </nav>
-    <div class="border-t border-sand pt-8 space-y-3">
-      <a href={`mailto:${site.email}`} class="block font-sans text-xs tracking-[0.15em] uppercase text-muted hover:text-dark transition-colors">{site.email}</a>
-      {(site as any).phone && <a href={`tel:${(site as any).phone}`} class="block font-sans text-xs tracking-[0.15em] uppercase text-muted hover:text-dark transition-colors">{(site as any).phone}</a>}
-    </div>
-  </div>
-</div>
-
 <script is:inline>
-  var nav = document.getElementById('nav');
-  var logo = nav.querySelector('.nav-logo');
-  var links = nav.querySelectorAll('.nav-link');
-  var cta = nav.querySelector('.nav-cta');
-  var scrolled = false;
+  // Burger toggle
+  (function () {
+    var btn = document.getElementById('burger-btn');
+    var menu = document.getElementById('mobile-menu');
+    if (!btn || !menu) return;
+    btn.addEventListener('click', function () {
+      menu.classList.toggle('hidden');
+    });
+  })();
 
-  function updateNav() {
-    var atTop = window.scrollY < 80;
-    if (atTop) {
-      nav.style.backgroundColor = 'transparent';
-      nav.style.backdropFilter  = 'none';
-      nav.style.boxShadow       = 'none';
-      logo.style.color          = '#fff';
-      links.forEach(function(l) { l.style.color = 'rgba(255,255,255,0.8)'; l.querySelectorAll('span').forEach(function(s) { s.style.background = '#fff'; }); });
-      if (cta) { cta.style.borderColor = 'rgba(255,255,255,0.5)'; cta.style.color = '#fff'; cta.style.backgroundColor = 'transparent'; }
-    } else {
-      nav.style.backgroundColor = 'rgba(250,245,248,0.92)';
-      nav.style.backdropFilter  = 'blur(12px)';
-      nav.style.boxShadow       = '0 1px 0 rgba(0,0,0,0.06)';
-      logo.style.color          = '#1a1a1a';
-      links.forEach(function(l) { l.style.color = 'rgba(26,26,26,0.7)'; l.querySelectorAll('span').forEach(function(s) { s.style.background = '#1a1a1a'; }); });
-      if (cta) { cta.style.borderColor = 'rgba(26,26,26,0.4)'; cta.style.color = '#1a1a1a'; cta.style.backgroundColor = 'transparent'; }
-    }
-  }
-  updateNav();
-  window.addEventListener('scroll', updateNav, { passive: true });
-
-  // Mobile menu
-  var toggle = document.getElementById('mobile-toggle');
-  var menu   = document.getElementById('mobile-menu');
-  var overlay = document.getElementById('mobile-overlay');
-  var panel   = document.getElementById('mobile-panel');
-  var m1 = document.getElementById('m1');
-  var m2 = document.getElementById('m2');
-  var m3 = document.getElementById('m3');
-  var open = false;
-
-  function openMenu() {
-    open = true;
-    menu.style.pointerEvents = 'all';
-    overlay.style.opacity = '1';
-    panel.style.transform = 'translateX(0)';
-    m1.style.transform = 'rotate(45deg) translate(3.5px, 3.5px)';
-    m2.style.opacity = '0';
-    m3.style.transform = 'rotate(-45deg) translate(3.5px, -3.5px)';
-    document.body.style.overflow = 'hidden';
-  }
-  function closeMenu() {
-    open = false;
-    menu.style.pointerEvents = 'none';
-    overlay.style.opacity = '0';
-    panel.style.transform = 'translateX(100%)';
-    m1.style.transform = ''; m2.style.opacity = ''; m3.style.transform = '';
-    document.body.style.overflow = '';
-  }
-  toggle.addEventListener('click', function() { open ? closeMenu() : openMenu(); });
-  overlay.addEventListener('click', closeMenu);
-  panel.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeMenu); });
+  // Scroll glass effect
+  (function () {
+    var header = document.getElementById('site-header');
+    if (!header) return;
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 60) {
+        header.style.backdropFilter = 'blur(12px)';
+        header.style.webkitBackdropFilter = 'blur(12px)';
+        header.style.backgroundColor = 'rgba(255,255,255,0.92)';
+      } else {
+        header.style.backdropFilter = 'none';
+        header.style.webkitBackdropFilter = 'none';
+        header.style.backgroundColor = '#ffffff';
+      }
+    }, { passive: true });
+  })();
 </script>

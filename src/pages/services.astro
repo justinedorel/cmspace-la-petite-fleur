@@ -2,152 +2,221 @@
 import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import Cta from '../components/Cta.astro';
 import site from '../data/site.json';
----
-<Base title={`Saveurs & Services — ${site.company_name}`} description={`Découvrez nos saveurs et créations artisanales. ${site.seo_description}`}>
 
+const waLink = "https://wa.me/" + site.phone.replace(/\s+/g, '').replace('+', '');
+
+const categories = [
+  {
+    slug: 'gateaux',
+    cursive: 'Nos',
+    title: 'Gâteaux',
+    icon: 'solar:star-bold',
+    items: [
+      {
+        name: site.product2_cursive + ' ' + site.product2_title,
+        price: site.product2_price,
+        price_original: site.product2_price_original,
+        rating: site.product2_rating,
+        desc: site.product2_desc,
+        image: site.product2_image,
+      },
+      {
+        name: site.hero_cursive + ' ' + site.hero_title,
+        price: site.hero_price,
+        price_original: site.hero_price_original,
+        rating: site.hero_rating,
+        desc: site.hero_desc,
+        image: site.hero_image,
+      },
+      {
+        name: 'Fondant Chocolat',
+        price: '22€',
+        price_original: '30€',
+        rating: '4.9',
+        desc: "Un cœur coulant au chocolat noir intense, enveloppé d'une coque dorée. Servi tiède avec une quenelle de crème fraîche.",
+        image: 'https://images.unsplash.com/photo-1606313564200-e75d5e30476c?q=80&w=800&auto=format&fit=crop',
+      },
+    ],
+  },
+  {
+    slug: 'tartelettes',
+    cursive: 'Nos',
+    title: 'Tartelettes',
+    icon: 'solar:sun-bold',
+    items: [
+      {
+        name: site.product1_cursive + ' ' + site.product1_title,
+        price: site.product1_price,
+        price_original: site.product1_price_original,
+        rating: site.product1_rating,
+        desc: site.product1_desc,
+        image: site.product1_image,
+      },
+      {
+        name: 'Tartelette Fraise',
+        price: '4€',
+        price_original: '7€',
+        rating: '4.7',
+        desc: 'Crème pâtissière légère à la vanille de Madagascar, garnie de fraises fraîches de saison sur pâte sablée maison.',
+        image: 'https://images.unsplash.com/photo-1464219789935-c2d9d9aba644?q=80&w=800&auto=format&fit=crop',
+      },
+      {
+        name: 'Tartelette Caramel Beurre Salé',
+        price: '4.50€',
+        price_original: '8€',
+        rating: '4.8',
+        desc: 'Pâte sablée croustillante, ganache au caramel onctueux, éclats de fleur de sel de Guérande et pralin croustillant.',
+        image: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?q=80&w=800&auto=format&fit=crop',
+      },
+    ],
+  },
+  {
+    slug: 'macarons',
+    cursive: 'Nos',
+    title: 'Macarons',
+    icon: 'solar:heart-bold',
+    items: [
+      {
+        name: site.product3_cursive + ' ' + site.product3_title,
+        price: site.product3_price,
+        price_original: site.product3_price_original,
+        rating: site.product3_rating,
+        desc: site.product3_desc,
+        image: site.product3_image,
+      },
+      {
+        name: 'Coffret Macarons Assortis',
+        price: '28€',
+        price_original: '38€',
+        rating: '5.0',
+        desc: 'Coffret de 12 macarons aux saveurs variées : vanille, chocolat, pistache, framboise, café et caramel beurre salé.',
+        image: 'https://images.unsplash.com/photo-1502741224143-90386d7f8c82?q=80&w=800&auto=format&fit=crop',
+      },
+    ],
+  },
+  {
+    slug: 'coffrets',
+    cursive: 'Nos',
+    title: 'Coffrets Cadeaux',
+    icon: 'solar:gift-linear',
+    items: [
+      {
+        name: 'Coffret Découverte',
+        price: '35€',
+        price_original: '50€',
+        rating: '5.0',
+        desc: 'Un assortiment de nos meilleures créations : 1 cake, 2 tartelettes et 6 macarons, emballés dans notre boîte kraft signature avec ruban doré.',
+        image: 'https://images.unsplash.com/photo-1488477304112-4944851de03d?q=80&w=800&auto=format&fit=crop',
+      },
+      {
+        name: 'Coffret Prestige',
+        price: '65€',
+        price_original: '85€',
+        rating: '5.0',
+        desc: 'Notre coffret haut de gamme : 1 gâteau entier, 6 tartelettes, 12 macarons et 1 tablette de chocolat artisanal. Parfait pour les grandes occasions.',
+        image: 'https://images.unsplash.com/photo-1571115177098-24ec42ed204d?q=80&w=800&auto=format&fit=crop',
+      },
+    ],
+  },
+];
+---
+<Base title={"Nos Créations — " + site.seo_title} description={"Découvrez toutes nos créations artisanales : gâteaux, tartelettes, macarons et coffrets cadeaux. " + site.seo_description} image={site.hero_image}>
   <Header />
 
   <!-- Hero page -->
-  <section class="pt-40 pb-20 bg-sand/20">
-    <div class="max-w-7xl mx-auto px-8">
-      <span class="font-sans text-xs tracking-[0.22em] uppercase text-muted mb-4 block">{site.portfolio_badge}</span>
-      <h1 class="font-serif text-5xl md:text-7xl font-light text-dark mb-6">
-        {site.flavors_title} <em class="italic">{site.flavors_title_em}</em>
-      </h1>
-      <p class="font-sans text-sm font-light leading-relaxed text-muted max-w-xl tracking-wide">{site.process_subtitle}</p>
+  <section class="bg-white py-16 lg:py-20 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 text-center reveal">
+      <div class="font-cursive text-[#EAB308] text-6xl leading-none mb-2">Nos</div>
+      <h1 class="text-5xl lg:text-6xl font-black uppercase text-[#4A3219] leading-none tracking-tight">Créations</h1>
+      <p class="mt-6 max-w-2xl mx-auto text-[#4A3219]/60 leading-relaxed">{site.tagline}</p>
     </div>
   </section>
 
-  <!-- Saveurs -->
-  <section class="py-28">
-    <div class="max-w-7xl mx-auto px-8">
-      <div class="mb-16">
-        <h2 class="font-serif text-4xl md:text-5xl font-light text-dark mb-3">
-          {site.flavors_title} <em class="italic">{site.flavors_title_em}</em>
-        </h2>
-      </div>
-      <div class="grid md:grid-cols-3 gap-px bg-sand/50">
-        <div class="bg-bg p-10 md:p-12 hover:bg-pink/20 transition-colors duration-300">
-          <span class="font-sans text-xs tracking-[0.18em] uppercase text-muted border border-sand px-3 py-1 mb-8 inline-block">{site.flavor1_tag}</span>
-          <h3 class="font-serif text-2xl font-light text-dark mb-4">{site.flavor1_title}</h3>
-          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.flavor1_desc}</p>
-        </div>
-        <div class="bg-bg p-10 md:p-12 hover:bg-pink/20 transition-colors duration-300">
-          <span class="font-sans text-xs tracking-[0.18em] uppercase text-muted border border-sand px-3 py-1 mb-8 inline-block">{site.flavor2_tag}</span>
-          <h3 class="font-serif text-2xl font-light text-dark mb-4">{site.flavor2_title}</h3>
-          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.flavor2_desc}</p>
-        </div>
-        <div class="bg-bg p-10 md:p-12 hover:bg-pink/20 transition-colors duration-300">
-          <span class="font-sans text-xs tracking-[0.18em] uppercase text-muted border border-sand px-3 py-1 mb-8 inline-block">{site.flavor3_tag}</span>
-          <h3 class="font-serif text-2xl font-light text-dark mb-4">{site.flavor3_title}</h3>
-          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.flavor3_desc}</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  <!-- Wave -->
+  <div class="w-full overflow-hidden leading-none">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none" class="w-full h-14 block" xmlns="http://www.w3.org/2000/svg">
+      <path d="M0,0 C360,60 1080,0 1440,60 L1440,60 L0,60 Z" fill="#FFF8E7" />
+    </svg>
+  </div>
 
-  <!-- Portfolio / Galerie -->
-  <section class="py-28 bg-sand/20">
-    <div class="max-w-7xl mx-auto px-8">
-      <div class="mb-16">
-        <span class="font-sans text-xs tracking-[0.22em] uppercase text-muted mb-4 block">{site.portfolio_badge}</span>
-        <h2 class="font-serif text-4xl md:text-5xl font-light text-dark">
-          {site.portfolio_title} <em class="italic">{site.portfolio_title_em}</em>
-        </h2>
-      </div>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="group cursor-default">
-          <div class="overflow-hidden mb-5">
-            <img src={site.portfolio1_image} alt={site.portfolio1_title} class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700" />
+  <!-- Catégories -->
+  {categories.map((cat, catIdx) => (
+    <section id={cat.slug} class={catIdx % 2 === 0 ? "bg-[#FFF8E7] py-16" : "bg-white py-16"}>
+      <div class="max-w-7xl mx-auto px-4">
+
+        <!-- Titre catégorie -->
+        <div class="flex items-center gap-4 mb-10 reveal">
+          <div class="flex items-center justify-center w-12 h-12 rounded-2xl bg-[#EAB308]/10 text-[#EAB308] shrink-0">
+            <iconify-icon icon={cat.icon} class="text-2xl"></iconify-icon>
           </div>
-          <h3 class="font-serif text-xl font-light text-dark mb-1">{site.portfolio1_title}</h3>
-          <span class="font-sans text-xs tracking-[0.15em] uppercase text-muted">{site.portfolio1_flavor}</span>
-        </div>
-        <div class="group cursor-default md:mt-12">
-          <div class="overflow-hidden mb-5">
-            <img src={site.portfolio2_image} alt={site.portfolio2_title} class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700" />
+          <div>
+            <div class="font-cursive text-[#EAB308] text-3xl leading-none">{cat.cursive}</div>
+            <h2 class="text-3xl font-black uppercase text-[#4A3219] leading-tight">{cat.title}</h2>
           </div>
-          <h3 class="font-serif text-xl font-light text-dark mb-1">{site.portfolio2_title}</h3>
-          <span class="font-sans text-xs tracking-[0.15em] uppercase text-muted">{site.portfolio2_flavor}</span>
         </div>
-        <div class="group cursor-default">
-          <div class="overflow-hidden mb-5">
-            <img src={site.portfolio3_image} alt={site.portfolio3_title} class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700" />
-          </div>
-          <h3 class="font-serif text-xl font-light text-dark mb-1">{site.portfolio3_title}</h3>
-          <span class="font-sans text-xs tracking-[0.15em] uppercase text-muted">{site.portfolio3_flavor}</span>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Processus -->
-  <section class="py-28 md:py-36">
-    <div class="max-w-7xl mx-auto px-8">
-      <div class="text-center mb-20">
-        <span class="font-sans text-xs tracking-[0.22em] uppercase text-muted mb-4 block">{site.process_badge}</span>
-        <h2 class="font-serif text-4xl md:text-5xl font-light text-dark mb-5">{site.process_title}</h2>
-        <p class="font-sans text-sm font-light leading-relaxed text-muted max-w-xl mx-auto tracking-wide">{site.process_subtitle}</p>
-      </div>
-      <div class="grid md:grid-cols-4 gap-10 md:gap-8">
-        <div class="relative">
-          <div class="font-serif text-8xl font-light text-sand leading-none mb-6 select-none">01</div>
-          <div class="w-10 h-px bg-dark/20 mb-6"></div>
-          <h3 class="font-serif text-2xl font-light text-dark mb-3">{site.step1_title}</h3>
-          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.step1_desc}</p>
+        <!-- Produits -->
+        <div class="grid md:grid-cols-3 gap-6">
+          {cat.items.map((item, idx) => (
+            <div class={`bg-white rounded-3xl overflow-hidden border border-[#EAB308]/10 shadow-sm hover:shadow-md transition-shadow flex flex-col reveal reveal-d${idx + 1}`}>
+              <div class="relative h-48 overflow-hidden">
+                <img
+                  src={item.image}
+                  alt={item.name}
+                  class="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  loading="lazy"
+                />
+                <div class="absolute top-3 right-3 bg-[#EAB308] text-white font-bold text-sm px-3 py-1 rounded-full shadow">
+                  {item.price}
+                  {item.price_original && (
+                    <span class="text-white/60 text-xs line-through ml-1">{item.price_original}</span>
+                  )}
+                </div>
+              </div>
+              <div class="p-5 flex flex-col gap-3 flex-1">
+                <h3 class="font-bold text-[#4A3219] text-lg leading-tight">{item.name}</h3>
+                <div class="flex items-center gap-1">
+                  <div class="flex text-[#EAB308] text-sm">
+                    <iconify-icon icon="solar:star-bold"></iconify-icon>
+                    <iconify-icon icon="solar:star-bold"></iconify-icon>
+                    <iconify-icon icon="solar:star-bold"></iconify-icon>
+                    <iconify-icon icon="solar:star-bold"></iconify-icon>
+                    <iconify-icon icon="solar:star-bold"></iconify-icon>
+                  </div>
+                  <span class="text-[#4A3219]/50 text-xs">{item.rating}/5</span>
+                </div>
+                <p class="text-[#4A3219]/60 text-sm leading-relaxed flex-1">{item.desc}</p>
+                <a href={waLink}
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="mt-2 flex items-center justify-center gap-2 bg-[#EAB308] hover:bg-[#ca9b07] text-white font-semibold px-5 py-2.5 rounded-full transition-colors text-sm">
+                  <iconify-icon icon="mdi:whatsapp"></iconify-icon>
+                  Commander
+                </a>
+              </div>
+            </div>
+          ))}
         </div>
-        <div class="relative">
-          <div class="font-serif text-8xl font-light text-sand leading-none mb-6 select-none">02</div>
-          <div class="w-10 h-px bg-dark/20 mb-6"></div>
-          <h3 class="font-serif text-2xl font-light text-dark mb-3">{site.step2_title}</h3>
-          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.step2_desc}</p>
-        </div>
-        <div class="relative">
-          <div class="font-serif text-8xl font-light text-sand leading-none mb-6 select-none">03</div>
-          <div class="w-10 h-px bg-dark/20 mb-6"></div>
-          <h3 class="font-serif text-2xl font-light text-dark mb-3">{site.step3_title}</h3>
-          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.step3_desc}</p>
-        </div>
-        <div class="relative">
-          <div class="font-serif text-8xl font-light text-sand leading-none mb-6 select-none">04</div>
-          <div class="w-10 h-px bg-dark/20 mb-6"></div>
-          <h3 class="font-serif text-2xl font-light text-dark mb-3">{site.step4_title}</h3>
-          <p class="font-sans text-sm font-light leading-relaxed text-muted tracking-wide">{site.step4_desc}</p>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Témoignage -->
-  <section class="py-28 md:py-36 bg-dark">
-    <div class="max-w-5xl mx-auto px-8 text-center">
-      <span class="iconify text-sand/40 mb-10 block mx-auto" data-icon="lucide:quote" data-width="40"></span>
-      <blockquote class="font-serif text-3xl md:text-4xl font-light italic leading-relaxed text-white/90 mb-12">
-        &ldquo;{site.testimonial_text}&rdquo;
-      </blockquote>
-      <div class="flex items-center justify-center gap-5">
-        <img src={site.testimonial_image} alt={site.testimonial_name} class="w-12 h-12 rounded-full object-cover grayscale opacity-60" />
-        <div class="text-left">
-          <p class="font-serif text-base font-light text-white/80">{site.testimonial_name}</p>
-          <p class="font-sans text-xs tracking-[0.15em] uppercase text-white/30">{site.testimonial_date}</p>
-        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  ))}
 
-  <!-- CTA -->
-  <section class="py-24">
-    <div class="max-w-3xl mx-auto px-8 text-center">
-      <h2 class="font-serif text-4xl md:text-5xl font-light text-dark mb-6">{site.about_cta}</h2>
-      <p class="font-sans text-sm font-light leading-relaxed text-muted mb-10 tracking-wide">{site.hero_subtitle}</p>
-      <a href="/contact" class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.18em] uppercase text-dark border border-dark/30 px-8 py-4 hover:bg-dark hover:text-bg transition-all duration-300">
-        {site.hero_cta}
-        <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
-      </a>
-    </div>
-  </section>
+  <!-- Navigation catégories (sticky bottom) -->
+  <div class="sticky bottom-4 z-40 flex justify-center pointer-events-none">
+    <nav class="pointer-events-auto flex items-center gap-2 bg-white/90 backdrop-blur border border-[#4A3219]/10 shadow-lg rounded-full px-4 py-2 text-xs font-semibold text-[#4A3219]/70">
+      {categories.map((cat) => (
+        <a href={"#" + cat.slug}
+           class="hover:text-[#EAB308] transition-colors px-2 py-1 rounded-full hover:bg-[#FFF8E7]">
+          {cat.title}
+        </a>
+      ))}
+    </nav>
+  </div>
 
+  <Cta />
   <Footer />
 
 </Base>
