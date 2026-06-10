@@ -4,36 +4,46 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 ---
-<Base title={`Merci — ${site.company_name}`} description={`Votre message a bien été envoyé à ${site.company_name}.`}>
+<Base title={"Merci — " + site.company_name} description="Votre message a bien été reçu. Nous vous répondons très bientôt.">
 
-<Header />
+  <Header />
 
-<main class="min-h-screen flex items-center justify-center py-32 relative overflow-hidden" style={`background-color: ${site.color_bg};`}>
-  <div class="absolute -top-32 -right-32 w-96 h-96 blur-3xl rounded-full opacity-30" style={`background-color: ${site.color_accent};`}></div>
-  <div class="absolute -bottom-32 -left-32 w-96 h-96 blur-3xl rounded-full opacity-10" style={`background-color: ${site.color_primary};`}></div>
-  <div class="relative z-10 max-w-xl mx-auto px-6 text-center">
-    <div class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg" style={`background-color: ${site.color_primary};`}>
-      <iconify-icon icon="solar:check-circle-bold-duotone" width="44" class="text-white" style="color: white;"></iconify-icon>
+  <section class="min-h-[80vh] flex items-center justify-center px-6 pt-32 pb-20 bg-[#F7F5F0]">
+    <div class="max-w-2xl mx-auto text-center">
+      <div class="w-20 h-20 rounded-full bg-[#8A9A8B]/15 flex items-center justify-center mx-auto mb-8">
+        <span class="iconify text-[#8A9A8B]" data-icon="lucide:check-circle" data-width="40"></span>
+      </div>
+
+      <div class="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-[#8A9A8B]/10 text-[#8A9A8B] text-xs font-medium tracking-wide uppercase">
+        <span class="iconify" data-icon="lucide:leaf" data-width="13"></span>
+        Message reçu
+      </div>
+
+      <h1 class="font-playfair text-4xl md:text-5xl font-medium text-[#2F3E35] leading-[1.15] mb-6">
+        Merci pour votre message
+      </h1>
+
+      <p class="text-[#2F3E35]/60 text-lg font-light mb-4 leading-relaxed max-w-lg mx-auto">
+        Nous avons bien reçu votre demande et nous vous répondrons dans les prochaines 24 heures.
+      </p>
+
+      <p class="text-[#2F3E35]/50 text-base font-light mb-12 leading-relaxed">
+        En attendant, explorez nos cours ou découvrez l'histoire du studio.
+      </p>
+
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="/services" class="inline-flex items-center justify-center gap-2 bg-[#8A9A8B] text-white font-semibold rounded-full px-8 py-4 hover:bg-[#6e7e6f] transition-colors text-sm">
+          <span class="iconify" data-icon="lucide:sparkles" data-width="16"></span>
+          Explorer nos cours
+        </a>
+        <a href="/" class="inline-flex items-center justify-center gap-2 border border-[#2F3E35]/20 bg-white text-[#2F3E35] font-medium rounded-full px-8 py-4 hover:bg-[#F7F5F0] transition-colors text-sm">
+          <span class="iconify" data-icon="lucide:home" data-width="16"></span>
+          Retour à l'accueil
+        </a>
+      </div>
     </div>
-    <h1 class="font-heading text-4xl sm:text-5xl font-bold tracking-tight mb-6" style={`color: ${site.color_dark};`}>
-      Merci pour votre message !
-    </h1>
-    <p class="text-gray-600 text-lg font-light leading-relaxed mb-10">
-      Nous avons bien reçu votre demande et nous vous répondrons dans les plus brefs délais.
-    </p>
-    <div class="flex flex-col sm:flex-row justify-center gap-4">
-      <a href="/" class="text-white text-sm font-semibold px-8 py-4 rounded-full transition-all hover:opacity-90 inline-flex items-center justify-center gap-2 shadow-sm" style={`background-color: ${site.color_primary};`}>
-        Retour à l'accueil
-        <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
-      </a>
-      <a href="/services" class="bg-white text-sm font-semibold px-8 py-4 rounded-full border border-gray-200 hover:border-gray-300 transition-colors inline-flex items-center justify-center gap-2" style={`color: ${site.color_dark};`}>
-        Voir les services
-        <iconify-icon icon="solar:alt-arrow-right-linear" width="18"></iconify-icon>
-      </a>
-    </div>
-  </div>
-</main>
+  </section>
 
-<Footer />
+  <Footer />
 
 </Base>

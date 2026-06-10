@@ -1,43 +1,87 @@
 ---
 import site from '../data/site.json';
 ---
-<nav class="sticky top-0 z-50 w-full backdrop-blur-md border-b" style={`background-color: ${site.color_bg}e6; border-color: ${site.color_accent}4d;`}>
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex justify-between items-center h-20">
-    <a href="/" class="flex items-center hover:opacity-80 transition-opacity">
-      {site.logo_url
-        ? <img src={site.logo_url} alt={site.company_name} class="h-8 sm:h-10 w-auto object-contain" />
-        : <span class="font-heading text-xl font-bold" style={`color: ${site.color_dark};`}>{site.company_name}</span>
-      }
+<header id="site-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-4 py-4">
+  <nav id="nav-pill" class="max-w-6xl mx-auto flex items-center justify-between rounded-2xl border border-white/30 bg-white/70 backdrop-blur-xl px-6 py-3 shadow-sm transition-all duration-500">
+    <a href="/" class="flex items-center gap-3 group">
+      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0">
+        <ellipse cx="16" cy="8" rx="4" ry="7" fill="#8A9A8B" opacity="0.8"/>
+        <ellipse cx="8" cy="20" rx="4" ry="7" transform="rotate(-45 8 20)" fill="#8A9A8B" opacity="0.6"/>
+        <ellipse cx="24" cy="20" rx="4" ry="7" transform="rotate(45 24 20)" fill="#8A9A8B" opacity="0.6"/>
+        <circle cx="16" cy="18" r="3" fill="#2F3E35"/>
+      </svg>
+      <div>
+        <div class="font-playfair font-semibold text-lg leading-tight text-[#2F3E35]">{site.company_name}</div>
+        <div class="text-[10px] tracking-widest uppercase text-[#8A9A8B] font-light leading-none">{site.company_sub}</div>
+      </div>
     </a>
-    <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
-      <a href="/services" class="transition-colors hover:opacity-80" style={`color: ${site.color_dark};`}>Services</a>
-      <a href="/a-propos" class="transition-colors hover:opacity-80" style={`color: ${site.color_dark};`}>À propos</a>
-      <a href="/contact" class="transition-colors hover:opacity-80" style={`color: ${site.color_dark};`}>Contact</a>
+
+    <ul class="hidden md:flex items-center gap-8 text-sm font-medium text-[#2F3E35]">
+      <li><a href="/a-propos" class="hover:text-[#8A9A8B] transition-colors">Le Studio</a></li>
+      <li><a href="/services" class="hover:text-[#8A9A8B] transition-colors">Cours</a></li>
+      <li><a href="/a-propos#instructeurs" class="hover:text-[#8A9A8B] transition-colors">Instructeurs</a></li>
+      <li><a href="/contact" class="hover:text-[#8A9A8B] transition-colors">Contact</a></li>
+    </ul>
+
+    <div class="hidden md:flex items-center gap-3">
+      <a href="/contact" class="text-sm font-semibold bg-[#8A9A8B] text-white rounded-full px-5 py-2.5 hover:bg-[#6e7e6f] transition-colors">Réserver un Cours</a>
     </div>
-    <div class="flex items-center gap-4">
-      <a href="/contact" class="text-white text-sm font-semibold px-5 py-2.5 rounded-lg shadow-sm transition-all duration-200 hover:opacity-90" style={`background-color: ${site.color_primary};`}>
-        Nous contacter
-      </a>
+
+    <button id="mobile-menu-btn" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Menu">
+      <span class="block w-6 h-0.5 bg-[#2F3E35] transition-all duration-300"></span>
+      <span class="block w-6 h-0.5 bg-[#2F3E35] transition-all duration-300"></span>
+      <span class="block w-4 h-0.5 bg-[#2F3E35] transition-all duration-300"></span>
+    </button>
+  </nav>
+
+  <div id="mobile-menu" class="hidden md:hidden mt-2 max-w-6xl mx-auto rounded-2xl border border-white/30 bg-white/90 backdrop-blur-xl px-6 py-6 shadow-lg">
+    <ul class="flex flex-col gap-4 text-sm font-medium text-[#2F3E35] mb-6">
+      <li><a href="/a-propos" class="hover:text-[#8A9A8B] transition-colors">Le Studio</a></li>
+      <li><a href="/services" class="hover:text-[#8A9A8B] transition-colors">Cours</a></li>
+      <li><a href="/a-propos#instructeurs" class="hover:text-[#8A9A8B] transition-colors">Instructeurs</a></li>
+      <li><a href="/contact" class="hover:text-[#8A9A8B] transition-colors">Contact</a></li>
+    </ul>
+    <div class="flex flex-col gap-3">
+      <a href="/contact" class="text-sm font-semibold text-center bg-[#8A9A8B] text-white rounded-full px-5 py-2.5">Réserver un Cours</a>
     </div>
   </div>
-</nav>
+</header>
 
 <script is:inline>
-  (function() {
-    var header = document.querySelector('header, nav[class*="fixed"]');
-    if (!header) return;
-    var alreadyGlass = getComputedStyle(header).backdropFilter !== 'none';
-    window.addEventListener('scroll', function() {
-      if (window.scrollY > 60) {
-        header.style.backdropFilter = 'blur(12px)';
-        header.style.webkitBackdropFilter = 'blur(12px)';
-        if (!alreadyGlass) header.style.backgroundColor = header.style.backgroundColor || 'rgba(0,0,0,0.8)';
+  (function () {
+    var header = document.getElementById('site-header');
+    var navPill = document.getElementById('nav-pill');
+
+    function setScrolled(scrolled) {
+      if (scrolled) {
+        header.classList.add('py-2');
+        header.classList.remove('py-4');
+        navPill.classList.add('shadow-lg', 'bg-white/90');
+        navPill.classList.remove('bg-white/70');
       } else {
-        if (!alreadyGlass) {
-          header.style.backdropFilter = 'none';
-          header.style.webkitBackdropFilter = 'none';
-        }
+        header.classList.add('py-4');
+        header.classList.remove('py-2');
+        navPill.classList.remove('shadow-lg', 'bg-white/90');
+        navPill.classList.add('bg-white/70');
       }
-    }, { passive: true });
+    }
+
+    window.addEventListener('scroll', function () {
+      setScrolled(window.scrollY > 40);
+    });
+
+    var mobileBtn = document.getElementById('mobile-menu-btn');
+    var mobileMenu = document.getElementById('mobile-menu');
+
+    if (mobileBtn && mobileMenu) {
+      mobileBtn.addEventListener('click', function () {
+        var isOpen = !mobileMenu.classList.contains('hidden');
+        if (isOpen) {
+          mobileMenu.classList.add('hidden');
+        } else {
+          mobileMenu.classList.remove('hidden');
+        }
+      });
+    }
   })();
 </script>

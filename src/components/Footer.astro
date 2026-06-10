@@ -1,46 +1,112 @@
 ---
 import site from '../data/site.json';
 ---
-<footer class="bg-white border-t border-gray-100 pt-16 pb-8">
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
-      <div class="md:col-span-1">
-        <a href="/" class="block mb-6 hover:opacity-80 transition-opacity">
-          {site.logo_url
-            ? <img src={site.logo_url} alt={site.company_name} class="h-12 w-auto object-contain" />
-            : <span class="font-heading text-xl font-bold" style={`color: ${site.color_dark};`}>{site.company_name}</span>
-          }
-        </a>
-        <p class="text-xs text-gray-500 leading-relaxed font-light mb-6 pr-4">{site.tagline}</p>
-        <div class="flex items-center gap-4 text-gray-400">
-          {site.social_linkedin && <a href={site.social_linkedin} class="transition-colors hover:opacity-80" style={`color: ${site.color_primary};`}><iconify-icon icon="solar:minimalistic-linkedin-linear" width="20"></iconify-icon></a>}
-          {site.email && <a href={`mailto:${site.email}`} class="transition-colors hover:opacity-80" style={`color: ${site.color_primary};`}><iconify-icon icon="solar:letter-linear" width="20"></iconify-icon></a>}
-          {site.phone && <a href={`tel:${site.phone}`} class="transition-colors hover:opacity-80" style={`color: ${site.color_primary};`}><iconify-icon icon="solar:phone-linear" width="20"></iconify-icon></a>}
+<footer class="bg-[#2F3E35] text-white pt-20 pb-10 px-6">
+  <div class="max-w-6xl mx-auto">
+    <div class="grid md:grid-cols-3 gap-12 mb-16 pb-16 border-b border-white/10">
+      <div>
+        <div class="flex items-center gap-3 mb-4">
+          <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <ellipse cx="16" cy="8" rx="4" ry="7" fill="#8A9A8B" opacity="0.8"/>
+            <ellipse cx="8" cy="20" rx="4" ry="7" transform="rotate(-45 8 20)" fill="#8A9A8B" opacity="0.6"/>
+            <ellipse cx="24" cy="20" rx="4" ry="7" transform="rotate(45 24 20)" fill="#8A9A8B" opacity="0.6"/>
+            <circle cx="16" cy="18" r="3" fill="white" opacity="0.9"/>
+          </svg>
+          <div>
+            <div class="font-playfair font-semibold text-lg leading-tight">{site.company_name}</div>
+            <div class="text-[10px] tracking-widest uppercase text-white/40 font-light leading-none">{site.company_sub}</div>
+          </div>
+        </div>
+        <p class="text-white/50 text-sm font-light leading-relaxed mb-6">{site.footer_tagline}</p>
+        <div class="flex items-center gap-3">
+          {site.social_instagram && (
+            <a href={site.social_instagram} class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
+              <span class="iconify text-white/70" data-icon="lucide:instagram" data-width="16"></span>
+            </a>
+          )}
+          <a href="#" class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
+            <span class="iconify text-white/70" data-icon="simple-icons:tiktok" data-width="16"></span>
+          </a>
+          <a href="#" class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
+            <span class="iconify text-white/70" data-icon="lucide:youtube" data-width="16"></span>
+          </a>
+          <a href="#" class="w-9 h-9 rounded-full border border-white/20 flex items-center justify-center hover:bg-white/10 transition-colors">
+            <span class="iconify text-white/70" data-icon="simple-icons:spotify" data-width="16"></span>
+          </a>
         </div>
       </div>
+
       <div>
-        <h4 class="font-heading text-sm font-semibold mb-4 tracking-tight" style={`color: ${site.color_dark};`}>Navigation</h4>
-        <ul class="space-y-3">
-          <li><a href="/" class="text-xs text-gray-500 transition-colors hover:opacity-80">Accueil</a></li>
-          <li><a href="/services" class="text-xs text-gray-500 transition-colors hover:opacity-80">Services</a></li>
-          <li><a href="/a-propos" class="text-xs text-gray-500 transition-colors hover:opacity-80">À propos</a></li>
-          <li><a href="/contact" class="text-xs text-gray-500 transition-colors hover:opacity-80">Contact</a></li>
+        <div class="text-white/30 text-xs font-medium tracking-widest uppercase mb-5">Navigation</div>
+        <ul class="flex flex-col gap-3 text-sm text-white/60 font-light">
+          <li><a href="/a-propos" class="hover:text-white/90 transition-colors">Le Studio</a></li>
+          <li><a href="/services" class="hover:text-white/90 transition-colors">Nos Cours</a></li>
+          <li><a href="/a-propos#instructeurs" class="hover:text-white/90 transition-colors">Instructeurs</a></li>
+          <li><a href="/contact" class="hover:text-white/90 transition-colors">Contact</a></li>
         </ul>
+        <div class="mt-8 text-white/30 text-xs font-medium tracking-widest uppercase mb-5">Nous trouver</div>
+        <div class="flex flex-col gap-2 text-sm text-white/60 font-light">
+          <div class="flex items-start gap-2">
+            <span class="iconify text-[#8A9A8B] mt-0.5" data-icon="lucide:map-pin" data-width="14"></span>
+            {site.address}
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="iconify text-[#8A9A8B]" data-icon="lucide:mail" data-width="14"></span>
+            <a href={"mailto:" + site.email} class="hover:text-white/90 transition-colors">{site.email}</a>
+          </div>
+          <div class="flex items-center gap-2">
+            <span class="iconify text-[#8A9A8B]" data-icon="lucide:phone" data-width="14"></span>
+            <a href={"tel:" + site.phone} class="hover:text-white/90 transition-colors">{site.phone}</a>
+          </div>
+        </div>
       </div>
+
       <div>
-        <h4 class="font-heading text-sm font-semibold mb-4 tracking-tight" style={`color: ${site.color_dark};`}>Légal</h4>
-        <ul class="space-y-3">
-          <li><a href="/mentions-legales" class="text-xs text-gray-500 transition-colors hover:opacity-80">Mentions légales</a></li>
-          {site.email && <li><a href={`mailto:${site.email}`} class="text-xs text-gray-500 transition-colors">{site.email}</a></li>}
-          {site.address && <li class="text-xs text-gray-500">{site.address}</li>}
-        </ul>
+        <div class="text-white/30 text-xs font-medium tracking-widest uppercase mb-5">Restez connectés</div>
+        <p class="text-sm text-white/50 font-light mb-5 leading-relaxed">Recevez nos programmes, conseils et invitations en avant-première.</p>
+        <form id="newsletter-form" class="flex gap-2">
+          <input
+            type="email"
+            id="newsletter-email"
+            placeholder="votre@email.fr"
+            class="flex-1 bg-white/10 border border-white/20 rounded-full px-4 py-2.5 text-sm text-white placeholder-white/30 focus:outline-none focus:border-[#8A9A8B] transition-colors"
+          />
+          <button type="submit" class="bg-[#8A9A8B] hover:bg-[#6e7e6f] text-white rounded-full px-5 py-2.5 text-sm font-medium transition-colors flex-shrink-0">
+            <span class="iconify" data-icon="lucide:send" data-width="15"></span>
+          </button>
+        </form>
+        <div id="newsletter-confirm" class="hidden mt-3 items-center gap-2 text-[#8A9A8B] text-sm">
+          <span class="iconify" data-icon="lucide:check-circle" data-width="16"></span>
+          Merci, vous êtes inscrit·e !
+        </div>
       </div>
     </div>
-    <div class="pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4">
-      <p class="text-xs text-gray-400 font-light">
-        © {new Date().getFullYear()} {site.company_name}{site.legal_status ? ` — ${site.legal_status}` : ''}
-      </p>
-      {site.siret && <p class="text-xs text-gray-400 font-light">SIRET : {site.siret}</p>}
+
+    <div class="flex flex-col md:flex-row items-center justify-between gap-4 text-white/30 text-xs font-light">
+      <span>&copy; {new Date().getFullYear()} {site.company_name} — {site.company_sub}. Tous droits réservés.</span>
+      <div class="flex items-center gap-4">
+        <a href="/mentions-legales" class="hover:text-white/60 transition-colors">Mentions légales</a>
+        <a href="/mentions-legales" class="hover:text-white/60 transition-colors">Politique de confidentialité</a>
+      </div>
     </div>
   </div>
 </footer>
+
+<script is:inline>
+  (function () {
+    var newsletterForm = document.getElementById('newsletter-form');
+    var newsletterConfirm = document.getElementById('newsletter-confirm');
+
+    if (newsletterForm) {
+      newsletterForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+        var emailInput = document.getElementById('newsletter-email');
+        if (emailInput && emailInput.value.trim()) {
+          newsletterForm.style.display = 'none';
+          newsletterConfirm.classList.remove('hidden');
+          newsletterConfirm.classList.add('flex');
+        }
+      });
+    }
+  })();
+</script>

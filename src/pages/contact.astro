@@ -3,10 +3,12 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
----
-<Base title={`Contact — ${site.company_name}`} description={site.contact_subtitle}>
 
-<Header />
+const actionUrl = `https://contact.cmspace.app/submit?to=${site.email}`;
+---
+<Base title={"Contact — " + site.seo_title} description={"Réservez un cours ou posez-nous vos questions. " + site.company_name + " vous répond rapidement."}>
+
+  <Header />
 
   <!-- Prise de RDV -->
   {site.booking_enabled && site.booking_url && (
@@ -28,126 +30,155 @@ import site from '../data/site.json';
 
 
 
-<!-- Page Hero -->
-<section class="py-24 relative overflow-hidden" style={`background-color: ${site.color_dark}; background-image: radial-gradient(900px 420px at 20% 10%, ${site.color_primary}40, transparent 60%), radial-gradient(800px 380px at 85% 35%, ${site.color_accent}2e, transparent 55%);`}>
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
-    <div class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-8">
-      <iconify-icon icon="solar:chat-round-dots-bold-duotone" width="18" style={`color: ${site.color_accent};`}></iconify-icon>
-      <span class="text-xs font-bold tracking-widest uppercase" style={`color: ${site.color_accent};`}>Contact</span>
+  <section class="relative pt-40 pb-20 px-6 bg-[#F7F5F0]">
+    <div class="max-w-3xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-[#8A9A8B]/10 text-[#8A9A8B] text-xs font-medium tracking-wide uppercase">
+        <span class="iconify" data-icon="lucide:mail" data-width="13"></span>
+        Prendre contact
+      </div>
+      <h1 class="font-playfair text-4xl md:text-6xl font-medium text-[#2F3E35] leading-[1.15] mb-6">
+        Commençons votre voyage
+      </h1>
+      <p class="text-[#2F3E35]/60 text-lg font-light mb-4 leading-relaxed">
+        Réservez un cours, posez une question ou renseignez-vous sur nos abonnements. Nous vous répondons dans les 24h.
+      </p>
     </div>
-    <h1 class="font-heading text-5xl sm:text-6xl font-bold tracking-tight text-white mb-6">{site.contact_title}</h1>
-    <p class="text-white/70 text-xl font-light max-w-2xl mx-auto leading-relaxed">{site.contact_subtitle}</p>
-  </div>
-</section>
+  </section>
 
-<!-- Contact Form Section -->
-<section class="py-24 bg-white">
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-    <div class="grid lg:grid-cols-12 gap-10 items-start">
-      <div class="lg:col-span-5">
-        <div class="sticky top-28">
-          <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-6" style={`background-color: ${site.color_primary}1a;`}>
-            <iconify-icon icon="solar:chat-round-dots-bold-duotone" width="18" style={`color: ${site.color_primary};`}></iconify-icon>
-            <span class="text-xs font-semibold tracking-widest uppercase" style={`color: ${site.color_primary};`}>Contact</span>
+  <section class="py-16 px-6 bg-white">
+    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-start">
+
+      <div>
+        <h2 class="font-playfair text-2xl font-medium text-[#2F3E35] mb-8">Envoyez-nous un message</h2>
+        <form
+          action={actionUrl}
+          method="POST"
+          class="flex flex-col gap-5"
+        >
+          <input type="hidden" name="_redirect" value="/merci" />
+
+          <div class="flex flex-col gap-1.5">
+            <label class="text-sm font-medium text-[#2F3E35]" for="name">Votre prénom et nom</label>
+            <input
+              id="name"
+              type="text"
+              name="name"
+              required
+              placeholder="Marie Dupont"
+              class="w-full bg-[#F7F5F0] border border-[#8A9A8B]/30 rounded-2xl px-5 py-3.5 text-sm text-[#2F3E35] placeholder-[#2F3E35]/30 focus:outline-none focus:border-[#8A9A8B] transition-colors"
+            />
           </div>
-          <h2 class="font-heading text-4xl sm:text-5xl font-semibold tracking-tight" style={`color: ${site.color_dark};`}>{site.contact_title}</h2>
-          <p class="text-gray-600 text-lg font-light leading-relaxed mt-5">{site.contact_subtitle}</p>
-          <div class="mt-10 space-y-4">
-            {site.email && (
-              <div class="flex items-start gap-3">
-                <iconify-icon icon="solar:letter-bold-duotone" width="18" class="mt-0.5" style={`color: ${site.color_primary};`}></iconify-icon>
-                <div>
-                  <p class="text-sm font-semibold" style={`color: ${site.color_dark};`}>Email</p>
-                  <a href={`mailto:${site.email}`} class="text-sm text-gray-600 font-light hover:underline">{site.email}</a>
-                </div>
+
+          <div class="flex flex-col gap-1.5">
+            <label class="text-sm font-medium text-[#2F3E35]" for="email">Votre adresse email</label>
+            <input
+              id="email"
+              type="email"
+              name="email"
+              required
+              placeholder="marie@example.fr"
+              class="w-full bg-[#F7F5F0] border border-[#8A9A8B]/30 rounded-2xl px-5 py-3.5 text-sm text-[#2F3E35] placeholder-[#2F3E35]/30 focus:outline-none focus:border-[#8A9A8B] transition-colors"
+            />
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <label class="text-sm font-medium text-[#2F3E35]" for="subject">Sujet</label>
+            <select
+              id="subject"
+              name="subject"
+              class="w-full bg-[#F7F5F0] border border-[#8A9A8B]/30 rounded-2xl px-5 py-3.5 text-sm text-[#2F3E35] focus:outline-none focus:border-[#8A9A8B] transition-colors appearance-none"
+            >
+              <option value="">Choisissez un sujet…</option>
+              <option value="reservation">Réserver un cours</option>
+              <option value="abonnement">Renseignements abonnement</option>
+              <option value="retraite">Informations retraite</option>
+              <option value="autre">Autre question</option>
+            </select>
+          </div>
+
+          <div class="flex flex-col gap-1.5">
+            <label class="text-sm font-medium text-[#2F3E35]" for="message">Votre message</label>
+            <textarea
+              id="message"
+              name="message"
+              required
+              rows="5"
+              placeholder="Dites-nous comment nous pouvons vous aider…"
+              class="w-full bg-[#F7F5F0] border border-[#8A9A8B]/30 rounded-2xl px-5 py-3.5 text-sm text-[#2F3E35] placeholder-[#2F3E35]/30 focus:outline-none focus:border-[#8A9A8B] transition-colors resize-none"
+            ></textarea>
+          </div>
+
+          <button
+            type="submit"
+            class="inline-flex items-center justify-center gap-2 bg-[#8A9A8B] text-white font-semibold rounded-full px-8 py-4 hover:bg-[#6e7e6f] transition-colors text-sm"
+          >
+            <span class="iconify" data-icon="lucide:send" data-width="16"></span>
+            Envoyer le message
+          </button>
+        </form>
+      </div>
+
+      <div class="flex flex-col gap-8 pt-2">
+        <div>
+          <h3 class="font-playfair text-xl font-medium text-[#2F3E35] mb-6">Informations pratiques</h3>
+          <div class="flex flex-col gap-5">
+            <div class="flex items-start gap-4 p-5 rounded-2xl bg-[#F7F5F0] border border-[#8A9A8B]/20">
+              <div class="w-10 h-10 rounded-xl bg-[#8A9A8B]/15 flex items-center justify-center flex-shrink-0">
+                <span class="iconify text-[#8A9A8B]" data-icon="lucide:map-pin" data-width="18"></span>
               </div>
-            )}
-            {site.phone && (
-              <div class="flex items-start gap-3">
-                <iconify-icon icon="solar:phone-bold-duotone" width="18" class="mt-0.5" style={`color: ${site.color_primary};`}></iconify-icon>
-                <div>
-                  <p class="text-sm font-semibold" style={`color: ${site.color_dark};`}>Téléphone</p>
-                  <a href={`tel:${site.phone}`} class="text-sm text-gray-600 font-light hover:underline">{site.phone}</a>
-                </div>
+              <div>
+                <div class="font-semibold text-[#2F3E35] text-sm mb-1">Adresse</div>
+                <div class="text-[#2F3E35]/60 text-sm font-light leading-relaxed">{site.address}</div>
               </div>
-            )}
-            {site.address && (
-              <div class="flex items-start gap-3">
-                <iconify-icon icon="solar:map-point-bold-duotone" width="18" class="mt-0.5" style={`color: ${site.color_primary};`}></iconify-icon>
-                <div>
-                  <p class="text-sm font-semibold" style={`color: ${site.color_dark};`}>Adresse</p>
-                  <p class="text-sm text-gray-600 font-light">{site.address}</p>
-                </div>
+            </div>
+
+            <div class="flex items-start gap-4 p-5 rounded-2xl bg-[#F7F5F0] border border-[#8A9A8B]/20">
+              <div class="w-10 h-10 rounded-xl bg-[#8A9A8B]/15 flex items-center justify-center flex-shrink-0">
+                <span class="iconify text-[#8A9A8B]" data-icon="lucide:mail" data-width="18"></span>
               </div>
-            )}
+              <div>
+                <div class="font-semibold text-[#2F3E35] text-sm mb-1">Email</div>
+                <a href={"mailto:" + site.email} class="text-[#8A9A8B] text-sm font-light hover:text-[#6e7e6f] transition-colors">{site.email}</a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4 p-5 rounded-2xl bg-[#F7F5F0] border border-[#8A9A8B]/20">
+              <div class="w-10 h-10 rounded-xl bg-[#8A9A8B]/15 flex items-center justify-center flex-shrink-0">
+                <span class="iconify text-[#8A9A8B]" data-icon="lucide:phone" data-width="18"></span>
+              </div>
+              <div>
+                <div class="font-semibold text-[#2F3E35] text-sm mb-1">Téléphone</div>
+                <a href={"tel:" + site.phone} class="text-[#8A9A8B] text-sm font-light hover:text-[#6e7e6f] transition-colors">{site.phone}</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-[#2F3E35] text-white">
+          <div class="flex items-center gap-3 mb-4">
+            <span class="iconify text-[#8A9A8B]" data-icon="lucide:clock" data-width="20"></span>
+            <h4 class="font-playfair text-lg font-medium">Horaires du studio</h4>
+          </div>
+          <div class="flex flex-col gap-2 text-sm text-white/70 font-light">
+            <div class="flex justify-between">
+              <span>Lundi – Vendredi</span>
+              <span class="text-white/90">07h00 – 21h00</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Samedi</span>
+              <span class="text-white/90">08h00 – 18h00</span>
+            </div>
+            <div class="flex justify-between">
+              <span>Dimanche</span>
+              <span class="text-white/90">09h00 – 16h00</span>
+            </div>
           </div>
         </div>
       </div>
-      <div class="lg:col-span-7">
-        <form
-          method="POST"
-          action={`https://contact.cmspace.app/submit?to=${site.email}`}
-          class="border border-gray-100 rounded-[2.5rem] p-8 sm:p-10 shadow-sm"
-          style={`background-color: ${site.color_bg};`}
-        >
-          <div class="grid sm:grid-cols-2 gap-5">
-            <div>
-              <label class="text-xs font-semibold tracking-tight" style={`color: ${site.color_dark};`} for="cfName">Nom complet</label>
-              <input id="cfName" name="name" type="text" required class="mt-2 w-full bg-white border border-gray-200 rounded-2xl px-5 py-3.5 text-sm focus:outline-none focus:ring-2" placeholder="Votre nom" />
-            </div>
-            <div>
-              <label class="text-xs font-semibold tracking-tight" style={`color: ${site.color_dark};`} for="cfEmail">Email</label>
-              <input id="cfEmail" name="email" type="email" required class="mt-2 w-full bg-white border border-gray-200 rounded-2xl px-5 py-3.5 text-sm focus:outline-none focus:ring-2" placeholder="nom@entreprise.com" />
-            </div>
-            <div>
-              <label class="text-xs font-semibold tracking-tight" style={`color: ${site.color_dark};`} for="cfCompany">Entreprise</label>
-              <input id="cfCompany" name="company" type="text" class="mt-2 w-full bg-white border border-gray-200 rounded-2xl px-5 py-3.5 text-sm focus:outline-none focus:ring-2" placeholder="Nom de l'entreprise" />
-            </div>
-            <div>
-              <label class="text-xs font-semibold tracking-tight" style={`color: ${site.color_dark};`} for="cfPhone">Téléphone</label>
-              <input id="cfPhone" name="phone" type="tel" class="mt-2 w-full bg-white border border-gray-200 rounded-2xl px-5 py-3.5 text-sm focus:outline-none focus:ring-2" placeholder="+33 6 00 00 00 00" />
-            </div>
-            <div class="sm:col-span-2">
-              <label class="text-xs font-semibold tracking-tight" style={`color: ${site.color_dark};`} for="cfMessage">Message</label>
-              <textarea id="cfMessage" name="message" rows={5} required class="mt-2 w-full bg-white border border-gray-200 rounded-2xl px-5 py-3.5 text-sm focus:outline-none focus:ring-2" placeholder="Décrivez votre besoin..."></textarea>
-            </div>
-          </div>
-          <div class="mt-6 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
-            <p class="text-xs text-gray-500 font-light">En soumettant ce formulaire, vous acceptez d'être contacté.</p>
-            <button type="submit" class="text-white text-sm font-semibold px-8 py-4 rounded-full transition-colors shadow-sm inline-flex items-center gap-2 hover:opacity-90" style={`background-color: ${site.color_primary};`}>
-              Envoyer
-              <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- Final CTA Section -->
-<section class="py-32 relative overflow-hidden" style={`background-color: ${site.color_primary};`}>
-  <div class="absolute inset-0 bg-black/50 mix-blend-overlay z-0" style={`background-image: url('${site.contact_bg_image}'); background-attachment: fixed; background-size: cover; background-position: center;`}></div>
-  <div class="absolute inset-0 z-0" style={`background: linear-gradient(to top, ${site.color_primary}, ${site.color_primary}cc, transparent);`}></div>
-  <div class="max-w-4xl mx-auto px-6 sm:px-8 text-center relative z-10" data-aos="zoom-in">
-    <div class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-8 animate-bounce">
-      <iconify-icon icon="solar:rocket-bold-duotone" width="20" style={`color: ${site.color_accent};`}></iconify-icon>
-      <span class="text-xs font-bold tracking-widest uppercase" style={`color: ${site.color_accent};`}>Travaillons ensemble</span>
     </div>
-    <h2 class="font-heading text-5xl sm:text-7xl font-bold tracking-tight text-white mb-8 drop-shadow-lg leading-[1.1]">
-      {site.contact_cta_title}
-      <span class="italic font-light" style={`color: ${site.color_accent};`}>{site.contact_cta_italic}</span>
-    </h2>
-    <p class="text-gray-200 text-xl font-light mb-12 max-w-2xl mx-auto drop-shadow-md leading-relaxed">{site.contact_cta_sub}</p>
-    <div class="flex flex-col sm:flex-row justify-center items-center gap-6">
-      <a href="/services" class="w-full sm:w-auto glass-card text-white border border-white/30 text-lg font-semibold px-10 py-5 rounded-full hover:bg-white/20 transition-all flex items-center justify-center gap-3">
-        {site.contact_cta_secondary}
-        <iconify-icon icon="solar:box-bold-duotone" width="24"></iconify-icon>
-      </a>
-    </div>
-  </div>
-</section>
+  </section>
 
-<Footer />
+  <Footer />
 
 </Base>

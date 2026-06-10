@@ -1,5 +1,5 @@
 {
-  "name": "agriculture-fmcg-site",
+  "name": "wellness-site",
   "version": "1.0.0",
   "scripts": {
     "dev": "astro dev",

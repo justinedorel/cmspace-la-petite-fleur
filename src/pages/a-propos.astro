@@ -4,216 +4,202 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 ---
-<Base title={`À propos — ${site.company_name}`} description={site.seo_description}>
+<Base title={"À propos — " + site.seo_title} description={site.studio_text}>
 
-<Header />
+  <Header />
 
-<!-- Page Hero -->
-<section class="py-24 relative overflow-hidden" style={`background-color: ${site.color_dark}; background-image: radial-gradient(900px 420px at 20% 10%, ${site.color_primary}40, transparent 60%), radial-gradient(800px 380px at 85% 35%, ${site.color_accent}2e, transparent 55%);`}>
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
-    <div class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-8">
-      <span class="w-2.5 h-2.5 rounded-full" style={`background-color: ${site.color_accent};`}></span>
-      <span class="text-xs font-bold tracking-widest uppercase" style={`color: ${site.color_accent};`}>Notre histoire</span>
+  <section class="relative pt-40 pb-20 px-6 overflow-hidden">
+    <div class="absolute inset-0">
+      <img src={site.studio_image} alt={site.studio_title} class="w-full h-full object-cover" />
+      <div class="absolute inset-0 bg-gradient-to-b from-[#2F3E35]/70 via-[#2F3E35]/40 to-[#F7F5F0]"></div>
     </div>
-    <h1 class="font-heading text-5xl sm:text-6xl font-bold tracking-tight text-white mb-6">
-      {site.about_title} <span class="italic font-light" style={`color: ${site.color_accent};`}>{site.about_title_italic}</span>
-    </h1>
-    <p class="text-white/70 text-xl font-light max-w-2xl mx-auto leading-relaxed">{site.about_subtitle}</p>
-  </div>
-</section>
-
-<!-- Process / Steps Section -->
-<section class="py-32 relative" style={`background-color: ${site.color_dark}; background-image: radial-gradient(900px 420px at 20% 10%, ${site.color_primary}40, transparent 60%), radial-gradient(800px 380px at 85% 35%, ${site.color_accent}2e, transparent 55%);`}>
-  <div class="max-w-4xl mx-auto relative px-6">
-    <div class="sticky top-32 pt-12 pb-48">
-      <div class="space-y-32">
-        <div class="flex flex-col md:flex-row items-center gap-10 bg-white/5 backdrop-blur-xl border border-white/10 p-10 rounded-[2rem] sticky top-32 shadow-2xl transition-all hover:bg-white/10">
-          <div class="w-20 h-20 shrink-0 rounded-full flex items-center justify-center shadow-lg" style={`background-color: ${site.color_accent}; color: ${site.color_primary};`}>
-            <h3 class="text-3xl font-bold font-heading">01</h3>
-          </div>
-          <div>
-            <h4 class="text-3xl font-semibold text-white mb-3 font-heading tracking-tight">{site.about_step1_title}</h4>
-            <p class="text-gray-400 leading-relaxed font-light">{site.about_step1_desc}</p>
-          </div>
-        </div>
-        <div class="flex flex-col md:flex-row items-center gap-10 p-10 rounded-[2rem] sticky top-40 shadow-2xl transition-all border" style={`background-color: ${site.color_primary}; border-color: ${site.color_primary}cc;`}>
-          <div class="w-20 h-20 shrink-0 bg-white rounded-full flex items-center justify-center shadow-lg" style={`color: ${site.color_primary};`}>
-            <h3 class="text-3xl font-bold font-heading">02</h3>
-          </div>
-          <div>
-            <h4 class="text-3xl font-semibold text-white mb-3 font-heading tracking-tight">{site.about_step2_title}</h4>
-            <p class="text-white/80 leading-relaxed font-light">{site.about_step2_desc}</p>
-          </div>
-        </div>
-        <div class="flex flex-col md:flex-row items-center gap-10 p-10 rounded-[2rem] sticky top-48 shadow-2xl transition-all border" style={`background-color: ${site.color_accent}; border-color: ${site.color_accent}cc; color: ${site.color_dark};`}>
-          <div class="w-20 h-20 shrink-0 rounded-full flex items-center justify-center text-white shadow-lg" style={`background-color: ${site.color_primary};`}>
-            <h3 class="text-3xl font-bold font-heading">03</h3>
-          </div>
-          <div>
-            <h4 class="text-3xl font-semibold mb-3 font-heading tracking-tight" style={`color: ${site.color_dark};`}>{site.about_step3_title}</h4>
-            <p class="leading-relaxed font-light" style={`color: ${site.color_dark}cc;`}>{site.about_step3_desc}</p>
-          </div>
-        </div>
+    <div class="relative z-10 max-w-3xl mx-auto text-center pt-16 pb-24">
+      <div class="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full border border-white/40 bg-white/10 backdrop-blur-md text-white text-xs font-medium tracking-wide">
+        <span class="iconify text-[#c8d8c9]" data-icon="lucide:wind" data-width="14"></span>
+        {site.studio_badge}
       </div>
+      <h1 class="font-playfair text-5xl md:text-6xl font-medium text-white leading-[1.1] mb-6">
+        {site.studio_title}
+      </h1>
+      <p class="text-white/80 text-lg font-light leading-relaxed max-w-2xl mx-auto">
+        {site.studio_text}
+      </p>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Why Choose Us -->
-<section class="py-32 bg-white">
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <h2 class="font-heading text-5xl font-semibold tracking-tight mb-6" style={`color: ${site.color_dark};`}>
-        {site.whyus_title} <span class="italic font-light" style={`color: ${site.color_primary};`}>{site.whyus_title_colored}</span>
-      </h2>
-      <p class="text-gray-500 text-xl font-light leading-relaxed">{site.whyus_subtitle}</p>
-    </div>
-    <div class="grid lg:grid-cols-12 gap-10 items-stretch">
-      <div class="lg:col-span-5">
-        <div class="relative overflow-hidden rounded-[2.5rem] border border-gray-100 p-10 shadow-sm h-full" style={`background-color: ${site.color_bg};`}>
-          <div class="absolute -top-24 -right-24 w-72 h-72 blur-3xl rounded-full opacity-60" style={`background-color: ${site.color_accent};`}></div>
-          <div class="absolute -bottom-24 -left-24 w-72 h-72 blur-3xl rounded-full opacity-10" style={`background-color: ${site.color_primary};`}></div>
-          <div class="relative">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-gray-100 mb-8">
-              <iconify-icon icon="solar:shield-check-bold-duotone" width="18" style={`color: ${site.color_primary};`}></iconify-icon>
-              <span class="text-xs font-semibold tracking-widest uppercase" style={`color: ${site.color_primary};`}>{site.whyus_card_badge}</span>
-            </div>
-            <h3 class="font-heading text-3xl font-semibold tracking-tight mb-4" style={`color: ${site.color_dark};`}>{site.whyus_card_title}</h3>
-            <p class="text-gray-600 font-light leading-relaxed mb-8">{site.whyus_card_subtitle}</p>
-            <div class="space-y-4">
-              {[
-                { title: site.whyus_item1_title, desc: site.whyus_item1_desc, icon: 'solar:document-text-bold-duotone', bg: `${site.color_primary}1a` },
-                { title: site.whyus_item2_title, desc: site.whyus_item2_desc, icon: 'solar:checklist-minimalistic-bold-duotone', bg: `${site.color_accent}66` },
-                { title: site.whyus_item3_title, desc: site.whyus_item3_desc, icon: 'solar:global-bold-duotone', bg: `${site.color_primary}1a` },
-              ].map((item) => (
-                <div class="flex gap-4 rounded-2xl bg-white border border-gray-100 p-5">
-                  <div class="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={`background-color: ${item.bg};`}>
-                    <iconify-icon icon={item.icon} width="22" style={`color: ${site.color_primary};`}></iconify-icon>
-                  </div>
-                  <div>
-                    <p class="text-sm font-semibold" style={`color: ${site.color_dark};`}>{item.title}</p>
-                    <p class="text-sm text-gray-500 font-light leading-relaxed">{item.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div class="mt-10 flex flex-col sm:flex-row gap-4">
-              <a href="/contact" class="text-white text-sm font-semibold px-7 py-3.5 rounded-full transition-colors inline-flex items-center justify-center gap-2 shadow-sm" style={`background-color: ${site.color_primary};`}>
-                Nous contacter
-                <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
-              </a>
-              <a href="/services" class="bg-white text-sm font-semibold px-7 py-3.5 rounded-full border border-gray-100 hover:border-gray-200 transition-colors inline-flex items-center justify-center gap-2" style={`color: ${site.color_dark};`}>
-                Voir les services
-                <iconify-icon icon="solar:alt-arrow-right-linear" width="18"></iconify-icon>
-              </a>
-            </div>
-          </div>
+  <section class="py-20 px-6 bg-[#F7F5F0]">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-[#8A9A8B]/10 text-[#8A9A8B] text-xs font-medium tracking-wide uppercase">
+          <span class="iconify" data-icon="lucide:leaf" data-width="13"></span>
+          Notre philosophie
         </div>
-      </div>
-      <div class="lg:col-span-7">
-        <div class="grid sm:grid-cols-2 gap-6">
-          <div class="rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-sm bg-white">
-            <div class="relative">
-              <img src={site.whyus_image1} alt={site.whyus_image1_title} class="w-full h-56 object-cover" />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
-              <div class="absolute left-6 bottom-6 right-6">
-                <p class="text-white font-heading text-lg font-semibold tracking-tight">{site.whyus_image1_title}</p>
-                <p class="text-white/80 text-sm font-light leading-relaxed">{site.whyus_image1_sub}</p>
-              </div>
-            </div>
-          </div>
-          <div class="rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-sm bg-white">
-            <div class="relative">
-              <img src={site.whyus_image2} alt={site.whyus_image2_title} class="w-full h-56 object-cover" />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
-              <div class="absolute left-6 bottom-6 right-6">
-                <p class="text-white font-heading text-lg font-semibold tracking-tight">{site.whyus_image2_title}</p>
-                <p class="text-white/80 text-sm font-light leading-relaxed">{site.whyus_image2_sub}</p>
-              </div>
-            </div>
-          </div>
-          <div class="sm:col-span-2 rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-sm" style={`background-color: ${site.color_bg};`}>
-            <div class="grid md:grid-cols-2">
-              <div class="p-10">
-                <p class="text-xs font-semibold tracking-widest uppercase" style={`color: ${site.color_primary};`}>Ce que vous obtenez</p>
-                <h4 class="font-heading text-3xl font-semibold tracking-tight mt-3" style={`color: ${site.color_dark};`}>{site.whyus_results_title}</h4>
-                <p class="text-gray-600 font-light leading-relaxed mt-4">{site.whyus_results_sub}</p>
-                <ul class="mt-6 space-y-3 text-sm text-gray-600 font-light">
-                  {[site.whyus_result1, site.whyus_result2, site.whyus_result3].map((r) => (
-                    <li class="flex gap-2">
-                      <span class="mt-1 w-1.5 h-1.5 rounded-full shrink-0" style={`background-color: ${site.color_primary};`}></span>
-                      <span>{r}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div class="relative">
-                <img src={site.whyus_image3} alt="Résultats" class="w-full h-full object-cover" />
-                <div class="absolute inset-0" style={`background: linear-gradient(to right, ${site.color_bg}, ${site.color_bg}4d, transparent);`}></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Testimonial -->
-<section class="py-32 overflow-hidden relative" style={`background-color: ${site.color_accent};`}>
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
-    <div class="grid md:grid-cols-2 gap-20 items-center">
-      <div data-aos="fade-right">
-        <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/50 backdrop-blur-md mb-8">
-          <span class="text-xs font-bold tracking-widest uppercase" style={`color: ${site.color_primary};`}>Témoignages</span>
-        </div>
-        <h2 class="font-heading text-5xl sm:text-6xl font-bold tracking-tight mb-6 leading-[1.1]" style={`color: ${site.color_dark};`}>
-          {site.testimonial_section_title}<br />
-          <span class="italic font-light">{site.testimonial_section_italic}</span>
+        <h2 class="font-playfair text-4xl font-medium text-[#2F3E35] leading-[1.15] mb-6">
+          Ce qui nous anime
         </h2>
-        <p class="text-xl mb-10 font-light leading-relaxed" style={`color: ${site.color_dark}b3;`}>{site.testimonial_section_sub}</p>
-      </div>
-      <div class="bg-white rounded-[2.5rem] p-10 sm:p-14 shadow-2xl relative" data-aos="fade-left">
-        <iconify-icon icon="solar:quote-right-bold-duotone" width="80" class="absolute top-10 right-10 opacity-30" style={`color: ${site.color_accent};`}></iconify-icon>
-        <div class="flex gap-1.5 mb-8" style={`color: #9C6B3F;`}>
-          {Array(5).fill(0).map(() => <iconify-icon icon="solar:star-bold" width="20"></iconify-icon>)}
-        </div>
-        <p class="text-2xl sm:text-3xl font-heading font-medium mb-10 leading-snug tracking-tight" style={`color: ${site.color_dark};`}>
-          "{site.testimonial_text}"
+        <p class="text-[#2F3E35]/70 text-base leading-relaxed mb-10 font-light">
+          {site.studio_text}
         </p>
-        <div class="flex items-center gap-5">
-          <div class="w-16 h-16 rounded-full bg-gray-200 overflow-hidden shadow-inner">
-            {site.testimonial_avatar
-              ? <img src={site.testimonial_avatar} alt={site.testimonial_name} class="w-full h-full object-cover" />
-              : <div class="w-full h-full flex items-center justify-center text-2xl font-bold" style={`background-color: ${site.color_primary}; color: white;`}>{site.testimonial_name[0]}</div>
-            }
+        <div class="flex flex-col gap-4">
+          <div class="flex items-start gap-4 p-5 rounded-2xl bg-white border border-[#8A9A8B]/20 shadow-sm">
+            <div class="w-10 h-10 rounded-xl bg-[#8A9A8B]/15 flex items-center justify-center flex-shrink-0">
+              <span class="iconify text-[#8A9A8B]" data-icon="lucide:heart" data-width="18"></span>
+            </div>
+            <div>
+              <div class="font-semibold text-[#2F3E35] text-sm mb-1">{site.studio_feature1_title}</div>
+              <div class="text-[#2F3E35]/60 text-sm font-light leading-relaxed">{site.studio_feature1_desc}</div>
+            </div>
           </div>
-          <div>
-            <h4 class="font-bold text-lg" style={`color: ${site.color_dark};`}>{site.testimonial_name}</h4>
-            <p class="text-sm text-gray-500 font-medium">{site.testimonial_role}</p>
+          <div class="flex items-start gap-4 p-5 rounded-2xl bg-white border border-[#8A9A8B]/20 shadow-sm">
+            <div class="w-10 h-10 rounded-xl bg-[#8A9A8B]/15 flex items-center justify-center flex-shrink-0">
+              <span class="iconify text-[#8A9A8B]" data-icon="lucide:sparkles" data-width="18"></span>
+            </div>
+            <div>
+              <div class="font-semibold text-[#2F3E35] text-sm mb-1">{site.studio_feature2_title}</div>
+              <div class="text-[#2F3E35]/60 text-sm font-light leading-relaxed">{site.studio_feature2_desc}</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="relative">
+        <div class="relative overflow-hidden rounded-3xl aspect-[4/5]">
+          <img src={site.studio_image} alt={site.studio_title} class="w-full h-full object-cover" />
+          <div class="absolute inset-0 bg-gradient-to-t from-[#2F3E35]/50 via-transparent to-transparent"></div>
+          <div class="absolute bottom-6 left-6 right-6">
+            <p class="text-white/90 text-sm font-light italic font-playfair">Chaleureux, calme et intentionnellement minimal</p>
+          </div>
+        </div>
+        <div class="absolute -top-4 -right-4 w-24 h-24 rounded-full bg-[#8A9A8B]/20 blur-2xl"></div>
+        <div class="absolute -bottom-6 -left-6 w-32 h-32 rounded-full bg-[#2F3E35]/10 blur-3xl"></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="instructeurs" class="py-20 px-6 bg-white">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <div class="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-[#8A9A8B]/10 text-[#8A9A8B] text-xs font-medium tracking-wide uppercase">
+          <span class="iconify" data-icon="lucide:users" data-width="13"></span>
+          Notre équipe
+        </div>
+        <h2 class="font-playfair text-4xl md:text-5xl font-medium text-[#2F3E35] mb-4">
+          Vos instructeurs
+        </h2>
+        <p class="text-[#2F3E35]/60 text-lg font-light max-w-xl mx-auto">
+          Des praticiens passionnés, formés aux meilleures traditions du bien-être.
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="rounded-3xl overflow-hidden bg-[#F7F5F0] border border-[#8A9A8B]/15 p-8 text-center hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
+          <div class="w-24 h-24 rounded-full overflow-hidden mx-auto mb-6 ring-4 ring-[#8A9A8B]/20">
+            <img src={site.testimonial1_image} alt="Instructeur" class="w-full h-full object-cover" />
+          </div>
+          <h3 class="font-playfair text-xl font-medium text-[#2F3E35] mb-2">{site.class_featured_instructor}</h3>
+          <p class="text-[#8A9A8B] text-xs font-medium tracking-wide uppercase mb-4">{site.pathway1_title} & Mobilité</p>
+          <p class="text-[#2F3E35]/60 text-sm font-light leading-relaxed">{site.studio_feature1_desc}</p>
+        </div>
+
+        <div class="rounded-3xl overflow-hidden bg-[#F7F5F0] border border-[#8A9A8B]/15 p-8 text-center hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
+          <div class="w-24 h-24 rounded-full overflow-hidden mx-auto mb-6 ring-4 ring-[#8A9A8B]/20">
+            <img src={site.testimonial2_image} alt="Instructeur" class="w-full h-full object-cover" />
+          </div>
+          <h3 class="font-playfair text-xl font-medium text-[#2F3E35] mb-2">{site.testimonial2_name}</h3>
+          <p class="text-[#8A9A8B] text-xs font-medium tracking-wide uppercase mb-4">{site.pathway2_title} & Méditation</p>
+          <p class="text-[#2F3E35]/60 text-sm font-light leading-relaxed">{site.studio_feature2_desc}</p>
+        </div>
+
+        <div class="rounded-3xl overflow-hidden bg-[#F7F5F0] border border-[#8A9A8B]/15 p-8 text-center hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
+          <div class="w-24 h-24 rounded-full overflow-hidden mx-auto mb-6 ring-4 ring-[#8A9A8B]/20">
+            <img src={site.testimonial3_image} alt="Instructeur" class="w-full h-full object-cover" />
+          </div>
+          <h3 class="font-playfair text-xl font-medium text-[#2F3E35] mb-2">{site.testimonial3_name}</h3>
+          <p class="text-[#8A9A8B] text-xs font-medium tracking-wide uppercase mb-4">{site.pathway3_title} & Sons</p>
+          <p class="text-[#2F3E35]/60 text-sm font-light leading-relaxed">{site.studio_feature1_desc}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 px-6 bg-[#F7F5F0]">
+    <div class="max-w-6xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="font-playfair text-4xl font-medium text-[#2F3E35] mb-4">
+          Ce que dit notre communauté
+        </h2>
+        <p class="text-[#2F3E35]/50 text-base font-light">Témoignages authentiques de nos membres</p>
+      </div>
+      <div class="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory" style="scrollbar-width:none;-ms-overflow-style:none;">
+        <div class="flex-shrink-0 w-72 snap-start rounded-3xl bg-white border border-[#8A9A8B]/15 p-6 hover:scale-[1.03] transition-transform duration-300 cursor-default">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-[#8A9A8B]/30 flex-shrink-0">
+              <img src={site.testimonial1_image} alt={site.testimonial1_name} class="w-full h-full object-cover" />
+            </div>
+            <div>
+              <div class="font-semibold text-[#2F3E35] text-sm">{site.testimonial1_name}</div>
+              <div class="text-[#8A9A8B] text-xs">{site.testimonial1_class}</div>
+            </div>
+          </div>
+          <div class="flex gap-0.5 mb-3">
+            {[1,2,3,4,5].map(() => (
+              <span class="iconify text-amber-400" data-icon="lucide:star" data-width="13"></span>
+            ))}
+          </div>
+          <p class="text-[#2F3E35]/70 text-sm font-light leading-relaxed italic mb-4">"{site.testimonial1_text}"</p>
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#8A9A8B]/10 text-[#8A9A8B] text-xs font-medium">
+            <span class="iconify" data-icon="lucide:badge-check" data-width="12"></span>
+            Vérifié
+          </div>
+        </div>
+
+        <div class="flex-shrink-0 w-72 snap-start rounded-3xl bg-white border border-[#8A9A8B]/15 p-6 hover:scale-[1.03] transition-transform duration-300 cursor-default">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-[#8A9A8B]/30 flex-shrink-0">
+              <img src={site.testimonial2_image} alt={site.testimonial2_name} class="w-full h-full object-cover" />
+            </div>
+            <div>
+              <div class="font-semibold text-[#2F3E35] text-sm">{site.testimonial2_name}</div>
+              <div class="text-[#8A9A8B] text-xs">{site.testimonial2_class}</div>
+            </div>
+          </div>
+          <div class="flex gap-0.5 mb-3">
+            {[1,2,3,4,5].map(() => (
+              <span class="iconify text-amber-400" data-icon="lucide:star" data-width="13"></span>
+            ))}
+          </div>
+          <p class="text-[#2F3E35]/70 text-sm font-light leading-relaxed italic mb-4">"{site.testimonial2_text}"</p>
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#8A9A8B]/10 text-[#8A9A8B] text-xs font-medium">
+            <span class="iconify" data-icon="lucide:badge-check" data-width="12"></span>
+            Vérifié
+          </div>
+        </div>
+
+        <div class="flex-shrink-0 w-72 snap-start rounded-3xl bg-white border border-[#8A9A8B]/15 p-6 hover:scale-[1.03] transition-transform duration-300 cursor-default">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-[#8A9A8B]/30 flex-shrink-0">
+              <img src={site.testimonial3_image} alt={site.testimonial3_name} class="w-full h-full object-cover" />
+            </div>
+            <div>
+              <div class="font-semibold text-[#2F3E35] text-sm">{site.testimonial3_name}</div>
+              <div class="text-[#8A9A8B] text-xs">{site.testimonial3_class}</div>
+            </div>
+          </div>
+          <div class="flex gap-0.5 mb-3">
+            {[1,2,3,4,5].map(() => (
+              <span class="iconify text-amber-400" data-icon="lucide:star" data-width="13"></span>
+            ))}
+          </div>
+          <p class="text-[#2F3E35]/70 text-sm font-light leading-relaxed italic mb-4">"{site.testimonial3_text}"</p>
+          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#8A9A8B]/10 text-[#8A9A8B] text-xs font-medium">
+            <span class="iconify" data-icon="lucide:badge-check" data-width="12"></span>
+            Vérifié
           </div>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Trust Badges -->
-<section class="py-12 border-y bg-white/50" style={`border-color: ${site.color_accent}66;`}>
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-16 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
-    {[
-      { icon: 'solar:verified-check-linear', label: site.trust_badge1 },
-      { icon: 'solar:diploma-verified-linear', label: site.trust_badge2 },
-      { icon: 'solar:globe-linear', label: site.trust_badge3 },
-    ].map((b) => (
-      <div class="flex items-center gap-3">
-        <iconify-icon icon={b.icon} width="32" style={`color: ${site.color_primary};`}></iconify-icon>
-        <span class="font-heading text-lg font-medium" style={`color: ${site.color_dark};`}>{b.label}</span>
-      </div>
-    ))}
-  </div>
-</section>
-
-<Footer />
+  <Footer />
 
 </Base>
