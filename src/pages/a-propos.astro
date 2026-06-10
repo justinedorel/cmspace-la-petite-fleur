@@ -4,199 +4,125 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 ---
-<Base title={"À propos — " + site.seo_title} description={site.studio_text}>
+<Base title={`À propos — ${site.company_name}`} description={`${site.about_text1}`}>
 
   <Header />
 
-  <section class="relative pt-40 pb-20 px-6 overflow-hidden">
-    <div class="absolute inset-0">
-      <img src={site.studio_image} alt={site.studio_title} class="w-full h-full object-cover" />
-      <div class="absolute inset-0 bg-gradient-to-b from-[#2F3E35]/70 via-[#2F3E35]/40 to-[#F7F5F0]"></div>
-    </div>
-    <div class="relative z-10 max-w-3xl mx-auto text-center pt-16 pb-24">
-      <div class="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full border border-white/40 bg-white/10 backdrop-blur-md text-white text-xs font-medium tracking-wide">
-        <span class="iconify text-[#c8d8c9]" data-icon="lucide:wind" data-width="14"></span>
-        {site.studio_badge}
-      </div>
-      <h1 class="font-playfair text-5xl md:text-6xl font-medium text-white leading-[1.1] mb-6">
-        {site.studio_title}
+  <!-- Hero page -->
+  <section class="pt-40 pb-20">
+    <div class="max-w-7xl mx-auto px-8">
+      <span class="font-sans text-xs tracking-[0.22em] uppercase text-gray-400 mb-4 block">{site.about_badge}</span>
+      <h1 class="font-sans text-5xl md:text-7xl font-light text-white leading-tight mb-2">
+        {site.about_title}
       </h1>
-      <p class="text-white/80 text-lg font-light leading-relaxed max-w-2xl mx-auto">
-        {site.studio_text}
-      </p>
+      <h1 class="font-sans text-5xl md:text-7xl font-light italic text-white leading-tight">
+        {site.about_title2}
+      </h1>
     </div>
   </section>
 
-  <section class="py-20 px-6 bg-[#F7F5F0]">
-    <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-      <div>
-        <div class="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-[#8A9A8B]/10 text-[#8A9A8B] text-xs font-medium tracking-wide uppercase">
-          <span class="iconify" data-icon="lucide:leaf" data-width="13"></span>
-          Notre philosophie
+  <!-- About principal -->
+  <section class="py-16 md:py-24">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="grid md:grid-cols-2 gap-16 md:gap-24 items-center">
+        <div class="relative">
+          <img src={site.about_image} alt={site.about_title2} class="w-full aspect-[3/4] object-cover" />
+          <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-accent/20 hidden md:block"></div>
         </div>
-        <h2 class="font-playfair text-4xl font-medium text-[#2F3E35] leading-[1.15] mb-6">
-          Ce qui nous anime
-        </h2>
-        <p class="text-[#2F3E35]/70 text-base leading-relaxed mb-10 font-light">
-          {site.studio_text}
-        </p>
-        <div class="flex flex-col gap-4">
-          <div class="flex items-start gap-4 p-5 rounded-2xl bg-white border border-[#8A9A8B]/20 shadow-sm">
-            <div class="w-10 h-10 rounded-xl bg-[#8A9A8B]/15 flex items-center justify-center flex-shrink-0">
-              <span class="iconify text-[#8A9A8B]" data-icon="lucide:heart" data-width="18"></span>
-            </div>
-            <div>
-              <div class="font-semibold text-[#2F3E35] text-sm mb-1">{site.studio_feature1_title}</div>
-              <div class="text-[#2F3E35]/60 text-sm font-light leading-relaxed">{site.studio_feature1_desc}</div>
-            </div>
-          </div>
-          <div class="flex items-start gap-4 p-5 rounded-2xl bg-white border border-[#8A9A8B]/20 shadow-sm">
-            <div class="w-10 h-10 rounded-xl bg-[#8A9A8B]/15 flex items-center justify-center flex-shrink-0">
-              <span class="iconify text-[#8A9A8B]" data-icon="lucide:sparkles" data-width="18"></span>
-            </div>
-            <div>
-              <div class="font-semibold text-[#2F3E35] text-sm mb-1">{site.studio_feature2_title}</div>
-              <div class="text-[#2F3E35]/60 text-sm font-light leading-relaxed">{site.studio_feature2_desc}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="relative">
-        <div class="relative overflow-hidden rounded-3xl aspect-[4/5]">
-          <img src={site.studio_image} alt={site.studio_title} class="w-full h-full object-cover" />
-          <div class="absolute inset-0 bg-gradient-to-t from-[#2F3E35]/50 via-transparent to-transparent"></div>
-          <div class="absolute bottom-6 left-6 right-6">
-            <p class="text-white/90 text-sm font-light italic font-playfair">Chaleureux, calme et intentionnellement minimal</p>
-          </div>
-        </div>
-        <div class="absolute -top-4 -right-4 w-24 h-24 rounded-full bg-[#8A9A8B]/20 blur-2xl"></div>
-        <div class="absolute -bottom-6 -left-6 w-32 h-32 rounded-full bg-[#2F3E35]/10 blur-3xl"></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="instructeurs" class="py-20 px-6 bg-white">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16">
-        <div class="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-[#8A9A8B]/10 text-[#8A9A8B] text-xs font-medium tracking-wide uppercase">
-          <span class="iconify" data-icon="lucide:users" data-width="13"></span>
-          Notre équipe
-        </div>
-        <h2 class="font-playfair text-4xl md:text-5xl font-medium text-[#2F3E35] mb-4">
-          Vos instructeurs
-        </h2>
-        <p class="text-[#2F3E35]/60 text-lg font-light max-w-xl mx-auto">
-          Des praticiens passionnés, formés aux meilleures traditions du bien-être.
-        </p>
-      </div>
-
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="rounded-3xl overflow-hidden bg-[#F7F5F0] border border-[#8A9A8B]/15 p-8 text-center hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
-          <div class="w-24 h-24 rounded-full overflow-hidden mx-auto mb-6 ring-4 ring-[#8A9A8B]/20">
-            <img src={site.testimonial1_image} alt="Instructeur" class="w-full h-full object-cover" />
-          </div>
-          <h3 class="font-playfair text-xl font-medium text-[#2F3E35] mb-2">{site.class_featured_instructor}</h3>
-          <p class="text-[#8A9A8B] text-xs font-medium tracking-wide uppercase mb-4">{site.pathway1_title} & Mobilité</p>
-          <p class="text-[#2F3E35]/60 text-sm font-light leading-relaxed">{site.studio_feature1_desc}</p>
-        </div>
-
-        <div class="rounded-3xl overflow-hidden bg-[#F7F5F0] border border-[#8A9A8B]/15 p-8 text-center hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
-          <div class="w-24 h-24 rounded-full overflow-hidden mx-auto mb-6 ring-4 ring-[#8A9A8B]/20">
-            <img src={site.testimonial2_image} alt="Instructeur" class="w-full h-full object-cover" />
-          </div>
-          <h3 class="font-playfair text-xl font-medium text-[#2F3E35] mb-2">{site.testimonial2_name}</h3>
-          <p class="text-[#8A9A8B] text-xs font-medium tracking-wide uppercase mb-4">{site.pathway2_title} & Méditation</p>
-          <p class="text-[#2F3E35]/60 text-sm font-light leading-relaxed">{site.studio_feature2_desc}</p>
-        </div>
-
-        <div class="rounded-3xl overflow-hidden bg-[#F7F5F0] border border-[#8A9A8B]/15 p-8 text-center hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
-          <div class="w-24 h-24 rounded-full overflow-hidden mx-auto mb-6 ring-4 ring-[#8A9A8B]/20">
-            <img src={site.testimonial3_image} alt="Instructeur" class="w-full h-full object-cover" />
-          </div>
-          <h3 class="font-playfair text-xl font-medium text-[#2F3E35] mb-2">{site.testimonial3_name}</h3>
-          <p class="text-[#8A9A8B] text-xs font-medium tracking-wide uppercase mb-4">{site.pathway3_title} & Sons</p>
-          <p class="text-[#2F3E35]/60 text-sm font-light leading-relaxed">{site.studio_feature1_desc}</p>
+        <div>
+          <p class="font-sans text-sm font-light leading-relaxed text-gray-400 mb-6 tracking-wide">
+            {site.about_text1}
+          </p>
+          <p class="font-sans text-sm font-light leading-relaxed text-gray-400 mb-10 tracking-wide">
+            {site.about_text2}
+          </p>
+          <a href={`mailto:${site.email}`} class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.18em] uppercase text-white hover:opacity-60 transition-opacity">
+            {site.about_cta}
+            <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
+          </a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="py-20 px-6 bg-[#F7F5F0]">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16">
-        <h2 class="font-playfair text-4xl font-medium text-[#2F3E35] mb-4">
-          Ce que dit notre communauté
-        </h2>
-        <p class="text-[#2F3E35]/50 text-base font-light">Témoignages authentiques de nos membres</p>
-      </div>
-      <div class="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory" style="scrollbar-width:none;-ms-overflow-style:none;">
-        <div class="flex-shrink-0 w-72 snap-start rounded-3xl bg-white border border-[#8A9A8B]/15 p-6 hover:scale-[1.03] transition-transform duration-300 cursor-default">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-[#8A9A8B]/30 flex-shrink-0">
-              <img src={site.testimonial1_image} alt={site.testimonial1_name} class="w-full h-full object-cover" />
-            </div>
-            <div>
-              <div class="font-semibold text-[#2F3E35] text-sm">{site.testimonial1_name}</div>
-              <div class="text-[#8A9A8B] text-xs">{site.testimonial1_class}</div>
-            </div>
-          </div>
-          <div class="flex gap-0.5 mb-3">
-            {[1,2,3,4,5].map(() => (
-              <span class="iconify text-amber-400" data-icon="lucide:star" data-width="13"></span>
-            ))}
-          </div>
-          <p class="text-[#2F3E35]/70 text-sm font-light leading-relaxed italic mb-4">"{site.testimonial1_text}"</p>
-          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#8A9A8B]/10 text-[#8A9A8B] text-xs font-medium">
-            <span class="iconify" data-icon="lucide:badge-check" data-width="12"></span>
-            Vérifié
-          </div>
-        </div>
-
-        <div class="flex-shrink-0 w-72 snap-start rounded-3xl bg-white border border-[#8A9A8B]/15 p-6 hover:scale-[1.03] transition-transform duration-300 cursor-default">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-[#8A9A8B]/30 flex-shrink-0">
-              <img src={site.testimonial2_image} alt={site.testimonial2_name} class="w-full h-full object-cover" />
-            </div>
-            <div>
-              <div class="font-semibold text-[#2F3E35] text-sm">{site.testimonial2_name}</div>
-              <div class="text-[#8A9A8B] text-xs">{site.testimonial2_class}</div>
-            </div>
-          </div>
-          <div class="flex gap-0.5 mb-3">
-            {[1,2,3,4,5].map(() => (
-              <span class="iconify text-amber-400" data-icon="lucide:star" data-width="13"></span>
-            ))}
-          </div>
-          <p class="text-[#2F3E35]/70 text-sm font-light leading-relaxed italic mb-4">"{site.testimonial2_text}"</p>
-          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#8A9A8B]/10 text-[#8A9A8B] text-xs font-medium">
-            <span class="iconify" data-icon="lucide:badge-check" data-width="12"></span>
-            Vérifié
-          </div>
-        </div>
-
-        <div class="flex-shrink-0 w-72 snap-start rounded-3xl bg-white border border-[#8A9A8B]/15 p-6 hover:scale-[1.03] transition-transform duration-300 cursor-default">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-[#8A9A8B]/30 flex-shrink-0">
-              <img src={site.testimonial3_image} alt={site.testimonial3_name} class="w-full h-full object-cover" />
-            </div>
-            <div>
-              <div class="font-semibold text-[#2F3E35] text-sm">{site.testimonial3_name}</div>
-              <div class="text-[#8A9A8B] text-xs">{site.testimonial3_class}</div>
-            </div>
-          </div>
-          <div class="flex gap-0.5 mb-3">
-            {[1,2,3,4,5].map(() => (
-              <span class="iconify text-amber-400" data-icon="lucide:star" data-width="13"></span>
-            ))}
-          </div>
-          <p class="text-[#2F3E35]/70 text-sm font-light leading-relaxed italic mb-4">"{site.testimonial3_text}"</p>
-          <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#8A9A8B]/10 text-[#8A9A8B] text-xs font-medium">
-            <span class="iconify" data-icon="lucide:badge-check" data-width="12"></span>
-            Vérifié
-          </div>
+  <!-- Presse / Références -->
+  <section class="py-12 bg-black">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="flex flex-col md:flex-row items-center gap-10 md:gap-16">
+        <span class="font-sans text-xs tracking-[0.22em] uppercase text-white/30 whitespace-nowrap">{site.press_label}</span>
+        <div class="w-px h-6 bg-white/20 hidden md:block"></div>
+        <div class="flex items-center gap-10 md:gap-16 flex-wrap justify-center md:justify-start">
+          <span class="font-sans text-2xl font-light italic tracking-wide text-white/60 hover:text-white/90 transition-colors cursor-default">{site.press1}</span>
+          <span class="font-sans text-2xl font-light tracking-[0.15em] text-white/60 hover:text-white/90 transition-colors cursor-default">{site.press2}</span>
+          <span class="font-sans text-2xl font-light italic tracking-wide text-white/60 hover:text-white/90 transition-colors cursor-default">{site.press3}</span>
+          <span class="font-sans text-2xl font-light tracking-[0.15em] text-white/60 hover:text-white/90 transition-colors cursor-default">{site.press4}</span>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Valeurs / Engagement -->
+  <section class="py-28 md:py-36 bg-surface/20">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="text-center mb-20">
+        <h2 class="font-sans text-4xl md:text-5xl font-light text-white mb-5">{site.process_title}</h2>
+        <p class="font-sans text-sm font-light leading-relaxed text-gray-400 max-w-xl mx-auto tracking-wide">{site.process_subtitle}</p>
+      </div>
+      <div class="grid md:grid-cols-4 gap-10 md:gap-8">
+        <div class="relative">
+          <div class="font-sans text-8xl font-light text-sand leading-none mb-6 select-none">01</div>
+          <div class="w-10 h-px bg-black/20 mb-6"></div>
+          <h3 class="font-sans text-2xl font-light text-white mb-3">{site.step1_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">{site.step1_desc}</p>
+        </div>
+        <div class="relative">
+          <div class="font-sans text-8xl font-light text-sand leading-none mb-6 select-none">02</div>
+          <div class="w-10 h-px bg-black/20 mb-6"></div>
+          <h3 class="font-sans text-2xl font-light text-white mb-3">{site.step2_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">{site.step2_desc}</p>
+        </div>
+        <div class="relative">
+          <div class="font-sans text-8xl font-light text-sand leading-none mb-6 select-none">03</div>
+          <div class="w-10 h-px bg-black/20 mb-6"></div>
+          <h3 class="font-sans text-2xl font-light text-white mb-3">{site.step3_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">{site.step3_desc}</p>
+        </div>
+        <div class="relative">
+          <div class="font-sans text-8xl font-light text-sand leading-none mb-6 select-none">04</div>
+          <div class="w-10 h-px bg-black/20 mb-6"></div>
+          <h3 class="font-sans text-2xl font-light text-white mb-3">{site.step4_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">{site.step4_desc}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Témoignage -->
+  <section class="py-28 md:py-36 bg-black">
+    <div class="max-w-5xl mx-auto px-8 text-center">
+      <span class="iconify text-sand/40 mb-10 block mx-auto" data-icon="lucide:quote" data-width="40"></span>
+      <blockquote class="font-sans text-3xl md:text-4xl font-light italic leading-relaxed text-white/90 mb-12">
+        &ldquo;{site.testimonial_text}&rdquo;
+      </blockquote>
+      <div class="flex items-center justify-center gap-5">
+        <img src={site.testimonial_image} alt={site.testimonial_name} class="w-12 h-12 rounded-full object-cover grayscale opacity-60" />
+        <div class="text-left">
+          <p class="font-sans text-base font-light text-white/80">{site.testimonial_name}</p>
+          <p class="font-sans text-xs tracking-[0.15em] uppercase text-white/30">{site.testimonial_date}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA contact -->
+  <section class="py-24">
+    <div class="max-w-3xl mx-auto px-8 text-center">
+      <h2 class="font-sans text-4xl md:text-5xl font-light text-white mb-6">{site.about_cta}</h2>
+      <p class="font-sans text-sm font-light leading-relaxed text-gray-400 mb-10 tracking-wide">{site.tagline}</p>
+      <a href="/contact" class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.18em] uppercase text-white border border-dark/30 px-8 py-4 hover:bg-black hover:text-bg transition-all duration-300">
+        {site.hero_cta}
+        <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
+      </a>
     </div>
   </section>
 

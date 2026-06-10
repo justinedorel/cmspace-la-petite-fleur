@@ -4,168 +4,146 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 ---
-<Base title={"Nos Cours — " + site.seo_title} description={site.experience_subtitle}>
+<Base title={`Saveurs & Services — ${site.company_name}`} description={`Découvrez nos saveurs et créations artisanales. ${site.seo_description}`}>
 
   <Header />
 
-  <section class="relative pt-40 pb-20 px-6 bg-[#F7F5F0]">
-    <div class="max-w-3xl mx-auto text-center">
-      <div class="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-[#8A9A8B]/10 text-[#8A9A8B] text-xs font-medium tracking-wide uppercase">
-        <span class="iconify" data-icon="lucide:sparkles" data-width="13"></span>
-        Parcours & disciplines
-      </div>
-      <h1 class="font-playfair text-4xl md:text-6xl font-medium text-[#2F3E35] leading-[1.15] mb-6">
-        {site.experience_title}
+  <!-- Hero page -->
+  <section class="pt-40 pb-20 bg-surface/20">
+    <div class="max-w-7xl mx-auto px-8">
+      <span class="font-sans text-xs tracking-[0.22em] uppercase text-gray-400 mb-4 block">{site.portfolio_badge}</span>
+      <h1 class="font-sans text-5xl md:text-7xl font-light text-white mb-6">
+        {site.flavors_title} <em class="italic">{site.flavors_title_em}</em>
       </h1>
-      <p class="text-[#2F3E35]/60 text-lg font-light mb-8 max-w-xl mx-auto leading-relaxed">
-        {site.experience_subtitle}
-      </p>
-      <a href="/contact" class="inline-flex items-center justify-center gap-2 bg-[#8A9A8B] text-white font-semibold rounded-full px-8 py-4 hover:bg-[#6e7e6f] transition-colors">
-        <span class="iconify" data-icon="lucide:calendar" data-width="16"></span>
-        Réserver un cours
-      </a>
+      <p class="font-sans text-sm font-light leading-relaxed text-gray-400 max-w-xl tracking-wide">{site.process_subtitle}</p>
     </div>
   </section>
 
-  <section class="py-20 px-6 bg-white">
-    <div class="max-w-6xl mx-auto">
+  <!-- Saveurs -->
+  <section class="py-28">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="mb-16">
+        <h2 class="font-sans text-4xl md:text-5xl font-light text-white mb-3">
+          {site.flavors_title} <em class="italic">{site.flavors_title_em}</em>
+        </h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-px bg-surface/50">
+        <div class="bg-bg p-10 md:p-12 hover:bg-accent/20/20 transition-colors duration-300">
+          <span class="font-sans text-xs tracking-[0.18em] uppercase text-gray-400 border border-sand px-3 py-1 mb-8 inline-block">{site.flavor1_tag}</span>
+          <h3 class="font-sans text-2xl font-light text-white mb-4">{site.flavor1_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">{site.flavor1_desc}</p>
+        </div>
+        <div class="bg-bg p-10 md:p-12 hover:bg-accent/20/20 transition-colors duration-300">
+          <span class="font-sans text-xs tracking-[0.18em] uppercase text-gray-400 border border-sand px-3 py-1 mb-8 inline-block">{site.flavor2_tag}</span>
+          <h3 class="font-sans text-2xl font-light text-white mb-4">{site.flavor2_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">{site.flavor2_desc}</p>
+        </div>
+        <div class="bg-bg p-10 md:p-12 hover:bg-accent/20/20 transition-colors duration-300">
+          <span class="font-sans text-xs tracking-[0.18em] uppercase text-gray-400 border border-sand px-3 py-1 mb-8 inline-block">{site.flavor3_tag}</span>
+          <h3 class="font-sans text-2xl font-light text-white mb-4">{site.flavor3_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">{site.flavor3_desc}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio / Galerie -->
+  <section class="py-28 bg-surface/20">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="mb-16">
+        <span class="font-sans text-xs tracking-[0.22em] uppercase text-gray-400 mb-4 block">{site.portfolio_badge}</span>
+        <h2 class="font-sans text-4xl md:text-5xl font-light text-white">
+          {site.portfolio_title} <em class="italic">{site.portfolio_title_em}</em>
+        </h2>
+      </div>
       <div class="grid md:grid-cols-3 gap-8">
-
-        <div class="group rounded-3xl overflow-hidden bg-[#F7F5F0] border border-[#8A9A8B]/15 hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
-          <div class="relative h-56 overflow-hidden">
-            <img src={site.pathway1_image} alt={site.pathway1_title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-            <div class="absolute inset-0 bg-gradient-to-t from-[#2F3E35]/40 to-transparent"></div>
-            <div class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center">
-              <span class="iconify text-white" data-icon="lucide:activity" data-width="18"></span>
-            </div>
+        <div class="group cursor-default">
+          <div class="overflow-hidden mb-5">
+            <img src={site.portfolio1_image} alt={site.portfolio1_title} class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700" />
           </div>
-          <div class="p-8">
-            <h2 class="font-playfair text-2xl font-medium text-[#2F3E35] mb-3">{site.pathway1_title}</h2>
-            <p class="text-[#2F3E35]/60 text-sm font-light leading-relaxed mb-5">{site.pathway1_desc}</p>
-            <div class="flex items-center justify-between mb-6">
-              <span class="text-xs text-[#8A9A8B] font-medium">{site.pathway1_tags}</span>
-              <span class="text-xs text-[#2F3E35]/50 bg-white px-3 py-1 rounded-full border border-[#8A9A8B]/20">{site.pathway1_duration}</span>
-            </div>
-            <a href="/contact" class="block text-center text-sm font-semibold text-[#8A9A8B] border border-[#8A9A8B]/40 rounded-full px-6 py-3 hover:bg-[#8A9A8B] hover:text-white transition-colors">
-              Réserver ce parcours
-            </a>
-          </div>
+          <h3 class="font-sans text-xl font-light text-white mb-1">{site.portfolio1_title}</h3>
+          <span class="font-sans text-xs tracking-[0.15em] uppercase text-gray-400">{site.portfolio1_flavor}</span>
         </div>
-
-        <div class="group rounded-3xl overflow-hidden bg-[#F7F5F0] border border-[#8A9A8B]/15 hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
-          <div class="relative h-56 overflow-hidden">
-            <img src={site.pathway2_image} alt={site.pathway2_title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-            <div class="absolute inset-0 bg-gradient-to-t from-[#2F3E35]/40 to-transparent"></div>
-            <div class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center">
-              <span class="iconify text-white" data-icon="lucide:moon" data-width="18"></span>
-            </div>
+        <div class="group cursor-default md:mt-12">
+          <div class="overflow-hidden mb-5">
+            <img src={site.portfolio2_image} alt={site.portfolio2_title} class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700" />
           </div>
-          <div class="p-8">
-            <h2 class="font-playfair text-2xl font-medium text-[#2F3E35] mb-3">{site.pathway2_title}</h2>
-            <p class="text-[#2F3E35]/60 text-sm font-light leading-relaxed mb-5">{site.pathway2_desc}</p>
-            <div class="flex items-center justify-between mb-6">
-              <span class="text-xs text-[#8A9A8B] font-medium">{site.pathway2_tags}</span>
-              <span class="text-xs text-[#2F3E35]/50 bg-white px-3 py-1 rounded-full border border-[#8A9A8B]/20">{site.pathway2_duration}</span>
-            </div>
-            <a href="/contact" class="block text-center text-sm font-semibold text-[#8A9A8B] border border-[#8A9A8B]/40 rounded-full px-6 py-3 hover:bg-[#8A9A8B] hover:text-white transition-colors">
-              Réserver ce parcours
-            </a>
-          </div>
+          <h3 class="font-sans text-xl font-light text-white mb-1">{site.portfolio2_title}</h3>
+          <span class="font-sans text-xs tracking-[0.15em] uppercase text-gray-400">{site.portfolio2_flavor}</span>
         </div>
-
-        <div class="group rounded-3xl overflow-hidden bg-[#F7F5F0] border border-[#8A9A8B]/15 hover:shadow-xl transition-all duration-500 hover:-translate-y-1">
-          <div class="relative h-56 overflow-hidden">
-            <img src={site.pathway3_image} alt={site.pathway3_title} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" />
-            <div class="absolute inset-0 bg-gradient-to-t from-[#2F3E35]/40 to-transparent"></div>
-            <div class="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/20 backdrop-blur-md flex items-center justify-center">
-              <span class="iconify text-white" data-icon="lucide:waves" data-width="18"></span>
-            </div>
+        <div class="group cursor-default">
+          <div class="overflow-hidden mb-5">
+            <img src={site.portfolio3_image} alt={site.portfolio3_title} class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700" />
           </div>
-          <div class="p-8">
-            <h2 class="font-playfair text-2xl font-medium text-[#2F3E35] mb-3">{site.pathway3_title}</h2>
-            <p class="text-[#2F3E35]/60 text-sm font-light leading-relaxed mb-5">{site.pathway3_desc}</p>
-            <div class="flex items-center justify-between mb-6">
-              <span class="text-xs text-[#8A9A8B] font-medium">{site.pathway3_tags}</span>
-              <span class="text-xs text-[#2F3E35]/50 bg-white px-3 py-1 rounded-full border border-[#8A9A8B]/20">{site.pathway3_duration}</span>
-            </div>
-            <a href="/contact" class="block text-center text-sm font-semibold text-[#8A9A8B] border border-[#8A9A8B]/40 rounded-full px-6 py-3 hover:bg-[#8A9A8B] hover:text-white transition-colors">
-              Réserver ce parcours
-            </a>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <section class="py-20 px-6 bg-[#F7F5F0]">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="font-playfair text-3xl font-medium text-[#2F3E35] mb-8">Prochain cours</h2>
-
-      <div class="rounded-3xl overflow-hidden bg-white border border-[#8A9A8B]/20 shadow-lg grid md:grid-cols-2">
-        <div class="relative min-h-[320px]">
-          <img src={site.hero_image} alt={site.class_featured_title} class="absolute inset-0 w-full h-full object-cover" />
-          <div class="absolute inset-0 bg-gradient-to-r from-transparent to-[#2F3E35]/30"></div>
-        </div>
-
-        <div class="p-10 flex flex-col justify-center">
-          <div class="flex items-center gap-3 mb-6">
-            <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-red-50 border border-red-200">
-              <span class="relative flex h-2 w-2">
-                <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-400 opacity-75"></span>
-                <span class="relative inline-flex rounded-full h-2 w-2 bg-red-500"></span>
-              </span>
-              <span class="text-xs font-medium text-red-600">Démarre bientôt</span>
-            </div>
-            <div class="flex items-center gap-2 text-[#2F3E35]/70 text-sm font-medium">
-              <span class="iconify" data-icon="lucide:clock" data-width="15"></span>
-              {site.class_featured_time}
-            </div>
-          </div>
-
-          <h3 class="font-playfair text-3xl font-medium text-[#2F3E35] mb-4 leading-tight">
-            {site.class_featured_title}
-          </h3>
-
-          <div class="flex flex-col gap-2 mb-8">
-            <div class="flex items-center gap-2 text-sm text-[#2F3E35]/70">
-              <span class="iconify text-[#8A9A8B]" data-icon="lucide:user" data-width="15"></span>
-              {site.class_featured_instructor}
-            </div>
-            <div class="flex items-center gap-2 text-sm text-[#2F3E35]/70">
-              <span class="iconify text-[#8A9A8B]" data-icon="lucide:flame" data-width="15"></span>
-              Intensité : {site.class_featured_intensity}
-            </div>
-            <div class="flex items-center gap-2 text-sm text-[#2F3E35]/70">
-              <span class="iconify text-[#8A9A8B]" data-icon="lucide:focus" data-width="15"></span>
-              Focus : {site.class_featured_focus}
-            </div>
-          </div>
-
-          <a href="/contact" class="inline-flex items-center justify-center gap-2 bg-[#2F3E35] text-white font-semibold rounded-full px-8 py-4 hover:bg-[#1a2420] transition-colors mb-4 text-sm">
-            <span class="iconify" data-icon="lucide:calendar-check" data-width="16"></span>
-            Réserver ma place
-          </a>
-
-          <p class="text-xs text-[#2F3E35]/50 font-light leading-relaxed">
-            {site.class_featured_note}
-          </p>
+          <h3 class="font-sans text-xl font-light text-white mb-1">{site.portfolio3_title}</h3>
+          <span class="font-sans text-xs tracking-[0.15em] uppercase text-gray-400">{site.portfolio3_flavor}</span>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="py-20 px-6 bg-[#2F3E35]">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="font-playfair text-3xl md:text-4xl font-medium text-white mb-4">
-        Prêt·e à commencer votre voyage ?
-      </h2>
-      <p class="text-white/60 text-base font-light mb-8 leading-relaxed">
-        {site.hero_bullet1} — {site.hero_bullet2}
-      </p>
-      <a href="/contact" class="inline-flex items-center justify-center gap-2 bg-[#8A9A8B] text-white font-semibold rounded-full px-8 py-4 hover:bg-[#6e7e6f] transition-colors">
-        <span class="iconify" data-icon="lucide:sparkles" data-width="16"></span>
+  <!-- Processus -->
+  <section class="py-28 md:py-36">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="text-center mb-20">
+        <span class="font-sans text-xs tracking-[0.22em] uppercase text-gray-400 mb-4 block">{site.process_badge}</span>
+        <h2 class="font-sans text-4xl md:text-5xl font-light text-white mb-5">{site.process_title}</h2>
+        <p class="font-sans text-sm font-light leading-relaxed text-gray-400 max-w-xl mx-auto tracking-wide">{site.process_subtitle}</p>
+      </div>
+      <div class="grid md:grid-cols-4 gap-10 md:gap-8">
+        <div class="relative">
+          <div class="font-sans text-8xl font-light text-sand leading-none mb-6 select-none">01</div>
+          <div class="w-10 h-px bg-black/20 mb-6"></div>
+          <h3 class="font-sans text-2xl font-light text-white mb-3">{site.step1_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">{site.step1_desc}</p>
+        </div>
+        <div class="relative">
+          <div class="font-sans text-8xl font-light text-sand leading-none mb-6 select-none">02</div>
+          <div class="w-10 h-px bg-black/20 mb-6"></div>
+          <h3 class="font-sans text-2xl font-light text-white mb-3">{site.step2_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">{site.step2_desc}</p>
+        </div>
+        <div class="relative">
+          <div class="font-sans text-8xl font-light text-sand leading-none mb-6 select-none">03</div>
+          <div class="w-10 h-px bg-black/20 mb-6"></div>
+          <h3 class="font-sans text-2xl font-light text-white mb-3">{site.step3_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">{site.step3_desc}</p>
+        </div>
+        <div class="relative">
+          <div class="font-sans text-8xl font-light text-sand leading-none mb-6 select-none">04</div>
+          <div class="w-10 h-px bg-black/20 mb-6"></div>
+          <h3 class="font-sans text-2xl font-light text-white mb-3">{site.step4_title}</h3>
+          <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">{site.step4_desc}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Témoignage -->
+  <section class="py-28 md:py-36 bg-black">
+    <div class="max-w-5xl mx-auto px-8 text-center">
+      <span class="iconify text-sand/40 mb-10 block mx-auto" data-icon="lucide:quote" data-width="40"></span>
+      <blockquote class="font-sans text-3xl md:text-4xl font-light italic leading-relaxed text-white/90 mb-12">
+        &ldquo;{site.testimonial_text}&rdquo;
+      </blockquote>
+      <div class="flex items-center justify-center gap-5">
+        <img src={site.testimonial_image} alt={site.testimonial_name} class="w-12 h-12 rounded-full object-cover grayscale opacity-60" />
+        <div class="text-left">
+          <p class="font-sans text-base font-light text-white/80">{site.testimonial_name}</p>
+          <p class="font-sans text-xs tracking-[0.15em] uppercase text-white/30">{site.testimonial_date}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-24">
+    <div class="max-w-3xl mx-auto px-8 text-center">
+      <h2 class="font-sans text-4xl md:text-5xl font-light text-white mb-6">{site.about_cta}</h2>
+      <p class="font-sans text-sm font-light leading-relaxed text-gray-400 mb-10 tracking-wide">{site.hero_subtitle}</p>
+      <a href="/contact" class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.18em] uppercase text-white border border-dark/30 px-8 py-4 hover:bg-black hover:text-bg transition-all duration-300">
         {site.hero_cta}
+        <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
       </a>
     </div>
   </section>

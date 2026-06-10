@@ -4,104 +4,108 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 ---
-<Base title={"Mentions légales — " + site.company_name} description="Mentions légales et politique de confidentialité de " + site.company_name}>
+<Base title={`Mentions légales — ${site.company_name}`} description={`Mentions légales de ${site.company_name}.`}>
 
   <Header />
 
-  <section class="pt-40 pb-20 px-6 bg-[#F7F5F0]">
-    <div class="max-w-3xl mx-auto">
-      <div class="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-[#8A9A8B]/10 text-[#8A9A8B] text-xs font-medium tracking-wide uppercase">
-        <span class="iconify" data-icon="lucide:file-text" data-width="13"></span>
-        Informations légales
-      </div>
-      <h1 class="font-playfair text-4xl md:text-5xl font-medium text-[#2F3E35] leading-[1.15] mb-6">
+  <!-- Hero page -->
+  <section class="pt-40 pb-16">
+    <div class="max-w-7xl mx-auto px-8">
+      <span class="font-sans text-xs tracking-[0.22em] uppercase text-gray-400 mb-4 block">Légal</span>
+      <h1 class="font-sans text-5xl md:text-6xl font-light text-white">
         Mentions légales
       </h1>
-      <p class="text-[#2F3E35]/60 text-base font-light leading-relaxed">
-        Conformément aux dispositions des articles 6-III et 19 de la Loi n° 2004-575 du 21 juin 2004 pour la Confiance dans l'économie numérique, nous vous informons des éléments suivants.
-      </p>
     </div>
   </section>
 
-  <section class="pb-24 px-6 bg-[#F7F5F0]">
-    <div class="max-w-3xl mx-auto flex flex-col gap-10">
+  <!-- Contenu légal -->
+  <section class="py-16 pb-32">
+    <div class="max-w-3xl mx-auto px-8">
 
-      <div class="rounded-3xl bg-white border border-[#8A9A8B]/20 p-8 shadow-sm">
-        <h2 class="font-playfair text-2xl font-medium text-[#2F3E35] mb-6">Éditeur du site</h2>
-        <div class="flex flex-col gap-3 text-sm text-[#2F3E35]/70 font-light">
-          <div class="grid grid-cols-[140px_1fr] gap-2">
-            <span class="font-medium text-[#2F3E35]">Raison sociale</span>
-            <span>{site.legal_name || site.company_name}</span>
-          </div>
+      <div class="mb-12">
+        <div class="w-10 h-px bg-surface mb-8"></div>
+        <h2 class="font-sans text-2xl font-light text-white mb-6">Éditeur du site</h2>
+        <div class="flex flex-col gap-3">
+          <p class="font-sans text-sm font-light text-gray-400 tracking-wide">
+            <span class="text-white">{site.legal_name || site.company_name}</span>
+          </p>
           {site.legal_status && (
-            <div class="grid grid-cols-[140px_1fr] gap-2">
-              <span class="font-medium text-[#2F3E35]">Forme juridique</span>
-              <span>{site.legal_status}</span>
-            </div>
+            <p class="font-sans text-sm font-light text-gray-400 tracking-wide">
+              Forme juridique : <span class="text-white">{site.legal_status}</span>
+            </p>
           )}
           {site.siret && (
-            <div class="grid grid-cols-[140px_1fr] gap-2">
-              <span class="font-medium text-[#2F3E35]">SIRET</span>
-              <span>{site.siret}</span>
-            </div>
+            <p class="font-sans text-sm font-light text-gray-400 tracking-wide">
+              SIRET : <span class="text-white">{site.siret}</span>
+            </p>
           )}
-          <div class="grid grid-cols-[140px_1fr] gap-2">
-            <span class="font-medium text-[#2F3E35]">Adresse</span>
-            <span>{site.address}</span>
-          </div>
-          <div class="grid grid-cols-[140px_1fr] gap-2">
-            <span class="font-medium text-[#2F3E35]">Email</span>
-            <a href={"mailto:" + site.email} class="text-[#8A9A8B] hover:text-[#6e7e6f] transition-colors">{site.email}</a>
-          </div>
-          <div class="grid grid-cols-[140px_1fr] gap-2">
-            <span class="font-medium text-[#2F3E35]">Téléphone</span>
-            <a href={"tel:" + site.phone} class="text-[#8A9A8B] hover:text-[#6e7e6f] transition-colors">{site.phone}</a>
-          </div>
+          {site.address && (
+            <p class="font-sans text-sm font-light text-gray-400 tracking-wide">
+              Adresse : <span class="text-white">{site.address}</span>
+            </p>
+          )}
+          <p class="font-sans text-sm font-light text-gray-400 tracking-wide">
+            Email : <a href={`mailto:${site.email}`} class="text-white hover:opacity-60 transition-opacity">{site.email}</a>
+          </p>
+          {site.website && (
+            <p class="font-sans text-sm font-light text-gray-400 tracking-wide">
+              Site web : <a href={site.website} class="text-white hover:opacity-60 transition-opacity">{site.website}</a>
+            </p>
+          )}
         </div>
       </div>
 
-      <div class="rounded-3xl bg-white border border-[#8A9A8B]/20 p-8 shadow-sm">
-        <h2 class="font-playfair text-2xl font-medium text-[#2F3E35] mb-6">Hébergement</h2>
-        <p class="text-sm text-[#2F3E35]/70 font-light leading-relaxed">
-          Ce site est hébergé par Cloudflare, Inc., 101 Townsend St, San Francisco, CA 94107, États-Unis.
+      <div class="mb-12">
+        <div class="w-10 h-px bg-surface mb-8"></div>
+        <h2 class="font-sans text-2xl font-light text-white mb-6">Hébergement</h2>
+        <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">
+          Ce site est hébergé par Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, États-Unis.
         </p>
       </div>
 
-      <div class="rounded-3xl bg-white border border-[#8A9A8B]/20 p-8 shadow-sm">
-        <h2 class="font-playfair text-2xl font-medium text-[#2F3E35] mb-6">Propriété intellectuelle</h2>
-        <p class="text-sm text-[#2F3E35]/70 font-light leading-relaxed mb-4">
-          L'ensemble du contenu de ce site (textes, images, photographies, vidéos, logos, etc.) est la propriété exclusive de {site.company_name} ou de ses fournisseurs de contenu, et est protégé par les lois françaises et internationales relatives à la propriété intellectuelle.
+      <div class="mb-12">
+        <div class="w-10 h-px bg-surface mb-8"></div>
+        <h2 class="font-sans text-2xl font-light text-white mb-6">Propriété intellectuelle</h2>
+        <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide mb-4">
+          L'ensemble du contenu de ce site (textes, images, graphismes, logo, icônes, sons, logiciels…) est la propriété exclusive de {site.legal_name || site.company_name}, à l'exception des marques, logos ou contenus appartenant à d'autres sociétés partenaires ou auteurs.
         </p>
-        <p class="text-sm text-[#2F3E35]/70 font-light leading-relaxed">
-          Toute reproduction, distribution, modification ou utilisation de tout ou partie de ce contenu, sous quelque forme que ce soit, est strictement interdite sans l'autorisation préalable écrite de {site.company_name}.
-        </p>
-      </div>
-
-      <div class="rounded-3xl bg-white border border-[#8A9A8B]/20 p-8 shadow-sm">
-        <h2 class="font-playfair text-2xl font-medium text-[#2F3E35] mb-6">Données personnelles</h2>
-        <p class="text-sm text-[#2F3E35]/70 font-light leading-relaxed mb-4">
-          Les informations personnelles que vous communiquez via le formulaire de contact sont utilisées exclusivement pour répondre à vos demandes. Elles ne sont ni cédées, ni vendues à des tiers.
-        </p>
-        <p class="text-sm text-[#2F3E35]/70 font-light leading-relaxed mb-4">
-          Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification, de suppression et d'opposition aux données vous concernant.
-        </p>
-        <p class="text-sm text-[#2F3E35]/70 font-light leading-relaxed">
-          Pour exercer ces droits ou pour toute question relative au traitement de vos données, contactez-nous à l'adresse : <a href={"mailto:" + site.email} class="text-[#8A9A8B] hover:text-[#6e7e6f] transition-colors">{site.email}</a>
+        <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">
+          Toute reproduction, distribution, modification, adaptation, retransmission ou publication de ces différents éléments est strictement interdite sans l'accord écrit préalable de {site.legal_name || site.company_name}.
         </p>
       </div>
 
-      <div class="rounded-3xl bg-white border border-[#8A9A8B]/20 p-8 shadow-sm">
-        <h2 class="font-playfair text-2xl font-medium text-[#2F3E35] mb-6">Cookies</h2>
-        <p class="text-sm text-[#2F3E35]/70 font-light leading-relaxed">
-          Ce site peut utiliser des cookies techniques nécessaires à son bon fonctionnement. Aucun cookie de traçage publicitaire n'est déposé sans votre consentement préalable.
+      <div class="mb-12">
+        <div class="w-10 h-px bg-surface mb-8"></div>
+        <h2 class="font-sans text-2xl font-light text-white mb-6">Données personnelles</h2>
+        <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide mb-4">
+          Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification, d'effacement et d'opposition aux données vous concernant.
+        </p>
+        <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">
+          Pour exercer ces droits ou pour toute question relative à la protection de vos données, vous pouvez nous contacter à l'adresse : <a href={`mailto:${site.email}`} class="text-white hover:opacity-60 transition-opacity">{site.email}</a>
         </p>
       </div>
 
-      <div class="rounded-3xl bg-white border border-[#8A9A8B]/20 p-8 shadow-sm">
-        <h2 class="font-playfair text-2xl font-medium text-[#2F3E35] mb-6">Responsabilité</h2>
-        <p class="text-sm text-[#2F3E35]/70 font-light leading-relaxed">
-          {site.company_name} s'efforce d'assurer l'exactitude des informations publiées sur ce site, mais ne peut être tenu responsable des erreurs, omissions ou résultats obtenus par un usage incorrect de ces informations. Les liens hypertextes présents sur ce site peuvent renvoyer vers d'autres sites dont {site.company_name} ne maîtrise pas le contenu.
+      <div class="mb-12">
+        <div class="w-10 h-px bg-surface mb-8"></div>
+        <h2 class="font-sans text-2xl font-light text-white mb-6">Cookies</h2>
+        <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">
+          Ce site peut utiliser des cookies à des fins de mesure d'audience et d'amélioration de l'expérience utilisateur. Vous pouvez configurer votre navigateur pour refuser les cookies.
         </p>
+      </div>
+
+      <div class="mb-12">
+        <div class="w-10 h-px bg-surface mb-8"></div>
+        <h2 class="font-sans text-2xl font-light text-white mb-6">Responsabilité</h2>
+        <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">
+          {site.company_name} s'efforce d'assurer l'exactitude et la mise à jour des informations diffusées sur ce site. Cependant, {site.company_name} ne peut garantir l'exactitude, la précision ou l'exhaustivité des informations mises à disposition sur ce site.
+        </p>
+      </div>
+
+      <div class="mt-16">
+        <a href="/" class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.18em] uppercase text-white hover:opacity-60 transition-opacity">
+          Retour à l'accueil
+          <span class="iconify" data-icon="lucide:arrow-left" data-width="14"></span>
+        </a>
       </div>
 
     </div>

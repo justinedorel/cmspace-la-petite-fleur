@@ -4,181 +4,229 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 
-const actionUrl = `https://contact.cmspace.app/submit?to=${site.email}`;
+const submitUrl = `https://contact.cmspace.app/submit?to=${site.email}`;
 ---
-<Base title={"Contact — " + site.seo_title} description={"Réservez un cours ou posez-nous vos questions. " + site.company_name + " vous répond rapidement."}>
+<Base title={`Contact — ${site.company_name}`} description={`Contactez ${site.company_name}. ${site.tagline}`}>
 
   <Header />
 
+  <!-- Hero page -->
+  <section class="pt-40 pb-16">
+    <div class="max-w-7xl mx-auto px-8">
+      <span class="font-sans text-xs tracking-[0.22em] uppercase text-gray-400 mb-4 block">Contact</span>
+      <h1 class="font-sans text-5xl md:text-7xl font-light text-white mb-4">
+        {site.hero_cta}
+      </h1>
+      <p class="font-sans text-sm font-light leading-relaxed text-gray-400 max-w-lg tracking-wide">{site.step1_desc}</p>
+    </div>
+  </section>
+
   <!-- Prise de RDV -->
   {site.booking_enabled && site.booking_url && (
-    <section style="padding: 2.5rem 0; background: rgba(var(--color-accent-rgb, 200,169,110), 0.08); border-top: 1px solid rgba(var(--color-accent-rgb, 200,169,110), 0.2); border-bottom: 1px solid rgba(var(--color-accent-rgb, 200,169,110), 0.2);">
-      <div style="max-width: 72rem; margin: 0 auto; padding: 0 2rem; display: flex; align-items: center; justify-content: space-between; gap: 2rem; flex-wrap: wrap;">
+    <section class="py-12 bg-surface/30 border-y border-accent/20">
+      <div class="max-w-7xl mx-auto px-8 flex flex-col md:flex-row items-center justify-between gap-6">
         <div>
-          <p style="font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.18em; opacity: 0.6; margin-bottom: 0.25rem;">Réservation en ligne</p>
-          <h2 style="font-size: 1.75rem; font-weight: 300; margin: 0;">{site.booking_cta || 'Prendre rendez-vous'}</h2>
-          <p style="font-size: 0.875rem; opacity: 0.7; margin-top: 0.25rem;">{site.booking_subtitle || 'Choisissez votre créneau directement en ligne'}</p>
+          <p class="font-sans text-xs tracking-[0.2em] uppercase text-gray-400 mb-1">Réservation en ligne</p>
+          <h2 class="font-sans text-2xl md:text-3xl font-light text-white">{site.booking_cta || 'Prendre rendez-vous'}</h2>
+          <p class="font-sans text-sm text-gray-400 mt-1">{site.booking_subtitle || 'Choisissez un créneau directement en ligne'}</p>
         </div>
         <a href={site.booking_url} target="_blank" rel="noopener"
-          style="display: inline-flex; align-items: center; gap: 0.75rem; padding: 1rem 2rem; background: var(--color-primary, #1B2A4A); color: #fff; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.15em; text-decoration: none; transition: opacity 0.2s;"
-          onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">
-          Réserver un créneau →
+          class="shrink-0 inline-flex items-center gap-3 font-sans text-xs tracking-[0.18em] uppercase bg-black text-white px-8 py-4 hover:bg-black/80 transition-colors">
+          Réserver un créneau
+          <span class="iconify" data-icon="lucide:calendar" data-width="14"></span>
         </a>
       </div>
     </section>
   )}
 
+  <!-- Formulaire + infos -->
+  <section class="py-16 pb-28">
+    <div class="max-w-7xl mx-auto px-8">
+      <div class="grid md:grid-cols-2 gap-16 md:gap-24">
 
+        <!-- Formulaire -->
+        <div>
+          <form
+            method="POST"
+            action={submitUrl}
+            class="flex flex-col gap-7"
+          >
+            <div>
+              <label for="name" class="font-sans text-xs tracking-[0.18em] uppercase text-gray-400 block mb-2">Nom complet</label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                required
+                class="w-full bg-transparent border-b border-sand/80 focus:border-dark outline-none py-3 font-sans text-sm font-light text-white tracking-wide transition-colors duration-200 placeholder:text-gray-400/40"
+                placeholder="Votre nom"
+              />
+            </div>
+            <div>
+              <label for="email" class="font-sans text-xs tracking-[0.18em] uppercase text-gray-400 block mb-2">Email</label>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+                class="w-full bg-transparent border-b border-sand/80 focus:border-dark outline-none py-3 font-sans text-sm font-light text-white tracking-wide transition-colors duration-200 placeholder:text-gray-400/40"
+                placeholder="votre@email.com"
+              />
+            </div>
+            <div>
+              <label for="event_date" class="font-sans text-xs tracking-[0.18em] uppercase text-gray-400 block mb-2">Date de l'événement</label>
+              <input
+                type="text"
+                id="event_date"
+                name="event_date"
+                class="w-full bg-transparent border-b border-sand/80 focus:border-dark outline-none py-3 font-sans text-sm font-light text-white tracking-wide transition-colors duration-200 placeholder:text-gray-400/40"
+                placeholder="ex. 15 juin 2026"
+              />
+            </div>
+            <div>
+              <label for="guests" class="font-sans text-xs tracking-[0.18em] uppercase text-gray-400 block mb-2">Nombre d'invités</label>
+              <input
+                type="text"
+                id="guests"
+                name="guests"
+                class="w-full bg-transparent border-b border-sand/80 focus:border-dark outline-none py-3 font-sans text-sm font-light text-white tracking-wide transition-colors duration-200 placeholder:text-gray-400/40"
+                placeholder="ex. 80 personnes"
+              />
+            </div>
+            <div>
+              <label for="message" class="font-sans text-xs tracking-[0.18em] uppercase text-gray-400 block mb-2">Votre vision</label>
+              <textarea
+                id="message"
+                name="message"
+                required
+                rows="5"
+                class="w-full bg-transparent border-b border-sand/80 focus:border-dark outline-none py-3 font-sans text-sm font-light text-white tracking-wide transition-colors duration-200 placeholder:text-gray-400/40 resize-none"
+                placeholder="Décrivez votre événement, vos goûts, votre esthétique..."
+              ></textarea>
+            </div>
+            <input type="hidden" name="_redirect" value="/merci" />
+            <div>
+              <button
+                type="submit"
+                class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.18em] uppercase text-white border border-dark/30 px-8 py-4 hover:bg-black hover:text-bg transition-all duration-300"
+              >
+                Envoyer ma demande
+                <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
+              </button>
+            </div>
+          </form>
+        </div>
 
-  <section class="relative pt-40 pb-20 px-6 bg-[#F7F5F0]">
-    <div class="max-w-3xl mx-auto text-center">
-      <div class="inline-flex items-center gap-2 mb-6 px-4 py-2 rounded-full bg-[#8A9A8B]/10 text-[#8A9A8B] text-xs font-medium tracking-wide uppercase">
-        <span class="iconify" data-icon="lucide:mail" data-width="13"></span>
-        Prendre contact
+        <!-- Informations de contact -->
+        <div class="flex flex-col gap-12">
+          <div>
+            <p class="font-sans text-xs tracking-[0.22em] uppercase text-gray-400 mb-4">Email</p>
+            <a href={`mailto:${site.email}`} class="font-sans text-2xl font-light text-white hover:opacity-60 transition-opacity">{site.email}</a>
+          </div>
+          {site.address && (
+            <div>
+              <p class="font-sans text-xs tracking-[0.22em] uppercase text-gray-400 mb-4">Adresse</p>
+              <p class="font-sans text-2xl font-light text-white">{site.address}</p>
+            </div>
+          )}
+          <div>
+            <p class="font-sans text-xs tracking-[0.22em] uppercase text-gray-400 mb-6">{site.process_badge}</p>
+            <div class="flex flex-col gap-6">
+              <div class="flex gap-5 items-start">
+                <div class="font-sans text-3xl font-light text-sand leading-none select-none w-8 flex-shrink-0">01</div>
+                <div>
+                  <h3 class="font-sans text-lg font-light text-white mb-1">{site.step1_title}</h3>
+                  <p class="font-sans text-xs font-light leading-relaxed text-gray-400 tracking-wide">{site.step1_desc}</p>
+                </div>
+              </div>
+              <div class="flex gap-5 items-start">
+                <div class="font-sans text-3xl font-light text-sand leading-none select-none w-8 flex-shrink-0">02</div>
+                <div>
+                  <h3 class="font-sans text-lg font-light text-white mb-1">{site.step2_title}</h3>
+                  <p class="font-sans text-xs font-light leading-relaxed text-gray-400 tracking-wide">{site.step2_desc}</p>
+                </div>
+              </div>
+              <div class="flex gap-5 items-start">
+                <div class="font-sans text-3xl font-light text-sand leading-none select-none w-8 flex-shrink-0">03</div>
+                <div>
+                  <h3 class="font-sans text-lg font-light text-white mb-1">{site.step3_title}</h3>
+                  <p class="font-sans text-xs font-light leading-relaxed text-gray-400 tracking-wide">{site.step3_desc}</p>
+                </div>
+              </div>
+              <div class="flex gap-5 items-start">
+                <div class="font-sans text-3xl font-light text-sand leading-none select-none w-8 flex-shrink-0">04</div>
+                <div>
+                  <h3 class="font-sans text-lg font-light text-white mb-1">{site.step4_title}</h3>
+                  <p class="font-sans text-xs font-light leading-relaxed text-gray-400 tracking-wide">{site.step4_desc}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
-      <h1 class="font-playfair text-4xl md:text-6xl font-medium text-[#2F3E35] leading-[1.15] mb-6">
-        Commençons votre voyage
-      </h1>
-      <p class="text-[#2F3E35]/60 text-lg font-light mb-4 leading-relaxed">
-        Réservez un cours, posez une question ou renseignez-vous sur nos abonnements. Nous vous répondons dans les 24h.
-      </p>
     </div>
   </section>
 
-  <section class="py-16 px-6 bg-white">
-    <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-16 items-start">
-
-      <div>
-        <h2 class="font-playfair text-2xl font-medium text-[#2F3E35] mb-8">Envoyez-nous un message</h2>
-        <form
-          action={actionUrl}
-          method="POST"
-          class="flex flex-col gap-5"
-        >
-          <input type="hidden" name="_redirect" value="/merci" />
-
-          <div class="flex flex-col gap-1.5">
-            <label class="text-sm font-medium text-[#2F3E35]" for="name">Votre prénom et nom</label>
-            <input
-              id="name"
-              type="text"
-              name="name"
-              required
-              placeholder="Marie Dupont"
-              class="w-full bg-[#F7F5F0] border border-[#8A9A8B]/30 rounded-2xl px-5 py-3.5 text-sm text-[#2F3E35] placeholder-[#2F3E35]/30 focus:outline-none focus:border-[#8A9A8B] transition-colors"
-            />
-          </div>
-
-          <div class="flex flex-col gap-1.5">
-            <label class="text-sm font-medium text-[#2F3E35]" for="email">Votre adresse email</label>
-            <input
-              id="email"
-              type="email"
-              name="email"
-              required
-              placeholder="marie@example.fr"
-              class="w-full bg-[#F7F5F0] border border-[#8A9A8B]/30 rounded-2xl px-5 py-3.5 text-sm text-[#2F3E35] placeholder-[#2F3E35]/30 focus:outline-none focus:border-[#8A9A8B] transition-colors"
-            />
-          </div>
-
-          <div class="flex flex-col gap-1.5">
-            <label class="text-sm font-medium text-[#2F3E35]" for="subject">Sujet</label>
-            <select
-              id="subject"
-              name="subject"
-              class="w-full bg-[#F7F5F0] border border-[#8A9A8B]/30 rounded-2xl px-5 py-3.5 text-sm text-[#2F3E35] focus:outline-none focus:border-[#8A9A8B] transition-colors appearance-none"
-            >
-              <option value="">Choisissez un sujet…</option>
-              <option value="reservation">Réserver un cours</option>
-              <option value="abonnement">Renseignements abonnement</option>
-              <option value="retraite">Informations retraite</option>
-              <option value="autre">Autre question</option>
-            </select>
-          </div>
-
-          <div class="flex flex-col gap-1.5">
-            <label class="text-sm font-medium text-[#2F3E35]" for="message">Votre message</label>
-            <textarea
-              id="message"
-              name="message"
-              required
-              rows="5"
-              placeholder="Dites-nous comment nous pouvons vous aider…"
-              class="w-full bg-[#F7F5F0] border border-[#8A9A8B]/30 rounded-2xl px-5 py-3.5 text-sm text-[#2F3E35] placeholder-[#2F3E35]/30 focus:outline-none focus:border-[#8A9A8B] transition-colors resize-none"
-            ></textarea>
-          </div>
-
-          <button
-            type="submit"
-            class="inline-flex items-center justify-center gap-2 bg-[#8A9A8B] text-white font-semibold rounded-full px-8 py-4 hover:bg-[#6e7e6f] transition-colors text-sm"
-          >
-            <span class="iconify" data-icon="lucide:send" data-width="16"></span>
-            Envoyer le message
+  <!-- FAQ -->
+  <section class="py-28 md:py-36 bg-surface/20">
+    <div class="max-w-3xl mx-auto px-8">
+      <div class="mb-16 text-center">
+        <h2 class="font-sans text-4xl md:text-5xl font-light text-white mb-4">{site.faq_title}</h2>
+        <p class="font-sans text-sm font-light text-gray-400 tracking-wide">{site.faq_subtitle}</p>
+      </div>
+      <div class="divide-y divide-sand/60">
+        <div class="faq-item py-7">
+          <button class="faq-trigger w-full flex items-center justify-between text-left gap-6">
+            <span class="font-sans text-xl font-light text-white">{site.faq1_q}</span>
+            <span class="iconify faq-icon flex-shrink-0 text-gray-400 transition-transform duration-300" data-icon="lucide:plus" data-width="18"></span>
           </button>
-        </form>
-      </div>
-
-      <div class="flex flex-col gap-8 pt-2">
-        <div>
-          <h3 class="font-playfair text-xl font-medium text-[#2F3E35] mb-6">Informations pratiques</h3>
-          <div class="flex flex-col gap-5">
-            <div class="flex items-start gap-4 p-5 rounded-2xl bg-[#F7F5F0] border border-[#8A9A8B]/20">
-              <div class="w-10 h-10 rounded-xl bg-[#8A9A8B]/15 flex items-center justify-center flex-shrink-0">
-                <span class="iconify text-[#8A9A8B]" data-icon="lucide:map-pin" data-width="18"></span>
-              </div>
-              <div>
-                <div class="font-semibold text-[#2F3E35] text-sm mb-1">Adresse</div>
-                <div class="text-[#2F3E35]/60 text-sm font-light leading-relaxed">{site.address}</div>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-4 p-5 rounded-2xl bg-[#F7F5F0] border border-[#8A9A8B]/20">
-              <div class="w-10 h-10 rounded-xl bg-[#8A9A8B]/15 flex items-center justify-center flex-shrink-0">
-                <span class="iconify text-[#8A9A8B]" data-icon="lucide:mail" data-width="18"></span>
-              </div>
-              <div>
-                <div class="font-semibold text-[#2F3E35] text-sm mb-1">Email</div>
-                <a href={"mailto:" + site.email} class="text-[#8A9A8B] text-sm font-light hover:text-[#6e7e6f] transition-colors">{site.email}</a>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-4 p-5 rounded-2xl bg-[#F7F5F0] border border-[#8A9A8B]/20">
-              <div class="w-10 h-10 rounded-xl bg-[#8A9A8B]/15 flex items-center justify-center flex-shrink-0">
-                <span class="iconify text-[#8A9A8B]" data-icon="lucide:phone" data-width="18"></span>
-              </div>
-              <div>
-                <div class="font-semibold text-[#2F3E35] text-sm mb-1">Téléphone</div>
-                <a href={"tel:" + site.phone} class="text-[#8A9A8B] text-sm font-light hover:text-[#6e7e6f] transition-colors">{site.phone}</a>
-              </div>
-            </div>
+          <div class="faq-answer hidden pt-5">
+            <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">{site.faq1_a}</p>
           </div>
         </div>
-
-        <div class="p-6 rounded-3xl bg-[#2F3E35] text-white">
-          <div class="flex items-center gap-3 mb-4">
-            <span class="iconify text-[#8A9A8B]" data-icon="lucide:clock" data-width="20"></span>
-            <h4 class="font-playfair text-lg font-medium">Horaires du studio</h4>
+        <div class="faq-item py-7">
+          <button class="faq-trigger w-full flex items-center justify-between text-left gap-6">
+            <span class="font-sans text-xl font-light text-white">{site.faq2_q}</span>
+            <span class="iconify faq-icon flex-shrink-0 text-gray-400 transition-transform duration-300" data-icon="lucide:plus" data-width="18"></span>
+          </button>
+          <div class="faq-answer hidden pt-5">
+            <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">{site.faq2_a}</p>
           </div>
-          <div class="flex flex-col gap-2 text-sm text-white/70 font-light">
-            <div class="flex justify-between">
-              <span>Lundi – Vendredi</span>
-              <span class="text-white/90">07h00 – 21h00</span>
-            </div>
-            <div class="flex justify-between">
-              <span>Samedi</span>
-              <span class="text-white/90">08h00 – 18h00</span>
-            </div>
-            <div class="flex justify-between">
-              <span>Dimanche</span>
-              <span class="text-white/90">09h00 – 16h00</span>
-            </div>
+        </div>
+        <div class="faq-item py-7">
+          <button class="faq-trigger w-full flex items-center justify-between text-left gap-6">
+            <span class="font-sans text-xl font-light text-white">{site.faq3_q}</span>
+            <span class="iconify faq-icon flex-shrink-0 text-gray-400 transition-transform duration-300" data-icon="lucide:plus" data-width="18"></span>
+          </button>
+          <div class="faq-answer hidden pt-5">
+            <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">{site.faq3_a}</p>
           </div>
         </div>
       </div>
-
     </div>
   </section>
 
   <Footer />
+
+  <script is:inline>
+    document.querySelectorAll('.faq-item').forEach(function(item) {
+      var trigger = item.querySelector('.faq-trigger');
+      var answer = item.querySelector('.faq-answer');
+      var icon = item.querySelector('.faq-icon');
+      trigger.addEventListener('click', function() {
+        var isOpen = !answer.classList.contains('hidden');
+        document.querySelectorAll('.faq-answer').forEach(function(a) { a.classList.add('hidden'); });
+        document.querySelectorAll('.faq-icon').forEach(function(i) {
+          i.setAttribute('data-icon', 'lucide:plus');
+          i.style.transform = '';
+        });
+        if (!isOpen) {
+          answer.classList.remove('hidden');
+          icon.setAttribute('data-icon', 'lucide:minus');
+        }
+      });
+    });
+  </script>
 
 </Base>

@@ -1,87 +1,115 @@
 ---
 import site from '../data/site.json';
 ---
-<header id="site-header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-4 py-4">
-  <nav id="nav-pill" class="max-w-6xl mx-auto flex items-center justify-between rounded-2xl border border-white/30 bg-white/70 backdrop-blur-xl px-6 py-3 shadow-sm transition-all duration-500">
-    <a href="/" class="flex items-center gap-3 group">
-      <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" class="flex-shrink-0">
-        <ellipse cx="16" cy="8" rx="4" ry="7" fill="#8A9A8B" opacity="0.8"/>
-        <ellipse cx="8" cy="20" rx="4" ry="7" transform="rotate(-45 8 20)" fill="#8A9A8B" opacity="0.6"/>
-        <ellipse cx="24" cy="20" rx="4" ry="7" transform="rotate(45 24 20)" fill="#8A9A8B" opacity="0.6"/>
-        <circle cx="16" cy="18" r="3" fill="#2F3E35"/>
-      </svg>
-      <div>
-        <div class="font-playfair font-semibold text-lg leading-tight text-[#2F3E35]">{site.company_name}</div>
-        <div class="text-[10px] tracking-widest uppercase text-[#8A9A8B] font-light leading-none">{site.company_sub}</div>
-      </div>
+<header id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500">
+  <div class="max-w-7xl mx-auto px-6 md:px-8 h-16 md:h-20 flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="/" class="font-sans text-xl md:text-2xl tracking-[0.15em] font-light text-white nav-logo transition-colors duration-500">
+      {site.company_name}
     </a>
 
-    <ul class="hidden md:flex items-center gap-8 text-sm font-medium text-[#2F3E35]">
-      <li><a href="/a-propos" class="hover:text-[#8A9A8B] transition-colors">Le Studio</a></li>
-      <li><a href="/services" class="hover:text-[#8A9A8B] transition-colors">Cours</a></li>
-      <li><a href="/a-propos#instructeurs" class="hover:text-[#8A9A8B] transition-colors">Instructeurs</a></li>
-      <li><a href="/contact" class="hover:text-[#8A9A8B] transition-colors">Contact</a></li>
-    </ul>
+    <!-- Navigation desktop -->
+    <nav class="hidden md:flex items-center gap-8">
+      <a href="/services" class="nav-link font-sans text-[11px] tracking-[0.2em] uppercase text-white/80 hover:text-white transition-colors relative group">
+        {(site as any).nav_services_label || 'Services'}
+        <span class="absolute -bottom-0.5 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-300"></span>
+      </a>
+      <a href="/a-propos" class="nav-link font-sans text-[11px] tracking-[0.2em] uppercase text-white/80 hover:text-white transition-colors relative group">
+        À propos
+        <span class="absolute -bottom-0.5 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-300"></span>
+      </a>
+      <a href="/contact" class="nav-link font-sans text-[11px] tracking-[0.2em] uppercase text-white/80 hover:text-white transition-colors relative group">
+        Contact
+        <span class="absolute -bottom-0.5 left-0 w-0 h-px bg-white group-hover:w-full transition-all duration-300"></span>
+      </a>
+      <a href="/contact" class="nav-cta font-sans text-[11px] tracking-[0.2em] uppercase border border-white/50 text-white px-6 py-2.5 hover:bg-white hover:text-white transition-all duration-300 ml-2">
+        {site.hero_cta}
+      </a>
+    </nav>
 
-    <div class="hidden md:flex items-center gap-3">
-      <a href="/contact" class="text-sm font-semibold bg-[#8A9A8B] text-white rounded-full px-5 py-2.5 hover:bg-[#6e7e6f] transition-colors">Réserver un Cours</a>
-    </div>
-
-    <button id="mobile-menu-btn" class="md:hidden flex flex-col gap-1.5 p-2" aria-label="Menu">
-      <span class="block w-6 h-0.5 bg-[#2F3E35] transition-all duration-300"></span>
-      <span class="block w-6 h-0.5 bg-[#2F3E35] transition-all duration-300"></span>
-      <span class="block w-4 h-0.5 bg-[#2F3E35] transition-all duration-300"></span>
+    <!-- Mobile toggle -->
+    <button id="mobile-toggle" class="md:hidden flex flex-col gap-[5px] p-2 group" aria-label="Menu">
+      <span id="m1" class="w-6 h-px bg-white block transition-all duration-400 origin-center"></span>
+      <span id="m2" class="w-4 h-px bg-white block transition-all duration-400 ml-auto"></span>
+      <span id="m3" class="w-6 h-px bg-white block transition-all duration-400 origin-center"></span>
     </button>
-  </nav>
-
-  <div id="mobile-menu" class="hidden md:hidden mt-2 max-w-6xl mx-auto rounded-2xl border border-white/30 bg-white/90 backdrop-blur-xl px-6 py-6 shadow-lg">
-    <ul class="flex flex-col gap-4 text-sm font-medium text-[#2F3E35] mb-6">
-      <li><a href="/a-propos" class="hover:text-[#8A9A8B] transition-colors">Le Studio</a></li>
-      <li><a href="/services" class="hover:text-[#8A9A8B] transition-colors">Cours</a></li>
-      <li><a href="/a-propos#instructeurs" class="hover:text-[#8A9A8B] transition-colors">Instructeurs</a></li>
-      <li><a href="/contact" class="hover:text-[#8A9A8B] transition-colors">Contact</a></li>
-    </ul>
-    <div class="flex flex-col gap-3">
-      <a href="/contact" class="text-sm font-semibold text-center bg-[#8A9A8B] text-white rounded-full px-5 py-2.5">Réserver un Cours</a>
-    </div>
   </div>
 </header>
 
+<!-- Mobile menu — slide depuis la droite -->
+<div id="mobile-menu" class="fixed inset-0 z-40 pointer-events-none">
+  <div id="mobile-overlay" class="absolute inset-0 bg-black/60 opacity-0 transition-opacity duration-400 backdrop-blur-sm"></div>
+  <div id="mobile-panel" class="absolute right-0 top-0 h-full w-72 bg-bg flex flex-col pt-24 px-8 pb-8 translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]">
+    <nav class="flex flex-col gap-8 mb-auto">
+      <a href="/services" class="font-sans text-3xl font-light text-white hover:opacity-60 transition-opacity">{(site as any).nav_services_label || 'Services'}</a>
+      <a href="/a-propos"  class="font-sans text-3xl font-light text-white hover:opacity-60 transition-opacity">À propos</a>
+      <a href="/contact"   class="font-sans text-3xl font-light text-white hover:opacity-60 transition-opacity">Contact</a>
+    </nav>
+    <div class="border-t border-sand pt-8 space-y-3">
+      <a href={`mailto:${site.email}`} class="block font-sans text-xs tracking-[0.15em] uppercase text-gray-400 hover:text-white transition-colors">{site.email}</a>
+      {(site as any).phone && <a href={`tel:${(site as any).phone}`} class="block font-sans text-xs tracking-[0.15em] uppercase text-gray-400 hover:text-white transition-colors">{(site as any).phone}</a>}
+    </div>
+  </div>
+</div>
+
 <script is:inline>
-  (function () {
-    var header = document.getElementById('site-header');
-    var navPill = document.getElementById('nav-pill');
+  var nav = document.getElementById('nav');
+  var logo = nav.querySelector('.nav-logo');
+  var links = nav.querySelectorAll('.nav-link');
+  var cta = nav.querySelector('.nav-cta');
+  var scrolled = false;
 
-    function setScrolled(scrolled) {
-      if (scrolled) {
-        header.classList.add('py-2');
-        header.classList.remove('py-4');
-        navPill.classList.add('shadow-lg', 'bg-white/90');
-        navPill.classList.remove('bg-white/70');
-      } else {
-        header.classList.add('py-4');
-        header.classList.remove('py-2');
-        navPill.classList.remove('shadow-lg', 'bg-white/90');
-        navPill.classList.add('bg-white/70');
-      }
+  function updateNav() {
+    var atTop = window.scrollY < 80;
+    if (atTop) {
+      nav.style.backgroundColor = 'transparent';
+      nav.style.backdropFilter  = 'none';
+      nav.style.boxShadow       = 'none';
+      logo.style.color          = '#fff';
+      links.forEach(function(l) { l.style.color = 'rgba(255,255,255,0.8)'; l.querySelectorAll('span').forEach(function(s) { s.style.background = '#fff'; }); });
+      if (cta) { cta.style.borderColor = 'rgba(255,255,255,0.5)'; cta.style.color = '#fff'; cta.style.backgroundColor = 'transparent'; }
+    } else {
+      nav.style.backgroundColor = 'rgba(250,245,248,0.92)';
+      nav.style.backdropFilter  = 'blur(12px)';
+      nav.style.boxShadow       = '0 1px 0 rgba(0,0,0,0.06)';
+      logo.style.color          = '#1a1a1a';
+      links.forEach(function(l) { l.style.color = 'rgba(26,26,26,0.7)'; l.querySelectorAll('span').forEach(function(s) { s.style.background = '#1a1a1a'; }); });
+      if (cta) { cta.style.borderColor = 'rgba(26,26,26,0.4)'; cta.style.color = '#1a1a1a'; cta.style.backgroundColor = 'transparent'; }
     }
+  }
+  updateNav();
+  window.addEventListener('scroll', updateNav, { passive: true });
 
-    window.addEventListener('scroll', function () {
-      setScrolled(window.scrollY > 40);
-    });
+  // Mobile menu
+  var toggle = document.getElementById('mobile-toggle');
+  var menu   = document.getElementById('mobile-menu');
+  var overlay = document.getElementById('mobile-overlay');
+  var panel   = document.getElementById('mobile-panel');
+  var m1 = document.getElementById('m1');
+  var m2 = document.getElementById('m2');
+  var m3 = document.getElementById('m3');
+  var open = false;
 
-    var mobileBtn = document.getElementById('mobile-menu-btn');
-    var mobileMenu = document.getElementById('mobile-menu');
-
-    if (mobileBtn && mobileMenu) {
-      mobileBtn.addEventListener('click', function () {
-        var isOpen = !mobileMenu.classList.contains('hidden');
-        if (isOpen) {
-          mobileMenu.classList.add('hidden');
-        } else {
-          mobileMenu.classList.remove('hidden');
-        }
-      });
-    }
-  })();
+  function openMenu() {
+    open = true;
+    menu.style.pointerEvents = 'all';
+    overlay.style.opacity = '1';
+    panel.style.transform = 'translateX(0)';
+    m1.style.transform = 'rotate(45deg) translate(3.5px, 3.5px)';
+    m2.style.opacity = '0';
+    m3.style.transform = 'rotate(-45deg) translate(3.5px, -3.5px)';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    open = false;
+    menu.style.pointerEvents = 'none';
+    overlay.style.opacity = '0';
+    panel.style.transform = 'translateX(100%)';
+    m1.style.transform = ''; m2.style.opacity = ''; m3.style.transform = '';
+    document.body.style.overflow = '';
+  }
+  toggle.addEventListener('click', function() { open ? closeMenu() : openMenu(); });
+  overlay.addEventListener('click', closeMenu);
+  panel.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeMenu); });
 </script>
