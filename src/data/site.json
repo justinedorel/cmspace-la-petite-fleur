@@ -1,179 +1,179 @@
 {
   "company_name": "La Petite Fleur",
-  "company_sub": "EXPERTISE COMPTABLE",
-  "tagline": "Visibilité locale et clients mariages",
+  "company_sub": "Fleuriste Artisan",
+  "tagline": "Fleurs locales, mariages éco-responsables, abonnements entreprise",
   "email": "contact@montacomm.fr",
   "phone": "0666067038",
-  "address": "12 rue de la Boétie, 75008 Paris",
-  "website": "https://meridian-expertise.fr",
-  "seo_url": "https://meridian-expertise.fr",
-  "seo_title": "La Petite Fleur",
-  "seo_description": "Visibilité locale et clients mariages",
+  "address": "12 rue des Roses, 75001, Paris",
+  "website": "https://lapetitefleur.fr",
+  "seo_title": "La Petite Fleur - Fleuriste Paris | Bouquets locaux & décoration mariage éco-responsable",
+  "seo_description": "Fleuriste artisan à Paris. Bouquets sur mesure (45-180€), décoration florale mariage éco-responsable (dès 1200€), abonnements entreprise (120€/mois). 100% fleurs locales et de saison.",
+  "hero_badge_rating": "4,9/5 (120+ avis)",
+  "hero_badge_location": "Paris 11e",
+  "hero_title_line1": "Des fleurs vraies.",
+  "hero_title_line2": "Des mains vraies.",
+  "hero_subtitle": "Bouquets sur mesure & mariages éco-responsables en fleurs 100% locales",
+  "hero_cta_primary": "Réserver une consultation",
+  "hero_cta_secondary": "Appeler maintenant",
+  "stat1_value": "8 ans",
+  "stat1_label": "D'expertise artisanale",
+  "stat2_value": "100%",
+  "stat2_label": "Fleurs locales et de saison",
+  "stat3_value": "50+",
+  "stat3_label": "Mariages réussis",
+  "about_title": "La Petite Fleur : l'histoire d'une passion",
+  "about_text": "Depuis 2016, nous cultivons une conviction simple : une belle fleur commence par une belle relation. Chaque bouquet que nous composons raconte l'histoire d'un producteur local, d'une saison, d'un moment unique. Pas de fleurs importées, pas de stock déshydraté, pas de compromis. Juste de la beauté brute, de la sincérité, et 8 ans d'expérience pour savoir ce qui parle vraiment aux cœurs — surtout lors des plus beaux jours.",
+  "about_point1": "Fleurs 100% locales avec traçabilité producteur",
+  "about_point2": "Compositions personnalisées, jamais standardisées",
+  "about_point3": "Mariages structurés pour zéro stress avant le grand jour",
+  "about_chart_title": "Satisfaction clients sur les 12 derniers mois",
+  "about_card_label": "Couples qui reviennent nous recommander",
+  "about_card_value": "+85%",
+  "services_title": "Trois façons de vivre avec nos fleurs",
+  "services_subtitle": "Du bouquet ponctuel à l'abonnement récurrent, nous accompagnons chaque moment en fleurs vraies.",
+  "services": [
+    {
+      "icon": "solar:flower-2-linear",
+      "name": "Bouquet sur mesure",
+      "desc": "Chaque semaine, une composition pensée pour vous. Fleurs du moment, couleurs qui vous ressemblent, format qui rentre dans votre intérieur.",
+      "items": [
+        "Consultation gratuite sur les fleurs de saison",
+        "Composition adaptée à votre décor",
+        "Conseils de conservation inclus",
+        "Livraison ou retrait en boutique"
+      ],
+      "price": "45 € à 180 € selon saison et volume"
+    },
+    {
+      "icon": "solar:rings-linear",
+      "name": "Décoration florale mariage",
+      "desc": "Votre mariage mérite des fleurs qui vous racontent. Nous créons une vision cohérente : bouquet de mariée, décor cérémonie, tables, arches. Du moodboard au compostage final, nous orchestrons chaque détail.",
+      "items": [
+        "Moodboard personnalisé et suivi d'inspiration",
+        "Repérage sur site (église, lieu de réception)",
+        "Livraison et installation le jour J",
+        "Démontage écologique et compostage"
+      ],
+      "price": "À partir de 1 200 € (sur devis)"
+    },
+    {
+      "icon": "solar:leaf-linear",
+      "name": "Abonnement floral entreprise",
+      "desc": "Transformer votre bureau ou votre accueil en respiration. Une composition fraîche chaque semaine, sans engagement, pensée pour vos espaces professionnels.",
+      "items": [
+        "Composition hebdomadaire renouvelée",
+        "Fleurs locales, toujours de saison",
+        "Maintenance et nettoyage inclus",
+        "Résiliation sans préavis"
+      ],
+      "price": "120 € / mois (composition hebdomadaire)"
+    }
+  ],
+  "simulator_title": "Estimez votre abonnement idéal",
+  "simulator_subtitle": "En quelques secondes, découvrez le format de fleurs qui correspond à votre mode de vie.",
+  "simulator_revenue_label": "Combien de pièces souhaitez-vous par mois ?",
+  "simulator_expenses_label": "Quelle taille préférez-vous ?",
+  "simulator_toggle_label": "Livraison à domicile",
+  "simulator_result_label": "VOTRE TARIF MENSUEL ESTIMÉ",
+  "simulator_result_text": "C'est le prix pour des fleurs fraîches, locales et composées à la main, livrées selon votre rythme, sans engagement.",
+  "simulator_cta": "Démarrer mon abonnement",
+  "simulator_disclaimer": "Estimation non contractuelle. Chaque composition est unique et adaptée aux fleurs de saison. Nous affinerons ensemble lors de votre premier appel.",
+  "testimonials_title": "Elles et ils nous font confiance",
+  "testimonials_subtitle": "Leurs histoires avec nos fleurs.",
+  "testimonials": [
+    {
+      "quote": "J'ai découvert La Petite Fleur pour mon mariage. Marie a transformé mon flou en vision claire. Les fleurs étaient magnifiques, les producteurs affichés sur le moodboard… j'ai pu soutenir qui j'aimais. Et mon stress a disparu.",
+      "name": "Léa Moreau",
+      "role": "Mariée, septembre 2023",
+      "initials": "LM"
+    },
+    {
+      "quote": "On reçoit des clients chaque jour. Les bouquets de La Petite Fleur dans l'accueil, c'est notre signature. L'abonnement sans engagement, c'est perfect : pas de culpabilité si je change d'avis, mais je ne change jamais d'avis.",
+      "name": "Benjamin Clerc",
+      "role": "Directeur, Studio d'architecture",
+      "initials": "BC"
+    },
+    {
+      "quote": "Après 6 mois, on se demande comment on vivait sans fleurs. Chaque semaine, c'est un moment : on rentre, on découvre la composition. Et connaître les noms des producteurs, c'est un truc fou. On achète local sans même y penser.",
+      "name": "Sophie & Marc Delaunay",
+      "role": "Abonnés récurrents",
+      "initials": "SM"
+    }
+  ],
+  "contact_badge": "Réserver",
+  "contact_title": "Prêt à vivre avec nos fleurs ?",
+  "contact_text": "Un appel de 15 minutes pour comprendre ce que vous cherchez. Pas de pression, juste des fleurs vraies et du conseil sincère.",
+  "contact_form_title": "Parlons fleurs en 30 secondes",
+  "contact_form_cta": "Confirmer l'appel",
+  "hours": "Mardi – Samedi : 10h00 – 19h00 | Dimanche : 10h00 – 13h00 | Fermé lundi",
+  "about_page_title": "La Petite Fleur : derrière chaque bouquet",
+  "about_page_intro": "Fondée en 2016, La Petite Fleur repose sur une obsession : les vraies fleurs de vraies mains. Pas de franchise, pas de catalogue, pas de compromis. Juste nous, nos producteurs locaux, et l'envie que chaque composition raconte quelque chose.",
+  "about_history": "Tout a commencé par un simple constat : les fleuristes parisiens importaient 80% de leurs stocks. Nous avons décidé d'inverser la logique. En 8 ans, nous avons bâti des relations solides avec une dizaine de petits producteurs en Île-de-France. Chaque fleur peut être tracée. Aujourd'hui, nous composons 50+ mariages par an, gérons des abonnements pour des PME qui refusent le bluff, et recevons 120+ avis 5 étoiles de clients qui reviennent parce qu'ils sentent la différence. Notre force : nous ne vendons pas des fleurs, nous racontons une chaîne.",
+  "team": [
+    {
+      "initials": "MV",
+      "name": "Marie Vienne",
+      "role": "Fondatrice & fleuriste en chef",
+      "bio": "8 ans d'expérience en composition florale. Ancienne responsable atelier dans un grand groupe, elle a quitté pour créer something real. Elle signe chaque mariage et pilote la sélection des producteurs."
+    },
+    {
+      "initials": "JB",
+      "name": "Julien Barbier",
+      "role": "Responsable abonnements & entreprises",
+      "bio": "Fleuriste depuis 5 ans, passionné par la continuité et la relation client. Il gère les abonnements, comprend vos espaces, et ajuste à votre rythme."
+    },
+    {
+      "initials": "SL",
+      "name": "Sarah Le Gall",
+      "role": "Coordinatrice mariages",
+      "bio": "Elle a accompagné 50+ mariages. Moodboards, timelines, stress zéro : c'est elle qui orchestre. Avant, event manager, elle garantit que le grand jour roule parfait."
+    }
+  ],
+  "values": [
+    {
+      "icon": "solar:leaf-linear",
+      "name": "Localité",
+      "desc": "Pas un seul km inutile. Chaque fleur vient d'un producteur qu'on connaît par son prénom, à côté de Paris."
+    },
+    {
+      "icon": "solar:handshake-linear",
+      "name": "Sincérité",
+      "desc": "On ne vend pas du rêve flou. On montre la réalité, on explique ce qui rentre dans votre budget, on tient nos promesses."
+    },
+    {
+      "icon": "solar:flower-linear",
+      "name": "Artisanat",
+      "desc": "Chaque composition est pensée, dessinée, assemblée à la main. Zéro template. Zéro compromise."
+    }
+  ],
+  "legal_name": "SARL La Petite Fleur",
+  "legal_status": "SARL au capital de 15 000 €",
+  "siret": "85247691300012",
+  "social_linkedin": "@montacomm",
+  "social_instagram": "montacomm_",
+  "social_facebook": "@montacomm",
+  "site_style": "artisanal",
+  "hero_title": "La Petite Fleur",
+  "service1_title": "Bouquet sur mesure",
+  "service1_desc": "Compositions pensées pour vous, en fleurs locales et de saison.",
+  "service2_title": "Décoration florale mariage",
+  "service2_desc": "Du moodboard à l'installation, nous orchestrons votre vision florale du grand jour.",
+  "service3_title": "Abonnement floral entreprise",
+  "service3_desc": "Une composition fraîche chaque semaine pour votre bureau, sans engagement.",
+  "service4_title": "Conseils en composition",
+  "service4_desc": "Consultations gratuites pour comprendre ce qui vous parle vraiment en fleurs.",
+  "seo_url": "https://dytusdiyjhfwsmafgvew.supabase.co/storage/v1/object/public/assets/aca44549-c98e-4da7-9383-35b56e5e13e9/1779730783678-usyc3vrvhm.webp",
+  "logo_url": "",
+  "service1_image": "https://dytusdiyjhfwsmafgvew.supabase.co/storage/v1/object/public/assets/aca44549-c98e-4da7-9383-35b56e5e13e9/1779730783274-mghcat3wj3p.jpeg",
+  "service2_image": "https://dytusdiyjhfwsmafgvew.supabase.co/storage/v1/object/public/assets/aca44549-c98e-4da7-9383-35b56e5e13e9/1779730782659-gzu7r3r1ew.png",
+  "service3_image": "https://dytusdiyjhfwsmafgvew.supabase.co/storage/v1/object/public/assets/aca44549-c98e-4da7-9383-35b56e5e13e9/1779730782383-e8kf4yia7vf.jpg",
+  "service4_image": "https://dytusdiyjhfwsmafgvew.supabase.co/storage/v1/object/public/assets/aca44549-c98e-4da7-9383-35b56e5e13e9/1779730782176-npltzhhjqj.jpg",
   "color_bg": "#FFFFFF",
   "color_surface": "#F8F7F4",
   "color_accent": "#C9A96E",
   "color_accent2": "#3B82F6",
   "color_text": "#111827",
   "color_muted": "#94A3B8",
-  "hero_badge_rating": "4,9/5 (100+ avis)",
-  "hero_badge_location": "Paris 8e",
-  "hero_title_line1": "Comptabilité de précision.",
-  "hero_title_line2": "Croissance maîtrisée.",
-  "hero_subtitle": "Visibilité locale et clients mariages",
-  "hero_cta_primary": "Nous contacter",
-  "hero_cta_secondary": "Nous appeler",
-  "stat1_value": "100+",
-  "stat1_label": "Entreprises clientes",
-  "stat2_value": "15 ans",
-  "stat2_label": "D'expertise fiscale",
-  "stat3_value": "99%",
-  "stat3_label": "Taux de fidélisation",
-  "about_title": "À propos",
-  "about_text": "Depuis 2011, notre cabinet conjugue rigueur comptable et vision stratégique. Nous ne nous contentons pas de tenir vos comptes : nous construisons avec vous une trajectoire financière claire, optimisée et conforme, pour que chaque euro travaille à votre croissance.",
-  "about_point1": "Experts-comptables diplômés",
-  "about_point2": "Stratégies fiscales personnalisées",
-  "about_point3": "Rapide, fiable, rigoureusement précis",
-  "about_chart_title": "Croissance annuelle",
-  "about_card_label": "Économies fiscales optimisées",
-  "about_card_value": "+142 500 €",
-  "services_title": "Une architecture financière complète",
-  "services_subtitle": "Trois pôles d'expertise complémentaires pour piloter, optimiser et sécuriser les finances de votre entreprise.",
-  "services": [
-    {
-      "icon": "solar:calculator-linear",
-      "name": "Comptabilité & Gestion",
-      "desc": "Une tenue comptable irréprochable et un suivi social fluide, pour des comptes toujours à jour et conformes.",
-      "items": [
-        "Tenue comptable complète",
-        "Bulletins de paie & social",
-        "Déclarations TVA",
-        "Création d'entreprise"
-      ],
-      "price": "À partir de 290 €/mois"
-    },
-    {
-      "icon": "solar:document-text-linear",
-      "name": "Fiscalité",
-      "desc": "Une stratégie fiscale construite autour de votre situation, pour payer le juste impôt — jamais plus.",
-      "items": [
-        "Optimisation fiscale",
-        "Déclarations IS & IR",
-        "Contrôles fiscaux & représentation",
-        "Conformité TVA"
-      ],
-      "price": "À partir de 190 €/mois"
-    },
-    {
-      "icon": "solar:chart-2-linear",
-      "name": "Conseil financier",
-      "desc": "Un copilote financier pour vos décisions stratégiques : croissance, acquisition, structuration.",
-      "items": [
-        "Pilotage financier",
-        "Fusions & acquisitions",
-        "Conseil opérationnel",
-        "Établissement des comptes annuels"
-      ],
-      "price": "Sur devis"
-    }
-  ],
-  "simulator_title": "Simulateur d'optimisation fiscale",
-  "simulator_subtitle": "Estimez en quelques secondes le potentiel d'économies que notre cabinet peut identifier pour votre entreprise.",
-  "simulator_revenue_label": "Chiffre d'affaires annuel",
-  "simulator_expenses_label": "Charges déductibles",
-  "simulator_toggle_label": "Activité internationale",
-  "simulator_result_label": "ÉCONOMIES ANNUELLES ESTIMÉES",
-  "simulator_result_text": "C'est le montant moyen que nos clients économisent chaque année grâce à une stratégie fiscale structurée et personnalisée.",
-  "simulator_cta": "Obtenir ma stratégie",
-  "simulator_disclaimer": "Estimation indicative fournie à titre informatif, ne constituant pas un conseil fiscal. Chaque situation fait l'objet d'une analyse personnalisée par nos experts-comptables.",
-  "testimonials_title": "Ils nous font confiance",
-  "testimonials_subtitle": "Ne nous croyez pas sur parole.",
-  "testimonials": [
-    {
-      "quote": "Meridian a restructuré notre fiscalité dès la première année : 38 000 € d'économies et une visibilité financière que nous n'avions jamais eue. Leur réactivité est bluffante.",
-      "name": "Thomas Lefebvre",
-      "role": "Fondateur, Nexalis (SaaS B2B)",
-      "initials": "TL"
-    },
-    {
-      "quote": "En e-commerce, la TVA intracommunautaire est un casse-tête. Leur équipe gère tout : déclarations, conformité OSS, pilotage de marge. Je dors enfin tranquille.",
-      "name": "Camille Rousseau",
-      "role": "Directrice, Maison Aube (e-commerce)",
-      "initials": "CR"
-    },
-    {
-      "quote": "Pour nos opérations immobilières, chaque montage compte. Meridian sécurise nos structures et anticipe chaque échéance fiscale. Un vrai partenaire stratégique.",
-      "name": "Karim Benali",
-      "role": "Gérant, Agence Pierre & Capital",
-      "initials": "KB"
-    }
-  ],
-  "contact_badge": "Commencer",
-  "contact_title": "Prêt à optimiser votre avenir financier ?",
-  "contact_text": "Réservez une consultation gratuite de 30 minutes avec un expert-comptable. Nous analysons votre situation et identifions vos premiers leviers d'optimisation.",
-  "contact_form_title": "Réservez en 30 secondes",
-  "contact_form_cta": "Confirmer le rendez-vous",
-  "hours": "Lundi – Vendredi : 9h00 – 18h30",
-  "about_page_title": "Le cabinet derrière vos chiffres",
-  "about_page_intro": "Fondé en 2011 par trois experts-comptables issus de grands cabinets parisiens, Meridian Expertise est né d'une conviction simple : la comptabilité ne doit pas être un centre de coût, mais un levier de croissance.",
-  "about_history": "D'abord spécialisé dans l'accompagnement des startups du numérique, le cabinet a progressivement élargi son expertise au e-commerce, à l'immobilier et aux groupes en croissance. Aujourd'hui, plus de 100 entreprises nous confient leur comptabilité, leur fiscalité et leur stratégie financière. Notre indépendance, notre taille humaine et notre exigence technique font de Meridian un partenaire de long terme, pas un simple prestataire.",
-  "team": [
-    {
-      "initials": "AV",
-      "name": "Alexandre Vasseur",
-      "role": "Associé fondateur — Expertise comptable",
-      "bio": "Expert-comptable diplômé, 18 ans d'expérience. Ancien manager dans un grand cabinet d'audit, il supervise les missions de tenue et de révision comptable."
-    },
-    {
-      "initials": "SM",
-      "name": "Sophie Marchand",
-      "role": "Associée — Fiscalité",
-      "bio": "Spécialiste de la fiscalité des entreprises et des dirigeants. Elle pilote les stratégies d'optimisation, les contrôles fiscaux et la conformité TVA internationale."
-    },
-    {
-      "initials": "JD",
-      "name": "Julien Delorme",
-      "role": "Associé — Conseil financier",
-      "bio": "Ancien directeur financier de scale-up, il accompagne les opérations de croissance : levées de fonds, fusions-acquisitions et pilotage de la performance."
-    }
-  ],
-  "values": [
-    {
-      "icon": "solar:shield-check-linear",
-      "name": "Rigueur",
-      "desc": "Zéro approximation. Chaque écriture, chaque déclaration, chaque conseil est vérifié et documenté."
-    },
-    {
-      "icon": "solar:eye-linear",
-      "name": "Transparence",
-      "desc": "Des honoraires clairs, des délais tenus et un langage compréhensible — sans jargon inutile."
-    },
-    {
-      "icon": "solar:rocket-2-linear",
-      "name": "Ambition",
-      "desc": "Nous travaillons pour votre croissance. Vos objectifs deviennent les nôtres, chiffres à l'appui."
-    }
-  ],
-  "legal_name": "Meridian Expertise SAS",
-  "legal_status": "SAS au capital de 50 000 €",
-  "siret": "84512796300027",
-  "logo_url": "",
-  "social_linkedin": "@montacomm",
-  "social_instagram": "montacomm_",
-  "social_facebook": "@montacomm",
   "color_primary": "#8A1826",
-  "color_text_muted": "#6B7280",
-  "site_style": "professional",
-  "hero_title": "La Petite Fleur",
-  "service1_title": "Service 1",
-  "service1_desc": "",
-  "service1_image": "",
-  "service2_title": "Service 2",
-  "service2_desc": "",
-  "service2_image": "",
-  "service3_title": "Service 3",
-  "service3_desc": "",
-  "service3_image": "",
-  "service4_title": "Service 4",
-  "service4_desc": "",
-  "service4_image": ""
+  "color_text_muted": "#6B7280"
 }
