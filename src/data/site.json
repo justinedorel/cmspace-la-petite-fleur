@@ -169,11 +169,11 @@
   "service3_image": "https://dytusdiyjhfwsmafgvew.supabase.co/storage/v1/object/public/assets/aca44549-c98e-4da7-9383-35b56e5e13e9/1779730782383-e8kf4yia7vf.jpg",
   "service4_image": "https://dytusdiyjhfwsmafgvew.supabase.co/storage/v1/object/public/assets/aca44549-c98e-4da7-9383-35b56e5e13e9/1779730782176-npltzhhjqj.jpg",
   "color_bg": "#FFFFFF",
-  "color_surface": "#F8F7F4",
-  "color_accent": "#C9A96E",
-  "color_accent2": "#3B82F6",
-  "color_text": "#111827",
-  "color_muted": "#94A3B8",
+  "color_surface": "#F3EFE8",
+  "color_accent": "#A0825D",
+  "color_accent2": "#6B4C3A",
+  "color_text": "#1A1410",
+  "color_muted": "#5F5550",
   "color_primary": "#8A1826",
-  "color_text_muted": "#6B7280"
+  "color_text_muted": "#3D3531"
 }
