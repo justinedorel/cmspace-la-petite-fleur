@@ -1,51 +1,74 @@
 ---
 import site from '../data/site.json';
+const colServices = [
+  ['Comptabilité & Gestion', '/services/'],
+  ['Fiscalité', '/services/'],
+  ['Conseil financier', '/services/'],
+  ['Création d\'entreprise', '/services/'],
+];
+const colCabinet = [
+  ['À propos', '/a-propos/'],
+  ['Notre équipe', '/a-propos/'],
+  ['Contact', '/contact/'],
+  ['Prendre rendez-vous', '/contact/'],
+];
+const colLegal = [
+  ['Mentions légales', '/mentions-legales/'],
+];
 ---
-<footer class="bg-black py-16">
-  <div class="max-w-7xl mx-auto px-8">
-    <div class="grid md:grid-cols-3 gap-12 mb-14">
+<footer class="bg-[#050A14] border-t border-white/[0.06] pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-6">
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
       <div>
-        <p class="font-sans text-3xl font-light text-white tracking-[0.2em] mb-2">{site.company_name}</p>
-        <p class="font-sans text-xs tracking-[0.18em] uppercase text-white/30">{site.company_sub}</p>
-      </div>
-      <div>
-        <p class="font-sans text-xs tracking-[0.18em] uppercase text-white/30 mb-4">Navigation</p>
-        <nav class="flex flex-col gap-3">
-          <a href="/" class="font-sans text-sm font-light text-white/60 hover:text-white transition-colors tracking-wide">Accueil</a>
-          <a href="/services" class="font-sans text-sm font-light text-white/60 hover:text-white transition-colors tracking-wide">Saveurs & Services</a>
-          <a href="/a-propos" class="font-sans text-sm font-light text-white/60 hover:text-white transition-colors tracking-wide">À propos</a>
-          <a href="/contact" class="font-sans text-sm font-light text-white/60 hover:text-white transition-colors tracking-wide">Contact</a>
-        </nav>
-      </div>
-      <div>
-        <p class="font-sans text-xs tracking-[0.18em] uppercase text-white/30 mb-4">Contact</p>
-        <a href={`mailto:${site.email}`} class="font-sans text-sm font-light text-white/60 hover:text-white transition-colors tracking-wide block mb-4">{site.email}</a>
-        <p class="font-sans text-xs tracking-[0.18em] uppercase text-white/30 mb-4 mt-6">Suivre</p>
-        <div class="flex gap-5">
-          {(site.social_instagram && site.social_instagram !== '') ? (
-            <a href={site.social_instagram} class="text-white/40 hover:text-white/80 transition-colors">
-              <span class="iconify" data-icon="lucide:instagram" data-width="18"></span>
-            </a>
-          ) : null}
-          {(site.social_facebook && site.social_facebook !== '') ? (
-            <a href={site.social_facebook} class="text-white/40 hover:text-white/80 transition-colors">
-              <span class="iconify" data-icon="lucide:facebook" data-width="18"></span>
-            </a>
-          ) : null}
-          {(site.social_linkedin && site.social_linkedin !== '') ? (
-            <a href={site.social_linkedin} class="text-white/40 hover:text-white/80 transition-colors">
-              <span class="iconify" data-icon="lucide:linkedin" data-width="18"></span>
-            </a>
-          ) : null}
+        <div class="flex items-center gap-3 mb-4">
+          <span class="w-9 h-9 rounded-lg bg-[var(--color-accent)] flex items-center justify-center">
+            <iconify-icon icon="solar:calculator-minimalistic-bold" class="text-lg text-white"></iconify-icon>
+          </span>
+          <span class="leading-tight">
+            <span class="block text-base font-bold text-white tracking-tight">{site.company_name}<span class="text-[var(--color-accent2)]">.</span></span>
+            <span class="block text-[9px] font-semibold tracking-[0.2em] text-[var(--color-muted)]">{site.company_sub}</span>
+          </span>
+        </div>
+        <p class="text-sm text-[var(--color-muted)] leading-relaxed mb-5">{site.tagline}</p>
+        <div class="flex gap-3">
+          <a href="https://www.linkedin.com" target="_blank" rel="noopener" aria-label="LinkedIn" class="w-9 h-9 rounded-full bg-white/[0.06] border border-white/[0.06] flex items-center justify-center text-[var(--color-muted)] hover:text-white hover:border-[var(--color-accent)] transition-all">
+            <iconify-icon icon="solar:link-circle-linear" class="text-base"></iconify-icon>
+          </a>
+          <a href={`mailto:${site.email}`} aria-label="Email" class="w-9 h-9 rounded-full bg-white/[0.06] border border-white/[0.06] flex items-center justify-center text-[var(--color-muted)] hover:text-white hover:border-[var(--color-accent)] transition-all">
+            <iconify-icon icon="solar:letter-linear" class="text-base"></iconify-icon>
+          </a>
         </div>
       </div>
-    </div>
-    <div class="border-t border-white/10 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-      <p class="font-sans text-xs font-light text-white/25 tracking-wide">{site.footer_tagline}</p>
-      <div class="flex items-center gap-6">
-        <a href="/mentions-legales" class="font-sans text-xs text-white/20 hover:text-white/40 transition-colors tracking-[0.1em]">Mentions légales</a>
-        <p class="font-sans text-xs text-white/20 tracking-[0.1em]">&copy; {new Date().getFullYear()} {site.company_name}</p>
+      <div>
+        <div class="text-xs font-semibold uppercase tracking-widest text-white/40 mb-4">Services</div>
+        <ul class="space-y-2.5">
+          {colServices.map(([l, h]) => (
+            <li><a href={h} class="text-sm text-[var(--color-muted)] hover:text-white transition-colors">{l}</a></li>
+          ))}
+        </ul>
       </div>
+      <div>
+        <div class="text-xs font-semibold uppercase tracking-widest text-white/40 mb-4">Cabinet</div>
+        <ul class="space-y-2.5">
+          {colCabinet.map(([l, h]) => (
+            <li><a href={h} class="text-sm text-[var(--color-muted)] hover:text-white transition-colors">{l}</a></li>
+          ))}
+        </ul>
+      </div>
+      <div>
+        <div class="text-xs font-semibold uppercase tracking-widest text-white/40 mb-4">Légal</div>
+        <ul class="space-y-2.5">
+          {colLegal.map(([l, h]) => (
+            <li><a href={h} class="text-sm text-[var(--color-muted)] hover:text-white transition-colors">{l}</a></li>
+          ))}
+          <li class="text-sm text-[var(--color-muted)]">{site.address}</li>
+          <li><a href={`tel:${site.phone}`} class="text-sm text-[var(--color-muted)] hover:text-white transition-colors">{site.phone}</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="border-t border-white/[0.06] pt-6 flex flex-col md:flex-row justify-between items-center gap-2 text-xs text-white/30">
+      <span>© {new Date().getFullYear()} {site.legal_name}. Tous droits réservés.</span>
+      <span>Expert-comptable inscrit à l'Ordre des Experts-Comptables — Région Paris Île-de-France</span>
     </div>
   </div>
 </footer>

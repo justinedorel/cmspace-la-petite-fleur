@@ -3,151 +3,117 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
+const details = [
+  {
+    intro: "Le socle de toute entreprise saine : une comptabilité tenue avec rigueur, des obligations sociales maîtrisées et des comptes toujours prêts pour vos décisions comme pour l'administration.",
+    points: [
+      "Saisie, lettrage et révision de l'ensemble de vos flux comptables",
+      "Production des bulletins de paie et gestion des déclarations sociales",
+      "Établissement et télétransmission de vos déclarations de TVA",
+      "Accompagnement complet à la création : statuts, immatriculation, prévisionnel",
+    ],
+  },
+  {
+    intro: "Notre cœur d'expertise : analyser votre structure, votre rémunération et vos flux pour bâtir une stratégie fiscale optimale, robuste et parfaitement conforme.",
+    points: [
+      "Audit fiscal complet et identification des leviers d'optimisation",
+      "Préparation et dépôt des liasses IS, déclarations IR des dirigeants",
+      "Assistance et représentation en cas de contrôle fiscal",
+      "Conformité TVA nationale et intracommunautaire (OSS, autoliquidation)",
+    ],
+  },
+  {
+    intro: "Au-delà des chiffres : un associé senior à vos côtés pour structurer votre croissance, sécuriser vos opérations et piloter votre performance.",
+    points: [
+      "Tableaux de bord, reporting mensuel et pilotage de trésorerie",
+      "Accompagnement fusions-acquisitions : due diligence, valorisation, structuration",
+      "Conseil opérationnel : marges, prix de revient, organisation financière",
+      "Établissement des comptes annuels et présentation aux associés",
+    ],
+  },
+];
+const pole = site.services.map((svc, i) => ({ ...svc, ...details[i] }));
 ---
-<Base title={`Saveurs & Services — ${site.company_name}`} description={`Découvrez nos saveurs et créations artisanales. ${site.seo_description}`}>
-
+<Base title={`Services — ${site.company_name} Expertise`} description={site.services_subtitle}>
   <Header />
+  <main>
 
-  <!-- Hero page -->
-  <section class="pt-40 pb-20 bg-surface/20">
-    <div class="max-w-7xl mx-auto px-8">
-      <span class="font-sans text-xs tracking-[0.22em] uppercase text-gray-400 mb-4 block">{site.portfolio_badge}</span>
-      <h1 class="font-sans text-5xl md:text-7xl font-light text-white mb-6">
-        {site.flavors_title} <em class="italic">{site.flavors_title_em}</em>
-      </h1>
-      <p class="font-sans text-sm font-light leading-relaxed text-gray-400 max-w-xl tracking-wide">{site.process_subtitle}</p>
-    </div>
-  </section>
+    <!-- Hero -->
+    <section class="hero-grid px-6 pt-20 pb-16 bg-[var(--color-bg)]">
+      <div class="max-w-4xl mx-auto text-center" data-animate>
+        <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-[var(--color-accent)]/15 border border-[var(--color-accent)]/30 text-[var(--color-accent2)] text-xs font-semibold tracking-wide mb-7">
+          Nos services
+        </span>
+        <h1 class="text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight mb-7">{site.services_title}</h1>
+        <p class="text-lg text-[var(--color-muted)] leading-relaxed max-w-2xl mx-auto">{site.services_subtitle}</p>
+      </div>
+    </section>
 
-  <!-- Saveurs -->
-  <section class="py-28">
-    <div class="max-w-7xl mx-auto px-8">
-      <div class="mb-16">
-        <h2 class="font-sans text-4xl md:text-5xl font-light text-white mb-3">
-          {site.flavors_title} <em class="italic">{site.flavors_title_em}</em>
-        </h2>
-      </div>
-      <div class="grid md:grid-cols-3 gap-px bg-surface/50">
-        <div class="bg-bg p-10 md:p-12 hover:bg-accent/20/20 transition-colors duration-300">
-          <span class="font-sans text-xs tracking-[0.18em] uppercase text-gray-400 border border-sand px-3 py-1 mb-8 inline-block">{site.flavor1_tag}</span>
-          <h3 class="font-sans text-2xl font-light text-white mb-4">{site.flavor1_title}</h3>
-          <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">{site.flavor1_desc}</p>
-        </div>
-        <div class="bg-bg p-10 md:p-12 hover:bg-accent/20/20 transition-colors duration-300">
-          <span class="font-sans text-xs tracking-[0.18em] uppercase text-gray-400 border border-sand px-3 py-1 mb-8 inline-block">{site.flavor2_tag}</span>
-          <h3 class="font-sans text-2xl font-light text-white mb-4">{site.flavor2_title}</h3>
-          <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">{site.flavor2_desc}</p>
-        </div>
-        <div class="bg-bg p-10 md:p-12 hover:bg-accent/20/20 transition-colors duration-300">
-          <span class="font-sans text-xs tracking-[0.18em] uppercase text-gray-400 border border-sand px-3 py-1 mb-8 inline-block">{site.flavor3_tag}</span>
-          <h3 class="font-sans text-2xl font-light text-white mb-4">{site.flavor3_title}</h3>
-          <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">{site.flavor3_desc}</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Portfolio / Galerie -->
-  <section class="py-28 bg-surface/20">
-    <div class="max-w-7xl mx-auto px-8">
-      <div class="mb-16">
-        <span class="font-sans text-xs tracking-[0.22em] uppercase text-gray-400 mb-4 block">{site.portfolio_badge}</span>
-        <h2 class="font-sans text-4xl md:text-5xl font-light text-white">
-          {site.portfolio_title} <em class="italic">{site.portfolio_title_em}</em>
-        </h2>
-      </div>
-      <div class="grid md:grid-cols-3 gap-8">
-        <div class="group cursor-default">
-          <div class="overflow-hidden mb-5">
-            <img src={site.portfolio1_image} alt={site.portfolio1_title} class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700" />
+    <!-- Les 3 pôles détaillés -->
+    <section class="px-6 py-20 bg-[var(--color-bg)]">
+      <div class="max-w-6xl mx-auto space-y-10">
+        {pole.map((svc, i) => (
+          <div class="bg-[var(--color-surface)] border border-white/[0.06] rounded-3xl p-8 lg:p-12 grid lg:grid-cols-5 gap-10" data-animate>
+            <div class="lg:col-span-2 space-y-5">
+              <div class="w-14 h-14 rounded-2xl bg-[var(--color-accent)]/15 flex items-center justify-center">
+                <iconify-icon icon={svc.icon} class="text-3xl text-[var(--color-accent2)]"></iconify-icon>
+              </div>
+              <div class="text-xs font-semibold tracking-[0.2em] text-[var(--color-muted)]">PÔLE {String(i + 1).padStart(2, '0')}</div>
+              <h2 class="text-3xl font-bold tracking-tight text-white">{svc.name}</h2>
+              <p class="text-[var(--color-muted)] leading-relaxed">{svc.intro}</p>
+              <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.04] border border-white/[0.08] text-sm">
+                <iconify-icon icon="solar:tag-price-linear" class="text-[var(--color-accent2)]"></iconify-icon>
+                <span class="text-white font-semibold">{svc.price}</span>
+              </div>
+            </div>
+            <div class="lg:col-span-3">
+              <ul class="grid sm:grid-cols-1 gap-4">
+                {svc.points.map(p => (
+                  <li class="flex items-start gap-3 bg-white/[0.03] border border-white/[0.05] rounded-xl px-5 py-4">
+                    <iconify-icon icon="solar:check-circle-bold" class="text-[var(--color-accent2)] text-lg shrink-0 mt-0.5"></iconify-icon>
+                    <span class="text-sm text-white leading-relaxed">{p}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
-          <h3 class="font-sans text-xl font-light text-white mb-1">{site.portfolio1_title}</h3>
-          <span class="font-sans text-xs tracking-[0.15em] uppercase text-gray-400">{site.portfolio1_flavor}</span>
-        </div>
-        <div class="group cursor-default md:mt-12">
-          <div class="overflow-hidden mb-5">
-            <img src={site.portfolio2_image} alt={site.portfolio2_title} class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700" />
-          </div>
-          <h3 class="font-sans text-xl font-light text-white mb-1">{site.portfolio2_title}</h3>
-          <span class="font-sans text-xs tracking-[0.15em] uppercase text-gray-400">{site.portfolio2_flavor}</span>
-        </div>
-        <div class="group cursor-default">
-          <div class="overflow-hidden mb-5">
-            <img src={site.portfolio3_image} alt={site.portfolio3_title} class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700" />
-          </div>
-          <h3 class="font-sans text-xl font-light text-white mb-1">{site.portfolio3_title}</h3>
-          <span class="font-sans text-xs tracking-[0.15em] uppercase text-gray-400">{site.portfolio3_flavor}</span>
-        </div>
+        ))}
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Processus -->
-  <section class="py-28 md:py-36">
-    <div class="max-w-7xl mx-auto px-8">
-      <div class="text-center mb-20">
-        <span class="font-sans text-xs tracking-[0.22em] uppercase text-gray-400 mb-4 block">{site.process_badge}</span>
-        <h2 class="font-sans text-4xl md:text-5xl font-light text-white mb-5">{site.process_title}</h2>
-        <p class="font-sans text-sm font-light leading-relaxed text-gray-400 max-w-xl mx-auto tracking-wide">{site.process_subtitle}</p>
+    <!-- Tarifs indicatifs (claire) -->
+    <section class="px-6 py-24 bg-[#F8FAFC]">
+      <div class="max-w-6xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-14" data-animate>
+          <h2 class="text-4xl lg:text-5xl font-bold tracking-tight text-[#0F172A] mb-5">Des honoraires clairs, sans surprise</h2>
+          <p class="text-lg text-slate-500">Chaque mission fait l'objet d'une lettre de mission détaillée. Tarifs indicatifs hors taxes.</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-7">
+          {site.services.map(svc => (
+            <div class="bg-white rounded-2xl shadow-lg shadow-slate-200/60 border border-slate-100 p-8 text-center" data-animate>
+              <h3 class="text-lg font-bold text-[#0F172A] mb-2">{svc.name}</h3>
+              <div class="text-2xl font-bold text-[var(--color-accent)] mb-4">{svc.price}</div>
+              <p class="text-sm text-slate-500 leading-relaxed">{svc.desc}</p>
+            </div>
+          ))}
+        </div>
+        <p class="text-xs italic text-slate-400 text-center mt-8">Tarification ajustée selon le volume de pièces, l'effectif et la complexité de l'activité. Devis gratuit sous 48h.</p>
       </div>
-      <div class="grid md:grid-cols-4 gap-10 md:gap-8">
-        <div class="relative">
-          <div class="font-sans text-8xl font-light text-sand leading-none mb-6 select-none">01</div>
-          <div class="w-10 h-px bg-black/20 mb-6"></div>
-          <h3 class="font-sans text-2xl font-light text-white mb-3">{site.step1_title}</h3>
-          <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">{site.step1_desc}</p>
-        </div>
-        <div class="relative">
-          <div class="font-sans text-8xl font-light text-sand leading-none mb-6 select-none">02</div>
-          <div class="w-10 h-px bg-black/20 mb-6"></div>
-          <h3 class="font-sans text-2xl font-light text-white mb-3">{site.step2_title}</h3>
-          <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">{site.step2_desc}</p>
-        </div>
-        <div class="relative">
-          <div class="font-sans text-8xl font-light text-sand leading-none mb-6 select-none">03</div>
-          <div class="w-10 h-px bg-black/20 mb-6"></div>
-          <h3 class="font-sans text-2xl font-light text-white mb-3">{site.step3_title}</h3>
-          <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">{site.step3_desc}</p>
-        </div>
-        <div class="relative">
-          <div class="font-sans text-8xl font-light text-sand leading-none mb-6 select-none">04</div>
-          <div class="w-10 h-px bg-black/20 mb-6"></div>
-          <h3 class="font-sans text-2xl font-light text-white mb-3">{site.step4_title}</h3>
-          <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">{site.step4_desc}</p>
-        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="px-6 py-24 bg-[var(--color-bg)]">
+      <div class="max-w-3xl mx-auto text-center space-y-7" data-animate>
+        <h2 class="text-4xl font-bold tracking-tight text-white">Un projet, une question, un doute fiscal ?</h2>
+        <p class="text-lg text-[var(--color-muted)]">Parlons-en. La première consultation de 30 minutes est offerte et sans engagement.</p>
+        <a href="/contact/"
+          class="inline-flex items-center gap-2 bg-[var(--color-accent)] hover:bg-[var(--color-accent2)] text-white px-8 py-4 rounded-full font-semibold text-sm transition-all shadow-lg shadow-blue-600/25">
+          Planifier une consultation
+          <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon>
+        </a>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- Témoignage -->
-  <section class="py-28 md:py-36 bg-black">
-    <div class="max-w-5xl mx-auto px-8 text-center">
-      <span class="iconify text-sand/40 mb-10 block mx-auto" data-icon="lucide:quote" data-width="40"></span>
-      <blockquote class="font-sans text-3xl md:text-4xl font-light italic leading-relaxed text-white/90 mb-12">
-        &ldquo;{site.testimonial_text}&rdquo;
-      </blockquote>
-      <div class="flex items-center justify-center gap-5">
-        <img src={site.testimonial_image} alt={site.testimonial_name} class="w-12 h-12 rounded-full object-cover grayscale opacity-60" />
-        <div class="text-left">
-          <p class="font-sans text-base font-light text-white/80">{site.testimonial_name}</p>
-          <p class="font-sans text-xs tracking-[0.15em] uppercase text-white/30">{site.testimonial_date}</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="py-24">
-    <div class="max-w-3xl mx-auto px-8 text-center">
-      <h2 class="font-sans text-4xl md:text-5xl font-light text-white mb-6">{site.about_cta}</h2>
-      <p class="font-sans text-sm font-light leading-relaxed text-gray-400 mb-10 tracking-wide">{site.hero_subtitle}</p>
-      <a href="/contact" class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.18em] uppercase text-white border border-dark/30 px-8 py-4 hover:bg-black hover:text-bg transition-all duration-300">
-        {site.hero_cta}
-        <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
-      </a>
-    </div>
-  </section>
-
+  </main>
   <Footer />
-
 </Base>

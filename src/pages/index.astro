@@ -3,410 +3,362 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
+const formAction = `https://contact.cmspace.app/submit?to=${encodeURIComponent(site.email)}`;
+const stats = [
+  { value: site.stat1_value, label: site.stat1_label },
+  { value: site.stat2_value, label: site.stat2_label },
+  { value: site.stat3_value, label: site.stat3_label },
+];
+const aboutPoints = [site.about_point1, site.about_point2, site.about_point3];
+const bars = [
+  { label: 'T1', h: 'h-16', cls: 'bg-white/15' },
+  { label: 'T2', h: 'h-24', cls: 'bg-white/20' },
+  { label: 'T3', h: 'h-32', cls: 'bg-white/25' },
+  { label: 'T4', h: 'h-44', cls: 'bg-[var(--color-accent2)]' },
+];
 ---
-<Base title={site.seo_title} description={site.seo_description} image={(site as any).hero_image} url={(site as any).website}>
-
+<Base>
   <Header />
+  <main>
 
-  <!-- ── Hero ──────────────────────────────────────────────────────────── -->
-  <section class="relative min-h-screen flex items-center overflow-hidden bg-bg">
-
-    <!-- Contenu deux colonnes -->
-    <div class="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full pt-28 pb-16">
-      <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-
-        <!-- Colonne gauche : texte -->
-        <div>
-          <!-- Badge -->
-          <div class="overflow-hidden mb-8" style="opacity:0;animation:fadeSlideIn 0.8s cubic-bezier(0.16,1,0.3,1) 0.3s forwards">
-            <span class="font-sans text-[11px] tracking-[0.25em] uppercase text-white/70 border border-white/25 px-4 py-1.5 inline-block">
-              {site.hero_badge}
-            </span>
-          </div>
-
-          <!-- Titre -->
-          <div style="overflow:hidden;margin-bottom:0.25rem">
-            <h1 class="font-sans text-5xl sm:text-7xl font-light leading-[0.92] text-white"
-              style="opacity:0;animation:fadeSlideIn 0.9s cubic-bezier(0.16,1,0.3,1) 0.5s forwards">
-              {site.hero_title1}
-            </h1>
-          </div>
-          <div style="overflow:hidden;margin-bottom:2.5rem">
-            <h1 class="font-sans text-5xl sm:text-7xl font-light italic leading-[0.92] text-white/80"
-              style="opacity:0;animation:fadeSlideIn 0.9s cubic-bezier(0.16,1,0.3,1) 0.65s forwards">
-              {site.hero_title2}
-            </h1>
-          </div>
-
-          <!-- Sous-titre + CTA -->
-          <div style="opacity:0;animation:fadeSlideIn 0.8s cubic-bezier(0.16,1,0.3,1) 0.85s forwards">
-            <p class="font-sans text-sm font-light leading-relaxed text-white/60 max-w-sm mb-10 tracking-wide">
-              {site.hero_subtitle}
-            </p>
-            <div class="flex flex-wrap gap-4">
-              <a href="/contact/"
-                class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.2em] uppercase bg-white text-black px-8 py-4 hover:bg-accent transition-all duration-300">
-                {site.hero_cta}
-                <span class="iconify" data-icon="lucide:arrow-right" data-width="13"></span>
-              </a>
-              <a href="/services/"
-                class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.2em] uppercase text-white border border-white/30 px-8 py-4 hover:border-accent hover:text-accent transition-all duration-300">
-                Découvrir
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Colonne droite : photo stylisée -->
-        <div class="relative hidden md:block"
-          style="opacity:0;animation:fadeSlideIn 1s cubic-bezier(0.16,1,0.3,1) 0.4s forwards">
-          <!-- Cadre principal -->
-          <div class="relative aspect-[3/4] overflow-hidden">
-            <img src={site.hero_image} alt={site.hero_title1}
-              class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-              loading="eager" />
-            <!-- Overlay gradient bas -->
-            <div class="absolute inset-0 bg-gradient-to-t from-bg/80 via-transparent to-transparent"></div>
-            <!-- Accent border -->
-            <div class="absolute inset-0 border border-white/10"></div>
-          </div>
-          <!-- Badge flottant -->
-          <div class="absolute -bottom-4 -left-6 bg-surface border border-border px-5 py-3">
-            <p class="font-sans text-[10px] tracking-[0.2em] uppercase text-muted mb-0.5">Note moyenne</p>
-            <p class="font-sans text-2xl font-light text-white">4.9 <span class="text-accent text-sm">★</span></p>
-          </div>
-          <!-- Décoration accent -->
-          <div class="absolute -top-4 -right-4 w-24 h-24 border border-accent/20"></div>
-        </div>
-
+    <!-- 2. Hero centré -->
+    <section class="hero-grid relative px-6 pt-24 pb-28 bg-[var(--color-bg)] overflow-hidden">
+      <div class="absolute inset-x-0 top-0 h-full pointer-events-none" aria-hidden="true">
+        <div class="absolute left-1/2 -translate-x-1/2 -top-40 w-[700px] h-[500px] rounded-full bg-[var(--color-accent)]/10 blur-[120px]"></div>
       </div>
-    </div>
-
-    <!-- Scroll indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10"
-      style="opacity:0;animation:fadeSlideIn 0.6s ease 1.4s forwards">
-      <div class="w-px h-12 relative overflow-hidden">
-        <div class="absolute top-0 w-full bg-white/30" style="height:100%;animation:scrollLine 2s ease-in-out infinite"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Presse — marquee ──────────────────────────────────────────────── -->
-  <section class="py-10 bg-black overflow-hidden">
-    <div class="flex items-center gap-10">
-      <div class="marquee-track">
-        {[site.press1, site.press2, site.press3, site.press4, site.press1, site.press2, site.press3, site.press4].map((p: string) => (
-          <span class="font-sans text-xl font-light italic text-white/40 hover:text-white/70 transition-colors mx-12 cursor-default shrink-0">{p}</span>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ── À propos ───────────────────────────────────────────────────────── -->
-  <section id="about" class="py-28 md:py-40">
-    <div class="max-w-7xl mx-auto px-6 md:px-8">
-      <div class="grid md:grid-cols-2 gap-16 md:gap-24 items-center">
-
-        <!-- Image avec décor -->
-        <div class="relative reveal-left">
-          <div class="relative overflow-hidden">
-            <img src={site.about_image} alt={site.about_title2}
-              class="w-full aspect-[3/4] object-cover hover:scale-105 transition-transform duration-700" loading="lazy" />
-          </div>
-          <div class="absolute -bottom-5 -right-5 w-28 h-28 bg-accent/20 hidden md:block"></div>
-          <div class="absolute -top-5 -left-5 w-16 h-16 border border-sand hidden md:block"></div>
+      <div class="relative max-w-4xl mx-auto text-center" data-animate>
+        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.04] border border-white/[0.08] text-sm text-[var(--color-muted)] mb-8">
+          <span class="flex text-amber-400">
+            {[1,2,3,4,5].map(() => <iconify-icon icon="solar:star-bold" class="text-sm"></iconify-icon>)}
+          </span>
+          <span class="font-medium text-white">{site.hero_badge_rating}</span>
+          <span>· {site.hero_badge_location}</span>
         </div>
-
-        <!-- Texte -->
-        <div class="reveal-right">
-          <span class="font-sans text-[11px] tracking-[0.25em] uppercase text-gray-400 mb-5 block reveal reveal-d1">{site.about_badge}</span>
-          <h2 class="font-sans text-5xl md:text-6xl font-light leading-tight text-white">
-            {site.about_title}
-          </h2>
-          <h2 class="font-sans text-5xl md:text-6xl font-light italic leading-tight text-white mb-8">
-            {site.about_title2}
-          </h2>
-          <div class="w-12 h-px bg-black/20 mb-8 line-grow"></div>
-          <p class="font-sans text-sm font-light leading-[1.9] text-gray-400 mb-5 tracking-wide">{site.about_text1}</p>
-          <p class="font-sans text-sm font-light leading-[1.9] text-gray-400 mb-10 tracking-wide">{site.about_text2}</p>
-          <a href="/a-propos" class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.2em] uppercase text-white group">
-            {site.about_cta}
-            <span class="w-8 h-px bg-black group-hover:w-14 transition-all duration-400 inline-block"></span>
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
+          <span class="block text-white">{site.hero_title_line1}</span>
+          <span class="block bg-gradient-to-r from-blue-500 to-blue-300 bg-clip-text text-transparent">{site.hero_title_line2}</span>
+        </h1>
+        <p class="text-lg text-[var(--color-muted)] leading-relaxed max-w-2xl mx-auto mt-7">
+          {site.hero_subtitle}
+        </p>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
+          <a href="/contact/"
+            class="inline-flex items-center gap-2 bg-[var(--color-accent)] hover:bg-[var(--color-accent2)] text-white px-8 py-4 rounded-full font-semibold text-sm transition-all shadow-lg shadow-blue-600/25">
+            {site.hero_cta_primary}
+            <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon>
+          </a>
+          <a href={`tel:${site.phone}`}
+            class="inline-flex items-center gap-2 border border-white/15 hover:border-white/40 text-white px-8 py-4 rounded-full font-semibold text-sm transition-all">
+            <iconify-icon icon="solar:phone-linear" class="text-base text-[var(--color-accent2)]"></iconify-icon>
+            {site.hero_cta_secondary}
           </a>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ── Stats ─────────────────────────────────────────────────────────── -->
-  <section class="py-20 bg-black">
-    <div class="max-w-7xl mx-auto px-6 md:px-8">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-10 md:gap-6">
-        {[
-          { n: (site as any).stat1_number, s: (site as any).stat1_suffix || '', l: (site as any).stat1_label },
-          { n: (site as any).stat2_number, s: (site as any).stat2_suffix || '', l: (site as any).stat2_label },
-          { n: (site as any).stat3_number, s: (site as any).stat3_suffix || '', l: (site as any).stat3_label },
-          { n: (site as any).stat4_number, s: (site as any).stat4_suffix || '', l: (site as any).stat4_label },
-        ].filter(s => s.n && s.l).map((s, i) => (
-          <div class={`text-center reveal reveal-d${i + 1}`}>
-            <div class="font-sans text-5xl md:text-6xl font-light text-white mb-2 stat-counter"
-              data-target={s.n} data-suffix={s.s}>{s.n}{s.s}</div>
-            <p class="font-sans text-[11px] tracking-[0.2em] uppercase text-white/40">{s.l}</p>
+    <!-- 3. Bande stats -->
+    <section class="px-6 pb-24 bg-[var(--color-bg)]">
+      <div class="max-w-6xl mx-auto grid sm:grid-cols-3 gap-6" data-animate>
+        {stats.map(s => (
+          <div class="bg-[var(--color-surface)] border border-white/[0.06] rounded-2xl p-8 text-center">
+            <div class="text-4xl font-bold text-white tracking-tight mb-2">{s.value}</div>
+            <div class="text-sm text-[var(--color-muted)]">{s.label}</div>
           </div>
         ))}
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ── Portfolio ──────────────────────────────────────────────────────── -->
-  <section id="portfolio" class="py-28 md:py-40">
-    <div class="max-w-7xl mx-auto px-6 md:px-8">
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-16 reveal">
-        <div>
-          <span class="font-sans text-[11px] tracking-[0.25em] uppercase text-gray-400 mb-4 block">{site.portfolio_badge}</span>
-          <h2 class="font-sans text-5xl md:text-6xl font-light text-white">
-            {site.portfolio_title} <em class="italic">{site.portfolio_title_em}</em>
+    <!-- 4. À propos (dark) -->
+    <section class="px-6 py-24 bg-[var(--color-bg)]">
+      <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
+        <div class="space-y-7" data-animate>
+          <h2 class="text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
+            {site.about_title}
           </h2>
+          <p class="text-[var(--color-muted)] leading-relaxed text-lg">{site.about_text}</p>
+          <ul class="space-y-4">
+            {aboutPoints.map(p => (
+              <li class="flex items-center gap-3">
+                <span class="w-6 h-6 rounded-full bg-[var(--color-accent)]/15 flex items-center justify-center shrink-0">
+                  <iconify-icon icon="solar:check-circle-bold" class="text-[var(--color-accent2)] text-base"></iconify-icon>
+                </span>
+                <span class="text-white font-medium">{p}</span>
+              </li>
+            ))}
+          </ul>
+          <a href="/services/" class="inline-flex items-center gap-2 text-[var(--color-accent2)] font-semibold text-sm hover:gap-3 transition-all">
+            Découvrir nos services
+            <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon>
+          </a>
         </div>
-        <a href="/services" class="font-sans text-xs tracking-[0.18em] uppercase text-gray-400 hover:text-white transition-colors inline-flex items-center gap-3 shrink-0">
-          Tout voir <span class="w-8 h-px bg-current inline-block"></span>
-        </a>
-      </div>
-
-      <!-- Grille décalée -->
-      <div class="grid md:grid-cols-3 gap-6 md:gap-8">
-        <div class="group cursor-default reveal reveal-d1">
-          <div class="overflow-hidden relative mb-4">
-            <img src={site.portfolio1_image} alt={site.portfolio1_title}
-              class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-all duration-500 flex items-end p-6">
-              <div class="translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                <a href="/services" class="font-sans text-xs tracking-[0.18em] uppercase text-white inline-flex items-center gap-2">
-                  Voir <span class="iconify" data-icon="lucide:arrow-right" data-width="12"></span>
-                </a>
-              </div>
+        <div class="relative" data-animate>
+          <div class="bg-[var(--color-surface)] border border-white/[0.06] rounded-3xl p-8">
+            <div class="flex items-center justify-between mb-8">
+              <span class="text-sm font-semibold text-white">{site.about_chart_title}</span>
+              <iconify-icon icon="solar:graph-up-linear" class="text-[var(--color-accent2)] text-xl"></iconify-icon>
+            </div>
+            <div class="flex items-end justify-around gap-4 h-48">
+              {bars.map(b => (
+                <div class="flex flex-col items-center gap-3 flex-1">
+                  <div class={`w-full max-w-[56px] rounded-t-lg ${b.h} ${b.cls}`}></div>
+                  <span class="text-xs text-[var(--color-muted)] font-medium">{b.label}</span>
+                </div>
+              ))}
             </div>
           </div>
-          <h3 class="font-sans text-xl font-light text-white mb-1">{site.portfolio1_title}</h3>
-          <span class="font-sans text-[11px] tracking-[0.15em] uppercase text-gray-400">{site.portfolio1_flavor}</span>
-        </div>
-
-        <div class="group cursor-default reveal reveal-d2 md:mt-16">
-          <div class="overflow-hidden relative mb-4">
-            <img src={site.portfolio2_image} alt={site.portfolio2_title}
-              class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-all duration-500 flex items-end p-6">
-              <div class="translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                <a href="/services" class="font-sans text-xs tracking-[0.18em] uppercase text-white inline-flex items-center gap-2">
-                  Voir <span class="iconify" data-icon="lucide:arrow-right" data-width="12"></span>
-                </a>
-              </div>
+          <div class="absolute -bottom-6 -left-4 sm:-left-8 bg-[var(--color-surface)] border border-[var(--color-accent)]/40 rounded-2xl px-5 py-4 shadow-2xl shadow-blue-900/30 flex items-center gap-4">
+            <span class="w-10 h-10 rounded-full bg-[var(--color-accent)]/15 flex items-center justify-center shrink-0">
+              <iconify-icon icon="solar:wallet-money-linear" class="text-[var(--color-accent2)] text-lg"></iconify-icon>
+            </span>
+            <div>
+              <div class="text-xs text-[var(--color-muted)]">{site.about_card_label}</div>
+              <div class="text-lg font-bold text-white">{site.about_card_value}</div>
             </div>
           </div>
-          <h3 class="font-sans text-xl font-light text-white mb-1">{site.portfolio2_title}</h3>
-          <span class="font-sans text-[11px] tracking-[0.15em] uppercase text-gray-400">{site.portfolio2_flavor}</span>
         </div>
+      </div>
+    </section>
 
-        <div class="group cursor-default reveal reveal-d3">
-          <div class="overflow-hidden relative mb-4">
-            <img src={site.portfolio3_image} alt={site.portfolio3_title}
-              class="w-full aspect-[3/4] object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-            <div class="absolute inset-0 bg-black/0 group-hover:bg-black/50 transition-all duration-500 flex items-end p-6">
-              <div class="translate-y-4 group-hover:translate-y-0 opacity-0 group-hover:opacity-100 transition-all duration-500">
-                <a href="/services" class="font-sans text-xs tracking-[0.18em] uppercase text-white inline-flex items-center gap-2">
-                  Voir <span class="iconify" data-icon="lucide:arrow-right" data-width="12"></span>
-                </a>
+    <!-- 5. Services (claire) -->
+    <section class="px-6 py-24 bg-[#F8FAFC]">
+      <div class="max-w-7xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-16" data-animate>
+          <h2 class="text-4xl lg:text-5xl font-bold tracking-tight text-[#0F172A] mb-5">{site.services_title}</h2>
+          <p class="text-lg text-slate-500">{site.services_subtitle}</p>
+        </div>
+        <div class="grid md:grid-cols-3 gap-7">
+          {site.services.map(svc => (
+            <div class="bg-white rounded-2xl shadow-lg shadow-slate-200/60 border border-slate-100 p-8" data-animate>
+              <div class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center mb-6">
+                <iconify-icon icon={svc.icon} class="text-2xl text-[var(--color-accent)]"></iconify-icon>
+              </div>
+              <h3 class="text-xl font-bold text-[#0F172A] mb-3">{svc.name}</h3>
+              <p class="text-sm text-slate-500 leading-relaxed mb-6">{svc.desc}</p>
+              <ul class="space-y-2.5">
+                {svc.items.map(item => (
+                  <li class="flex items-center gap-2.5 text-sm text-slate-700">
+                    <iconify-icon icon="solar:check-circle-bold" class="text-[var(--color-accent)] text-base shrink-0"></iconify-icon>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. Simulateur d'optimisation fiscale (dark, signature) -->
+    <section class="px-6 py-24 bg-[var(--color-bg)]">
+      <div class="max-w-5xl mx-auto">
+        <div class="text-center max-w-2xl mx-auto mb-14" data-animate>
+          <h2 class="text-4xl lg:text-5xl font-bold tracking-tight text-white mb-5">{site.simulator_title}</h2>
+          <p class="text-lg text-[var(--color-muted)]">{site.simulator_subtitle}</p>
+        </div>
+        <div class="bg-[var(--color-surface)] border border-white/[0.06] rounded-3xl p-8 lg:p-12 grid lg:grid-cols-2 gap-12 items-center" data-animate>
+          <div class="space-y-9">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <label for="sim-revenue" class="text-sm font-medium text-[var(--color-muted)]">{site.simulator_revenue_label}</label>
+                <span id="sim-revenue-value" class="text-lg font-bold text-white">500 000 €</span>
+              </div>
+              <input type="range" id="sim-revenue" class="sim-range" min="100000" max="2000000" step="10000" value="500000" />
+              <div class="flex justify-between text-xs text-[var(--color-muted)] mt-2">
+                <span>100 k€</span><span>2 M€+</span>
               </div>
             </div>
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <label for="sim-expenses" class="text-sm font-medium text-[var(--color-muted)]">{site.simulator_expenses_label}</label>
+                <span id="sim-expenses-value" class="text-lg font-bold text-white">150 000 €</span>
+              </div>
+              <input type="range" id="sim-expenses" class="sim-range" min="0" max="1000000" step="10000" value="150000" />
+              <div class="flex justify-between text-xs text-[var(--color-muted)] mt-2">
+                <span>0 €</span><span>1 M€</span>
+              </div>
+            </div>
+            <div class="flex items-center justify-between gap-4 pt-2">
+              <span class="text-sm font-medium text-white">{site.simulator_toggle_label}</span>
+              <label class="sim-toggle">
+                <input type="checkbox" id="sim-international" />
+                <span class="slider"></span>
+              </label>
+            </div>
           </div>
-          <h3 class="font-sans text-xl font-light text-white mb-1">{site.portfolio3_title}</h3>
-          <span class="font-sans text-[11px] tracking-[0.15em] uppercase text-gray-400">{site.portfolio3_flavor}</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Process ────────────────────────────────────────────────────────── -->
-  <section id="process" class="py-28 md:py-40 bg-surface/20">
-    <div class="max-w-7xl mx-auto px-6 md:px-8">
-      <div class="text-center mb-20 reveal">
-        <span class="font-sans text-[11px] tracking-[0.25em] uppercase text-gray-400 mb-4 block">{site.process_badge}</span>
-        <h2 class="font-sans text-5xl md:text-6xl font-light text-white mb-5">{site.process_title}</h2>
-        <p class="font-sans text-sm font-light leading-relaxed text-gray-400 max-w-xl mx-auto tracking-wide">{site.process_subtitle}</p>
-      </div>
-      <div class="grid md:grid-cols-4 gap-10 md:gap-8">
-        {[
-          { n: '01', t: site.step1_title, d: site.step1_desc },
-          { n: '02', t: site.step2_title, d: site.step2_desc },
-          { n: '03', t: site.step3_title, d: site.step3_desc },
-          { n: '04', t: site.step4_title, d: site.step4_desc },
-        ].map((step, i) => (
-          <div class={`relative reveal reveal-d${i + 1}`}>
-            <div class="font-sans text-[5rem] font-light text-sand/80 leading-none mb-4 select-none">{step.n}</div>
-            <div class="w-8 h-px bg-black/20 mb-6 line-grow"></div>
-            <h3 class="font-sans text-2xl font-light text-white mb-3">{step.t}</h3>
-            <p class="font-sans text-sm font-light leading-[1.9] text-gray-400 tracking-wide">{step.d}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ── Offres ─────────────────────────────────────────────────────────── -->
-  <section id="flavors" class="py-28 md:py-40">
-    <div class="max-w-7xl mx-auto px-6 md:px-8">
-      <div class="mb-16 reveal">
-        <h2 class="font-sans text-5xl md:text-6xl font-light text-white">
-          {site.flavors_title} <em class="italic">{site.flavors_title_em}</em>
-        </h2>
-      </div>
-      <div class="grid md:grid-cols-3 gap-px bg-surface/40">
-        {[
-          { tag: site.flavor1_tag, t: site.flavor1_title, d: site.flavor1_desc },
-          { tag: site.flavor2_tag, t: site.flavor2_title, d: site.flavor2_desc },
-          { tag: site.flavor3_tag, t: site.flavor3_title, d: site.flavor3_desc },
-        ].map((f, i) => (
-          <div class={`bg-bg p-10 md:p-12 hover:bg-accent/20/30 transition-colors duration-400 group reveal reveal-d${i + 1}`}>
-            <span class="font-sans text-[11px] tracking-[0.2em] uppercase text-gray-400/70 border border-sand px-3 py-1 mb-8 inline-block group-hover:border-dark/20 transition-colors">{f.tag}</span>
-            <h3 class="font-sans text-2xl md:text-3xl font-light text-white mb-4">{f.t}</h3>
-            <p class="font-sans text-sm font-light leading-[1.9] text-gray-400 tracking-wide mb-6">{f.d}</p>
-            <a href="/contact" class="font-sans text-[11px] tracking-[0.18em] uppercase text-white/50 group-hover:text-white inline-flex items-center gap-2 transition-colors">
-              En savoir plus <span class="w-0 group-hover:w-6 h-px bg-black inline-block transition-all duration-400"></span>
+          <div class="bg-[#0A1120] border border-[var(--color-accent)]/40 rounded-2xl p-8 text-center">
+            <div class="text-xs font-semibold tracking-[0.2em] text-[var(--color-muted)] mb-4">{site.simulator_result_label}</div>
+            <div class="text-5xl font-bold text-[var(--color-accent2)] tracking-tight mb-1">
+              <span id="sim-result">42 500 €</span><span class="text-2xl text-[var(--color-muted)] font-medium">/an</span>
+            </div>
+            <p class="text-sm text-[var(--color-muted)] leading-relaxed mt-5 mb-8">{site.simulator_result_text}</p>
+            <a href="/contact/"
+              class="inline-flex items-center gap-2 bg-white text-[#0F172A] px-7 py-3.5 rounded-full font-semibold text-sm hover:bg-blue-50 transition-all w-full justify-center">
+              {site.simulator_cta}
+              <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon>
             </a>
           </div>
-        ))}
+        </div>
+        <p class="text-xs italic text-[var(--color-muted)]/70 text-center mt-6 max-w-2xl mx-auto">{site.simulator_disclaimer}</p>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ── Témoignage ─────────────────────────────────────────────────────── -->
-  <section class="py-28 md:py-40 bg-black relative overflow-hidden">
-    <!-- Cercle décoratif -->
-    <div class="absolute right-0 top-1/2 -translate-y-1/2 w-96 h-96 border border-white/5 rounded-full -mr-48 hidden md:block"></div>
-    <div class="absolute right-24 top-1/2 -translate-y-1/2 w-48 h-48 border border-white/5 rounded-full hidden md:block"></div>
-
-    <div class="relative z-10 max-w-4xl mx-auto px-6 md:px-8 text-center reveal">
-      <div class="w-px h-12 bg-white/20 mx-auto mb-10"></div>
-      <blockquote class="font-sans text-2xl md:text-4xl font-light italic leading-[1.6] text-white/90 mb-12">
-        &ldquo;{site.testimonial_text}&rdquo;
-      </blockquote>
-      <div class="flex items-center justify-center gap-5">
-        <img src={site.testimonial_image} alt={site.testimonial_name}
-          class="w-12 h-12 rounded-full object-cover grayscale opacity-50 hover:opacity-80 transition-opacity" loading="lazy" />
-        <div class="text-left">
-          <p class="font-sans text-base font-light text-white/80">{site.testimonial_name}</p>
-          <p class="font-sans text-[11px] tracking-[0.18em] uppercase text-white/30 mt-0.5">{site.testimonial_date}</p>
+    <!-- 7. Témoignages (claire) -->
+    <section class="px-6 py-24 bg-[#F8FAFC]">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14" data-animate>
+          <div>
+            <h2 class="text-4xl lg:text-5xl font-bold tracking-tight text-[#0F172A] mb-4">{site.testimonials_title}</h2>
+            <p class="text-lg text-slate-500">{site.testimonials_subtitle}</p>
+          </div>
+          <div class="flex gap-3">
+            <span class="w-11 h-11 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-400">
+              <iconify-icon icon="solar:arrow-left-linear" class="text-lg"></iconify-icon>
+            </span>
+            <span class="w-11 h-11 rounded-full border border-slate-200 bg-white flex items-center justify-center text-[var(--color-accent)]">
+              <iconify-icon icon="solar:arrow-right-linear" class="text-lg"></iconify-icon>
+            </span>
+          </div>
+        </div>
+        <div class="grid md:grid-cols-3 gap-7">
+          {site.testimonials.map(t => (
+            <div class="bg-white rounded-2xl shadow-lg shadow-slate-200/60 border border-slate-100 p-8 flex flex-col" data-animate>
+              <div class="flex text-amber-400 mb-5">
+                {[1,2,3,4,5].map(() => <iconify-icon icon="solar:star-bold" class="text-base"></iconify-icon>)}
+              </div>
+              <p class="text-sm text-slate-700 leading-relaxed mb-7 flex-1">« {t.quote} »</p>
+              <div class="flex items-center gap-3">
+                <span class="w-11 h-11 rounded-full bg-[var(--color-accent)]/10 text-[var(--color-accent)] font-bold text-sm flex items-center justify-center shrink-0">{t.initials}</span>
+                <div>
+                  <div class="text-sm font-bold text-[#0F172A]">{t.name}</div>
+                  <div class="text-xs text-slate-500">{t.role}</div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ── FAQ ───────────────────────────────────────────────────────────── -->
-  <section class="py-28 md:py-40">
-    <div class="max-w-3xl mx-auto px-6 md:px-8">
-      <div class="mb-16 reveal">
-        <h2 class="font-sans text-5xl md:text-6xl font-light text-white mb-4">{site.faq_title}</h2>
-        <p class="font-sans text-sm font-light text-gray-400 tracking-wide">{site.faq_subtitle}</p>
-      </div>
-      <div class="divide-y divide-sand/60">
-        {[
-          { q: site.faq1_q, a: site.faq1_a },
-          { q: site.faq2_q, a: site.faq2_a },
-          { q: site.faq3_q, a: site.faq3_a },
-        ].map((faq, i) => (
-          <div class={`faq-item py-7 reveal reveal-d${i + 1}`}>
-            <button class="faq-trigger w-full flex items-center justify-between text-left gap-6">
-              <span class="font-sans text-xl font-light text-white">{faq.q}</span>
-              <span class="faq-icon shrink-0 w-5 h-5 border border-dark/20 rounded-full flex items-center justify-center transition-all duration-300">
-                <span class="iconify" data-icon="lucide:plus" data-width="12"></span>
-              </span>
-            </button>
-            <div class="faq-answer">
-              <div class="faq-inner">
-                <p class="font-sans text-sm font-light leading-[1.9] text-gray-400 tracking-wide pt-5 pb-2">{faq.a}</p>
+    <!-- 8. Contact / CTA (dark) -->
+    <section class="px-6 py-24 bg-[var(--color-bg)]">
+      <div class="max-w-7xl mx-auto">
+        <div class="bg-[var(--color-surface)] border border-white/[0.06] rounded-3xl p-8 lg:p-14 grid lg:grid-cols-2 gap-12 items-center" data-animate>
+          <div class="space-y-7">
+            <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-[var(--color-accent)]/15 border border-[var(--color-accent)]/30 text-[var(--color-accent2)] text-xs font-semibold tracking-wide">
+              {site.contact_badge}
+            </span>
+            <h2 class="text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">{site.contact_title}</h2>
+            <p class="text-[var(--color-muted)] leading-relaxed text-lg">{site.contact_text}</p>
+            <div class="space-y-5 pt-2">
+              <div class="flex items-center gap-4">
+                <span class="w-11 h-11 rounded-full bg-white/[0.05] border border-white/[0.08] flex items-center justify-center shrink-0">
+                  <iconify-icon icon="solar:map-point-linear" class="text-[var(--color-accent2)] text-lg"></iconify-icon>
+                </span>
+                <div>
+                  <div class="text-xs text-[var(--color-muted)] uppercase tracking-widest mb-0.5">Adresse</div>
+                  <div class="text-sm font-medium text-white">{site.address}</div>
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <span class="w-11 h-11 rounded-full bg-white/[0.05] border border-white/[0.08] flex items-center justify-center shrink-0">
+                  <iconify-icon icon="solar:phone-linear" class="text-[var(--color-accent2)] text-lg"></iconify-icon>
+                </span>
+                <div>
+                  <div class="text-xs text-[var(--color-muted)] uppercase tracking-widest mb-0.5">Ligne directe</div>
+                  <a href={`tel:${site.phone}`} class="text-sm font-medium text-white hover:text-[var(--color-accent2)]">{site.phone}</a>
+                </div>
+              </div>
+              <div class="flex items-center gap-4">
+                <span class="w-11 h-11 rounded-full bg-white/[0.05] border border-white/[0.08] flex items-center justify-center shrink-0">
+                  <iconify-icon icon="solar:letter-linear" class="text-[var(--color-accent2)] text-lg"></iconify-icon>
+                </span>
+                <div>
+                  <div class="text-xs text-[var(--color-muted)] uppercase tracking-widest mb-0.5">Email</div>
+                  <a href={`mailto:${site.email}`} class="text-sm font-medium text-white hover:text-[var(--color-accent2)]">{site.email}</a>
+                </div>
               </div>
             </div>
           </div>
-        ))}
+          <form method="POST" action={formAction} class="bg-[#0A1120] border border-white/[0.06] rounded-2xl p-8 space-y-5">
+            <h3 class="text-xl font-bold text-white mb-2">{site.contact_form_title}</h3>
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="text-xs font-semibold text-[var(--color-muted)] block mb-1.5">Prénom *</label>
+                <input type="text" name="firstname" required placeholder="Votre prénom"
+                  class="w-full px-4 py-3 bg-white/[0.04] border border-white/[0.08] rounded-lg text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[var(--color-accent)]" />
+              </div>
+              <div>
+                <label class="text-xs font-semibold text-[var(--color-muted)] block mb-1.5">Nom *</label>
+                <input type="text" name="lastname" required placeholder="Votre nom"
+                  class="w-full px-4 py-3 bg-white/[0.04] border border-white/[0.08] rounded-lg text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[var(--color-accent)]" />
+              </div>
+            </div>
+            <div>
+              <label class="text-xs font-semibold text-[var(--color-muted)] block mb-1.5">Email *</label>
+              <input type="email" name="email" required placeholder="votre@email.fr"
+                class="w-full px-4 py-3 bg-white/[0.04] border border-white/[0.08] rounded-lg text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[var(--color-accent)]" />
+            </div>
+            <div>
+              <label class="text-xs font-semibold text-[var(--color-muted)] block mb-1.5">Service souhaité</label>
+              <select name="service"
+                class="w-full px-4 py-3 bg-white/[0.04] border border-white/[0.08] rounded-lg text-sm text-white focus:outline-none focus:border-[var(--color-accent)] [&>option]:text-[#0F172A]">
+                <option value="">Sélectionnez un service</option>
+                {site.services.map(svc => <option>{svc.name}</option>)}
+                <option>Création d'entreprise</option>
+              </select>
+            </div>
+            <label class="flex items-start gap-3 text-xs text-[var(--color-muted)] leading-relaxed cursor-pointer">
+              <input type="checkbox" name="consent" required class="mt-0.5 accent-[var(--color-accent)]" />
+              J'accepte que mes données soient utilisées pour me recontacter dans le cadre de ma demande.
+            </label>
+            <button type="submit"
+              class="w-full bg-[var(--color-accent)] hover:bg-[var(--color-accent2)] text-white px-8 py-4 rounded-full font-semibold text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-600/25">
+              {site.contact_form_cta}
+              <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon>
+            </button>
+          </form>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- ── CTA final ──────────────────────────────────────────────────────── -->
-  <section class="py-28 md:py-40 bg-black relative overflow-hidden">
-    <div class="absolute inset-0 opacity-20">
-      <img src={site.hero_image} alt="" class="w-full h-full object-cover" loading="lazy" aria-hidden="true" />
-      <div class="absolute inset-0 bg-black/80"></div>
-    </div>
-    <div class="relative z-10 max-w-3xl mx-auto px-6 md:px-8 text-center reveal">
-      <span class="font-sans text-[11px] tracking-[0.25em] uppercase text-white/50 mb-6 block">{site.about_badge}</span>
-      <h2 class="font-sans text-5xl md:text-7xl font-light text-white mb-8 leading-tight">
-        {site.cta_title || site.hero_cta}
-      </h2>
-      <p class="font-sans text-sm font-light text-white/60 tracking-wide mb-12 max-w-md mx-auto leading-relaxed">
-        {site.cta_subtitle || site.hero_subtitle}
-      </p>
-      <a href="/contact"
-        class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.2em] uppercase bg-white text-white px-10 py-5 hover:bg-white/90 transition-all duration-300">
-        {site.hero_cta}
-        <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
-      </a>
-    </div>
-  </section>
-
+  </main>
   <Footer />
 
-  <style>
-    @keyframes fadeSlideIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-    @keyframes scrollLine {
-      0%   { transform: translateY(-100%); opacity: 0; }
-      30%  { opacity: 1; }
-      70%  { opacity: 1; }
-      100% { transform: translateY(100%); opacity: 0; }
-    }
-  </style>
-
+  <!-- 6bis. Script du simulateur -->
   <script is:inline>
-    // ── FAQ ───────────────────────────────────────────────────────────
-    document.querySelectorAll('.faq-item').forEach(function(item) {
-      var trigger = item.querySelector('.faq-trigger');
-      var answer  = item.querySelector('.faq-answer');
-      var icon    = item.querySelector('.faq-icon .iconify');
-      trigger.addEventListener('click', function() {
-        var isOpen = answer.classList.contains('open');
-        document.querySelectorAll('.faq-answer').forEach(function(a) { a.classList.remove('open'); });
-        document.querySelectorAll('.faq-icon .iconify').forEach(function(ic) { ic.setAttribute('data-icon', 'lucide:plus'); });
-        if (!isOpen) {
-          answer.classList.add('open');
-          if (icon) icon.setAttribute('data-icon', 'lucide:minus');
-        }
-      });
-    });
+    (function () {
+      const revenue = document.getElementById('sim-revenue');
+      const expenses = document.getElementById('sim-expenses');
+      const intl = document.getElementById('sim-international');
+      const revenueValue = document.getElementById('sim-revenue-value');
+      const expensesValue = document.getElementById('sim-expenses-value');
+      const result = document.getElementById('sim-result');
+      if (!revenue || !expenses || !intl || !result) return;
 
-    // ── Compteurs animés ──────────────────────────────────────────────
-    var statObserver = new IntersectionObserver(function(entries) {
-      entries.forEach(function(entry) {
-        if (!entry.isIntersecting) return;
-        var el = entry.target;
-        var target = parseInt(el.dataset.target);
-        var suffix = el.dataset.suffix || '';
-        if (isNaN(target)) return;
-        var start = performance.now();
-        var duration = 1800;
-        function tick(now) {
-          var p = Math.min((now - start) / duration, 1);
-          var ease = 1 - Math.pow(1 - p, 4);
-          el.textContent = Math.round(ease * target) + suffix;
-          if (p < 1) requestAnimationFrame(tick);
-        }
-        requestAnimationFrame(tick);
-        statObserver.unobserve(el);
-      });
-    }, { threshold: 0.5 });
-    document.querySelectorAll('.stat-counter').forEach(function(el) { statObserver.observe(el); });
+      const fmt = (n) => n.toLocaleString('fr-FR').replace(/ | /g, ' ') + ' €';
+
+      function updateFill(slider) {
+        const min = Number(slider.min), max = Number(slider.max), val = Number(slider.value);
+        slider.style.setProperty('--fill', ((val - min) / (max - min)) * 100 + '%');
+      }
+
+      function compute() {
+        const ca = Number(revenue.value);
+        const charges = Number(expenses.value);
+        revenueValue.textContent = fmt(ca);
+        expensesValue.textContent = fmt(charges);
+        let estimation = Math.max(0, (ca - charges)) * 0.085;
+        if (intl.checked) estimation *= 1.3;
+        estimation = Math.round(estimation / 500) * 500;
+        result.textContent = fmt(estimation);
+        updateFill(revenue);
+        updateFill(expenses);
+      }
+
+      revenue.addEventListener('input', compute);
+      expenses.addEventListener('input', compute);
+      intl.addEventListener('change', compute);
+      compute();
+    })();
   </script>
-
 </Base>

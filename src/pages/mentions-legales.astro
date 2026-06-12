@@ -4,113 +4,24 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 ---
-<Base title={`Mentions légales — ${site.company_name}`} description={`Mentions légales de ${site.company_name}.`}>
-
+<Base title={`Mentions légales — ${site.company_name} Expertise`} noindex={true}>
   <Header />
-
-  <!-- Hero page -->
-  <section class="pt-40 pb-16">
-    <div class="max-w-7xl mx-auto px-8">
-      <span class="font-sans text-xs tracking-[0.22em] uppercase text-gray-400 mb-4 block">Légal</span>
-      <h1 class="font-sans text-5xl md:text-6xl font-light text-white">
-        Mentions légales
-      </h1>
-    </div>
-  </section>
-
-  <!-- Contenu légal -->
-  <section class="py-16 pb-32">
-    <div class="max-w-3xl mx-auto px-8">
-
-      <div class="mb-12">
-        <div class="w-10 h-px bg-surface mb-8"></div>
-        <h2 class="font-sans text-2xl font-light text-white mb-6">Éditeur du site</h2>
-        <div class="flex flex-col gap-3">
-          <p class="font-sans text-sm font-light text-gray-400 tracking-wide">
-            <span class="text-white">{site.legal_name || site.company_name}</span>
-          </p>
-          {site.legal_status && (
-            <p class="font-sans text-sm font-light text-gray-400 tracking-wide">
-              Forme juridique : <span class="text-white">{site.legal_status}</span>
-            </p>
-          )}
-          {site.siret && (
-            <p class="font-sans text-sm font-light text-gray-400 tracking-wide">
-              SIRET : <span class="text-white">{site.siret}</span>
-            </p>
-          )}
-          {site.address && (
-            <p class="font-sans text-sm font-light text-gray-400 tracking-wide">
-              Adresse : <span class="text-white">{site.address}</span>
-            </p>
-          )}
-          <p class="font-sans text-sm font-light text-gray-400 tracking-wide">
-            Email : <a href={`mailto:${site.email}`} class="text-white hover:opacity-60 transition-opacity">{site.email}</a>
-          </p>
-          {site.website && (
-            <p class="font-sans text-sm font-light text-gray-400 tracking-wide">
-              Site web : <a href={site.website} class="text-white hover:opacity-60 transition-opacity">{site.website}</a>
-            </p>
-          )}
+  <main class="py-24 px-6 bg-[var(--color-bg)] min-h-[60vh]">
+    <div class="max-w-3xl mx-auto">
+      <h1 class="text-3xl font-bold text-white mb-10">Mentions légales</h1>
+      {[
+        { title: 'Éditeur', content: [site.legal_name, site.legal_status, site.siret ? `SIRET : ${site.siret}` : '', site.address, site.email, site.phone].filter(Boolean) },
+        { title: 'Profession réglementée', content: [`${site.legal_name} est un cabinet d'expertise comptable inscrit au tableau de l'Ordre des Experts-Comptables — Région Paris Île-de-France.`] },
+        { title: 'Hébergement', content: ['Cloudflare Pages — Cloudflare, Inc., 101 Townsend St, San Francisco, CA 94107, USA'] },
+        { title: 'Propriété intellectuelle', content: [`L'ensemble du contenu de ce site est la propriété exclusive de ${site.legal_name}.`] },
+        { title: 'Données personnelles', content: [`Conformément au RGPD, vous pouvez exercer vos droits d'accès, de rectification et de suppression en contactant ${site.email}.`] },
+      ].map(s => (
+        <div class="mb-8">
+          <h2 class="text-xl font-bold text-white mb-3">{s.title}</h2>
+          {s.content.map(line => <p class="text-[var(--color-muted)] leading-relaxed">{line}</p>)}
         </div>
-      </div>
-
-      <div class="mb-12">
-        <div class="w-10 h-px bg-surface mb-8"></div>
-        <h2 class="font-sans text-2xl font-light text-white mb-6">Hébergement</h2>
-        <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">
-          Ce site est hébergé par Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, États-Unis.
-        </p>
-      </div>
-
-      <div class="mb-12">
-        <div class="w-10 h-px bg-surface mb-8"></div>
-        <h2 class="font-sans text-2xl font-light text-white mb-6">Propriété intellectuelle</h2>
-        <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide mb-4">
-          L'ensemble du contenu de ce site (textes, images, graphismes, logo, icônes, sons, logiciels…) est la propriété exclusive de {site.legal_name || site.company_name}, à l'exception des marques, logos ou contenus appartenant à d'autres sociétés partenaires ou auteurs.
-        </p>
-        <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">
-          Toute reproduction, distribution, modification, adaptation, retransmission ou publication de ces différents éléments est strictement interdite sans l'accord écrit préalable de {site.legal_name || site.company_name}.
-        </p>
-      </div>
-
-      <div class="mb-12">
-        <div class="w-10 h-px bg-surface mb-8"></div>
-        <h2 class="font-sans text-2xl font-light text-white mb-6">Données personnelles</h2>
-        <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide mb-4">
-          Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification, d'effacement et d'opposition aux données vous concernant.
-        </p>
-        <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">
-          Pour exercer ces droits ou pour toute question relative à la protection de vos données, vous pouvez nous contacter à l'adresse : <a href={`mailto:${site.email}`} class="text-white hover:opacity-60 transition-opacity">{site.email}</a>
-        </p>
-      </div>
-
-      <div class="mb-12">
-        <div class="w-10 h-px bg-surface mb-8"></div>
-        <h2 class="font-sans text-2xl font-light text-white mb-6">Cookies</h2>
-        <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">
-          Ce site peut utiliser des cookies à des fins de mesure d'audience et d'amélioration de l'expérience utilisateur. Vous pouvez configurer votre navigateur pour refuser les cookies.
-        </p>
-      </div>
-
-      <div class="mb-12">
-        <div class="w-10 h-px bg-surface mb-8"></div>
-        <h2 class="font-sans text-2xl font-light text-white mb-6">Responsabilité</h2>
-        <p class="font-sans text-sm font-light leading-relaxed text-gray-400 tracking-wide">
-          {site.company_name} s'efforce d'assurer l'exactitude et la mise à jour des informations diffusées sur ce site. Cependant, {site.company_name} ne peut garantir l'exactitude, la précision ou l'exhaustivité des informations mises à disposition sur ce site.
-        </p>
-      </div>
-
-      <div class="mt-16">
-        <a href="/" class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.18em] uppercase text-white hover:opacity-60 transition-opacity">
-          Retour à l'accueil
-          <span class="iconify" data-icon="lucide:arrow-left" data-width="14"></span>
-        </a>
-      </div>
-
+      ))}
     </div>
-  </section>
-
+  </main>
   <Footer />
-
 </Base>
