@@ -3,362 +3,278 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
-const formAction = `https://contact.cmspace.app/submit?to=${encodeURIComponent(site.email)}`;
-const stats = [
-  { value: site.stat1_value, label: site.stat1_label },
-  { value: site.stat2_value, label: site.stat2_label },
-  { value: site.stat3_value, label: site.stat3_label },
-];
-const aboutPoints = [site.about_point1, site.about_point2, site.about_point3];
-const bars = [
-  { label: 'T1', h: 'h-16', cls: 'bg-white/15' },
-  { label: 'T2', h: 'h-24', cls: 'bg-white/20' },
-  { label: 'T3', h: 'h-32', cls: 'bg-white/25' },
-  { label: 'T4', h: 'h-44', cls: 'bg-[var(--color-accent2)]' },
-];
 ---
-<Base>
+<Base title={site.seo_title} description={site.seo_description} image={(site as any).hero_image} url={(site as any).website}>
+
   <Header />
-  <main>
 
-    <!-- 2. Hero centré -->
-    <section class="hero-grid relative px-6 pt-24 pb-28 bg-[var(--color-bg)] overflow-hidden">
-      <div class="absolute inset-x-0 top-0 h-full pointer-events-none" aria-hidden="true">
-        <div class="absolute left-1/2 -translate-x-1/2 -top-40 w-[700px] h-[500px] rounded-full bg-[var(--color-accent)]/10 blur-[120px]"></div>
-      </div>
-      <div class="relative max-w-4xl mx-auto text-center" data-animate>
-        <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/[0.04] border border-white/[0.08] text-sm text-[var(--color-muted)] mb-8">
-          <span class="flex text-amber-400">
-            {[1,2,3,4,5].map(() => <iconify-icon icon="solar:star-bold" class="text-sm"></iconify-icon>)}
-          </span>
-          <span class="font-medium text-white">{site.hero_badge_rating}</span>
-          <span>· {site.hero_badge_location}</span>
-        </div>
-        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.05]">
-          <span class="block text-white">{site.hero_title_line1}</span>
-          <span class="block bg-gradient-to-r from-blue-500 to-blue-300 bg-clip-text text-transparent">{site.hero_title_line2}</span>
-        </h1>
-        <p class="text-lg text-[var(--color-muted)] leading-relaxed max-w-2xl mx-auto mt-7">
-          {site.hero_subtitle}
-        </p>
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-4 mt-10">
-          <a href="/contact/"
-            class="inline-flex items-center gap-2 bg-[var(--color-accent)] hover:bg-[var(--color-accent2)] text-white px-8 py-4 rounded-full font-semibold text-sm transition-all shadow-lg shadow-blue-600/25">
-            {site.hero_cta_primary}
-            <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon>
-          </a>
-          <a href={`tel:${site.phone}`}
-            class="inline-flex items-center gap-2 border border-white/15 hover:border-white/40 text-white px-8 py-4 rounded-full font-semibold text-sm transition-all">
-            <iconify-icon icon="solar:phone-linear" class="text-base text-[var(--color-accent2)]"></iconify-icon>
-            {site.hero_cta_secondary}
-          </a>
-        </div>
-      </div>
-    </section>
+  <!-- ── 1. HERO — deux colonnes ──────────────────────────────────────── -->
+  <section class="min-h-screen flex items-center pt-20" style="background:#FAF8F5">
+    <div class="max-w-7xl mx-auto px-6 md:px-8 w-full py-16 md:py-24">
+      <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
 
-    <!-- 3. Bande stats -->
-    <section class="px-6 pb-24 bg-[var(--color-bg)]">
-      <div class="max-w-6xl mx-auto grid sm:grid-cols-3 gap-6" data-animate>
-        {stats.map(s => (
-          <div class="bg-[var(--color-surface)] border border-white/[0.06] rounded-2xl p-8 text-center">
-            <div class="text-4xl font-bold text-white tracking-tight mb-2">{s.value}</div>
-            <div class="text-sm text-[var(--color-muted)]">{s.label}</div>
-          </div>
-        ))}
-      </div>
-    </section>
-
-    <!-- 4. À propos (dark) -->
-    <section class="px-6 py-24 bg-[var(--color-bg)]">
-      <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-        <div class="space-y-7" data-animate>
-          <h2 class="text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">
-            {site.about_title}
-          </h2>
-          <p class="text-[var(--color-muted)] leading-relaxed text-lg">{site.about_text}</p>
-          <ul class="space-y-4">
-            {aboutPoints.map(p => (
-              <li class="flex items-center gap-3">
-                <span class="w-6 h-6 rounded-full bg-[var(--color-accent)]/15 flex items-center justify-center shrink-0">
-                  <iconify-icon icon="solar:check-circle-bold" class="text-[var(--color-accent2)] text-base"></iconify-icon>
-                </span>
-                <span class="text-white font-medium">{p}</span>
-              </li>
-            ))}
-          </ul>
-          <a href="/services/" class="inline-flex items-center gap-2 text-[var(--color-accent2)] font-semibold text-sm hover:gap-3 transition-all">
-            Découvrir nos services
-            <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon>
-          </a>
-        </div>
-        <div class="relative" data-animate>
-          <div class="bg-[var(--color-surface)] border border-white/[0.06] rounded-3xl p-8">
-            <div class="flex items-center justify-between mb-8">
-              <span class="text-sm font-semibold text-white">{site.about_chart_title}</span>
-              <iconify-icon icon="solar:graph-up-linear" class="text-[var(--color-accent2)] text-xl"></iconify-icon>
-            </div>
-            <div class="flex items-end justify-around gap-4 h-48">
-              {bars.map(b => (
-                <div class="flex flex-col items-center gap-3 flex-1">
-                  <div class={`w-full max-w-[56px] rounded-t-lg ${b.h} ${b.cls}`}></div>
-                  <span class="text-xs text-[var(--color-muted)] font-medium">{b.label}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-          <div class="absolute -bottom-6 -left-4 sm:-left-8 bg-[var(--color-surface)] border border-[var(--color-accent)]/40 rounded-2xl px-5 py-4 shadow-2xl shadow-blue-900/30 flex items-center gap-4">
-            <span class="w-10 h-10 rounded-full bg-[var(--color-accent)]/15 flex items-center justify-center shrink-0">
-              <iconify-icon icon="solar:wallet-money-linear" class="text-[var(--color-accent2)] text-lg"></iconify-icon>
-            </span>
-            <div>
-              <div class="text-xs text-[var(--color-muted)]">{site.about_card_label}</div>
-              <div class="text-lg font-bold text-white">{site.about_card_value}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- 5. Services (claire) -->
-    <section class="px-6 py-24 bg-[#F8FAFC]">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center max-w-2xl mx-auto mb-16" data-animate>
-          <h2 class="text-4xl lg:text-5xl font-bold tracking-tight text-[#0F172A] mb-5">{site.services_title}</h2>
-          <p class="text-lg text-slate-500">{site.services_subtitle}</p>
-        </div>
-        <div class="grid md:grid-cols-3 gap-7">
-          {site.services.map(svc => (
-            <div class="bg-white rounded-2xl shadow-lg shadow-slate-200/60 border border-slate-100 p-8" data-animate>
-              <div class="w-12 h-12 rounded-xl bg-slate-100 flex items-center justify-center mb-6">
-                <iconify-icon icon={svc.icon} class="text-2xl text-[var(--color-accent)]"></iconify-icon>
-              </div>
-              <h3 class="text-xl font-bold text-[#0F172A] mb-3">{svc.name}</h3>
-              <p class="text-sm text-slate-500 leading-relaxed mb-6">{svc.desc}</p>
-              <ul class="space-y-2.5">
-                {svc.items.map(item => (
-                  <li class="flex items-center gap-2.5 text-sm text-slate-700">
-                    <iconify-icon icon="solar:check-circle-bold" class="text-[var(--color-accent)] text-base shrink-0"></iconify-icon>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <!-- 6. Simulateur d'optimisation fiscale (dark, signature) -->
-    <section class="px-6 py-24 bg-[var(--color-bg)]">
-      <div class="max-w-5xl mx-auto">
-        <div class="text-center max-w-2xl mx-auto mb-14" data-animate>
-          <h2 class="text-4xl lg:text-5xl font-bold tracking-tight text-white mb-5">{site.simulator_title}</h2>
-          <p class="text-lg text-[var(--color-muted)]">{site.simulator_subtitle}</p>
-        </div>
-        <div class="bg-[var(--color-surface)] border border-white/[0.06] rounded-3xl p-8 lg:p-12 grid lg:grid-cols-2 gap-12 items-center" data-animate>
-          <div class="space-y-9">
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <label for="sim-revenue" class="text-sm font-medium text-[var(--color-muted)]">{site.simulator_revenue_label}</label>
-                <span id="sim-revenue-value" class="text-lg font-bold text-white">500 000 €</span>
-              </div>
-              <input type="range" id="sim-revenue" class="sim-range" min="100000" max="2000000" step="10000" value="500000" />
-              <div class="flex justify-between text-xs text-[var(--color-muted)] mt-2">
-                <span>100 k€</span><span>2 M€+</span>
-              </div>
-            </div>
-            <div>
-              <div class="flex items-center justify-between mb-4">
-                <label for="sim-expenses" class="text-sm font-medium text-[var(--color-muted)]">{site.simulator_expenses_label}</label>
-                <span id="sim-expenses-value" class="text-lg font-bold text-white">150 000 €</span>
-              </div>
-              <input type="range" id="sim-expenses" class="sim-range" min="0" max="1000000" step="10000" value="150000" />
-              <div class="flex justify-between text-xs text-[var(--color-muted)] mt-2">
-                <span>0 €</span><span>1 M€</span>
-              </div>
-            </div>
-            <div class="flex items-center justify-between gap-4 pt-2">
-              <span class="text-sm font-medium text-white">{site.simulator_toggle_label}</span>
-              <label class="sim-toggle">
-                <input type="checkbox" id="sim-international" />
-                <span class="slider"></span>
-              </label>
-            </div>
-          </div>
-          <div class="bg-[#0A1120] border border-[var(--color-accent)]/40 rounded-2xl p-8 text-center">
-            <div class="text-xs font-semibold tracking-[0.2em] text-[var(--color-muted)] mb-4">{site.simulator_result_label}</div>
-            <div class="text-5xl font-bold text-[var(--color-accent2)] tracking-tight mb-1">
-              <span id="sim-result">42 500 €</span><span class="text-2xl text-[var(--color-muted)] font-medium">/an</span>
-            </div>
-            <p class="text-sm text-[var(--color-muted)] leading-relaxed mt-5 mb-8">{site.simulator_result_text}</p>
+        <!-- Colonne texte -->
+        <div style="opacity:0;animation:fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.2s forwards">
+          <p class="font-sans text-xs tracking-[0.28em] uppercase mb-6" style="color:#C4956A">Studio de beauté — Paris</p>
+          <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl font-light leading-[1.05] mb-6" style="color:#1A1A1A">
+            {site.hero_title}
+          </h1>
+          <div style="width:3rem;height:1px;background:#C4956A;margin-bottom:1.5rem"></div>
+          <p class="font-sans text-sm font-light leading-relaxed mb-10 max-w-sm" style="color:#8A7E75">
+            {site.hero_subtitle}
+          </p>
+          <div class="flex flex-wrap gap-4">
             <a href="/contact/"
-              class="inline-flex items-center gap-2 bg-white text-[#0F172A] px-7 py-3.5 rounded-full font-semibold text-sm hover:bg-blue-50 transition-all w-full justify-center">
-              {site.simulator_cta}
-              <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon>
+              class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.2em] uppercase px-8 py-4 transition-all duration-300"
+              style="background:#C4956A;color:#fff">
+              {site.hero_cta}
+              <span class="iconify" data-icon="lucide:arrow-right" data-width="13"></span>
+            </a>
+            <a href="/services/"
+              class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.2em] uppercase px-8 py-4 transition-all duration-300"
+              style="border:1px solid #E8E0D8;color:#8A7E75">
+              Nos services
             </a>
           </div>
         </div>
-        <p class="text-xs italic text-[var(--color-muted)]/70 text-center mt-6 max-w-2xl mx-auto">{site.simulator_disclaimer}</p>
-      </div>
-    </section>
 
-    <!-- 7. Témoignages (claire) -->
-    <section class="px-6 py-24 bg-[#F8FAFC]">
-      <div class="max-w-7xl mx-auto">
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14" data-animate>
-          <div>
-            <h2 class="text-4xl lg:text-5xl font-bold tracking-tight text-[#0F172A] mb-4">{site.testimonials_title}</h2>
-            <p class="text-lg text-slate-500">{site.testimonials_subtitle}</p>
+        <!-- Colonne image portrait -->
+        <div class="relative" style="opacity:0;animation:fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.4s forwards">
+          <div class="overflow-hidden" style="aspect-ratio:3/4">
+            <img src={site.hero_image} alt={site.hero_title}
+              class="w-full h-full object-cover"
+              loading="eager" fetchpriority="high" />
           </div>
-          <div class="flex gap-3">
-            <span class="w-11 h-11 rounded-full border border-slate-200 bg-white flex items-center justify-center text-slate-400">
-              <iconify-icon icon="solar:arrow-left-linear" class="text-lg"></iconify-icon>
-            </span>
-            <span class="w-11 h-11 rounded-full border border-slate-200 bg-white flex items-center justify-center text-[var(--color-accent)]">
-              <iconify-icon icon="solar:arrow-right-linear" class="text-lg"></iconify-icon>
-            </span>
-          </div>
-        </div>
-        <div class="grid md:grid-cols-3 gap-7">
-          {site.testimonials.map(t => (
-            <div class="bg-white rounded-2xl shadow-lg shadow-slate-200/60 border border-slate-100 p-8 flex flex-col" data-animate>
-              <div class="flex text-amber-400 mb-5">
-                {[1,2,3,4,5].map(() => <iconify-icon icon="solar:star-bold" class="text-base"></iconify-icon>)}
-              </div>
-              <p class="text-sm text-slate-700 leading-relaxed mb-7 flex-1">« {t.quote} »</p>
-              <div class="flex items-center gap-3">
-                <span class="w-11 h-11 rounded-full bg-[var(--color-accent)]/10 text-[var(--color-accent)] font-bold text-sm flex items-center justify-center shrink-0">{t.initials}</span>
-                <div>
-                  <div class="text-sm font-bold text-[#0F172A]">{t.name}</div>
-                  <div class="text-xs text-slate-500">{t.role}</div>
-                </div>
-              </div>
-            </div>
-          ))}
+          <!-- Décor accent -->
+          <div class="absolute -bottom-4 -left-4 w-24 h-24 hidden md:block" style="background:#F2EDE8;z-index:-1"></div>
+          <div class="absolute -top-4 -right-4 w-16 h-16 hidden md:block" style="border:1px solid #E8E0D8;z-index:-1"></div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- 8. Contact / CTA (dark) -->
-    <section class="px-6 py-24 bg-[var(--color-bg)]">
-      <div class="max-w-7xl mx-auto">
-        <div class="bg-[var(--color-surface)] border border-white/[0.06] rounded-3xl p-8 lg:p-14 grid lg:grid-cols-2 gap-12 items-center" data-animate>
-          <div class="space-y-7">
-            <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-[var(--color-accent)]/15 border border-[var(--color-accent)]/30 text-[var(--color-accent2)] text-xs font-semibold tracking-wide">
-              {site.contact_badge}
-            </span>
-            <h2 class="text-4xl lg:text-5xl font-bold tracking-tight text-white leading-tight">{site.contact_title}</h2>
-            <p class="text-[var(--color-muted)] leading-relaxed text-lg">{site.contact_text}</p>
-            <div class="space-y-5 pt-2">
-              <div class="flex items-center gap-4">
-                <span class="w-11 h-11 rounded-full bg-white/[0.05] border border-white/[0.08] flex items-center justify-center shrink-0">
-                  <iconify-icon icon="solar:map-point-linear" class="text-[var(--color-accent2)] text-lg"></iconify-icon>
-                </span>
-                <div>
-                  <div class="text-xs text-[var(--color-muted)] uppercase tracking-widest mb-0.5">Adresse</div>
-                  <div class="text-sm font-medium text-white">{site.address}</div>
-                </div>
-              </div>
-              <div class="flex items-center gap-4">
-                <span class="w-11 h-11 rounded-full bg-white/[0.05] border border-white/[0.08] flex items-center justify-center shrink-0">
-                  <iconify-icon icon="solar:phone-linear" class="text-[var(--color-accent2)] text-lg"></iconify-icon>
-                </span>
-                <div>
-                  <div class="text-xs text-[var(--color-muted)] uppercase tracking-widest mb-0.5">Ligne directe</div>
-                  <a href={`tel:${site.phone}`} class="text-sm font-medium text-white hover:text-[var(--color-accent2)]">{site.phone}</a>
-                </div>
-              </div>
-              <div class="flex items-center gap-4">
-                <span class="w-11 h-11 rounded-full bg-white/[0.05] border border-white/[0.08] flex items-center justify-center shrink-0">
-                  <iconify-icon icon="solar:letter-linear" class="text-[var(--color-accent2)] text-lg"></iconify-icon>
-                </span>
-                <div>
-                  <div class="text-xs text-[var(--color-muted)] uppercase tracking-widest mb-0.5">Email</div>
-                  <a href={`mailto:${site.email}`} class="text-sm font-medium text-white hover:text-[var(--color-accent2)]">{site.email}</a>
-                </div>
-              </div>
-            </div>
+  <!-- ── 2. POURQUOI NOUS — 4 cards numérotées ────────────────────────── -->
+  <section class="py-24 md:py-32" style="background:#F2EDE8">
+    <div class="max-w-7xl mx-auto px-6 md:px-8">
+      <div class="mb-16 reveal">
+        <p class="font-sans text-xs tracking-[0.28em] uppercase mb-4" style="color:#C4956A">Notre différence</p>
+        <h2 class="font-serif text-4xl md:text-5xl font-light" style="color:#1A1A1A">POURQUOI NOUS ?</h2>
+      </div>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        {[
+          { num: (site as any).why1_num, title: (site as any).why1_title, desc: (site as any).why1_desc },
+          { num: (site as any).why2_num, title: (site as any).why2_title, desc: (site as any).why2_desc },
+          { num: (site as any).why3_num, title: (site as any).why3_title, desc: (site as any).why3_desc },
+          { num: (site as any).why4_num, title: (site as any).why4_title, desc: (site as any).why4_desc },
+        ].map((card: any, i: number) => (
+          <div class={`p-8 reveal reveal-d${i + 1}`} style="background:#FAF8F5;border:1px solid #E8E0D8">
+            <p class="font-serif text-5xl font-light mb-5 select-none" style="color:#E8E0D8">{card.num}</p>
+            <div style="width:2rem;height:1px;background:#C4956A;margin-bottom:1rem"></div>
+            <h3 class="font-serif text-xl font-semibold mb-3" style="color:#1A1A1A">{card.title}</h3>
+            <p class="font-sans text-sm font-light leading-relaxed" style="color:#8A7E75">{card.desc}</p>
           </div>
-          <form method="POST" action={formAction} class="bg-[#0A1120] border border-white/[0.06] rounded-2xl p-8 space-y-5">
-            <h3 class="text-xl font-bold text-white mb-2">{site.contact_form_title}</h3>
-            <div class="grid sm:grid-cols-2 gap-4">
-              <div>
-                <label class="text-xs font-semibold text-[var(--color-muted)] block mb-1.5">Prénom *</label>
-                <input type="text" name="firstname" required placeholder="Votre prénom"
-                  class="w-full px-4 py-3 bg-white/[0.04] border border-white/[0.08] rounded-lg text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[var(--color-accent)]" />
-              </div>
-              <div>
-                <label class="text-xs font-semibold text-[var(--color-muted)] block mb-1.5">Nom *</label>
-                <input type="text" name="lastname" required placeholder="Votre nom"
-                  class="w-full px-4 py-3 bg-white/[0.04] border border-white/[0.08] rounded-lg text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[var(--color-accent)]" />
-              </div>
-            </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 3. SERVICES — onglets Cosmétologie / Ongles ──────────────────── -->
+  <section class="py-24 md:py-32" style="background:#FAF8F5">
+    <div class="max-w-7xl mx-auto px-6 md:px-8">
+      <div class="mb-12 reveal">
+        <p class="font-sans text-xs tracking-[0.28em] uppercase mb-4" style="color:#C4956A">Ce que nous proposons</p>
+        <h2 class="font-serif text-4xl md:text-5xl font-light" style="color:#1A1A1A">NOS SERVICES</h2>
+      </div>
+
+      <!-- Onglets -->
+      <div class="flex gap-0 mb-10 reveal" style="border-bottom:1px solid #E8E0D8">
+        <button class="tab-btn active font-sans text-xs tracking-[0.2em] uppercase px-8 py-3 transition-all duration-200" data-tab="tab-cosmetologie"
+          style="color:#8A7E75;border-bottom:2px solid transparent">
+          Cosmétologie
+        </button>
+        <button class="tab-btn font-sans text-xs tracking-[0.2em] uppercase px-8 py-3 transition-all duration-200" data-tab="tab-ongles"
+          style="color:#8A7E75;border-bottom:2px solid transparent">
+          Ongles
+        </button>
+      </div>
+
+      <!-- Grille Cosmétologie -->
+      <div id="tab-cosmetologie" class="tab-content active grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="group overflow-hidden reveal reveal-d1" style="background:#F2EDE8">
+          <div class="overflow-hidden" style="aspect-ratio:4/3">
+            <img src={(site as any).service1_image} alt={(site as any).service1_name}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          </div>
+          <p class="font-serif text-lg font-light px-6 py-4" style="color:#1A1A1A">{(site as any).service1_name}</p>
+        </div>
+        <div class="group overflow-hidden reveal reveal-d2" style="background:#F2EDE8">
+          <div class="overflow-hidden" style="aspect-ratio:4/3">
+            <img src={(site as any).service2_image} alt={(site as any).service2_name}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          </div>
+          <p class="font-serif text-lg font-light px-6 py-4" style="color:#1A1A1A">{(site as any).service2_name}</p>
+        </div>
+        <div class="group overflow-hidden reveal reveal-d3" style="background:#F2EDE8">
+          <div class="overflow-hidden" style="aspect-ratio:4/3">
+            <img src={(site as any).service3_image} alt={(site as any).service3_name}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          </div>
+          <p class="font-serif text-lg font-light px-6 py-4" style="color:#1A1A1A">{(site as any).service3_name}</p>
+        </div>
+        <div class="group overflow-hidden reveal reveal-d2" style="background:#F2EDE8">
+          <div class="overflow-hidden" style="aspect-ratio:4/3">
+            <img src={(site as any).service4_image} alt={(site as any).service4_name}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          </div>
+          <p class="font-serif text-lg font-light px-6 py-4" style="color:#1A1A1A">{(site as any).service4_name}</p>
+        </div>
+        <div class="group overflow-hidden reveal reveal-d3" style="background:#F2EDE8">
+          <div class="overflow-hidden" style="aspect-ratio:4/3">
+            <img src={(site as any).service5_image} alt={(site as any).service5_name}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          </div>
+          <p class="font-serif text-lg font-light px-6 py-4" style="color:#1A1A1A">{(site as any).service5_name}</p>
+        </div>
+        <div class="group overflow-hidden reveal reveal-d4" style="background:#F2EDE8">
+          <div class="overflow-hidden" style="aspect-ratio:4/3">
+            <img src={(site as any).service6_image} alt={(site as any).service6_name}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          </div>
+          <p class="font-serif text-lg font-light px-6 py-4" style="color:#1A1A1A">{(site as any).service6_name}</p>
+        </div>
+      </div>
+
+      <!-- Grille Ongles -->
+      <div id="tab-ongles" class="tab-content grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="group overflow-hidden" style="background:#F2EDE8">
+          <div class="overflow-hidden" style="aspect-ratio:4/3">
+            <img src={(site as any).featured_image} alt={(site as any).featured_name}
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          </div>
+          <p class="font-serif text-lg font-light px-6 py-4" style="color:#1A1A1A">{(site as any).featured_name}</p>
+        </div>
+        <div class="group overflow-hidden" style="background:#F2EDE8">
+          <div class="overflow-hidden" style="aspect-ratio:4/3">
+            <img src={(site as any).service5_image} alt="Manucure classique"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          </div>
+          <p class="font-serif text-lg font-light px-6 py-4" style="color:#1A1A1A">Manucure Classique</p>
+        </div>
+        <div class="group overflow-hidden" style="background:#F2EDE8">
+          <div class="overflow-hidden" style="aspect-ratio:4/3">
+            <img src={(site as any).service1_image} alt="Pose gel"
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
+          </div>
+          <p class="font-serif text-lg font-light px-6 py-4" style="color:#1A1A1A">Pose Gel & Semi-permanent</p>
+        </div>
+      </div>
+
+      <div class="mt-10 reveal">
+        <a href="/services/" class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.2em] uppercase transition-colors" style="color:#C4956A">
+          Voir tous les services
+          <span class="iconify" data-icon="lucide:arrow-right" data-width="13"></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 4. PROCÉDURE VEDETTE — deux colonnes ─────────────────────────── -->
+  <section class="py-24 md:py-32" style="background:#F2EDE8">
+    <div class="max-w-7xl mx-auto px-6 md:px-8">
+      <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
+
+        <!-- Photo gauche -->
+        <div class="reveal-left overflow-hidden" style="aspect-ratio:3/4">
+          <img src={(site as any).featured_image} alt={(site as any).featured_name}
+            class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" loading="lazy" />
+        </div>
+
+        <!-- Texte droite -->
+        <div class="reveal-right">
+          <p class="font-sans text-xs tracking-[0.28em] uppercase mb-4" style="color:#C4956A">Procédure vedette</p>
+          <h2 class="font-serif text-4xl md:text-5xl font-light mb-6" style="color:#1A1A1A">{(site as any).featured_name}</h2>
+          <div style="width:3rem;height:1px;background:#C4956A;margin-bottom:1.5rem"></div>
+          <p class="font-sans text-sm font-light leading-relaxed mb-6" style="color:#8A7E75">{(site as any).featured_desc}</p>
+          <p class="font-sans text-sm font-light leading-relaxed mb-8 italic" style="color:#8A7E75">{(site as any).featured_for}</p>
+          <div class="flex gap-8 mb-10">
             <div>
-              <label class="text-xs font-semibold text-[var(--color-muted)] block mb-1.5">Email *</label>
-              <input type="email" name="email" required placeholder="votre@email.fr"
-                class="w-full px-4 py-3 bg-white/[0.04] border border-white/[0.08] rounded-lg text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[var(--color-accent)]" />
+              <p class="font-sans text-xs tracking-[0.18em] uppercase mb-1" style="color:#8A7E75">Durée</p>
+              <p class="font-serif text-xl font-light" style="color:#1A1A1A">{(site as any).featured_duration}</p>
             </div>
+            <div style="width:1px;background:#E8E0D8"></div>
             <div>
-              <label class="text-xs font-semibold text-[var(--color-muted)] block mb-1.5">Service souhaité</label>
-              <select name="service"
-                class="w-full px-4 py-3 bg-white/[0.04] border border-white/[0.08] rounded-lg text-sm text-white focus:outline-none focus:border-[var(--color-accent)] [&>option]:text-[#0F172A]">
-                <option value="">Sélectionnez un service</option>
-                {site.services.map(svc => <option>{svc.name}</option>)}
-                <option>Création d'entreprise</option>
-              </select>
+              <p class="font-sans text-xs tracking-[0.18em] uppercase mb-1" style="color:#8A7E75">Tarif</p>
+              <p class="font-serif text-xl font-light" style="color:#C4956A">{(site as any).featured_price}</p>
             </div>
-            <label class="flex items-start gap-3 text-xs text-[var(--color-muted)] leading-relaxed cursor-pointer">
-              <input type="checkbox" name="consent" required class="mt-0.5 accent-[var(--color-accent)]" />
-              J'accepte que mes données soient utilisées pour me recontacter dans le cadre de ma demande.
-            </label>
-            <button type="submit"
-              class="w-full bg-[var(--color-accent)] hover:bg-[var(--color-accent2)] text-white px-8 py-4 rounded-full font-semibold text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-600/25">
-              {site.contact_form_cta}
-              <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon>
-            </button>
-          </form>
+          </div>
+          <a href="/contact/"
+            class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.2em] uppercase px-8 py-4 transition-all duration-300"
+            style="background:#C4956A;color:#fff">
+            {site.hero_cta}
+            <span class="iconify" data-icon="lucide:arrow-right" data-width="13"></span>
+          </a>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-  </main>
+  <!-- ── 5. TÉMOIGNAGES — 3 avis ──────────────────────────────────────── -->
+  <section class="py-24 md:py-32" style="background:#FAF8F5">
+    <div class="max-w-7xl mx-auto px-6 md:px-8">
+      <div class="mb-16 reveal">
+        <p class="font-sans text-xs tracking-[0.28em] uppercase mb-4" style="color:#C4956A">Ils nous font confiance</p>
+        <h2 class="font-serif text-4xl md:text-5xl font-light" style="color:#1A1A1A">Avis clients</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        {[
+          { text: (site as any).review1_text, name: (site as any).review1_name },
+          { text: (site as any).review2_text, name: (site as any).review2_name },
+          { text: (site as any).review3_text, name: (site as any).review3_name },
+        ].map((r: any, i: number) => (
+          <div class={`p-8 reveal reveal-d${i + 1}`} style="background:#F2EDE8;border:1px solid #E8E0D8">
+            <!-- Étoiles -->
+            <div class="flex gap-1 mb-6">
+              {[1,2,3,4,5].map(() => (
+                <span class="iconify" data-icon="lucide:star" data-width="14" style="color:#C4956A"></span>
+              ))}
+            </div>
+            <blockquote class="font-serif text-lg font-light italic leading-relaxed mb-6" style="color:#1A1A1A">
+              &ldquo;{r.text}&rdquo;
+            </blockquote>
+            <div style="width:2rem;height:1px;background:#C4956A;margin-bottom:1rem"></div>
+            <p class="font-sans text-xs tracking-[0.15em] uppercase" style="color:#8A7E75">{r.name}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── 6. CTA FINAL — fond accent ───────────────────────────────────── -->
+  <section class="py-24 md:py-32" style="background:#C4956A">
+    <div class="max-w-3xl mx-auto px-6 md:px-8 text-center reveal">
+      <p class="font-sans text-xs tracking-[0.28em] uppercase mb-6" style="color:rgba(255,255,255,0.7)">Prendre soin de soi</p>
+      <h2 class="font-serif text-4xl md:text-6xl font-light leading-tight mb-8" style="color:#fff">
+        Prendre Rendez-vous
+      </h2>
+      <p class="font-sans text-sm font-light leading-relaxed mb-10 max-w-md mx-auto" style="color:rgba(255,255,255,0.8)">
+        {site.hero_subtitle}
+      </p>
+      <a href="/contact/"
+        class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.2em] uppercase px-10 py-4 transition-all duration-300"
+        style="background:#fff;color:#C4956A">
+        {site.hero_cta}
+        <span class="iconify" data-icon="lucide:arrow-right" data-width="13"></span>
+      </a>
+    </div>
+  </section>
+
   <Footer />
 
-  <!-- 6bis. Script du simulateur -->
-  <script is:inline>
-    (function () {
-      const revenue = document.getElementById('sim-revenue');
-      const expenses = document.getElementById('sim-expenses');
-      const intl = document.getElementById('sim-international');
-      const revenueValue = document.getElementById('sim-revenue-value');
-      const expensesValue = document.getElementById('sim-expenses-value');
-      const result = document.getElementById('sim-result');
-      if (!revenue || !expenses || !intl || !result) return;
+  <style>
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 
-      const fmt = (n) => n.toLocaleString('fr-FR').replace(/ | /g, ' ') + ' €';
-
-      function updateFill(slider) {
-        const min = Number(slider.min), max = Number(slider.max), val = Number(slider.value);
-        slider.style.setProperty('--fill', ((val - min) / (max - min)) * 100 + '%');
-      }
-
-      function compute() {
-        const ca = Number(revenue.value);
-        const charges = Number(expenses.value);
-        revenueValue.textContent = fmt(ca);
-        expensesValue.textContent = fmt(charges);
-        let estimation = Math.max(0, (ca - charges)) * 0.085;
-        if (intl.checked) estimation *= 1.3;
-        estimation = Math.round(estimation / 500) * 500;
-        result.textContent = fmt(estimation);
-        updateFill(revenue);
-        updateFill(expenses);
-      }
-
-      revenue.addEventListener('input', compute);
-      expenses.addEventListener('input', compute);
-      intl.addEventListener('change', compute);
-      compute();
-    })();
-  </script>
 </Base>

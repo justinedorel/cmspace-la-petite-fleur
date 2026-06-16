@@ -1,56 +1,92 @@
 ---
 import site from '../data/site.json';
-const nav = [
-  { label: 'Accueil', href: '/' },
-  { label: 'À propos', href: '/a-propos/' },
-  { label: 'Services', href: '/services/' },
-  { label: 'Contact', href: '/contact/' },
-];
-const current = Astro.url.pathname;
 ---
-<header class="sticky top-0 z-50 bg-[#050A14]/95 backdrop-blur-md border-b border-white/[0.06]">
-  <div class="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between gap-4">
-    <a href="/" class="flex items-center gap-3 shrink-0">
-      <span class="w-10 h-10 rounded-xl bg-[var(--color-accent)] flex items-center justify-center">
-        <iconify-icon icon="solar:calculator-minimalistic-bold" class="text-xl text-white"></iconify-icon>
-      </span>
-      <span class="leading-tight">
-        <span class="block text-lg font-bold text-white tracking-tight">{site.company_name}<span class="text-[var(--color-accent2)]">.</span></span>
-        <span class="block text-[10px] font-semibold tracking-[0.2em] text-[var(--color-muted)]">{site.company_sub}</span>
-      </span>
+<header id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" style="background-color:#FAF8F5;box-shadow:0 1px 0 rgba(0,0,0,0.06)">
+  <div class="max-w-7xl mx-auto px-6 md:px-8 h-16 md:h-20 flex items-center justify-between">
+
+    <!-- Logo -->
+    <a href="/" class="font-serif text-xl md:text-2xl tracking-[0.12em] font-light" style="color:#1A1A1A">
+      {site.company_name}
     </a>
-    <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-[var(--color-muted)]">
-      {nav.map(item => (
-        <a href={item.href}
-          class={`hover:text-white transition-colors ${current === item.href || current === item.href.slice(0,-1) ? 'text-white font-semibold' : ''}`}>
-          {item.label}
-        </a>
-      ))}
+
+    <!-- Navigation desktop -->
+    <nav class="hidden md:flex items-center gap-8">
+      <a href="/" class="nav-link font-sans text-[11px] tracking-[0.2em] uppercase transition-colors relative group" style="color:#8A7E75">
+        Accueil
+        <span class="absolute -bottom-0.5 left-0 w-0 h-px group-hover:w-full transition-all duration-300" style="background:#C4956A"></span>
+      </a>
+      <a href="/a-propos/" class="nav-link font-sans text-[11px] tracking-[0.2em] uppercase transition-colors relative group" style="color:#8A7E75">
+        Le Studio
+        <span class="absolute -bottom-0.5 left-0 w-0 h-px group-hover:w-full transition-all duration-300" style="background:#C4956A"></span>
+      </a>
+      <a href="/services/" class="nav-link font-sans text-[11px] tracking-[0.2em] uppercase transition-colors relative group" style="color:#8A7E75">
+        Services
+        <span class="absolute -bottom-0.5 left-0 w-0 h-px group-hover:w-full transition-all duration-300" style="background:#C4956A"></span>
+      </a>
+      <a href="/contact/" class="nav-link font-sans text-[11px] tracking-[0.2em] uppercase transition-colors relative group" style="color:#8A7E75">
+        Contact
+        <span class="absolute -bottom-0.5 left-0 w-0 h-px group-hover:w-full transition-all duration-300" style="background:#C4956A"></span>
+      </a>
+      <a href="/contact/" class="font-sans text-[11px] tracking-[0.2em] uppercase px-6 py-2.5 transition-all duration-300 ml-2" style="border:1px solid #C4956A;color:#C4956A;background:transparent">
+        {site.hero_cta}
+      </a>
     </nav>
-    <div class="hidden lg:flex items-center gap-5">
-      <a href={`tel:${site.phone}`} class="flex items-center gap-2 text-sm font-medium text-[var(--color-muted)] hover:text-white transition-colors">
-        <iconify-icon icon="solar:phone-linear" class="text-base text-[var(--color-accent2)]"></iconify-icon>
-        {site.phone}
-      </a>
-      <a href="/contact/"
-        class="bg-white text-[#0F172A] px-5 py-2.5 rounded-full text-sm font-semibold hover:bg-blue-50 transition-all">
-        Prendre rendez-vous
-      </a>
-    </div>
-    <button id="menu-btn" class="lg:hidden p-2 text-[var(--color-muted)]" aria-label="Menu">
-      <iconify-icon icon="solar:hamburger-menu-linear" class="text-2xl"></iconify-icon>
+
+    <!-- Mobile toggle -->
+    <button id="mobile-toggle" class="md:hidden flex flex-col gap-[5px] p-2" aria-label="Menu">
+      <span id="m1" class="w-6 h-px block transition-all duration-300 origin-center" style="background:#1A1A1A"></span>
+      <span id="m2" class="w-4 h-px block transition-all duration-300 ml-auto" style="background:#1A1A1A"></span>
+      <span id="m3" class="w-6 h-px block transition-all duration-300 origin-center" style="background:#1A1A1A"></span>
     </button>
   </div>
-  <div id="mobile-menu" class="hidden lg:hidden border-t border-white/[0.06] bg-[#050A14] px-6 py-4 space-y-3">
-    {nav.map(item => (
-      <a href={item.href} class="block text-sm font-medium text-[var(--color-muted)] hover:text-white py-1">{item.label}</a>
-    ))}
-    <a href={`tel:${site.phone}`} class="block text-sm font-medium text-[var(--color-muted)] py-1">{site.phone}</a>
-    <a href="/contact/" class="block bg-white text-[#0F172A] text-center px-5 py-2.5 rounded-full text-sm font-semibold mt-2">Prendre rendez-vous</a>
-  </div>
 </header>
-<script>
-  document.getElementById('menu-btn')?.addEventListener('click', () => {
-    document.getElementById('mobile-menu')?.classList.toggle('hidden');
-  });
+
+<!-- Mobile menu -->
+<div id="mobile-menu" class="fixed inset-0 z-40 pointer-events-none">
+  <div id="mobile-overlay" class="absolute inset-0 opacity-0 transition-opacity duration-300" style="background:rgba(26,26,26,0.4)"></div>
+  <div id="mobile-panel" class="absolute right-0 top-0 h-full w-72 flex flex-col pt-24 px-8 pb-8 translate-x-full transition-transform duration-400 ease-out" style="background:#FAF8F5">
+    <nav class="flex flex-col gap-8 mb-auto">
+      <a href="/"         class="font-serif text-2xl font-light" style="color:#1A1A1A">Accueil</a>
+      <a href="/a-propos/" class="font-serif text-2xl font-light" style="color:#1A1A1A">Le Studio</a>
+      <a href="/services/" class="font-serif text-2xl font-light" style="color:#1A1A1A">Services</a>
+      <a href="/contact/"  class="font-serif text-2xl font-light" style="color:#1A1A1A">Contact</a>
+    </nav>
+    <div class="pt-8 space-y-3" style="border-top:1px solid #E8E0D8">
+      <a href={`mailto:${site.email}`} class="block font-sans text-xs tracking-[0.15em] uppercase" style="color:#8A7E75">{site.email}</a>
+      {(site as any).phone && <a href={`tel:${(site as any).phone}`} class="block font-sans text-xs tracking-[0.15em] uppercase" style="color:#8A7E75">{(site as any).phone}</a>}
+    </div>
+  </div>
+</div>
+
+<script is:inline>
+  var toggle  = document.getElementById('mobile-toggle');
+  var menu    = document.getElementById('mobile-menu');
+  var overlay = document.getElementById('mobile-overlay');
+  var panel   = document.getElementById('mobile-panel');
+  var m1 = document.getElementById('m1');
+  var m2 = document.getElementById('m2');
+  var m3 = document.getElementById('m3');
+  var open = false;
+
+  function openMenu() {
+    open = true;
+    menu.style.pointerEvents = 'all';
+    overlay.style.opacity = '1';
+    panel.style.transform = 'translateX(0)';
+    m1.style.transform = 'rotate(45deg) translate(3.5px, 3.5px)';
+    m2.style.opacity = '0';
+    m3.style.transform = 'rotate(-45deg) translate(3.5px, -3.5px)';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeMenu() {
+    open = false;
+    menu.style.pointerEvents = 'none';
+    overlay.style.opacity = '0';
+    panel.style.transform = 'translateX(100%)';
+    m1.style.transform = ''; m2.style.opacity = ''; m3.style.transform = '';
+    document.body.style.overflow = '';
+  }
+  toggle.addEventListener('click', function() { open ? closeMenu() : openMenu(); });
+  overlay.addEventListener('click', closeMenu);
+  panel.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeMenu); });
 </script>

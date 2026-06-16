@@ -3,129 +3,109 @@ import Base from '../layouts/Base.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
-const formAction = `https://contact.cmspace.app/submit?to=${encodeURIComponent(site.email)}`;
+
+const submitUrl = `https://contact.cmspace.app/submit?to=${site.email}`;
 ---
-<Base title={`Contact — ${site.company_name} Expertise`} description={site.contact_text}>
+<Base title={`Contact — ${site.company_name}`} description={`Contactez ${site.company_name}. ${site.tagline}`}>
+
   <Header />
-  <main>
 
-    <!-- Hero -->
-    <section class="hero-grid px-6 pt-20 pb-16 bg-[var(--color-bg)]">
-      <div class="max-w-4xl mx-auto text-center" data-animate>
-        <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-[var(--color-accent)]/15 border border-[var(--color-accent)]/30 text-[var(--color-accent2)] text-xs font-semibold tracking-wide mb-7">
-          {site.contact_badge}
-        </span>
-        <h1 class="text-5xl lg:text-6xl font-bold tracking-tight text-white leading-tight mb-7">Parlons de vos chiffres</h1>
-        <p class="text-lg text-[var(--color-muted)] leading-relaxed max-w-2xl mx-auto">{site.contact_text}</p>
-      </div>
-    </section>
+  <!-- Hero page -->
+  <section class="pt-36 pb-16" style="background:#FAF8F5">
+    <div class="max-w-7xl mx-auto px-6 md:px-8">
+      <p class="font-sans text-xs tracking-[0.28em] uppercase mb-4" style="color:#C4956A">Nous rejoindre</p>
+      <h1 class="font-serif text-5xl md:text-7xl font-light leading-tight mb-4" style="color:#1A1A1A">
+        {site.hero_cta}
+      </h1>
+      <div style="width:3rem;height:1px;background:#C4956A"></div>
+    </div>
+  </section>
 
-    <!-- Coordonnées + formulaire -->
-    <section class="px-6 py-20 bg-[var(--color-bg)]">
-      <div class="max-w-7xl mx-auto grid lg:grid-cols-5 gap-12">
-        <div class="lg:col-span-2 space-y-6" data-animate>
-          <div class="bg-[var(--color-surface)] border border-white/[0.06] rounded-2xl p-7 space-y-6">
-            <div class="flex items-start gap-4">
-              <span class="w-11 h-11 rounded-full bg-white/[0.05] border border-white/[0.08] flex items-center justify-center shrink-0">
-                <iconify-icon icon="solar:map-point-linear" class="text-[var(--color-accent2)] text-lg"></iconify-icon>
-              </span>
-              <div>
-                <div class="text-xs text-[var(--color-muted)] uppercase tracking-widest mb-1">Adresse</div>
-                <div class="text-sm font-medium text-white">{site.address}</div>
-              </div>
+  <!-- Formulaire + informations -->
+  <section class="py-16 pb-28" style="background:#FAF8F5">
+    <div class="max-w-7xl mx-auto px-6 md:px-8">
+      <div class="grid md:grid-cols-2 gap-16 md:gap-24">
+
+        <!-- Formulaire -->
+        <div class="reveal">
+          <p class="font-sans text-xs tracking-[0.22em] uppercase mb-8" style="color:#8A7E75">Envoyer un message</p>
+          <form method="POST" action={submitUrl} class="flex flex-col gap-7">
+            <div>
+              <label for="name" class="font-sans text-xs tracking-[0.18em] uppercase block mb-2" style="color:#8A7E75">Nom complet</label>
+              <input type="text" id="name" name="name" required
+                class="w-full bg-transparent py-3 font-sans text-sm font-light tracking-wide transition-colors duration-200"
+                style="border:none;border-bottom:1px solid #E8E0D8;outline:none;color:#1A1A1A"
+                placeholder="Votre nom" />
             </div>
-            <div class="flex items-start gap-4">
-              <span class="w-11 h-11 rounded-full bg-white/[0.05] border border-white/[0.08] flex items-center justify-center shrink-0">
-                <iconify-icon icon="solar:phone-linear" class="text-[var(--color-accent2)] text-lg"></iconify-icon>
-              </span>
-              <div>
-                <div class="text-xs text-[var(--color-muted)] uppercase tracking-widest mb-1">Ligne directe</div>
-                <a href={`tel:${site.phone}`} class="text-sm font-medium text-white hover:text-[var(--color-accent2)]">{site.phone}</a>
-              </div>
+            <div>
+              <label for="email" class="font-sans text-xs tracking-[0.18em] uppercase block mb-2" style="color:#8A7E75">Email</label>
+              <input type="email" id="email" name="email" required
+                class="w-full bg-transparent py-3 font-sans text-sm font-light tracking-wide transition-colors duration-200"
+                style="border:none;border-bottom:1px solid #E8E0D8;outline:none;color:#1A1A1A"
+                placeholder="votre@email.com" />
             </div>
-            <div class="flex items-start gap-4">
-              <span class="w-11 h-11 rounded-full bg-white/[0.05] border border-white/[0.08] flex items-center justify-center shrink-0">
-                <iconify-icon icon="solar:letter-linear" class="text-[var(--color-accent2)] text-lg"></iconify-icon>
-              </span>
-              <div>
-                <div class="text-xs text-[var(--color-muted)] uppercase tracking-widest mb-1">Email</div>
-                <a href={`mailto:${site.email}`} class="text-sm font-medium text-white hover:text-[var(--color-accent2)]">{site.email}</a>
-              </div>
+            <div>
+              <label for="phone" class="font-sans text-xs tracking-[0.18em] uppercase block mb-2" style="color:#8A7E75">Téléphone</label>
+              <input type="tel" id="phone" name="phone"
+                class="w-full bg-transparent py-3 font-sans text-sm font-light tracking-wide transition-colors duration-200"
+                style="border:none;border-bottom:1px solid #E8E0D8;outline:none;color:#1A1A1A"
+                placeholder="+33 6 00 00 00 00" />
             </div>
-            <div class="flex items-start gap-4">
-              <span class="w-11 h-11 rounded-full bg-white/[0.05] border border-white/[0.08] flex items-center justify-center shrink-0">
-                <iconify-icon icon="solar:clock-circle-linear" class="text-[var(--color-accent2)] text-lg"></iconify-icon>
-              </span>
-              <div>
-                <div class="text-xs text-[var(--color-muted)] uppercase tracking-widest mb-1">Horaires</div>
-                <div class="text-sm font-medium text-white">{site.hours}</div>
-                <div class="text-xs text-[var(--color-muted)] mt-1">Rendez-vous en présentiel ou en visio</div>
-              </div>
+            <div>
+              <label for="service" class="font-sans text-xs tracking-[0.18em] uppercase block mb-2" style="color:#8A7E75">Service souhaité</label>
+              <input type="text" id="service" name="service"
+                class="w-full bg-transparent py-3 font-sans text-sm font-light tracking-wide transition-colors duration-200"
+                style="border:none;border-bottom:1px solid #E8E0D8;outline:none;color:#1A1A1A"
+                placeholder="ex. Manucure japonaise, nettoyage de peau..." />
             </div>
-          </div>
-          <div class="bg-[var(--color-surface)] border border-[var(--color-accent)]/30 rounded-2xl p-7">
-            <div class="flex items-center gap-3 mb-3">
-              <iconify-icon icon="solar:star-bold" class="text-amber-400 text-lg"></iconify-icon>
-              <span class="text-sm font-bold text-white">{site.hero_badge_rating}</span>
+            <div>
+              <label for="message" class="font-sans text-xs tracking-[0.18em] uppercase block mb-2" style="color:#8A7E75">Message</label>
+              <textarea id="message" name="message" required rows="4"
+                class="w-full bg-transparent py-3 font-sans text-sm font-light tracking-wide transition-colors duration-200 resize-none"
+                style="border:none;border-bottom:1px solid #E8E0D8;outline:none;color:#1A1A1A"
+                placeholder="Décrivez votre demande..."></textarea>
             </div>
-            <p class="text-sm text-[var(--color-muted)] leading-relaxed">Réponse garantie sous 24h ouvrées. Premier échange gratuit et confidentiel, couvert par le secret professionnel.</p>
-          </div>
+            <input type="hidden" name="_redirect" value="/merci/" />
+            <div>
+              <button type="submit" class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.18em] uppercase px-8 py-4 transition-all duration-300"
+                style="background:#C4956A;color:#fff">
+                Envoyer
+                <span class="iconify" data-icon="lucide:arrow-right" data-width="13"></span>
+              </button>
+            </div>
+          </form>
         </div>
 
-        <form method="POST" action={formAction} class="lg:col-span-3 bg-[var(--color-surface)] border border-white/[0.06] rounded-2xl p-8 space-y-5" data-animate>
-          <h2 class="text-2xl font-bold text-white mb-1">{site.contact_form_title}</h2>
-          <p class="text-sm text-[var(--color-muted)] mb-4">Décrivez votre besoin, un associé vous rappelle personnellement.</p>
-          <div class="grid sm:grid-cols-2 gap-4">
-            <div>
-              <label class="text-xs font-semibold text-[var(--color-muted)] block mb-1.5">Prénom *</label>
-              <input type="text" name="firstname" required placeholder="Votre prénom"
-                class="w-full px-4 py-3 bg-white/[0.04] border border-white/[0.08] rounded-lg text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[var(--color-accent)]" />
-            </div>
-            <div>
-              <label class="text-xs font-semibold text-[var(--color-muted)] block mb-1.5">Nom *</label>
-              <input type="text" name="lastname" required placeholder="Votre nom"
-                class="w-full px-4 py-3 bg-white/[0.04] border border-white/[0.08] rounded-lg text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[var(--color-accent)]" />
-            </div>
-          </div>
-          <div class="grid sm:grid-cols-2 gap-4">
-            <div>
-              <label class="text-xs font-semibold text-[var(--color-muted)] block mb-1.5">Email *</label>
-              <input type="email" name="email" required placeholder="votre@email.fr"
-                class="w-full px-4 py-3 bg-white/[0.04] border border-white/[0.08] rounded-lg text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[var(--color-accent)]" />
-            </div>
-            <div>
-              <label class="text-xs font-semibold text-[var(--color-muted)] block mb-1.5">Téléphone</label>
-              <input type="tel" name="phone" placeholder="06 12 34 56 78"
-                class="w-full px-4 py-3 bg-white/[0.04] border border-white/[0.08] rounded-lg text-sm text-white placeholder:text-white/30 focus:outline-none focus:border-[var(--color-accent)]" />
-            </div>
+        <!-- Informations -->
+        <div class="flex flex-col gap-10 reveal">
+          <div>
+            <p class="font-sans text-xs tracking-[0.22em] uppercase mb-3" style="color:#8A7E75">Adresse</p>
+            <p class="font-serif text-xl font-light" style="color:#1A1A1A">{site.address}</p>
           </div>
           <div>
-            <label class="text-xs font-semibold text-[var(--color-muted)] block mb-1.5">Service souhaité</label>
-            <select name="service"
-              class="w-full px-4 py-3 bg-white/[0.04] border border-white/[0.08] rounded-lg text-sm text-white focus:outline-none focus:border-[var(--color-accent)] [&>option]:text-[#0F172A]">
-              <option value="">Sélectionnez un service</option>
-              {site.services.map(svc => <option>{svc.name}</option>)}
-              <option>Création d'entreprise</option>
-            </select>
+            <p class="font-sans text-xs tracking-[0.22em] uppercase mb-3" style="color:#8A7E75">Email</p>
+            <a href={`mailto:${site.email}`} class="font-serif text-xl font-light transition-opacity hover:opacity-60" style="color:#1A1A1A">{site.email}</a>
           </div>
           <div>
-            <label class="text-xs font-semibold text-[var(--color-muted)] block mb-1.5">Votre message</label>
-            <textarea name="message" rows="5" placeholder="Décrivez votre activité et votre besoin…"
-              class="w-full px-4 py-3 bg-white/[0.04] border border-white/[0.08] rounded-lg text-sm text-white placeholder:text-white/30 resize-y focus:outline-none focus:border-[var(--color-accent)]"></textarea>
+            <p class="font-sans text-xs tracking-[0.22em] uppercase mb-3" style="color:#8A7E75">Téléphone</p>
+            <a href={`tel:${(site as any).phone}`} class="font-serif text-xl font-light transition-opacity hover:opacity-60" style="color:#1A1A1A">{(site as any).phone}</a>
           </div>
-          <label class="flex items-start gap-3 text-xs text-[var(--color-muted)] leading-relaxed cursor-pointer">
-            <input type="checkbox" name="consent" required class="mt-0.5 accent-[var(--color-accent)]" />
-            J'accepte que mes données soient utilisées pour me recontacter dans le cadre de ma demande.
-          </label>
-          <button type="submit"
-            class="w-full sm:w-auto bg-[var(--color-accent)] hover:bg-[var(--color-accent2)] text-white px-9 py-4 rounded-full font-semibold text-sm transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-600/25">
-            {site.contact_form_cta}
-            <iconify-icon icon="solar:arrow-right-linear" class="text-base"></iconify-icon>
-          </button>
-        </form>
+          <div>
+            <p class="font-sans text-xs tracking-[0.22em] uppercase mb-3" style="color:#8A7E75">Horaires</p>
+            <p class="font-serif text-lg font-light mb-1" style="color:#1A1A1A">{(site as any).hours_week}</p>
+            <p class="font-serif text-lg font-light" style="color:#8A7E75">{(site as any).hours_sunday}</p>
+          </div>
+          <div style="background:#F2EDE8;border:1px solid #E8E0D8;padding:2rem">
+            <p class="font-sans text-xs tracking-[0.22em] uppercase mb-4" style="color:#C4956A">Conseil</p>
+            <p class="font-sans text-sm font-light leading-relaxed" style="color:#8A7E75">
+              Pour un rendez-vous rapide, n'hésitez pas à nous appeler directement. Pour une première visite, nous recommandons de prendre rendez-vous au moins 3 jours à l'avance.
+            </p>
+          </div>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-  </main>
   <Footer />
+
 </Base>

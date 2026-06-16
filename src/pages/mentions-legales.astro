@@ -4,24 +4,105 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 ---
-<Base title={`Mentions légales — ${site.company_name} Expertise`} noindex={true}>
+<Base title={`Mentions légales — ${site.company_name}`} description={`Mentions légales de ${site.company_name}.`}>
+
   <Header />
-  <main class="py-24 px-6 bg-[var(--color-bg)] min-h-[60vh]">
-    <div class="max-w-3xl mx-auto">
-      <h1 class="text-3xl font-bold text-white mb-10">Mentions légales</h1>
-      {[
-        { title: 'Éditeur', content: [site.legal_name, site.legal_status, site.siret ? `SIRET : ${site.siret}` : '', site.address, site.email, site.phone].filter(Boolean) },
-        { title: 'Profession réglementée', content: [`${site.legal_name} est un cabinet d'expertise comptable inscrit au tableau de l'Ordre des Experts-Comptables — Région Paris Île-de-France.`] },
-        { title: 'Hébergement', content: ['Cloudflare Pages — Cloudflare, Inc., 101 Townsend St, San Francisco, CA 94107, USA'] },
-        { title: 'Propriété intellectuelle', content: [`L'ensemble du contenu de ce site est la propriété exclusive de ${site.legal_name}.`] },
-        { title: 'Données personnelles', content: [`Conformément au RGPD, vous pouvez exercer vos droits d'accès, de rectification et de suppression en contactant ${site.email}.`] },
-      ].map(s => (
-        <div class="mb-8">
-          <h2 class="text-xl font-bold text-white mb-3">{s.title}</h2>
-          {s.content.map(line => <p class="text-[var(--color-muted)] leading-relaxed">{line}</p>)}
-        </div>
-      ))}
+
+  <!-- Hero page -->
+  <section class="pt-36 pb-16" style="background:#FAF8F5">
+    <div class="max-w-7xl mx-auto px-6 md:px-8">
+      <p class="font-sans text-xs tracking-[0.28em] uppercase mb-4" style="color:#C4956A">Légal</p>
+      <h1 class="font-serif text-5xl md:text-6xl font-light" style="color:#1A1A1A">
+        Mentions légales
+      </h1>
     </div>
-  </main>
+  </section>
+
+  <!-- Contenu légal -->
+  <section class="py-16 pb-32" style="background:#FAF8F5">
+    <div class="max-w-3xl mx-auto px-6 md:px-8">
+
+      <div class="mb-12">
+        <div style="width:2.5rem;height:1px;background:#E8E0D8;margin-bottom:2rem"></div>
+        <h2 class="font-serif text-2xl font-light mb-6" style="color:#1A1A1A">Éditeur du site</h2>
+        <div class="flex flex-col gap-3">
+          <p class="font-sans text-sm font-light" style="color:#8A7E75">
+            <span style="color:#1A1A1A">{(site as any).legal_name || site.company_name}</span>
+          </p>
+          {(site as any).legal_status && (
+            <p class="font-sans text-sm font-light" style="color:#8A7E75">
+              Forme juridique : <span style="color:#1A1A1A">{(site as any).legal_status}</span>
+            </p>
+          )}
+          {(site as any).siret && (
+            <p class="font-sans text-sm font-light" style="color:#8A7E75">
+              SIRET : <span style="color:#1A1A1A">{(site as any).siret}</span>
+            </p>
+          )}
+          {(site as any).address && (
+            <p class="font-sans text-sm font-light" style="color:#8A7E75">
+              Adresse : <span style="color:#1A1A1A">{(site as any).address}</span>
+            </p>
+          )}
+          <p class="font-sans text-sm font-light" style="color:#8A7E75">
+            Email : <a href={`mailto:${site.email}`} style="color:#1A1A1A" class="hover:opacity-60 transition-opacity">{site.email}</a>
+          </p>
+          {(site as any).website && (
+            <p class="font-sans text-sm font-light" style="color:#8A7E75">
+              Site web : <a href={(site as any).website} style="color:#1A1A1A" class="hover:opacity-60 transition-opacity">{(site as any).website}</a>
+            </p>
+          )}
+        </div>
+      </div>
+
+      <div class="mb-12">
+        <div style="width:2.5rem;height:1px;background:#E8E0D8;margin-bottom:2rem"></div>
+        <h2 class="font-serif text-2xl font-light mb-6" style="color:#1A1A1A">Hébergement</h2>
+        <p class="font-sans text-sm font-light leading-relaxed" style="color:#8A7E75">
+          Ce site est hébergé par Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, États-Unis.
+        </p>
+      </div>
+
+      <div class="mb-12">
+        <div style="width:2.5rem;height:1px;background:#E8E0D8;margin-bottom:2rem"></div>
+        <h2 class="font-serif text-2xl font-light mb-6" style="color:#1A1A1A">Propriété intellectuelle</h2>
+        <p class="font-sans text-sm font-light leading-relaxed mb-4" style="color:#8A7E75">
+          L'ensemble du contenu de ce site (textes, images, graphismes, logo, icônes, sons, logiciels…) est la propriété exclusive de {(site as any).legal_name || site.company_name}.
+        </p>
+        <p class="font-sans text-sm font-light leading-relaxed" style="color:#8A7E75">
+          Toute reproduction, distribution, modification, adaptation, retransmission ou publication de ces différents éléments est strictement interdite sans l'accord écrit préalable de {(site as any).legal_name || site.company_name}.
+        </p>
+      </div>
+
+      <div class="mb-12">
+        <div style="width:2.5rem;height:1px;background:#E8E0D8;margin-bottom:2rem"></div>
+        <h2 class="font-serif text-2xl font-light mb-6" style="color:#1A1A1A">Données personnelles</h2>
+        <p class="font-sans text-sm font-light leading-relaxed mb-4" style="color:#8A7E75">
+          Conformément au Règlement Général sur la Protection des Données (RGPD) et à la loi Informatique et Libertés, vous disposez d'un droit d'accès, de rectification, d'effacement et d'opposition aux données vous concernant.
+        </p>
+        <p class="font-sans text-sm font-light leading-relaxed" style="color:#8A7E75">
+          Pour exercer ces droits, contactez-nous : <a href={`mailto:${site.email}`} style="color:#C4956A" class="hover:opacity-60 transition-opacity">{site.email}</a>
+        </p>
+      </div>
+
+      <div class="mb-12">
+        <div style="width:2.5rem;height:1px;background:#E8E0D8;margin-bottom:2rem"></div>
+        <h2 class="font-serif text-2xl font-light mb-6" style="color:#1A1A1A">Cookies</h2>
+        <p class="font-sans text-sm font-light leading-relaxed" style="color:#8A7E75">
+          Ce site peut utiliser des cookies à des fins de mesure d'audience et d'amélioration de l'expérience utilisateur. Vous pouvez configurer votre navigateur pour refuser les cookies.
+        </p>
+      </div>
+
+      <div class="mt-16">
+        <a href="/" class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.18em] uppercase transition-colors" style="color:#C4956A">
+          <span class="iconify" data-icon="lucide:arrow-left" data-width="13"></span>
+          Retour à l'accueil
+        </a>
+      </div>
+
+    </div>
+  </section>
+
   <Footer />
+
 </Base>
