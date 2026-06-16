@@ -21,7 +21,6 @@ const canonical = url || siteUrl;
     {description && <meta name="description" content={description} />}
     {canonical && <link rel="canonical" href={canonical} />}
 
-    <!-- Open Graph -->
     <meta property="og:type"        content={type} />
     <meta property="og:title"       content={title} />
     <meta property="og:description" content={description} />
@@ -29,7 +28,6 @@ const canonical = url || siteUrl;
     {canonical && <meta property="og:url" content={canonical} />}
     <meta property="og:locale"      content="fr_FR" />
 
-    <!-- Twitter Card -->
     <meta name="twitter:card"        content="summary_large_image" />
     <meta name="twitter:title"       content={title} />
     <meta name="twitter:description" content={description} />
@@ -41,54 +39,47 @@ const canonical = url || siteUrl;
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
 
     <script is:inline>
-      tailwind = undefined;
+      tailwind = { config: {} };
     </script>
     <script is:inline>
-      tailwind = {
-        config: {
-          theme: {
-            extend: {
-              colors: {
-                bg:      '#FAF8F5',
-                surface: '#F2EDE8',
-                accent:  '#C4956A',
-                muted:   '#8A7E75',
-                border:  '#E8E0D8',
-                dark:    '#1A1A1A',
-              },
-              fontFamily: {
-                serif: ['"Cormorant Garamond"', 'serif'],
-                sans:  ['Inter', 'sans-serif'],
-              },
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              bg:      '#FAFAF7',
+              surface: '#F2F2ED',
+              accent:  '#5C7A5C',
+              warm:    '#A07850',
+              muted:   '#777777',
+              dark:    '#1A1A1A',
+            },
+            fontFamily: {
+              serif: ['"Cormorant Garamond"', 'serif'],
+              sans:  ['Inter', 'sans-serif'],
             },
           },
         },
-      };
+      }
     </script>
     <script is:inline src="https://cdn.tailwindcss.com"></script>
     <script is:inline src="https://cdn.jsdelivr.net/npm/@iconify/iconify@3/dist/iconify.min.js"></script>
 
-    <!-- JSON-LD Structured Data -->
     <script is:inline type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "BeautySalon",
+      "@type": "LocalBusiness",
       "name": (site as any).company_name,
       "description": description,
       "url": canonical,
       "telephone": (site as any).phone || undefined,
       "email": (site as any).email || undefined,
-      "address": (site as any).address ? {
-        "@type": "PostalAddress",
-        "streetAddress": (site as any).address,
-      } : undefined,
-      "image": ogImage || undefined,
+      "address": (site as any).address ? { "@type": "PostalAddress", "streetAddress": (site as any).address } : undefined,
     })} />
 
     <style>
       *, *::before, *::after { box-sizing: border-box; }
       html { scroll-behavior: smooth; }
       body {
-        background-color: #FAF8F5;
+        background-color: #FAFAF7;
         color: #1A1A1A;
         font-family: 'Inter', sans-serif;
         font-weight: 300;
@@ -96,59 +87,43 @@ const canonical = url || siteUrl;
       }
       h1, h2, h3, h4 { font-family: 'Cormorant Garamond', serif; }
 
-      /* ─── Scroll reveal ────────────────────────────────────────── */
       .reveal {
         opacity: 0;
-        transform: translateY(32px);
+        transform: translateY(30px);
         transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1);
       }
       .reveal.visible { opacity: 1; transform: translateY(0); }
-      .reveal-left  { opacity: 0; transform: translateX(-32px); transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1); }
-      .reveal-left.visible  { opacity: 1; transform: translateX(0); }
-      .reveal-right { opacity: 0; transform: translateX(32px);  transition: opacity 0.8s cubic-bezier(0.16,1,0.3,1), transform 0.8s cubic-bezier(0.16,1,0.3,1); }
-      .reveal-right.visible { opacity: 1; transform: translateX(0); }
       .reveal-d1 { transition-delay: 0.08s; }
       .reveal-d2 { transition-delay: 0.16s; }
       .reveal-d3 { transition-delay: 0.24s; }
       .reveal-d4 { transition-delay: 0.32s; }
 
-      /* ─── Tabs ─────────────────────────────────────────────────── */
-      .tab-btn.active {
-        color: #1A1A1A;
-        border-bottom-color: #C4956A;
+      .btn-accent {
+        background-color: #5C7A5C;
+        color: #FFFFFF;
+        transition: all 0.2s ease;
       }
-      .tab-content { display: none; }
-      .tab-content.active { display: grid; }
+      .btn-accent:hover { background-color: #4a6449; }
+
+      .faq-answer {
+        display: grid;
+        grid-template-rows: 0fr;
+        transition: grid-template-rows 0.4s ease;
+      }
+      .faq-answer.open { grid-template-rows: 1fr; }
+      .faq-inner { overflow: hidden; }
     </style>
   </head>
   <body>
     <slot />
 
     <script is:inline>
-      // ── Scroll reveal ─────────────────────────────────────────────
-      var revealObserver = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            revealObserver.unobserve(entry.target);
-          }
+      var obs = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+          if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target); }
         });
-      }, { threshold: 0.06, rootMargin: '0px 0px -30px 0px' });
-      document.querySelectorAll('.reveal, .reveal-left, .reveal-right').forEach(function(el) {
-        revealObserver.observe(el);
-      });
-
-      // ── Tabs services ─────────────────────────────────────────────
-      document.querySelectorAll('.tab-btn').forEach(function(btn) {
-        btn.addEventListener('click', function() {
-          var target = btn.dataset.tab;
-          document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
-          document.querySelectorAll('.tab-content').forEach(function(c) { c.classList.remove('active'); });
-          btn.classList.add('active');
-          var content = document.getElementById(target);
-          if (content) content.classList.add('active');
-        });
-      });
+      }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+      document.querySelectorAll('.reveal').forEach(function(el) { obs.observe(el); });
     </script>
   </body>
 </html>

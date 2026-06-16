@@ -8,273 +8,221 @@ import site from '../data/site.json';
 
   <Header />
 
-  <!-- ── 1. HERO — deux colonnes ──────────────────────────────────────── -->
-  <section class="min-h-screen flex items-center pt-20" style="background:#FAF8F5">
-    <div class="max-w-7xl mx-auto px-6 md:px-8 w-full py-16 md:py-24">
-      <div class="grid md:grid-cols-2 gap-12 md:gap-16 items-center">
+  <!-- ── Hero ──────────────────────────────────────────────────────────── -->
+  <section class="relative pt-16" style="background:#FAFAF7;">
+    <!-- Badge ouverture -->
+    <div class="text-center py-3 text-xs font-sans tracking-widest" style="background:#5C7A5C;color:#FFFFFF;">
+      {site.hero_badge}
+    </div>
 
-        <!-- Colonne texte -->
-        <div style="opacity:0;animation:fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.2s forwards">
-          <p class="font-sans text-xs tracking-[0.28em] uppercase mb-6" style="color:#C4956A">Studio de beauté — Paris</p>
-          <h1 class="font-serif text-5xl sm:text-6xl md:text-7xl font-light leading-[1.05] mb-6" style="color:#1A1A1A">
+    <div class="max-w-6xl mx-auto px-6 py-20 md:py-28">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <div>
+          <!-- Pilliers -->
+          <div class="flex gap-6 mb-10">
+            {['Santé du cuir chevelu', 'Relaxation', 'Analyse micro-caméra'].map((p) => (
+              <div class="flex items-center gap-2 text-xs font-sans text-accent">
+                <span class="w-1.5 h-1.5 rounded-full bg-accent inline-block shrink-0"></span>
+                {p}
+              </div>
+            ))}
+          </div>
+
+          <h1 class="font-serif text-4xl md:text-6xl font-light text-dark leading-tight mb-6">
             {site.hero_title}
           </h1>
-          <div style="width:3rem;height:1px;background:#C4956A;margin-bottom:1.5rem"></div>
-          <p class="font-sans text-sm font-light leading-relaxed mb-10 max-w-sm" style="color:#8A7E75">
+          <p class="font-sans text-sm text-muted leading-relaxed mb-8 max-w-md">
             {site.hero_subtitle}
           </p>
-          <div class="flex flex-wrap gap-4">
-            <a href="/contact/"
-              class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.2em] uppercase px-8 py-4 transition-all duration-300"
-              style="background:#C4956A;color:#fff">
-              {site.hero_cta}
-              <span class="iconify" data-icon="lucide:arrow-right" data-width="13"></span>
-            </a>
-            <a href="/services/"
-              class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.2em] uppercase px-8 py-4 transition-all duration-300"
-              style="border:1px solid #E8E0D8;color:#8A7E75">
-              Nos services
-            </a>
-          </div>
-        </div>
-
-        <!-- Colonne image portrait -->
-        <div class="relative" style="opacity:0;animation:fadeUp 0.9s cubic-bezier(0.16,1,0.3,1) 0.4s forwards">
-          <div class="overflow-hidden" style="aspect-ratio:3/4">
-            <img src={site.hero_image} alt={site.hero_title}
-              class="w-full h-full object-cover"
-              loading="eager" fetchpriority="high" />
-          </div>
-          <!-- Décor accent -->
-          <div class="absolute -bottom-4 -left-4 w-24 h-24 hidden md:block" style="background:#F2EDE8;z-index:-1"></div>
-          <div class="absolute -top-4 -right-4 w-16 h-16 hidden md:block" style="border:1px solid #E8E0D8;z-index:-1"></div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── 2. POURQUOI NOUS — 4 cards numérotées ────────────────────────── -->
-  <section class="py-24 md:py-32" style="background:#F2EDE8">
-    <div class="max-w-7xl mx-auto px-6 md:px-8">
-      <div class="mb-16 reveal">
-        <p class="font-sans text-xs tracking-[0.28em] uppercase mb-4" style="color:#C4956A">Notre différence</p>
-        <h2 class="font-serif text-4xl md:text-5xl font-light" style="color:#1A1A1A">POURQUOI NOUS ?</h2>
-      </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        {[
-          { num: (site as any).why1_num, title: (site as any).why1_title, desc: (site as any).why1_desc },
-          { num: (site as any).why2_num, title: (site as any).why2_title, desc: (site as any).why2_desc },
-          { num: (site as any).why3_num, title: (site as any).why3_title, desc: (site as any).why3_desc },
-          { num: (site as any).why4_num, title: (site as any).why4_title, desc: (site as any).why4_desc },
-        ].map((card: any, i: number) => (
-          <div class={`p-8 reveal reveal-d${i + 1}`} style="background:#FAF8F5;border:1px solid #E8E0D8">
-            <p class="font-serif text-5xl font-light mb-5 select-none" style="color:#E8E0D8">{card.num}</p>
-            <div style="width:2rem;height:1px;background:#C4956A;margin-bottom:1rem"></div>
-            <h3 class="font-serif text-xl font-semibold mb-3" style="color:#1A1A1A">{card.title}</h3>
-            <p class="font-sans text-sm font-light leading-relaxed" style="color:#8A7E75">{card.desc}</p>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- ── 3. SERVICES — onglets Cosmétologie / Ongles ──────────────────── -->
-  <section class="py-24 md:py-32" style="background:#FAF8F5">
-    <div class="max-w-7xl mx-auto px-6 md:px-8">
-      <div class="mb-12 reveal">
-        <p class="font-sans text-xs tracking-[0.28em] uppercase mb-4" style="color:#C4956A">Ce que nous proposons</p>
-        <h2 class="font-serif text-4xl md:text-5xl font-light" style="color:#1A1A1A">NOS SERVICES</h2>
-      </div>
-
-      <!-- Onglets -->
-      <div class="flex gap-0 mb-10 reveal" style="border-bottom:1px solid #E8E0D8">
-        <button class="tab-btn active font-sans text-xs tracking-[0.2em] uppercase px-8 py-3 transition-all duration-200" data-tab="tab-cosmetologie"
-          style="color:#8A7E75;border-bottom:2px solid transparent">
-          Cosmétologie
-        </button>
-        <button class="tab-btn font-sans text-xs tracking-[0.2em] uppercase px-8 py-3 transition-all duration-200" data-tab="tab-ongles"
-          style="color:#8A7E75;border-bottom:2px solid transparent">
-          Ongles
-        </button>
-      </div>
-
-      <!-- Grille Cosmétologie -->
-      <div id="tab-cosmetologie" class="tab-content active grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="group overflow-hidden reveal reveal-d1" style="background:#F2EDE8">
-          <div class="overflow-hidden" style="aspect-ratio:4/3">
-            <img src={(site as any).service1_image} alt={(site as any).service1_name}
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-          </div>
-          <p class="font-serif text-lg font-light px-6 py-4" style="color:#1A1A1A">{(site as any).service1_name}</p>
-        </div>
-        <div class="group overflow-hidden reveal reveal-d2" style="background:#F2EDE8">
-          <div class="overflow-hidden" style="aspect-ratio:4/3">
-            <img src={(site as any).service2_image} alt={(site as any).service2_name}
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-          </div>
-          <p class="font-serif text-lg font-light px-6 py-4" style="color:#1A1A1A">{(site as any).service2_name}</p>
-        </div>
-        <div class="group overflow-hidden reveal reveal-d3" style="background:#F2EDE8">
-          <div class="overflow-hidden" style="aspect-ratio:4/3">
-            <img src={(site as any).service3_image} alt={(site as any).service3_name}
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-          </div>
-          <p class="font-serif text-lg font-light px-6 py-4" style="color:#1A1A1A">{(site as any).service3_name}</p>
-        </div>
-        <div class="group overflow-hidden reveal reveal-d2" style="background:#F2EDE8">
-          <div class="overflow-hidden" style="aspect-ratio:4/3">
-            <img src={(site as any).service4_image} alt={(site as any).service4_name}
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-          </div>
-          <p class="font-serif text-lg font-light px-6 py-4" style="color:#1A1A1A">{(site as any).service4_name}</p>
-        </div>
-        <div class="group overflow-hidden reveal reveal-d3" style="background:#F2EDE8">
-          <div class="overflow-hidden" style="aspect-ratio:4/3">
-            <img src={(site as any).service5_image} alt={(site as any).service5_name}
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-          </div>
-          <p class="font-serif text-lg font-light px-6 py-4" style="color:#1A1A1A">{(site as any).service5_name}</p>
-        </div>
-        <div class="group overflow-hidden reveal reveal-d4" style="background:#F2EDE8">
-          <div class="overflow-hidden" style="aspect-ratio:4/3">
-            <img src={(site as any).service6_image} alt={(site as any).service6_name}
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-          </div>
-          <p class="font-serif text-lg font-light px-6 py-4" style="color:#1A1A1A">{(site as any).service6_name}</p>
-        </div>
-      </div>
-
-      <!-- Grille Ongles -->
-      <div id="tab-ongles" class="tab-content grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <div class="group overflow-hidden" style="background:#F2EDE8">
-          <div class="overflow-hidden" style="aspect-ratio:4/3">
-            <img src={(site as any).featured_image} alt={(site as any).featured_name}
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-          </div>
-          <p class="font-serif text-lg font-light px-6 py-4" style="color:#1A1A1A">{(site as any).featured_name}</p>
-        </div>
-        <div class="group overflow-hidden" style="background:#F2EDE8">
-          <div class="overflow-hidden" style="aspect-ratio:4/3">
-            <img src={(site as any).service5_image} alt="Manucure classique"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-          </div>
-          <p class="font-serif text-lg font-light px-6 py-4" style="color:#1A1A1A">Manucure Classique</p>
-        </div>
-        <div class="group overflow-hidden" style="background:#F2EDE8">
-          <div class="overflow-hidden" style="aspect-ratio:4/3">
-            <img src={(site as any).service1_image} alt="Pose gel"
-              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-          </div>
-          <p class="font-serif text-lg font-light px-6 py-4" style="color:#1A1A1A">Pose Gel & Semi-permanent</p>
-        </div>
-      </div>
-
-      <div class="mt-10 reveal">
-        <a href="/services/" class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.2em] uppercase transition-colors" style="color:#C4956A">
-          Voir tous les services
-          <span class="iconify" data-icon="lucide:arrow-right" data-width="13"></span>
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <!-- ── 4. PROCÉDURE VEDETTE — deux colonnes ─────────────────────────── -->
-  <section class="py-24 md:py-32" style="background:#F2EDE8">
-    <div class="max-w-7xl mx-auto px-6 md:px-8">
-      <div class="grid md:grid-cols-2 gap-12 md:gap-20 items-center">
-
-        <!-- Photo gauche -->
-        <div class="reveal-left overflow-hidden" style="aspect-ratio:3/4">
-          <img src={(site as any).featured_image} alt={(site as any).featured_name}
-            class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" loading="lazy" />
-        </div>
-
-        <!-- Texte droite -->
-        <div class="reveal-right">
-          <p class="font-sans text-xs tracking-[0.28em] uppercase mb-4" style="color:#C4956A">Procédure vedette</p>
-          <h2 class="font-serif text-4xl md:text-5xl font-light mb-6" style="color:#1A1A1A">{(site as any).featured_name}</h2>
-          <div style="width:3rem;height:1px;background:#C4956A;margin-bottom:1.5rem"></div>
-          <p class="font-sans text-sm font-light leading-relaxed mb-6" style="color:#8A7E75">{(site as any).featured_desc}</p>
-          <p class="font-sans text-sm font-light leading-relaxed mb-8 italic" style="color:#8A7E75">{(site as any).featured_for}</p>
-          <div class="flex gap-8 mb-10">
-            <div>
-              <p class="font-sans text-xs tracking-[0.18em] uppercase mb-1" style="color:#8A7E75">Durée</p>
-              <p class="font-serif text-xl font-light" style="color:#1A1A1A">{(site as any).featured_duration}</p>
-            </div>
-            <div style="width:1px;background:#E8E0D8"></div>
-            <div>
-              <p class="font-sans text-xs tracking-[0.18em] uppercase mb-1" style="color:#8A7E75">Tarif</p>
-              <p class="font-serif text-xl font-light" style="color:#C4956A">{(site as any).featured_price}</p>
-            </div>
-          </div>
-          <a href="/contact/"
-            class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.2em] uppercase px-8 py-4 transition-all duration-300"
-            style="background:#C4956A;color:#fff">
+          <a href="/contact/" class="btn-accent inline-flex items-center gap-3 px-8 py-4 text-sm font-sans">
             {site.hero_cta}
-            <span class="iconify" data-icon="lucide:arrow-right" data-width="13"></span>
+            <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
           </a>
         </div>
+
+        <!-- Photo duo -->
+        <div class="grid grid-cols-2 gap-3">
+          <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=600&auto=format&fit=crop" alt="Soin cuir chevelu" class="w-full aspect-[3/4] object-cover" />
+          <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?q=80&w=600&auto=format&fit=crop" alt="Spa coréen" class="w-full aspect-[3/4] object-cover mt-8" />
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- ── 5. TÉMOIGNAGES — 3 avis ──────────────────────────────────────── -->
-  <section class="py-24 md:py-32" style="background:#FAF8F5">
-    <div class="max-w-7xl mx-auto px-6 md:px-8">
-      <div class="mb-16 reveal">
-        <p class="font-sans text-xs tracking-[0.28em] uppercase mb-4" style="color:#C4956A">Ils nous font confiance</p>
-        <h2 class="font-serif text-4xl md:text-5xl font-light" style="color:#1A1A1A">Avis clients</h2>
+  <!-- ── Processus 5 étapes ─────────────────────────────────────────────── -->
+  <section class="py-20" style="background:#F2F2ED;">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14 reveal">
+        <h2 class="font-serif text-3xl md:text-5xl font-light text-dark mb-3">Le Rituel en 5 Étapes</h2>
       </div>
-      <div class="grid md:grid-cols-3 gap-8">
+      <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
         {[
-          { text: (site as any).review1_text, name: (site as any).review1_name },
-          { text: (site as any).review2_text, name: (site as any).review2_name },
-          { text: (site as any).review3_text, name: (site as any).review3_name },
-        ].map((r: any, i: number) => (
-          <div class={`p-8 reveal reveal-d${i + 1}`} style="background:#F2EDE8;border:1px solid #E8E0D8">
-            <!-- Étoiles -->
-            <div class="flex gap-1 mb-6">
-              {[1,2,3,4,5].map(() => (
-                <span class="iconify" data-icon="lucide:star" data-width="14" style="color:#C4956A"></span>
-              ))}
-            </div>
-            <blockquote class="font-serif text-lg font-light italic leading-relaxed mb-6" style="color:#1A1A1A">
-              &ldquo;{r.text}&rdquo;
-            </blockquote>
-            <div style="width:2rem;height:1px;background:#C4956A;margin-bottom:1rem"></div>
-            <p class="font-sans text-xs tracking-[0.15em] uppercase" style="color:#8A7E75">{r.name}</p>
+          { n: '01', t: 'Diagnostic', d: 'Analyse du cuir chevelu' },
+          { n: '02', t: 'Scaling', d: 'Exfoliation en profondeur' },
+          { n: '03', t: 'Vapeur', d: 'Ouverture des pores' },
+          { n: '04', t: 'Bain', d: 'Soin nourrissant' },
+          { n: '05', t: 'Nourrissement', d: 'Masque final' },
+        ].map((step, i) => (
+          <div class={`text-center reveal reveal-d${Math.min(i + 1, 4)}`}>
+            <div class="font-serif text-3xl font-light mb-2" style="color:#5C7A5C;">{step.n}</div>
+            <div class="w-px h-8 bg-accent/30 mx-auto mb-2"></div>
+            <h3 class="font-serif text-lg font-light text-dark mb-1">{step.t}</h3>
+            <p class="font-sans text-xs text-muted">{step.d}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- ── 6. CTA FINAL — fond accent ───────────────────────────────────── -->
-  <section class="py-24 md:py-32" style="background:#C4956A">
-    <div class="max-w-3xl mx-auto px-6 md:px-8 text-center reveal">
-      <p class="font-sans text-xs tracking-[0.28em] uppercase mb-6" style="color:rgba(255,255,255,0.7)">Prendre soin de soi</p>
-      <h2 class="font-serif text-4xl md:text-6xl font-light leading-tight mb-8" style="color:#fff">
-        Prendre Rendez-vous
-      </h2>
-      <p class="font-sans text-sm font-light leading-relaxed mb-10 max-w-md mx-auto" style="color:rgba(255,255,255,0.8)">
-        {site.hero_subtitle}
-      </p>
-      <a href="/contact/"
-        class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.2em] uppercase px-10 py-4 transition-all duration-300"
-        style="background:#fff;color:#C4956A">
+  <!-- ── Tarifs ─────────────────────────────────────────────────────────── -->
+  <section class="py-20" style="background:#FAFAF7;">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14 reveal">
+        <h2 class="font-serif text-3xl md:text-5xl font-light text-dark mb-3">Nos Soins</h2>
+        <p class="font-sans text-sm text-muted">Chaque soin est adapté à votre cuir chevelu.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="p-8 reveal reveal-d1" style="background:#F2F2ED;border:1px solid rgba(92,122,92,0.15);">
+          <h3 class="font-serif text-2xl font-light text-dark mb-1">{site.plan1_name}</h3>
+          <p class="font-sans text-xs text-muted mb-4">{site.plan1_duration}</p>
+          <p class="font-serif text-4xl font-light text-dark mb-4">{site.plan1_price}</p>
+          <p class="font-sans text-sm text-muted leading-relaxed mb-6">{site.plan1_desc}</p>
+          <a href="/contact/" class="btn-accent block text-center py-3 text-sm font-sans">Réserver</a>
+        </div>
+        <div class="p-8 reveal reveal-d2" style="background:#5C7A5C;border:1px solid #5C7A5C;">
+          <div class="flex items-center justify-between mb-1">
+            <h3 class="font-serif text-2xl font-light text-white">{site.plan2_name}</h3>
+            <span class="text-xs font-sans text-white/70 border border-white/30 px-2 py-0.5">Populaire</span>
+          </div>
+          <p class="font-sans text-xs text-white/60 mb-4">{site.plan2_duration}</p>
+          <p class="font-serif text-4xl font-light text-white mb-4">{site.plan2_price}</p>
+          <p class="font-sans text-sm text-white/70 leading-relaxed mb-6">{site.plan2_desc}</p>
+          <a href="/contact/" class="block text-center py-3 text-sm font-sans text-dark font-medium" style="background:#FFFFFF;">Réserver</a>
+        </div>
+        <div class="p-8 reveal reveal-d3" style="background:#F2F2ED;border:1px solid rgba(92,122,92,0.15);">
+          <h3 class="font-serif text-2xl font-light text-dark mb-1">{site.plan3_name}</h3>
+          <p class="font-sans text-xs text-muted mb-4">{site.plan3_duration}</p>
+          <p class="font-serif text-4xl font-light text-dark mb-4">{site.plan3_price}</p>
+          <p class="font-sans text-sm text-muted leading-relaxed mb-6">{site.plan3_desc}</p>
+          <a href="/contact/" class="btn-accent block text-center py-3 text-sm font-sans">Réserver</a>
+        </div>
+      </div>
+      <p class="text-center font-sans text-xs text-muted mt-6">Add-ons disponibles à la réservation. Supplements selon vos besoins spécifiques.</p>
+    </div>
+  </section>
+
+  <!-- ── Équipe ──────────────────────────────────────────────────────────── -->
+  <section class="py-20" style="background:#F2F2ED;">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14 reveal">
+        <h2 class="font-serif text-3xl md:text-5xl font-light text-dark">Votre équipe</h2>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="text-center reveal reveal-d1">
+          <div class="overflow-hidden mb-4">
+            <img src={site.team1_image} alt={site.team1_name} class="w-full aspect-square object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+          </div>
+          <h3 class="font-serif text-xl font-light text-dark mb-1">{site.team1_name}</h3>
+          <p class="font-sans text-xs text-muted">{site.team1_role}</p>
+        </div>
+        <div class="text-center reveal reveal-d2">
+          <div class="overflow-hidden mb-4">
+            <img src={site.team2_image} alt={site.team2_name} class="w-full aspect-square object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+          </div>
+          <h3 class="font-serif text-xl font-light text-dark mb-1">{site.team2_name}</h3>
+          <p class="font-sans text-xs text-muted">{site.team2_role}</p>
+        </div>
+        <div class="text-center reveal reveal-d3">
+          <div class="overflow-hidden mb-4">
+            <img src={site.team3_image} alt={site.team3_name} class="w-full aspect-square object-cover grayscale hover:grayscale-0 transition-all duration-500" />
+          </div>
+          <h3 class="font-serif text-xl font-light text-dark mb-1">{site.team3_name}</h3>
+          <p class="font-sans text-xs text-muted">{site.team3_role}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── Ambiance ───────────────────────────────────────────────────────── -->
+  <section class="py-20" style="background:#FAFAF7;">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div class="reveal">
+          <h2 class="font-serif text-3xl md:text-5xl font-light text-dark mb-6">Un sanctuaire de luxe tranquille</h2>
+          <div class="grid grid-cols-2 gap-4">
+            {['Cadre zen & épuré', 'Produits coréens premium', 'Thérapeutes certifiés', 'Résultats prouvés'].map((attr) => (
+              <div class="flex items-start gap-2 text-sm font-sans text-muted">
+                <span class="iconify text-accent mt-0.5 shrink-0" data-icon="lucide:check" data-width="14"></span>
+                {attr}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-3 reveal reveal-d1">
+          <img src="https://images.unsplash.com/photo-1522337660859-02fbefca6088?q=80&w=400&auto=format&fit=crop" alt="Ambiance spa" class="w-full aspect-square object-cover" />
+          <img src="https://images.unsplash.com/photo-1519823551278-64ac92734fb1?q=80&w=400&auto=format&fit=crop" alt="Soins" class="w-full aspect-square object-cover mt-6" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── FAQ ───────────────────────────────────────────────────────────── -->
+  <section class="py-20" style="background:#F2F2ED;">
+    <div class="max-w-3xl mx-auto px-6">
+      <div class="text-center mb-14 reveal">
+        <h2 class="font-serif text-3xl md:text-5xl font-light text-dark">Questions fréquentes</h2>
+      </div>
+      <div class="divide-y divide-accent/20">
+        {[
+          { q: 'Comment préparer ma première visite ?', a: 'Aucune préparation particulière nécessaire. Venez les cheveux lavés si possible. Prévoyez 15 minutes supplémentaires pour la consultation initiale.' },
+          { q: 'À quelle fréquence consulter ?', a: 'Pour des résultats optimaux, nous recommandons une séance toutes les 3-4 semaines. Selon votre condition, un suivi plus fréquent peut être conseillé.' },
+          { q: 'Convient-il aux cuirs chevelus sensibles ?', a: 'Oui, tous nos soins sont adaptables. Nos thérapeutes ajustent les produits et techniques selon votre type de cuir chevelu lors du diagnostic initial.' },
+        ].map((faq, i) => (
+          <div class={`faq-item py-6 reveal reveal-d${i + 1}`}>
+            <button class="faq-trigger w-full flex items-center justify-between text-left gap-6">
+              <span class="font-serif text-lg font-light text-dark">{faq.q}</span>
+              <span class="iconify shrink-0 text-accent" data-icon="lucide:plus" data-width="16"></span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-inner">
+                <p class="font-sans text-sm text-muted leading-relaxed pt-4">{faq.a}</p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- ── CTA final ──────────────────────────────────────────────────────── -->
+  <section class="py-24 text-center" style="background:#5C7A5C;">
+    <div class="max-w-2xl mx-auto px-6 reveal">
+      <h2 class="font-serif text-3xl md:text-5xl font-light text-white mb-6">Prêt pour votre renaissance ?</h2>
+      <p class="font-sans text-sm text-white/70 mb-8">{site.tagline}</p>
+      <a href="/contact/" class="inline-flex items-center gap-3 px-8 py-4 text-sm font-sans text-dark font-medium bg-white hover:bg-white/90 transition-colors">
         {site.hero_cta}
-        <span class="iconify" data-icon="lucide:arrow-right" data-width="13"></span>
+        <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
       </a>
     </div>
   </section>
 
   <Footer />
 
-  <style>
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(24px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+  <script is:inline>
+    document.querySelectorAll('.faq-item').forEach(function(item) {
+      var trigger = item.querySelector('.faq-trigger');
+      var answer = item.querySelector('.faq-answer');
+      var icon = trigger.querySelector('.iconify');
+      trigger.addEventListener('click', function() {
+        var isOpen = answer.classList.contains('open');
+        document.querySelectorAll('.faq-answer').forEach(function(a) { a.classList.remove('open'); });
+        document.querySelectorAll('.faq-trigger .iconify').forEach(function(i) { i.setAttribute('data-icon', 'lucide:plus'); });
+        if (!isOpen) {
+          answer.classList.add('open');
+          icon.setAttribute('data-icon', 'lucide:minus');
+        }
+      });
+    });
+  </script>
 
 </Base>

@@ -1,58 +1,33 @@
 ---
 import site from '../data/site.json';
 ---
-<footer style="background:#FAF8F5;border-top:1px solid #E8E0D8" class="py-14">
-  <div class="max-w-7xl mx-auto px-6 md:px-8">
-    <div class="grid md:grid-cols-3 gap-10 mb-10">
-
-      <!-- Colonne 1 : identité -->
+<footer style="background:#1A1A1A;" class="py-16">
+  <div class="max-w-6xl mx-auto px-6">
+    <div class="grid md:grid-cols-3 gap-10 mb-12">
       <div>
-        <p class="font-serif text-2xl font-light tracking-[0.12em] mb-1" style="color:#1A1A1A">{site.company_name}</p>
-        <p class="font-sans text-xs tracking-[0.18em] uppercase mb-4" style="color:#8A7E75">{site.company_sub}</p>
-        <p class="font-sans text-sm font-light leading-relaxed" style="color:#8A7E75">{site.tagline}</p>
+        <p class="font-serif text-xl text-white font-light mb-1">{site.company_name}</p>
+        <p class="font-sans text-sm text-white/40">{site.company_sub}</p>
+        {(site as any).address && <p class="font-sans text-sm text-white/40 mt-2">{(site as any).address}</p>}
       </div>
-
-      <!-- Colonne 2 : navigation -->
       <div>
-        <p class="font-sans text-xs tracking-[0.18em] uppercase mb-4" style="color:#8A7E75">Navigation</p>
+        <p class="font-sans text-xs text-white/30 uppercase tracking-widest mb-4">Navigation</p>
         <nav class="flex flex-col gap-3">
-          <a href="/"          class="font-sans text-sm font-light transition-colors" style="color:#8A7E75">Accueil</a>
-          <a href="/a-propos/" class="font-sans text-sm font-light transition-colors" style="color:#8A7E75">Le Studio</a>
-          <a href="/services/" class="font-sans text-sm font-light transition-colors" style="color:#8A7E75">Services</a>
-          <a href="/contact/"  class="font-sans text-sm font-light transition-colors" style="color:#8A7E75">Contact</a>
+          <a href="/" class="font-sans text-sm text-white/60 hover:text-white transition-colors">Accueil</a>
+          <a href="/services/" class="font-sans text-sm text-white/60 hover:text-white transition-colors">Soins</a>
+          <a href="/a-propos/" class="font-sans text-sm text-white/60 hover:text-white transition-colors">À propos</a>
+          <a href="/contact/" class="font-sans text-sm text-white/60 hover:text-white transition-colors">Contact</a>
         </nav>
       </div>
-
-      <!-- Colonne 3 : contact -->
       <div>
-        <p class="font-sans text-xs tracking-[0.18em] uppercase mb-4" style="color:#8A7E75">Contact</p>
-        <a href={`mailto:${site.email}`} class="font-sans text-sm font-light block mb-2 transition-colors" style="color:#8A7E75">{site.email}</a>
-        {(site as any).phone && <a href={`tel:${(site as any).phone}`} class="font-sans text-sm font-light block mb-2 transition-colors" style="color:#8A7E75">{(site as any).phone}</a>}
-        {(site as any).address && <p class="font-sans text-sm font-light mb-4" style="color:#8A7E75">{(site as any).address}</p>}
-        <p class="font-sans text-xs tracking-[0.18em] uppercase mb-3 mt-4" style="color:#8A7E75">Horaires</p>
-        <p class="font-sans text-sm font-light" style="color:#8A7E75">{(site as any).hours_week}</p>
-        <p class="font-sans text-sm font-light" style="color:#8A7E75">{(site as any).hours_sunday}</p>
-        <div class="flex gap-4 mt-5">
-          {(site as any).social_instagram && (site as any).social_instagram !== '' && (
-            <a href={(site as any).social_instagram} style="color:#8A7E75">
-              <span class="iconify" data-icon="lucide:instagram" data-width="18"></span>
-            </a>
-          )}
-          {(site as any).social_facebook && (site as any).social_facebook !== '' && (
-            <a href={(site as any).social_facebook} style="color:#8A7E75">
-              <span class="iconify" data-icon="lucide:facebook" data-width="18"></span>
-            </a>
-          )}
-        </div>
+        <p class="font-sans text-xs text-white/30 uppercase tracking-widest mb-4">Horaires</p>
+        <p class="font-sans text-sm text-white/60 mb-1">{(site as any).hours_week}</p>
+        <p class="font-sans text-sm text-white/60 mb-4">{(site as any).hours_sunday}</p>
+        <a href={`mailto:${site.email}`} class="font-sans text-sm text-white/60 hover:text-white transition-colors">{site.email}</a>
       </div>
     </div>
-
-    <div class="flex flex-col md:flex-row items-center justify-between gap-4 pt-8" style="border-top:1px solid #E8E0D8">
-      <p class="font-sans text-xs font-light" style="color:#8A7E75">{(site as any).footer_tagline}</p>
-      <div class="flex items-center gap-6">
-        <a href="/mentions-legales/" class="font-sans text-xs transition-colors" style="color:#8A7E75">Mentions légales</a>
-        <p class="font-sans text-xs" style="color:#8A7E75">&copy; {new Date().getFullYear()} {site.company_name}</p>
-      </div>
+    <div style="border-top:1px solid rgba(255,255,255,0.1);" class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
+      <p class="font-sans text-xs text-white/25">&copy; {new Date().getFullYear()} {site.company_name}. Tous droits réservés.</p>
+      <a href="/mentions-legales/" class="font-sans text-xs text-white/25 hover:text-white/50 transition-colors">Mentions légales</a>
     </div>
   </div>
 </footer>

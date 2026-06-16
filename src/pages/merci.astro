@@ -4,26 +4,22 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 ---
-<Base title={`Message reçu — ${site.company_name}`} description={`Merci pour votre message. ${site.company_name} vous contactera prochainement.`}>
+<Base title={`Merci — ${site.company_name}`} description={`Votre demande a été envoyée. ${site.company_name} vous contactera prochainement.`}>
 
   <Header />
 
-  <section class="min-h-screen flex items-center justify-center py-40 px-8" style="background:#FAF8F5">
-    <div class="text-center max-w-xl reveal">
-      <div style="width:1px;height:3rem;background:#E8E0D8;margin:0 auto 3rem"></div>
-      <p class="font-sans text-xs tracking-[0.28em] uppercase mb-6" style="color:#C4956A">Confirmation</p>
-      <h1 class="font-serif text-5xl md:text-6xl font-light mb-6 leading-tight" style="color:#1A1A1A">
-        Message <em class="italic">reçu</em>
-      </h1>
-      <p class="font-sans text-sm font-light leading-relaxed mb-4" style="color:#8A7E75">
-        Merci de nous avoir contactés. Nous avons bien reçu votre demande et nous vous répondrons dans les plus brefs délais.
+  <section class="min-h-screen flex items-center justify-center py-40 px-6" style="background:#FAFAF7;">
+    <div class="text-center max-w-xl">
+      <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-8" style="background:rgba(92,122,92,0.1);border:1px solid rgba(92,122,92,0.3);">
+        <span class="iconify text-accent" data-icon="lucide:check" data-width="28"></span>
+      </div>
+      <h1 class="font-serif text-4xl md:text-5xl font-light text-dark mb-4">Demande reçue</h1>
+      <p class="font-sans text-sm text-muted leading-relaxed mb-3">
+        Merci de votre confiance. Nous avons bien reçu votre demande et nous vous recontacterons dans les 24 heures pour confirmer votre rendez-vous.
       </p>
-      <p class="font-sans text-sm font-light leading-relaxed mb-12" style="color:#8A7E75">
-        {(site as any).footer_tagline}
-      </p>
-      <div style="width:2rem;height:1px;background:#C4956A;margin:0 auto 3rem"></div>
-      <a href="/" class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.18em] uppercase transition-colors" style="color:#C4956A">
-        <span class="iconify" data-icon="lucide:arrow-left" data-width="13"></span>
+      <p class="font-sans text-sm text-muted mb-10">{site.tagline}</p>
+      <a href="/" class="inline-flex items-center gap-2 font-sans text-sm text-muted hover:text-dark transition-colors">
+        <span class="iconify" data-icon="lucide:arrow-left" data-width="14"></span>
         Retour à l'accueil
       </a>
     </div>

@@ -4,92 +4,95 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 ---
-<Base title={`Services — ${site.company_name}`} description={`Découvrez tous nos services : cosmétologie avancée, manucure japonaise et soins ongles à Paris. ${site.seo_description}`}>
+<Base title={`Soins — ${site.company_name}`} description={`Découvrez nos soins Korean Head Spa : ${site.plan1_name}, ${site.plan2_name}, ${site.plan3_name}. ${site.seo_description}`}>
 
   <Header />
 
-  <!-- Hero page -->
-  <section class="pt-36 pb-16" style="background:#FAF8F5">
-    <div class="max-w-7xl mx-auto px-6 md:px-8">
-      <p class="font-sans text-xs tracking-[0.28em] uppercase mb-4" style="color:#C4956A">Ce que nous proposons</p>
-      <h1 class="font-serif text-5xl md:text-7xl font-light leading-tight mb-4" style="color:#1A1A1A">
-        Nos Services
-      </h1>
-      <div style="width:3rem;height:1px;background:#C4956A"></div>
+  <section class="pt-36 pb-16" style="background:#FAFAF7;">
+    <div class="max-w-6xl mx-auto px-6">
+      <p class="font-sans text-xs text-muted uppercase tracking-widest mb-4">Soins</p>
+      <h1 class="font-serif text-4xl md:text-6xl font-light text-dark mb-4">Nos Rituels</h1>
+      <p class="font-sans text-base text-muted max-w-2xl leading-relaxed">{site.tagline}</p>
     </div>
   </section>
 
-  <!-- Section Cosmétologie -->
-  <section class="py-20 md:py-28" style="background:#FAF8F5">
-    <div class="max-w-7xl mx-auto px-6 md:px-8">
-      <div class="mb-14 reveal">
-        <p class="font-sans text-xs tracking-[0.28em] uppercase mb-4" style="color:#C4956A">Soins du visage</p>
-        <h2 class="font-serif text-3xl md:text-4xl font-light" style="color:#1A1A1A">Cosmétologie</h2>
+  <!-- Tarifs -->
+  <section class="py-20" style="background:#F2F2ED;">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-3 gap-6">
+        <div class="p-8 reveal reveal-d1" style="background:#FAFAF7;border:1px solid rgba(92,122,92,0.2);">
+          <h2 class="font-serif text-3xl font-light text-dark mb-1">{site.plan1_name}</h2>
+          <p class="font-sans text-sm text-muted mb-4">{site.plan1_duration}</p>
+          <p class="font-serif text-5xl font-light text-dark mb-6">{site.plan1_price}</p>
+          <p class="font-sans text-sm text-muted leading-relaxed mb-8">{site.plan1_desc}</p>
+          <ul class="space-y-2 mb-8 font-sans text-sm text-muted">
+            <li class="flex items-start gap-2"><span class="iconify text-accent mt-0.5 shrink-0" data-icon="lucide:check" data-width="14"></span>Diagnostic cuir chevelu</li>
+            <li class="flex items-start gap-2"><span class="iconify text-accent mt-0.5 shrink-0" data-icon="lucide:check" data-width="14"></span>Soin exfoliant</li>
+            <li class="flex items-start gap-2"><span class="iconify text-accent mt-0.5 shrink-0" data-icon="lucide:check" data-width="14"></span>Massage acupression</li>
+          </ul>
+          <a href="/contact/" class="btn-accent block text-center py-3 text-sm font-sans">Réserver</a>
+        </div>
+        <div class="p-8 reveal reveal-d2" style="background:#5C7A5C;border:1px solid #5C7A5C;">
+          <div class="flex items-center justify-between mb-1">
+            <h2 class="font-serif text-3xl font-light text-white">{site.plan2_name}</h2>
+            <span class="text-xs font-sans text-white/70 border border-white/30 px-2 py-0.5">Populaire</span>
+          </div>
+          <p class="font-sans text-sm text-white/60 mb-4">{site.plan2_duration}</p>
+          <p class="font-serif text-5xl font-light text-white mb-6">{site.plan2_price}</p>
+          <p class="font-sans text-sm text-white/70 leading-relaxed mb-8">{site.plan2_desc}</p>
+          <ul class="space-y-2 mb-8 font-sans text-sm text-white/70">
+            <li class="flex items-start gap-2"><span class="iconify text-white/50 mt-0.5 shrink-0" data-icon="lucide:check" data-width="14"></span>Tout le soin Essentiel</li>
+            <li class="flex items-start gap-2"><span class="iconify text-white/50 mt-0.5 shrink-0" data-icon="lucide:check" data-width="14"></span>Vapeur & bain capillaire</li>
+            <li class="flex items-start gap-2"><span class="iconify text-white/50 mt-0.5 shrink-0" data-icon="lucide:check" data-width="14"></span>Masque nourrissant premium</li>
+          </ul>
+          <a href="/contact/" class="block text-center py-3 text-sm font-sans text-dark font-medium bg-white hover:bg-white/90 transition-colors">Réserver</a>
+        </div>
+        <div class="p-8 reveal reveal-d3" style="background:#FAFAF7;border:1px solid rgba(92,122,92,0.2);">
+          <h2 class="font-serif text-3xl font-light text-dark mb-1">{site.plan3_name}</h2>
+          <p class="font-sans text-sm text-muted mb-4">{site.plan3_duration}</p>
+          <p class="font-serif text-5xl font-light text-dark mb-6">{site.plan3_price}</p>
+          <p class="font-sans text-sm text-muted leading-relaxed mb-8">{site.plan3_desc}</p>
+          <ul class="space-y-2 mb-8 font-sans text-sm text-muted">
+            <li class="flex items-start gap-2"><span class="iconify text-accent mt-0.5 shrink-0" data-icon="lucide:check" data-width="14"></span>Tout le soin Signature</li>
+            <li class="flex items-start gap-2"><span class="iconify text-accent mt-0.5 shrink-0" data-icon="lucide:check" data-width="14"></span>Soin visage & cou</li>
+            <li class="flex items-start gap-2"><span class="iconify text-accent mt-0.5 shrink-0" data-icon="lucide:check" data-width="14"></span>Consultation tricologique</li>
+          </ul>
+          <a href="/contact/" class="btn-accent block text-center py-3 text-sm font-sans">Réserver</a>
+        </div>
       </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    </div>
+  </section>
+
+  <!-- Le rituel -->
+  <section class="py-20" style="background:#FAFAF7;">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="text-center mb-14 reveal">
+        <h2 class="font-serif text-3xl md:text-4xl font-light text-dark">Le Rituel en 5 Étapes</h2>
+      </div>
+      <div class="grid md:grid-cols-5 gap-8">
         {[
-          { name: (site as any).service1_name, img: (site as any).service1_image, desc: 'Entretien personnalisé pour évaluer votre peau et définir le protocole adapté.' },
-          { name: (site as any).service2_name, img: (site as any).service2_image, desc: 'Soin profond éliminant impuretés, points noirs et cellules mortes pour une peau purifiée.' },
-          { name: (site as any).service3_name, img: (site as any).service3_image, desc: 'Protocoles sur-mesure en plusieurs séances pour des résultats visibles et durables.' },
-          { name: (site as any).service4_name, img: (site as any).service4_image, desc: 'Exfoliants chimiques adaptés pour renouveler la peau et unifier le teint.' },
-          { name: (site as any).service5_name, img: (site as any).service5_image, desc: 'Perçage professionnel avec matériel stérile, dans des conditions d\'hygiène optimales.' },
-          { name: (site as any).service6_name, img: (site as any).service6_image, desc: 'Traitement ciblé anti-imperfections pour les peaux sujettes à l\'acné.' },
-        ].map((s: any, i: number) => (
-          <div class={`group reveal reveal-d${(i % 3) + 1}`} style="background:#F2EDE8;border:1px solid #E8E0D8">
-            <div class="overflow-hidden" style="aspect-ratio:4/3">
-              <img src={s.img} alt={s.name}
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-            </div>
-            <div class="p-6">
-              <h3 class="font-serif text-xl font-light mb-3" style="color:#1A1A1A">{s.name}</h3>
-              <p class="font-sans text-sm font-light leading-relaxed" style="color:#8A7E75">{s.desc}</p>
-            </div>
+          { n: '01', t: 'Diagnostic', d: 'Analyse du cuir chevelu à la micro-caméra pour identifier vos besoins spécifiques.' },
+          { n: '02', t: 'Scaling', d: 'Exfoliation douce pour éliminer les impuretés et les résidus de produits.' },
+          { n: '03', t: 'Vapeur', d: 'Application de vapeur pour ouvrir les pores et préparer le cuir chevelu.' },
+          { n: '04', t: 'Bain', d: 'Soin nourrissant avec des ingrédients coréens sélectionnés pour votre type.' },
+          { n: '05', t: 'Nourrissement', d: 'Application du masque final et massage de finition pour sceller les bienfaits.' },
+        ].map((step, i) => (
+          <div class={`text-center reveal reveal-d${Math.min(i + 1, 4)}`}>
+            <div class="font-serif text-4xl font-light mb-3" style="color:#5C7A5C;">{step.n}</div>
+            <h3 class="font-serif text-lg font-light text-dark mb-2">{step.t}</h3>
+            <p class="font-sans text-xs text-muted leading-relaxed">{step.d}</p>
           </div>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- Section Ongles -->
-  <section class="py-20 md:py-28" style="background:#F2EDE8">
-    <div class="max-w-7xl mx-auto px-6 md:px-8">
-      <div class="mb-14 reveal">
-        <p class="font-sans text-xs tracking-[0.28em] uppercase mb-4" style="color:#C4956A">Soins des mains</p>
-        <h2 class="font-serif text-3xl md:text-4xl font-light" style="color:#1A1A1A">Ongles</h2>
-      </div>
-      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
-        {[
-          { name: (site as any).featured_name, img: (site as any).featured_image, desc: (site as any).featured_desc, price: (site as any).featured_price, duration: (site as any).featured_duration },
-          { name: 'Manucure Classique', img: (site as any).service5_image, desc: 'Soin complet des mains : lime, cuticules, hydratation et vernis au choix.', price: 'À partir de 25€', duration: '45 min' },
-          { name: 'Pose Gel & Semi-permanent', img: (site as any).service1_image, desc: 'Couleur longue durée (3 semaines) sans abîmer l\'ongle naturel.', price: 'À partir de 45€', duration: '1h' },
-        ].map((s: any, i: number) => (
-          <div class={`group reveal reveal-d${i + 1}`} style="background:#FAF8F5;border:1px solid #E8E0D8">
-            <div class="overflow-hidden" style="aspect-ratio:4/3">
-              <img src={s.img} alt={s.name}
-                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
-            </div>
-            <div class="p-6">
-              <h3 class="font-serif text-xl font-light mb-3" style="color:#1A1A1A">{s.name}</h3>
-              <p class="font-sans text-sm font-light leading-relaxed mb-4" style="color:#8A7E75">{s.desc}</p>
-              <div class="flex gap-6">
-                {s.duration && <span class="font-sans text-xs tracking-[0.15em] uppercase" style="color:#C4956A">{s.duration}</span>}
-                {s.price && <span class="font-sans text-xs tracking-[0.15em] uppercase font-medium" style="color:#1A1A1A">{s.price}</span>}
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- CTA -->
-  <section class="py-20" style="background:#C4956A">
-    <div class="max-w-3xl mx-auto px-6 md:px-8 text-center reveal">
-      <h2 class="font-serif text-4xl md:text-5xl font-light mb-8" style="color:#fff">{site.hero_cta}</h2>
-      <a href="/contact/" class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.2em] uppercase px-10 py-4 transition-all duration-300"
-        style="background:#fff;color:#C4956A">
-        Réserver maintenant
-        <span class="iconify" data-icon="lucide:arrow-right" data-width="13"></span>
+  <section class="py-16 text-center" style="background:#5C7A5C;">
+    <div class="max-w-2xl mx-auto px-6 reveal">
+      <h2 class="font-serif text-3xl font-light text-white mb-4">Prêt pour votre renaissance ?</h2>
+      <a href="/contact/" class="inline-flex items-center gap-3 px-8 py-4 text-sm font-sans text-dark font-medium bg-white hover:bg-white/90 transition-colors mt-6">
+        {site.hero_cta}
+        <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
       </a>
     </div>
   </section>

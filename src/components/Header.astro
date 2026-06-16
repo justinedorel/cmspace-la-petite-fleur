@@ -1,91 +1,51 @@
 ---
 import site from '../data/site.json';
 ---
-<header id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500" style="background-color:#FAF8F5;box-shadow:0 1px 0 rgba(0,0,0,0.06)">
-  <div class="max-w-7xl mx-auto px-6 md:px-8 h-16 md:h-20 flex items-center justify-between">
+<header id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="background:rgba(250,250,247,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(92,122,92,0.12);">
+  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
 
     <!-- Logo -->
-    <a href="/" class="font-serif text-xl md:text-2xl tracking-[0.12em] font-light" style="color:#1A1A1A">
+    <a href="/" class="font-serif text-xl font-light text-dark tracking-wide">
       {site.company_name}
     </a>
 
     <!-- Navigation desktop -->
     <nav class="hidden md:flex items-center gap-8">
-      <a href="/" class="nav-link font-sans text-[11px] tracking-[0.2em] uppercase transition-colors relative group" style="color:#8A7E75">
-        Accueil
-        <span class="absolute -bottom-0.5 left-0 w-0 h-px group-hover:w-full transition-all duration-300" style="background:#C4956A"></span>
-      </a>
-      <a href="/a-propos/" class="nav-link font-sans text-[11px] tracking-[0.2em] uppercase transition-colors relative group" style="color:#8A7E75">
-        Le Studio
-        <span class="absolute -bottom-0.5 left-0 w-0 h-px group-hover:w-full transition-all duration-300" style="background:#C4956A"></span>
-      </a>
-      <a href="/services/" class="nav-link font-sans text-[11px] tracking-[0.2em] uppercase transition-colors relative group" style="color:#8A7E75">
-        Services
-        <span class="absolute -bottom-0.5 left-0 w-0 h-px group-hover:w-full transition-all duration-300" style="background:#C4956A"></span>
-      </a>
-      <a href="/contact/" class="nav-link font-sans text-[11px] tracking-[0.2em] uppercase transition-colors relative group" style="color:#8A7E75">
-        Contact
-        <span class="absolute -bottom-0.5 left-0 w-0 h-px group-hover:w-full transition-all duration-300" style="background:#C4956A"></span>
-      </a>
-      <a href="/contact/" class="font-sans text-[11px] tracking-[0.2em] uppercase px-6 py-2.5 transition-all duration-300 ml-2" style="border:1px solid #C4956A;color:#C4956A;background:transparent">
+      <a href="/" class="text-sm font-sans text-dark/70 hover:text-dark transition-colors">Accueil</a>
+      <a href="/a-propos/" class="text-sm font-sans text-dark/70 hover:text-dark transition-colors">À propos</a>
+      <a href="/services/" class="text-sm font-sans text-dark/70 hover:text-dark transition-colors">Soins</a>
+      <a href="/contact/" class="text-sm font-sans text-dark/70 hover:text-dark transition-colors">Contact</a>
+      <a href="/contact/" class="btn-accent text-sm font-sans px-5 py-2 rounded-sm">
         {site.hero_cta}
       </a>
     </nav>
 
     <!-- Mobile toggle -->
-    <button id="mobile-toggle" class="md:hidden flex flex-col gap-[5px] p-2" aria-label="Menu">
-      <span id="m1" class="w-6 h-px block transition-all duration-300 origin-center" style="background:#1A1A1A"></span>
-      <span id="m2" class="w-4 h-px block transition-all duration-300 ml-auto" style="background:#1A1A1A"></span>
-      <span id="m3" class="w-6 h-px block transition-all duration-300 origin-center" style="background:#1A1A1A"></span>
+    <button id="mobile-toggle" class="md:hidden p-2" aria-label="Menu">
+      <div class="w-5 h-px bg-dark mb-1.5"></div>
+      <div class="w-5 h-px bg-dark mb-1.5"></div>
+      <div class="w-5 h-px bg-dark"></div>
     </button>
   </div>
 </header>
 
 <!-- Mobile menu -->
-<div id="mobile-menu" class="fixed inset-0 z-40 pointer-events-none">
-  <div id="mobile-overlay" class="absolute inset-0 opacity-0 transition-opacity duration-300" style="background:rgba(26,26,26,0.4)"></div>
-  <div id="mobile-panel" class="absolute right-0 top-0 h-full w-72 flex flex-col pt-24 px-8 pb-8 translate-x-full transition-transform duration-400 ease-out" style="background:#FAF8F5">
-    <nav class="flex flex-col gap-8 mb-auto">
-      <a href="/"         class="font-serif text-2xl font-light" style="color:#1A1A1A">Accueil</a>
-      <a href="/a-propos/" class="font-serif text-2xl font-light" style="color:#1A1A1A">Le Studio</a>
-      <a href="/services/" class="font-serif text-2xl font-light" style="color:#1A1A1A">Services</a>
-      <a href="/contact/"  class="font-serif text-2xl font-light" style="color:#1A1A1A">Contact</a>
-    </nav>
-    <div class="pt-8 space-y-3" style="border-top:1px solid #E8E0D8">
-      <a href={`mailto:${site.email}`} class="block font-sans text-xs tracking-[0.15em] uppercase" style="color:#8A7E75">{site.email}</a>
-      {(site as any).phone && <a href={`tel:${(site as any).phone}`} class="block font-sans text-xs tracking-[0.15em] uppercase" style="color:#8A7E75">{(site as any).phone}</a>}
-    </div>
-  </div>
+<div id="mobile-overlay" class="fixed inset-0 bg-dark/40 z-40 hidden backdrop-blur-sm"></div>
+<div id="mobile-panel" class="fixed top-0 right-0 h-full w-72 z-50 p-8 flex flex-col gap-8 pt-20" style="background:#FAFAF7;transform:translateX(100%);transition:transform 0.4s cubic-bezier(0.16,1,0.3,1);">
+  <a href="/" class="font-serif text-2xl font-light text-dark hover:opacity-60">Accueil</a>
+  <a href="/a-propos/" class="font-serif text-2xl font-light text-dark hover:opacity-60">À propos</a>
+  <a href="/services/" class="font-serif text-2xl font-light text-dark hover:opacity-60">Soins</a>
+  <a href="/contact/" class="font-serif text-2xl font-light text-dark hover:opacity-60">Contact</a>
+  <a href="/contact/" class="btn-accent text-center py-3 rounded-sm font-sans text-sm">{site.hero_cta}</a>
 </div>
 
 <script is:inline>
-  var toggle  = document.getElementById('mobile-toggle');
-  var menu    = document.getElementById('mobile-menu');
+  var toggle = document.getElementById('mobile-toggle');
+  var panel = document.getElementById('mobile-panel');
   var overlay = document.getElementById('mobile-overlay');
-  var panel   = document.getElementById('mobile-panel');
-  var m1 = document.getElementById('m1');
-  var m2 = document.getElementById('m2');
-  var m3 = document.getElementById('m3');
   var open = false;
-
-  function openMenu() {
-    open = true;
-    menu.style.pointerEvents = 'all';
-    overlay.style.opacity = '1';
-    panel.style.transform = 'translateX(0)';
-    m1.style.transform = 'rotate(45deg) translate(3.5px, 3.5px)';
-    m2.style.opacity = '0';
-    m3.style.transform = 'rotate(-45deg) translate(3.5px, -3.5px)';
-    document.body.style.overflow = 'hidden';
-  }
-  function closeMenu() {
-    open = false;
-    menu.style.pointerEvents = 'none';
-    overlay.style.opacity = '0';
-    panel.style.transform = 'translateX(100%)';
-    m1.style.transform = ''; m2.style.opacity = ''; m3.style.transform = '';
-    document.body.style.overflow = '';
-  }
+  function openMenu() { open = true; panel.style.transform = 'translateX(0)'; overlay.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
+  function closeMenu() { open = false; panel.style.transform = 'translateX(100%)'; overlay.classList.add('hidden'); document.body.style.overflow = ''; }
   toggle.addEventListener('click', function() { open ? closeMenu() : openMenu(); });
   overlay.addEventListener('click', closeMenu);
   panel.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeMenu); });

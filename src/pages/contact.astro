@@ -6,102 +6,68 @@ import site from '../data/site.json';
 
 const submitUrl = `https://contact.cmspace.app/submit?to=${site.email}`;
 ---
-<Base title={`Contact — ${site.company_name}`} description={`Contactez ${site.company_name}. ${site.tagline}`}>
+<Base title={`Contact — ${site.company_name}`} description={`Réservez votre soin chez ${site.company_name}. ${site.tagline}`}>
 
   <Header />
 
-  <!-- Hero page -->
-  <section class="pt-36 pb-16" style="background:#FAF8F5">
-    <div class="max-w-7xl mx-auto px-6 md:px-8">
-      <p class="font-sans text-xs tracking-[0.28em] uppercase mb-4" style="color:#C4956A">Nous rejoindre</p>
-      <h1 class="font-serif text-5xl md:text-7xl font-light leading-tight mb-4" style="color:#1A1A1A">
-        {site.hero_cta}
-      </h1>
-      <div style="width:3rem;height:1px;background:#C4956A"></div>
+  <section class="pt-36 pb-16" style="background:#FAFAF7;">
+    <div class="max-w-6xl mx-auto px-6">
+      <p class="font-sans text-xs text-muted uppercase tracking-widest mb-4">Contact</p>
+      <h1 class="font-serif text-4xl md:text-6xl font-light text-dark mb-4">{site.hero_cta}</h1>
+      <p class="font-sans text-base text-muted max-w-xl leading-relaxed">{site.tagline}</p>
     </div>
   </section>
 
-  <!-- Formulaire + informations -->
-  <section class="py-16 pb-28" style="background:#FAF8F5">
-    <div class="max-w-7xl mx-auto px-6 md:px-8">
-      <div class="grid md:grid-cols-2 gap-16 md:gap-24">
+  <section class="py-16 pb-28" style="background:#F2F2ED;border-top:1px solid rgba(92,122,92,0.15);">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-16">
 
-        <!-- Formulaire -->
-        <div class="reveal">
-          <p class="font-sans text-xs tracking-[0.22em] uppercase mb-8" style="color:#8A7E75">Envoyer un message</p>
-          <form method="POST" action={submitUrl} class="flex flex-col gap-7">
+        <div>
+          <form method="POST" action={submitUrl} class="flex flex-col gap-5">
             <div>
-              <label for="name" class="font-sans text-xs tracking-[0.18em] uppercase block mb-2" style="color:#8A7E75">Nom complet</label>
-              <input type="text" id="name" name="name" required
-                class="w-full bg-transparent py-3 font-sans text-sm font-light tracking-wide transition-colors duration-200"
-                style="border:none;border-bottom:1px solid #E8E0D8;outline:none;color:#1A1A1A"
-                placeholder="Votre nom" />
+              <label for="name" class="font-sans text-xs text-muted uppercase tracking-widest block mb-2">Nom complet</label>
+              <input type="text" id="name" name="name" required placeholder="Votre nom" class="w-full font-sans text-sm text-dark py-3 px-4 outline-none transition-colors bg-transparent" style="border:1px solid rgba(92,122,92,0.3);" />
             </div>
             <div>
-              <label for="email" class="font-sans text-xs tracking-[0.18em] uppercase block mb-2" style="color:#8A7E75">Email</label>
-              <input type="email" id="email" name="email" required
-                class="w-full bg-transparent py-3 font-sans text-sm font-light tracking-wide transition-colors duration-200"
-                style="border:none;border-bottom:1px solid #E8E0D8;outline:none;color:#1A1A1A"
-                placeholder="votre@email.com" />
+              <label for="email" class="font-sans text-xs text-muted uppercase tracking-widest block mb-2">Email</label>
+              <input type="email" id="email" name="email" required placeholder="votre@email.com" class="w-full font-sans text-sm text-dark py-3 px-4 outline-none transition-colors bg-transparent" style="border:1px solid rgba(92,122,92,0.3);" />
             </div>
             <div>
-              <label for="phone" class="font-sans text-xs tracking-[0.18em] uppercase block mb-2" style="color:#8A7E75">Téléphone</label>
-              <input type="tel" id="phone" name="phone"
-                class="w-full bg-transparent py-3 font-sans text-sm font-light tracking-wide transition-colors duration-200"
-                style="border:none;border-bottom:1px solid #E8E0D8;outline:none;color:#1A1A1A"
-                placeholder="+33 6 00 00 00 00" />
+              <label for="phone" class="font-sans text-xs text-muted uppercase tracking-widest block mb-2">Téléphone</label>
+              <input type="tel" id="phone" name="phone" placeholder="+33 6 xx xx xx xx" class="w-full font-sans text-sm text-dark py-3 px-4 outline-none transition-colors bg-transparent" style="border:1px solid rgba(92,122,92,0.3);" />
             </div>
             <div>
-              <label for="service" class="font-sans text-xs tracking-[0.18em] uppercase block mb-2" style="color:#8A7E75">Service souhaité</label>
-              <input type="text" id="service" name="service"
-                class="w-full bg-transparent py-3 font-sans text-sm font-light tracking-wide transition-colors duration-200"
-                style="border:none;border-bottom:1px solid #E8E0D8;outline:none;color:#1A1A1A"
-                placeholder="ex. Manucure japonaise, nettoyage de peau..." />
-            </div>
-            <div>
-              <label for="message" class="font-sans text-xs tracking-[0.18em] uppercase block mb-2" style="color:#8A7E75">Message</label>
-              <textarea id="message" name="message" required rows="4"
-                class="w-full bg-transparent py-3 font-sans text-sm font-light tracking-wide transition-colors duration-200 resize-none"
-                style="border:none;border-bottom:1px solid #E8E0D8;outline:none;color:#1A1A1A"
-                placeholder="Décrivez votre demande..."></textarea>
+              <label for="message" class="font-sans text-xs text-muted uppercase tracking-widest block mb-2">Soin souhaité & disponibilités</label>
+              <textarea id="message" name="message" rows="4" required placeholder="Quel soin vous intéresse ? Quelles sont vos disponibilités ?" class="w-full font-sans text-sm text-dark py-3 px-4 outline-none transition-colors bg-transparent resize-none" style="border:1px solid rgba(92,122,92,0.3);"></textarea>
             </div>
             <input type="hidden" name="_redirect" value="/merci/" />
-            <div>
-              <button type="submit" class="inline-flex items-center gap-3 font-sans text-xs tracking-[0.18em] uppercase px-8 py-4 transition-all duration-300"
-                style="background:#C4956A;color:#fff">
-                Envoyer
-                <span class="iconify" data-icon="lucide:arrow-right" data-width="13"></span>
-              </button>
-            </div>
+            <button type="submit" class="btn-accent inline-flex items-center justify-center gap-3 px-8 py-4 text-sm font-sans">
+              Envoyer ma demande
+              <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
+            </button>
           </form>
         </div>
 
-        <!-- Informations -->
-        <div class="flex flex-col gap-10 reveal">
+        <div class="flex flex-col gap-8">
           <div>
-            <p class="font-sans text-xs tracking-[0.22em] uppercase mb-3" style="color:#8A7E75">Adresse</p>
-            <p class="font-serif text-xl font-light" style="color:#1A1A1A">{site.address}</p>
+            <p class="font-sans text-xs text-muted uppercase tracking-widest mb-3">Adresse</p>
+            <p class="font-serif text-xl font-light text-dark">{(site as any).address}</p>
           </div>
           <div>
-            <p class="font-sans text-xs tracking-[0.22em] uppercase mb-3" style="color:#8A7E75">Email</p>
-            <a href={`mailto:${site.email}`} class="font-serif text-xl font-light transition-opacity hover:opacity-60" style="color:#1A1A1A">{site.email}</a>
+            <p class="font-sans text-xs text-muted uppercase tracking-widest mb-3">Email</p>
+            <a href={`mailto:${site.email}`} class="font-serif text-xl font-light text-dark hover:text-accent transition-colors">{site.email}</a>
           </div>
           <div>
-            <p class="font-sans text-xs tracking-[0.22em] uppercase mb-3" style="color:#8A7E75">Téléphone</p>
-            <a href={`tel:${(site as any).phone}`} class="font-serif text-xl font-light transition-opacity hover:opacity-60" style="color:#1A1A1A">{(site as any).phone}</a>
+            <p class="font-sans text-xs text-muted uppercase tracking-widest mb-3">Téléphone</p>
+            <a href={`tel:${(site as any).phone}`} class="font-serif text-xl font-light text-dark hover:text-accent transition-colors">{(site as any).phone}</a>
           </div>
           <div>
-            <p class="font-sans text-xs tracking-[0.22em] uppercase mb-3" style="color:#8A7E75">Horaires</p>
-            <p class="font-serif text-lg font-light mb-1" style="color:#1A1A1A">{(site as any).hours_week}</p>
-            <p class="font-serif text-lg font-light" style="color:#8A7E75">{(site as any).hours_sunday}</p>
-          </div>
-          <div style="background:#F2EDE8;border:1px solid #E8E0D8;padding:2rem">
-            <p class="font-sans text-xs tracking-[0.22em] uppercase mb-4" style="color:#C4956A">Conseil</p>
-            <p class="font-sans text-sm font-light leading-relaxed" style="color:#8A7E75">
-              Pour un rendez-vous rapide, n'hésitez pas à nous appeler directement. Pour une première visite, nous recommandons de prendre rendez-vous au moins 3 jours à l'avance.
-            </p>
+            <p class="font-sans text-xs text-muted uppercase tracking-widest mb-3">Horaires</p>
+            <p class="font-sans text-sm text-dark">{(site as any).hours_week}</p>
+            <p class="font-sans text-sm text-dark">{(site as any).hours_sunday}</p>
           </div>
         </div>
+
       </div>
     </div>
   </section>
