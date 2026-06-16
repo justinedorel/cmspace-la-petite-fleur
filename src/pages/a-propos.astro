@@ -4,216 +4,124 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 ---
-<Base title={`À propos — ${site.company_name}`} description={site.seo_description}>
+<Base title={`Le Salon — ${site.company_name}`} description={`Découvrez l'histoire d'${site.company_name}, ${site.company_sub} à Paris. Notre équipe passionnée vous accueille dans un cadre élégant et apaisant.`}>
 
-<Header />
+  <Header />
 
-<!-- Page Hero -->
-<section class="py-24 relative overflow-hidden" style={`background-color: ${site.color_dark}; background-image: radial-gradient(900px 420px at 20% 10%, ${site.color_primary}40, transparent 60%), radial-gradient(800px 380px at 85% 35%, ${site.color_accent}2e, transparent 55%);`}>
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
-    <div class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-8">
-      <span class="w-2.5 h-2.5 rounded-full" style={`background-color: ${site.color_accent};`}></span>
-      <span class="text-xs font-bold tracking-widest uppercase" style={`color: ${site.color_accent};`}>Notre histoire</span>
-    </div>
-    <h1 class="font-heading text-5xl sm:text-6xl font-bold tracking-tight text-white mb-6">
-      {site.about_title} <span class="italic font-light" style={`color: ${site.color_accent};`}>{site.about_title_italic}</span>
-    </h1>
-    <p class="text-white/70 text-xl font-light max-w-2xl mx-auto leading-relaxed">{site.about_subtitle}</p>
-  </div>
-</section>
-
-<!-- Process / Steps Section -->
-<section class="py-32 relative" style={`background-color: ${site.color_dark}; background-image: radial-gradient(900px 420px at 20% 10%, ${site.color_primary}40, transparent 60%), radial-gradient(800px 380px at 85% 35%, ${site.color_accent}2e, transparent 55%);`}>
-  <div class="max-w-4xl mx-auto relative px-6">
-    <div class="sticky top-32 pt-12 pb-48">
-      <div class="space-y-32">
-        <div class="flex flex-col md:flex-row items-center gap-10 bg-white/5 backdrop-blur-xl border border-white/10 p-10 rounded-[2rem] sticky top-32 shadow-2xl transition-all hover:bg-white/10">
-          <div class="w-20 h-20 shrink-0 rounded-full flex items-center justify-center shadow-lg" style={`background-color: ${site.color_accent}; color: ${site.color_primary};`}>
-            <h3 class="text-3xl font-bold font-heading">01</h3>
-          </div>
-          <div>
-            <h4 class="text-3xl font-semibold text-white mb-3 font-heading tracking-tight">{site.about_step1_title}</h4>
-            <p class="text-gray-400 leading-relaxed font-light">{site.about_step1_desc}</p>
-          </div>
-        </div>
-        <div class="flex flex-col md:flex-row items-center gap-10 p-10 rounded-[2rem] sticky top-40 shadow-2xl transition-all border" style={`background-color: ${site.color_primary}; border-color: ${site.color_primary}cc;`}>
-          <div class="w-20 h-20 shrink-0 bg-white rounded-full flex items-center justify-center shadow-lg" style={`color: ${site.color_primary};`}>
-            <h3 class="text-3xl font-bold font-heading">02</h3>
-          </div>
-          <div>
-            <h4 class="text-3xl font-semibold text-white mb-3 font-heading tracking-tight">{site.about_step2_title}</h4>
-            <p class="text-white/80 leading-relaxed font-light">{site.about_step2_desc}</p>
-          </div>
-        </div>
-        <div class="flex flex-col md:flex-row items-center gap-10 p-10 rounded-[2rem] sticky top-48 shadow-2xl transition-all border" style={`background-color: ${site.color_accent}; border-color: ${site.color_accent}cc; color: ${site.color_dark};`}>
-          <div class="w-20 h-20 shrink-0 rounded-full flex items-center justify-center text-white shadow-lg" style={`background-color: ${site.color_primary};`}>
-            <h3 class="text-3xl font-bold font-heading">03</h3>
-          </div>
-          <div>
-            <h4 class="text-3xl font-semibold mb-3 font-heading tracking-tight" style={`color: ${site.color_dark};`}>{site.about_step3_title}</h4>
-            <p class="leading-relaxed font-light" style={`color: ${site.color_dark}cc;`}>{site.about_step3_desc}</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Why Choose Us -->
-<section class="py-32 bg-white">
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
-    <div class="text-center max-w-3xl mx-auto mb-16">
-      <h2 class="font-heading text-5xl font-semibold tracking-tight mb-6" style={`color: ${site.color_dark};`}>
-        {site.whyus_title} <span class="italic font-light" style={`color: ${site.color_primary};`}>{site.whyus_title_colored}</span>
-      </h2>
-      <p class="text-gray-500 text-xl font-light leading-relaxed">{site.whyus_subtitle}</p>
-    </div>
-    <div class="grid lg:grid-cols-12 gap-10 items-stretch">
-      <div class="lg:col-span-5">
-        <div class="relative overflow-hidden rounded-[2.5rem] border border-gray-100 p-10 shadow-sm h-full" style={`background-color: ${site.color_bg};`}>
-          <div class="absolute -top-24 -right-24 w-72 h-72 blur-3xl rounded-full opacity-60" style={`background-color: ${site.color_accent};`}></div>
-          <div class="absolute -bottom-24 -left-24 w-72 h-72 blur-3xl rounded-full opacity-10" style={`background-color: ${site.color_primary};`}></div>
-          <div class="relative">
-            <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-gray-100 mb-8">
-              <iconify-icon icon="solar:shield-check-bold-duotone" width="18" style={`color: ${site.color_primary};`}></iconify-icon>
-              <span class="text-xs font-semibold tracking-widest uppercase" style={`color: ${site.color_primary};`}>{site.whyus_card_badge}</span>
-            </div>
-            <h3 class="font-heading text-3xl font-semibold tracking-tight mb-4" style={`color: ${site.color_dark};`}>{site.whyus_card_title}</h3>
-            <p class="text-gray-600 font-light leading-relaxed mb-8">{site.whyus_card_subtitle}</p>
-            <div class="space-y-4">
-              {[
-                { title: site.whyus_item1_title, desc: site.whyus_item1_desc, icon: 'solar:document-text-bold-duotone', bg: `${site.color_primary}1a` },
-                { title: site.whyus_item2_title, desc: site.whyus_item2_desc, icon: 'solar:checklist-minimalistic-bold-duotone', bg: `${site.color_accent}66` },
-                { title: site.whyus_item3_title, desc: site.whyus_item3_desc, icon: 'solar:global-bold-duotone', bg: `${site.color_primary}1a` },
-              ].map((item) => (
-                <div class="flex gap-4 rounded-2xl bg-white border border-gray-100 p-5">
-                  <div class="w-11 h-11 rounded-xl flex items-center justify-center shrink-0" style={`background-color: ${item.bg};`}>
-                    <iconify-icon icon={item.icon} width="22" style={`color: ${site.color_primary};`}></iconify-icon>
-                  </div>
-                  <div>
-                    <p class="text-sm font-semibold" style={`color: ${site.color_dark};`}>{item.title}</p>
-                    <p class="text-sm text-gray-500 font-light leading-relaxed">{item.desc}</p>
-                  </div>
-                </div>
-              ))}
-            </div>
-            <div class="mt-10 flex flex-col sm:flex-row gap-4">
-              <a href="/contact" class="text-white text-sm font-semibold px-7 py-3.5 rounded-full transition-colors inline-flex items-center justify-center gap-2 shadow-sm" style={`background-color: ${site.color_primary};`}>
-                Nous contacter
-                <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
-              </a>
-              <a href="/services" class="bg-white text-sm font-semibold px-7 py-3.5 rounded-full border border-gray-100 hover:border-gray-200 transition-colors inline-flex items-center justify-center gap-2" style={`color: ${site.color_dark};`}>
-                Voir les services
-                <iconify-icon icon="solar:alt-arrow-right-linear" width="18"></iconify-icon>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="lg:col-span-7">
-        <div class="grid sm:grid-cols-2 gap-6">
-          <div class="rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-sm bg-white">
-            <div class="relative">
-              <img src={site.whyus_image1} alt={site.whyus_image1_title} class="w-full h-56 object-cover" />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
-              <div class="absolute left-6 bottom-6 right-6">
-                <p class="text-white font-heading text-lg font-semibold tracking-tight">{site.whyus_image1_title}</p>
-                <p class="text-white/80 text-sm font-light leading-relaxed">{site.whyus_image1_sub}</p>
-              </div>
-            </div>
-          </div>
-          <div class="rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-sm bg-white">
-            <div class="relative">
-              <img src={site.whyus_image2} alt={site.whyus_image2_title} class="w-full h-56 object-cover" />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
-              <div class="absolute left-6 bottom-6 right-6">
-                <p class="text-white font-heading text-lg font-semibold tracking-tight">{site.whyus_image2_title}</p>
-                <p class="text-white/80 text-sm font-light leading-relaxed">{site.whyus_image2_sub}</p>
-              </div>
-            </div>
-          </div>
-          <div class="sm:col-span-2 rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-sm" style={`background-color: ${site.color_bg};`}>
-            <div class="grid md:grid-cols-2">
-              <div class="p-10">
-                <p class="text-xs font-semibold tracking-widest uppercase" style={`color: ${site.color_primary};`}>Ce que vous obtenez</p>
-                <h4 class="font-heading text-3xl font-semibold tracking-tight mt-3" style={`color: ${site.color_dark};`}>{site.whyus_results_title}</h4>
-                <p class="text-gray-600 font-light leading-relaxed mt-4">{site.whyus_results_sub}</p>
-                <ul class="mt-6 space-y-3 text-sm text-gray-600 font-light">
-                  {[site.whyus_result1, site.whyus_result2, site.whyus_result3].map((r) => (
-                    <li class="flex gap-2">
-                      <span class="mt-1 w-1.5 h-1.5 rounded-full shrink-0" style={`background-color: ${site.color_primary};`}></span>
-                      <span>{r}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-              <div class="relative">
-                <img src={site.whyus_image3} alt="Résultats" class="w-full h-full object-cover" />
-                <div class="absolute inset-0" style={`background: linear-gradient(to right, ${site.color_bg}, ${site.color_bg}4d, transparent);`}></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Testimonial -->
-<section class="py-32 overflow-hidden relative" style={`background-color: ${site.color_accent};`}>
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
-    <div class="grid md:grid-cols-2 gap-20 items-center">
-      <div data-aos="fade-right">
-        <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/50 backdrop-blur-md mb-8">
-          <span class="text-xs font-bold tracking-widest uppercase" style={`color: ${site.color_primary};`}>Témoignages</span>
-        </div>
-        <h2 class="font-heading text-5xl sm:text-6xl font-bold tracking-tight mb-6 leading-[1.1]" style={`color: ${site.color_dark};`}>
-          {site.testimonial_section_title}<br />
-          <span class="italic font-light">{site.testimonial_section_italic}</span>
-        </h2>
-        <p class="text-xl mb-10 font-light leading-relaxed" style={`color: ${site.color_dark}b3;`}>{site.testimonial_section_sub}</p>
-      </div>
-      <div class="bg-white rounded-[2.5rem] p-10 sm:p-14 shadow-2xl relative" data-aos="fade-left">
-        <iconify-icon icon="solar:quote-right-bold-duotone" width="80" class="absolute top-10 right-10 opacity-30" style={`color: ${site.color_accent};`}></iconify-icon>
-        <div class="flex gap-1.5 mb-8" style={`color: #9C6B3F;`}>
-          {Array(5).fill(0).map(() => <iconify-icon icon="solar:star-bold" width="20"></iconify-icon>)}
-        </div>
-        <p class="text-2xl sm:text-3xl font-heading font-medium mb-10 leading-snug tracking-tight" style={`color: ${site.color_dark};`}>
-          "{site.testimonial_text}"
+  <!-- Hero page -->
+  <section class="pt-32 pb-16" style="background-color:#FDFAF8;">
+    <div class="max-w-6xl mx-auto px-6 md:px-8">
+      <div class="max-w-2xl">
+        <span class="font-body text-xs tracking-[0.22em] uppercase mb-4 block" style="color:#9E6B6B;">À propos</span>
+        <h1 class="font-display text-5xl md:text-6xl font-medium leading-tight mb-6" style="color:#1C1C1C;">
+          Notre histoire,<br />
+          <em class="italic font-normal" style="color:#9E6B6B;">notre passion.</em>
+        </h1>
+        <p class="font-body text-base leading-relaxed" style="color:#9B8B8B;">
+          ÉCLAT est né d'une conviction simple : chaque femme mérite un moment de beauté authentique, dans un cadre qui lui ressemble.
         </p>
-        <div class="flex items-center gap-5">
-          <div class="w-16 h-16 rounded-full bg-gray-200 overflow-hidden shadow-inner">
-            {site.testimonial_avatar
-              ? <img src={site.testimonial_avatar} alt={site.testimonial_name} class="w-full h-full object-cover" />
-              : <div class="w-full h-full flex items-center justify-center text-2xl font-bold" style={`background-color: ${site.color_primary}; color: white;`}>{site.testimonial_name[0]}</div>
-            }
+      </div>
+    </div>
+  </section>
+
+  <!-- Histoire du salon -->
+  <section class="py-16 md:py-24" style="background-color:#F9F0EE;">
+    <div class="max-w-6xl mx-auto px-6 md:px-8">
+      <div class="grid md:grid-cols-2 gap-16 items-center">
+        <div class="relative">
+          <div class="rounded-2xl overflow-hidden" style="aspect-ratio:4/5;">
+            <img src={site.hero_image} alt="Le salon ÉCLAT" class="w-full h-full object-cover" loading="lazy" />
           </div>
-          <div>
-            <h4 class="font-bold text-lg" style={`color: ${site.color_dark};`}>{site.testimonial_name}</h4>
-            <p class="text-sm text-gray-500 font-medium">{site.testimonial_role}</p>
-          </div>
+          <div class="absolute -bottom-5 -right-5 w-24 h-24 rounded-full hidden md:block" style="background-color:#EDE0DE;z-index:-1;"></div>
+        </div>
+        <div>
+          <h2 class="font-display text-3xl md:text-4xl font-medium mb-6" style="color:#1C1C1C;">Un salon pensé pour vous</h2>
+          <p class="font-body text-base leading-relaxed mb-5" style="color:#9B8B8B;">
+            Fondé en 2016 au cœur de Paris, ÉCLAT s'est imposé comme une référence en matière de soin des ongles. Chaque espace a été conçu pour que vous vous sentiez comme chez vous : lumière douce, parfums subtils, musique apaisante.
+          </p>
+          <p class="font-body text-base leading-relaxed mb-8" style="color:#9B8B8B;">
+            Nous travaillons exclusivement avec des produits haut de gamme, respectueux de vos ongles naturels. Nos techniques évoluent au fil des tendances, mais notre philosophie reste la même : la beauté doit être durable et bienveillante.
+          </p>
+          <a href="/contact/"
+            class="inline-flex items-center gap-2 font-body text-sm font-medium text-white px-6 py-3 rounded-xl transition-colors"
+            style="background-color:#D4A5A5;"
+            onmouseover="this.style.backgroundColor='#9E6B6B'"
+            onmouseout="this.style.backgroundColor='#D4A5A5'">
+            Prendre rendez-vous
+            <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
+          </a>
         </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- Trust Badges -->
-<section class="py-12 border-y bg-white/50" style={`border-color: ${site.color_accent}66;`}>
-  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex flex-col sm:flex-row items-center justify-center gap-8 sm:gap-16 opacity-70 grayscale hover:grayscale-0 transition-all duration-500">
-    {[
-      { icon: 'solar:verified-check-linear', label: site.trust_badge1 },
-      { icon: 'solar:diploma-verified-linear', label: site.trust_badge2 },
-      { icon: 'solar:globe-linear', label: site.trust_badge3 },
-    ].map((b) => (
-      <div class="flex items-center gap-3">
-        <iconify-icon icon={b.icon} width="32" style={`color: ${site.color_primary};`}></iconify-icon>
-        <span class="font-heading text-lg font-medium" style={`color: ${site.color_dark};`}>{b.label}</span>
+  <!-- Valeurs -->
+  <section class="py-16 md:py-24" style="background-color:#FDFAF8;">
+    <div class="max-w-6xl mx-auto px-6 md:px-8">
+      <div class="text-center mb-14">
+        <h2 class="font-display text-3xl md:text-4xl font-medium" style="color:#1C1C1C;">Nos valeurs</h2>
+        <p class="font-body text-base mt-3 max-w-lg mx-auto" style="color:#9B8B8B;">Ce qui guide chacun de nos gestes au quotidien.</p>
       </div>
-    ))}
-  </div>
-</section>
+      <div class="grid md:grid-cols-3 gap-8">
+        {[
+          { icon: 'lucide:heart', title: 'Bienveillance', desc: 'Chaque cliente est unique. Nous prenons le temps d\'écouter vos envies et d\'adapter nos soins à vos besoins spécifiques.' },
+          { icon: 'lucide:sparkles', title: 'Excellence', desc: 'Produits premium, techniques perfectionnées, finitions irréprochables. Nous ne faisons aucun compromis sur la qualité.' },
+          { icon: 'lucide:leaf', title: 'Respect', desc: 'Produits sans substances nocives, gestes doux et respectueux de vos ongles naturels. La beauté ne doit pas se faire au détriment de la santé.' },
+        ].map((v) => (
+          <div class="text-center p-8 rounded-2xl border" style="border-color:#EDE0DE;background-color:#F9F0EE;">
+            <div class="w-12 h-12 rounded-full flex items-center justify-center mx-auto mb-5" style="background-color:#D4A5A5;">
+              <span class="iconify text-white" data-icon={v.icon} data-width="22"></span>
+            </div>
+            <h3 class="font-display text-xl font-medium mb-3" style="color:#1C1C1C;">{v.title}</h3>
+            <p class="font-body text-sm leading-relaxed" style="color:#9B8B8B;">{v.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
 
-<Footer />
+  <!-- Équipe -->
+  <section class="py-16 md:py-24" style="background-color:#F9F0EE;">
+    <div class="max-w-6xl mx-auto px-6 md:px-8">
+      <div class="text-center mb-14">
+        <h2 class="font-display text-3xl md:text-4xl font-medium" style="color:#1C1C1C;">Notre équipe</h2>
+        <p class="font-body text-base mt-3 max-w-lg mx-auto" style="color:#9B8B8B;">Des passionnées au service de votre beauté.</p>
+      </div>
+      <div class="grid md:grid-cols-3 gap-8">
+        {[
+          { name: 'Sophie Martin', role: 'Fondatrice & Nail Artist', desc: '10 ans d\'expérience, spécialiste pose gel et nail art créatif.', img: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=400&auto=format&fit=crop' },
+          { name: 'Léa Bernard', role: 'Manucuriste', desc: 'Experte en pédicure spa et soins des mains naturels.', img: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=400&auto=format&fit=crop' },
+          { name: 'Clara Petit', role: 'Nail Artist', desc: 'Spécialiste nail art, motifs géométriques et effets chromés.', img: 'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?q=80&w=400&auto=format&fit=crop' },
+        ].map((m) => (
+          <div class="text-center">
+            <div class="w-32 h-32 rounded-full overflow-hidden mx-auto mb-5" style="border:3px solid #EDE0DE;">
+              <img src={m.img} alt={m.name} class="w-full h-full object-cover" loading="lazy" />
+            </div>
+            <h3 class="font-display text-lg font-medium mb-1" style="color:#1C1C1C;">{m.name}</h3>
+            <p class="font-body text-xs tracking-wide mb-3" style="color:#D4A5A5;">{m.role}</p>
+            <p class="font-body text-sm leading-relaxed" style="color:#9B8B8B;">{m.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 text-center" style="background-color:#FDFAF8;">
+    <div class="max-w-xl mx-auto px-6">
+      <h2 class="font-display text-3xl md:text-4xl font-medium mb-4" style="color:#1C1C1C;">Venez nous rencontrer</h2>
+      <p class="font-body text-base mb-8" style="color:#9B8B8B;">{site.tagline}</p>
+      <a href="/contact/"
+        class="inline-flex items-center gap-2 font-body text-sm font-medium text-white px-8 py-4 rounded-xl transition-colors"
+        style="background-color:#D4A5A5;"
+        onmouseover="this.style.backgroundColor='#9E6B6B'"
+        onmouseout="this.style.backgroundColor='#D4A5A5'">
+        {site.hero_cta}
+        <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
+      </a>
+    </div>
+  </section>
+
+  <Footer />
 
 </Base>

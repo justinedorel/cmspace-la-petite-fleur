@@ -4,35 +4,97 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 ---
-<Base title={`Mentions légales — ${site.company_name}`}>
+<Base title={`Mentions légales — ${site.company_name}`} description={`Mentions légales de ${site.company_name}.`}>
 
-<Header />
+  <Header />
 
-<main class="min-h-screen" style={`background-color: ${site.color_bg};`}>
-  <div class="max-w-2xl mx-auto px-6 py-24">
-    <h1 class="font-heading text-4xl font-bold mb-10" style={`color: ${site.color_dark};`}>Mentions légales</h1>
+  <section class="pt-32 pb-8" style="background-color:#FDFAF8;">
+    <div class="max-w-6xl mx-auto px-6 md:px-8">
+      <span class="font-body text-xs tracking-[0.22em] uppercase mb-4 block" style="color:#9E6B6B;">Légal</span>
+      <h1 class="font-display text-5xl md:text-6xl font-medium" style="color:#1C1C1C;">Mentions légales</h1>
+    </div>
+  </section>
 
-    <h2 class="font-heading text-lg font-semibold mt-8 mb-3" style={`color: ${site.color_dark};`}>Éditeur du site</h2>
-    <p class="text-gray-600 font-light leading-relaxed">{site.legal_status || ''} {site.legal_name || site.company_name}</p>
-    {site.address && <p class="text-gray-600 font-light leading-relaxed mt-1">{site.address}</p>}
-    {site.email && <p class="text-gray-600 font-light leading-relaxed mt-1">Email : <a href={`mailto:${site.email}`} style={`color: ${site.color_primary};`}>{site.email}</a></p>}
-    {site.phone && <p class="text-gray-600 font-light leading-relaxed mt-1">Téléphone : {site.phone}</p>}
-    {site.siret && <p class="text-gray-600 font-light leading-relaxed mt-1">SIRET : {site.siret}</p>}
+  <section class="py-16 pb-32" style="background-color:#FDFAF8;">
+    <div class="max-w-3xl mx-auto px-6 md:px-8">
 
-    <h2 class="font-heading text-lg font-semibold mt-8 mb-3" style={`color: ${site.color_dark};`}>Hébergement</h2>
-    <p class="text-gray-600 font-light leading-relaxed">Ce site est hébergé par Cloudflare Pages, 101 Townsend St, San Francisco, CA 94107, USA.</p>
+      <div class="mb-12">
+        <div class="w-10 h-px mb-8" style="background-color:#EDE0DE;"></div>
+        <h2 class="font-display text-2xl font-medium mb-6" style="color:#1C1C1C;">Éditeur du site</h2>
+        <div class="flex flex-col gap-3">
+          <p class="font-body text-sm" style="color:#9B8B8B;">
+            <span style="color:#1C1C1C;">{site.legal_name || site.company_name}</span>
+          </p>
+          {site.legal_status && (
+            <p class="font-body text-sm" style="color:#9B8B8B;">
+              Forme juridique : <span style="color:#1C1C1C;">{site.legal_status}</span>
+            </p>
+          )}
+          {site.siret && (
+            <p class="font-body text-sm" style="color:#9B8B8B;">
+              SIRET : <span style="color:#1C1C1C;">{site.siret}</span>
+            </p>
+          )}
+          {site.address && (
+            <p class="font-body text-sm" style="color:#9B8B8B;">
+              Adresse : <span style="color:#1C1C1C;">{site.address}</span>
+            </p>
+          )}
+          <p class="font-body text-sm" style="color:#9B8B8B;">
+            Email : <a href={`mailto:${site.email}`} class="transition-opacity hover:opacity-70" style="color:#1C1C1C;">{site.email}</a>
+          </p>
+          {site.website && (
+            <p class="font-body text-sm" style="color:#9B8B8B;">
+              Site web : <a href={site.website} class="transition-opacity hover:opacity-70" style="color:#1C1C1C;">{site.website}</a>
+            </p>
+          )}
+        </div>
+      </div>
 
-    <h2 class="font-heading text-lg font-semibold mt-8 mb-3" style={`color: ${site.color_dark};`}>Propriété intellectuelle</h2>
-    <p class="text-gray-600 font-light leading-relaxed">L'ensemble du contenu de ce site est la propriété exclusive de {site.company_name}. Toute reproduction est interdite sans autorisation préalable.</p>
+      <div class="mb-12">
+        <div class="w-10 h-px mb-8" style="background-color:#EDE0DE;"></div>
+        <h2 class="font-display text-2xl font-medium mb-6" style="color:#1C1C1C;">Hébergement</h2>
+        <p class="font-body text-sm leading-relaxed" style="color:#9B8B8B;">
+          Ce site est hébergé par Cloudflare, Inc., 101 Townsend St., San Francisco, CA 94107, États-Unis.
+        </p>
+      </div>
 
-    <h2 class="font-heading text-lg font-semibold mt-8 mb-3" style={`color: ${site.color_dark};`}>Données personnelles</h2>
-    <p class="text-gray-600 font-light leading-relaxed">
-      Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données personnelles.
-      {site.email && <> Pour exercer ce droit, contactez-nous à <a href={`mailto:${site.email}`} style={`color: ${site.color_primary};`}>{site.email}</a>.</>}
-    </p>
-  </div>
-</main>
+      <div class="mb-12">
+        <div class="w-10 h-px mb-8" style="background-color:#EDE0DE;"></div>
+        <h2 class="font-display text-2xl font-medium mb-6" style="color:#1C1C1C;">Propriété intellectuelle</h2>
+        <p class="font-body text-sm leading-relaxed mb-4" style="color:#9B8B8B;">
+          L'ensemble du contenu de ce site est la propriété exclusive de {site.legal_name || site.company_name}. Toute reproduction sans accord écrit préalable est interdite.
+        </p>
+      </div>
 
-<Footer />
+      <div class="mb-12">
+        <div class="w-10 h-px mb-8" style="background-color:#EDE0DE;"></div>
+        <h2 class="font-display text-2xl font-medium mb-6" style="color:#1C1C1C;">Données personnelles</h2>
+        <p class="font-body text-sm leading-relaxed mb-4" style="color:#9B8B8B;">
+          Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et d'effacement de vos données. Pour exercer ces droits : <a href={`mailto:${site.email}`} class="transition-opacity hover:opacity-70" style="color:#9E6B6B;">{site.email}</a>
+        </p>
+      </div>
+
+      <div class="mb-12">
+        <div class="w-10 h-px mb-8" style="background-color:#EDE0DE;"></div>
+        <h2 class="font-display text-2xl font-medium mb-6" style="color:#1C1C1C;">Cookies</h2>
+        <p class="font-body text-sm leading-relaxed" style="color:#9B8B8B;">
+          Ce site peut utiliser des cookies à des fins de mesure d'audience. Vous pouvez configurer votre navigateur pour les refuser.
+        </p>
+      </div>
+
+      <div class="mt-16">
+        <a href="/" class="inline-flex items-center gap-2 font-body text-sm transition-colors" style="color:#9E6B6B;"
+          onmouseover="this.style.color='#1C1C1C'"
+          onmouseout="this.style.color='#9E6B6B'">
+          <span class="iconify" data-icon="lucide:arrow-left" data-width="14"></span>
+          Retour à l'accueil
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <Footer />
 
 </Base>

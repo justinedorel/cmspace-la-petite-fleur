@@ -4,36 +4,39 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 ---
-<Base title={`Merci — ${site.company_name}`} description={`Votre message a bien été envoyé à ${site.company_name}.`}>
+<Base title={`Demande reçue — ${site.company_name}`} description={`Merci pour votre message. ${site.company_name} vous contactera prochainement.`}>
 
-<Header />
+  <Header />
 
-<main class="min-h-screen flex items-center justify-center py-32 relative overflow-hidden" style={`background-color: ${site.color_bg};`}>
-  <div class="absolute -top-32 -right-32 w-96 h-96 blur-3xl rounded-full opacity-30" style={`background-color: ${site.color_accent};`}></div>
-  <div class="absolute -bottom-32 -left-32 w-96 h-96 blur-3xl rounded-full opacity-10" style={`background-color: ${site.color_primary};`}></div>
-  <div class="relative z-10 max-w-xl mx-auto px-6 text-center">
-    <div class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg" style={`background-color: ${site.color_primary};`}>
-      <iconify-icon icon="solar:check-circle-bold-duotone" width="44" class="text-white" style="color: white;"></iconify-icon>
-    </div>
-    <h1 class="font-heading text-4xl sm:text-5xl font-bold tracking-tight mb-6" style={`color: ${site.color_dark};`}>
-      Merci pour votre message !
-    </h1>
-    <p class="text-gray-600 text-lg font-light leading-relaxed mb-10">
-      Nous avons bien reçu votre demande et nous vous répondrons dans les plus brefs délais.
-    </p>
-    <div class="flex flex-col sm:flex-row justify-center gap-4">
-      <a href="/" class="text-white text-sm font-semibold px-8 py-4 rounded-full transition-all hover:opacity-90 inline-flex items-center justify-center gap-2 shadow-sm" style={`background-color: ${site.color_primary};`}>
+  <section class="min-h-screen flex items-center justify-center py-40 px-6" style="background-color:#FDFAF8;">
+    <div class="text-center max-w-xl">
+      <!-- Icône -->
+      <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-10" style="background-color:#F9F0EE;">
+        <span class="iconify" data-icon="lucide:check" data-width="28" style="color:#D4A5A5;"></span>
+      </div>
+
+      <span class="font-body text-xs tracking-[0.22em] uppercase mb-4 block" style="color:#9E6B6B;">Confirmation</span>
+      <h1 class="font-display text-5xl md:text-6xl font-medium mb-6 leading-tight" style="color:#1C1C1C;">
+        Demande <em class="italic font-normal" style="color:#D4A5A5;">reçue</em>
+      </h1>
+      <p class="font-body text-base leading-relaxed mb-4" style="color:#9B8B8B;">
+        Merci de nous avoir contactés. Nous avons bien reçu votre demande et nous vous répondrons dans les plus brefs délais.
+      </p>
+      <p class="font-body text-sm leading-relaxed mb-12" style="color:#9B8B8B;">
+        {site.footer_tagline}
+      </p>
+
+      <div class="w-12 h-px mx-auto mb-10" style="background-color:#EDE0DE;"></div>
+
+      <a href="/" class="inline-flex items-center gap-2 font-body text-sm transition-colors" style="color:#9E6B6B;"
+        onmouseover="this.style.color='#1C1C1C'"
+        onmouseout="this.style.color='#9E6B6B'">
+        <span class="iconify" data-icon="lucide:arrow-left" data-width="14"></span>
         Retour à l'accueil
-        <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
-      </a>
-      <a href="/services" class="bg-white text-sm font-semibold px-8 py-4 rounded-full border border-gray-200 hover:border-gray-300 transition-colors inline-flex items-center justify-center gap-2" style={`color: ${site.color_dark};`}>
-        Voir les services
-        <iconify-icon icon="solar:alt-arrow-right-linear" width="18"></iconify-icon>
       </a>
     </div>
-  </div>
-</main>
+  </section>
 
-<Footer />
+  <Footer />
 
 </Base>
