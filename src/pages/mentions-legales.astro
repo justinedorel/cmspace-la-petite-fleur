@@ -4,48 +4,35 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 ---
-<Base title={`Mentions légales — ${site.company_name}`} description={`Mentions légales de ${site.company_name}.`}>
+<Base title={`Mentions légales — ${site.company_name}`}>
 
-  <Header />
+<Header />
 
-  <section class="pt-36 pb-16" style="background:#FAFAF7;">
-    <div class="max-w-3xl mx-auto px-6">
-      <h1 class="font-serif text-3xl md:text-5xl font-light text-dark mb-4">Mentions légales</h1>
-    </div>
-  </section>
+<main class="min-h-screen" style={`background-color: ${site.color_bg};`}>
+  <div class="max-w-2xl mx-auto px-6 py-24">
+    <h1 class="font-heading text-4xl font-bold mb-10" style={`color: ${site.color_dark};`}>Mentions légales</h1>
 
-  <section class="py-16 pb-32" style="background:#FAFAF7;">
-    <div class="max-w-3xl mx-auto px-6 space-y-10">
-      <div>
-        <h2 class="font-serif text-xl font-light text-dark mb-4">Éditeur du site</h2>
-        <div class="space-y-2 font-sans text-sm text-muted">
-          <p><span class="text-dark">{site.company_name}</span></p>
-          {(site as any).address && <p>Adresse : {(site as any).address}</p>}
-          <p>Email : <a href={`mailto:${site.email}`} class="text-accent">{site.email}</a></p>
-          {(site as any).website && <p>Site : {(site as any).website}</p>}
-        </div>
-      </div>
-      <div>
-        <h2 class="font-serif text-xl font-light text-dark mb-4">Hébergement</h2>
-        <p class="font-sans text-sm text-muted">Ce site est hébergé par Vercel Inc., 340 Pine Street, Suite 1202, San Francisco, CA 94104, États-Unis.</p>
-      </div>
-      <div>
-        <h2 class="font-serif text-xl font-light text-dark mb-4">Propriété intellectuelle</h2>
-        <p class="font-sans text-sm text-muted leading-relaxed">L'ensemble du contenu de ce site est la propriété exclusive de {site.company_name}. Toute reproduction est interdite sans accord écrit préalable.</p>
-      </div>
-      <div>
-        <h2 class="font-serif text-xl font-light text-dark mb-4">Données personnelles</h2>
-        <p class="font-sans text-sm text-muted leading-relaxed">Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et d'effacement de vos données. Pour exercer ces droits : <a href={`mailto:${site.email}`} class="text-accent">{site.email}</a></p>
-      </div>
-      <div class="pt-8">
-        <a href="/" class="inline-flex items-center gap-2 font-sans text-sm text-muted hover:text-dark transition-colors">
-          <span class="iconify" data-icon="lucide:arrow-left" data-width="14"></span>
-          Retour à l'accueil
-        </a>
-      </div>
-    </div>
-  </section>
+    <h2 class="font-heading text-lg font-semibold mt-8 mb-3" style={`color: ${site.color_dark};`}>Éditeur du site</h2>
+    <p class="text-gray-600 font-light leading-relaxed">{site.legal_status || ''} {site.legal_name || site.company_name}</p>
+    {site.address && <p class="text-gray-600 font-light leading-relaxed mt-1">{site.address}</p>}
+    {site.email && <p class="text-gray-600 font-light leading-relaxed mt-1">Email : <a href={`mailto:${site.email}`} style={`color: ${site.color_primary};`}>{site.email}</a></p>}
+    {site.phone && <p class="text-gray-600 font-light leading-relaxed mt-1">Téléphone : {site.phone}</p>}
+    {site.siret && <p class="text-gray-600 font-light leading-relaxed mt-1">SIRET : {site.siret}</p>}
 
-  <Footer />
+    <h2 class="font-heading text-lg font-semibold mt-8 mb-3" style={`color: ${site.color_dark};`}>Hébergement</h2>
+    <p class="text-gray-600 font-light leading-relaxed">Ce site est hébergé par Cloudflare Pages, 101 Townsend St, San Francisco, CA 94107, USA.</p>
+
+    <h2 class="font-heading text-lg font-semibold mt-8 mb-3" style={`color: ${site.color_dark};`}>Propriété intellectuelle</h2>
+    <p class="text-gray-600 font-light leading-relaxed">L'ensemble du contenu de ce site est la propriété exclusive de {site.company_name}. Toute reproduction est interdite sans autorisation préalable.</p>
+
+    <h2 class="font-heading text-lg font-semibold mt-8 mb-3" style={`color: ${site.color_dark};`}>Données personnelles</h2>
+    <p class="text-gray-600 font-light leading-relaxed">
+      Conformément au RGPD, vous disposez d'un droit d'accès, de rectification et de suppression de vos données personnelles.
+      {site.email && <> Pour exercer ce droit, contactez-nous à <a href={`mailto:${site.email}`} style={`color: ${site.color_primary};`}>{site.email}</a>.</>}
+    </p>
+  </div>
+</main>
+
+<Footer />
 
 </Base>

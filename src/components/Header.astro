@@ -1,52 +1,43 @@
 ---
 import site from '../data/site.json';
 ---
-<header id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-300" style="background:rgba(250,250,247,0.92);backdrop-filter:blur(12px);border-bottom:1px solid rgba(92,122,92,0.12);">
-  <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-
-    <!-- Logo -->
-    <a href="/" class="font-serif text-xl font-light text-dark tracking-wide">
-      {site.company_name}
+<nav class="sticky top-0 z-50 w-full backdrop-blur-md border-b" style={`background-color: ${site.color_bg}e6; border-color: ${site.color_accent}4d;`}>
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 flex justify-between items-center h-20">
+    <a href="/" class="flex items-center hover:opacity-80 transition-opacity">
+      {site.logo_url
+        ? <img src={site.logo_url} alt={site.company_name} class="h-8 sm:h-10 w-auto object-contain" />
+        : <span class="font-heading text-xl font-bold" style={`color: ${site.color_dark};`}>{site.company_name}</span>
+      }
     </a>
-
-    <!-- Navigation desktop -->
-    <nav class="hidden md:flex items-center gap-8">
-      <a href="/" class="text-sm font-sans text-dark/70 hover:text-dark transition-colors">Accueil</a>
-      <a href="/a-propos/" class="text-sm font-sans text-dark/70 hover:text-dark transition-colors">À propos</a>
-      <a href="/services/" class="text-sm font-sans text-dark/70 hover:text-dark transition-colors">Soins</a>
-      <a href="/contact/" class="text-sm font-sans text-dark/70 hover:text-dark transition-colors">Contact</a>
-      <a href="/contact/" class="btn-accent text-sm font-sans px-5 py-2 rounded-sm">
-        {site.hero_cta}
+    <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-600">
+      <a href="/services" class="transition-colors hover:opacity-80" style={`color: ${site.color_dark};`}>Services</a>
+      <a href="/a-propos" class="transition-colors hover:opacity-80" style={`color: ${site.color_dark};`}>À propos</a>
+      <a href="/contact" class="transition-colors hover:opacity-80" style={`color: ${site.color_dark};`}>Contact</a>
+    </div>
+    <div class="flex items-center gap-4">
+      <a href="/contact" class="text-white text-sm font-semibold px-5 py-2.5 rounded-lg shadow-sm transition-all duration-200 hover:opacity-90" style={`background-color: ${site.color_primary};`}>
+        Nous contacter
       </a>
-    </nav>
-
-    <!-- Mobile toggle -->
-    <button id="mobile-toggle" class="md:hidden p-2" aria-label="Menu">
-      <div class="w-5 h-px bg-dark mb-1.5"></div>
-      <div class="w-5 h-px bg-dark mb-1.5"></div>
-      <div class="w-5 h-px bg-dark"></div>
-    </button>
+    </div>
   </div>
-</header>
-
-<!-- Mobile menu -->
-<div id="mobile-overlay" class="fixed inset-0 bg-dark/40 z-40 hidden backdrop-blur-sm"></div>
-<div id="mobile-panel" class="fixed top-0 right-0 h-full w-72 z-50 p-8 flex flex-col gap-8 pt-20" style="background:#FAFAF7;transform:translateX(100%);transition:transform 0.4s cubic-bezier(0.16,1,0.3,1);">
-  <a href="/" class="font-serif text-2xl font-light text-dark hover:opacity-60">Accueil</a>
-  <a href="/a-propos/" class="font-serif text-2xl font-light text-dark hover:opacity-60">À propos</a>
-  <a href="/services/" class="font-serif text-2xl font-light text-dark hover:opacity-60">Soins</a>
-  <a href="/contact/" class="font-serif text-2xl font-light text-dark hover:opacity-60">Contact</a>
-  <a href="/contact/" class="btn-accent text-center py-3 rounded-sm font-sans text-sm">{site.hero_cta}</a>
-</div>
+</nav>
 
 <script is:inline>
-  var toggle = document.getElementById('mobile-toggle');
-  var panel = document.getElementById('mobile-panel');
-  var overlay = document.getElementById('mobile-overlay');
-  var open = false;
-  function openMenu() { open = true; panel.style.transform = 'translateX(0)'; overlay.classList.remove('hidden'); document.body.style.overflow = 'hidden'; }
-  function closeMenu() { open = false; panel.style.transform = 'translateX(100%)'; overlay.classList.add('hidden'); document.body.style.overflow = ''; }
-  toggle.addEventListener('click', function() { open ? closeMenu() : openMenu(); });
-  overlay.addEventListener('click', closeMenu);
-  panel.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeMenu); });
+  (function() {
+    var header = document.querySelector('header, nav[class*="fixed"]');
+    if (!header) return;
+    var alreadyGlass = getComputedStyle(header).backdropFilter !== 'none';
+    window.addEventListener('scroll', function() {
+      if (window.scrollY > 60) {
+        header.style.backdropFilter = 'blur(12px)';
+        header.style.webkitBackdropFilter = 'blur(12px)';
+        if (!alreadyGlass) header.style.backgroundColor = header.style.backgroundColor || 'rgba(0,0,0,0.8)';
+      } else {
+        if (!alreadyGlass) {
+          header.style.backdropFilter = 'none';
+          header.style.webkitBackdropFilter = 'none';
+        }
+      }
+    }, { passive: true });
+  })();
 </script>

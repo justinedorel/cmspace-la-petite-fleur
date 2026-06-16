@@ -4,27 +4,36 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 ---
-<Base title={`Merci — ${site.company_name}`} description={`Votre demande a été envoyée. ${site.company_name} vous contactera prochainement.`}>
+<Base title={`Merci — ${site.company_name}`} description={`Votre message a bien été envoyé à ${site.company_name}.`}>
 
-  <Header />
+<Header />
 
-  <section class="min-h-screen flex items-center justify-center py-40 px-6" style="background:#FAFAF7;">
-    <div class="text-center max-w-xl">
-      <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-8" style="background:rgba(92,122,92,0.1);border:1px solid rgba(92,122,92,0.3);">
-        <span class="iconify text-accent" data-icon="lucide:check" data-width="28"></span>
-      </div>
-      <h1 class="font-serif text-4xl md:text-5xl font-light text-dark mb-4">Demande reçue</h1>
-      <p class="font-sans text-sm text-muted leading-relaxed mb-3">
-        Merci de votre confiance. Nous avons bien reçu votre demande et nous vous recontacterons dans les 24 heures pour confirmer votre rendez-vous.
-      </p>
-      <p class="font-sans text-sm text-muted mb-10">{site.tagline}</p>
-      <a href="/" class="inline-flex items-center gap-2 font-sans text-sm text-muted hover:text-dark transition-colors">
-        <span class="iconify" data-icon="lucide:arrow-left" data-width="14"></span>
+<main class="min-h-screen flex items-center justify-center py-32 relative overflow-hidden" style={`background-color: ${site.color_bg};`}>
+  <div class="absolute -top-32 -right-32 w-96 h-96 blur-3xl rounded-full opacity-30" style={`background-color: ${site.color_accent};`}></div>
+  <div class="absolute -bottom-32 -left-32 w-96 h-96 blur-3xl rounded-full opacity-10" style={`background-color: ${site.color_primary};`}></div>
+  <div class="relative z-10 max-w-xl mx-auto px-6 text-center">
+    <div class="w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-8 shadow-lg" style={`background-color: ${site.color_primary};`}>
+      <iconify-icon icon="solar:check-circle-bold-duotone" width="44" class="text-white" style="color: white;"></iconify-icon>
+    </div>
+    <h1 class="font-heading text-4xl sm:text-5xl font-bold tracking-tight mb-6" style={`color: ${site.color_dark};`}>
+      Merci pour votre message !
+    </h1>
+    <p class="text-gray-600 text-lg font-light leading-relaxed mb-10">
+      Nous avons bien reçu votre demande et nous vous répondrons dans les plus brefs délais.
+    </p>
+    <div class="flex flex-col sm:flex-row justify-center gap-4">
+      <a href="/" class="text-white text-sm font-semibold px-8 py-4 rounded-full transition-all hover:opacity-90 inline-flex items-center justify-center gap-2 shadow-sm" style={`background-color: ${site.color_primary};`}>
         Retour à l'accueil
+        <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
+      </a>
+      <a href="/services" class="bg-white text-sm font-semibold px-8 py-4 rounded-full border border-gray-200 hover:border-gray-300 transition-colors inline-flex items-center justify-center gap-2" style={`color: ${site.color_dark};`}>
+        Voir les services
+        <iconify-icon icon="solar:alt-arrow-right-linear" width="18"></iconify-icon>
       </a>
     </div>
-  </section>
+  </div>
+</main>
 
-  <Footer />
+<Footer />
 
 </Base>

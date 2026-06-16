@@ -1,33 +1,46 @@
 ---
 import site from '../data/site.json';
 ---
-<footer style="background:#1A1A1A;" class="py-16">
-  <div class="max-w-6xl mx-auto px-6">
-    <div class="grid md:grid-cols-3 gap-10 mb-12">
-      <div>
-        <p class="font-serif text-xl text-white font-light mb-1">{site.company_name}</p>
-        <p class="font-sans text-sm text-white/40">{site.company_sub}</p>
-        {(site as any).address && <p class="font-sans text-sm text-white/40 mt-2">{(site as any).address}</p>}
+<footer class="bg-white border-t border-gray-100 pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
+      <div class="md:col-span-1">
+        <a href="/" class="block mb-6 hover:opacity-80 transition-opacity">
+          {site.logo_url
+            ? <img src={site.logo_url} alt={site.company_name} class="h-12 w-auto object-contain" />
+            : <span class="font-heading text-xl font-bold" style={`color: ${site.color_dark};`}>{site.company_name}</span>
+          }
+        </a>
+        <p class="text-xs text-gray-500 leading-relaxed font-light mb-6 pr-4">{site.tagline}</p>
+        <div class="flex items-center gap-4 text-gray-400">
+          {site.social_linkedin && <a href={site.social_linkedin} class="transition-colors hover:opacity-80" style={`color: ${site.color_primary};`}><iconify-icon icon="solar:minimalistic-linkedin-linear" width="20"></iconify-icon></a>}
+          {site.email && <a href={`mailto:${site.email}`} class="transition-colors hover:opacity-80" style={`color: ${site.color_primary};`}><iconify-icon icon="solar:letter-linear" width="20"></iconify-icon></a>}
+          {site.phone && <a href={`tel:${site.phone}`} class="transition-colors hover:opacity-80" style={`color: ${site.color_primary};`}><iconify-icon icon="solar:phone-linear" width="20"></iconify-icon></a>}
+        </div>
       </div>
       <div>
-        <p class="font-sans text-xs text-white/30 uppercase tracking-widest mb-4">Navigation</p>
-        <nav class="flex flex-col gap-3">
-          <a href="/" class="font-sans text-sm text-white/60 hover:text-white transition-colors">Accueil</a>
-          <a href="/services/" class="font-sans text-sm text-white/60 hover:text-white transition-colors">Soins</a>
-          <a href="/a-propos/" class="font-sans text-sm text-white/60 hover:text-white transition-colors">À propos</a>
-          <a href="/contact/" class="font-sans text-sm text-white/60 hover:text-white transition-colors">Contact</a>
-        </nav>
+        <h4 class="font-heading text-sm font-semibold mb-4 tracking-tight" style={`color: ${site.color_dark};`}>Navigation</h4>
+        <ul class="space-y-3">
+          <li><a href="/" class="text-xs text-gray-500 transition-colors hover:opacity-80">Accueil</a></li>
+          <li><a href="/services" class="text-xs text-gray-500 transition-colors hover:opacity-80">Services</a></li>
+          <li><a href="/a-propos" class="text-xs text-gray-500 transition-colors hover:opacity-80">À propos</a></li>
+          <li><a href="/contact" class="text-xs text-gray-500 transition-colors hover:opacity-80">Contact</a></li>
+        </ul>
       </div>
       <div>
-        <p class="font-sans text-xs text-white/30 uppercase tracking-widest mb-4">Horaires</p>
-        <p class="font-sans text-sm text-white/60 mb-1">{(site as any).hours_week}</p>
-        <p class="font-sans text-sm text-white/60 mb-4">{(site as any).hours_sunday}</p>
-        <a href={`mailto:${site.email}`} class="font-sans text-sm text-white/60 hover:text-white transition-colors">{site.email}</a>
+        <h4 class="font-heading text-sm font-semibold mb-4 tracking-tight" style={`color: ${site.color_dark};`}>Légal</h4>
+        <ul class="space-y-3">
+          <li><a href="/mentions-legales" class="text-xs text-gray-500 transition-colors hover:opacity-80">Mentions légales</a></li>
+          {site.email && <li><a href={`mailto:${site.email}`} class="text-xs text-gray-500 transition-colors">{site.email}</a></li>}
+          {site.address && <li class="text-xs text-gray-500">{site.address}</li>}
+        </ul>
       </div>
     </div>
-    <div style="border-top:1px solid rgba(255,255,255,0.1);" class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-      <p class="font-sans text-xs text-white/25">&copy; {new Date().getFullYear()} {site.company_name}. Tous droits réservés.</p>
-      <a href="/mentions-legales/" class="font-sans text-xs text-white/25 hover:text-white/50 transition-colors">Mentions légales</a>
+    <div class="pt-8 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-4">
+      <p class="text-xs text-gray-400 font-light">
+        © {new Date().getFullYear()} {site.company_name}{site.legal_status ? ` — ${site.legal_status}` : ''}
+      </p>
+      {site.siret && <p class="text-xs text-gray-400 font-light">SIRET : {site.siret}</p>}
     </div>
   </div>
 </footer>

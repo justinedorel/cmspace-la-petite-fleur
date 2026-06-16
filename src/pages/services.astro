@@ -4,99 +4,122 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 ---
-<Base title={`Soins — ${site.company_name}`} description={`Découvrez nos soins Korean Head Spa : ${site.plan1_name}, ${site.plan2_name}, ${site.plan3_name}. ${site.seo_description}`}>
+<Base title={`Services — ${site.company_name}`} description={site.seo_description}>
 
-  <Header />
+<Header />
 
-  <section class="pt-36 pb-16" style="background:#FAFAF7;">
-    <div class="max-w-6xl mx-auto px-6">
-      <p class="font-sans text-xs text-muted uppercase tracking-widest mb-4">Soins</p>
-      <h1 class="font-serif text-4xl md:text-6xl font-light text-dark mb-4">Nos Rituels</h1>
-      <p class="font-sans text-base text-muted max-w-2xl leading-relaxed">{site.tagline}</p>
+<!-- Page Hero -->
+<section class="py-24 relative overflow-hidden" style={`background-color: ${site.color_dark}; background-image: radial-gradient(900px 420px at 20% 10%, ${site.color_primary}40, transparent 60%), radial-gradient(800px 380px at 85% 35%, ${site.color_accent}2e, transparent 55%);`}>
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 text-center">
+    <div class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-8">
+      <span class="w-2.5 h-2.5 rounded-full" style={`background-color: ${site.color_accent};`}></span>
+      <span class="text-xs font-bold tracking-widest uppercase" style={`color: ${site.color_accent};`}>Catalogue</span>
     </div>
-  </section>
+    <h1 class="font-heading text-5xl sm:text-6xl font-bold tracking-tight text-white mb-6">
+      {site.services_title} <span class="italic font-light" style={`color: ${site.color_accent};`}>{site.services_title_italic}</span>
+    </h1>
+    <p class="text-white/70 text-xl font-light max-w-2xl mx-auto leading-relaxed">{site.seo_description}</p>
+  </div>
+</section>
 
-  <!-- Tarifs -->
-  <section class="py-20" style="background:#F2F2ED;">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="p-8 reveal reveal-d1" style="background:#FAFAF7;border:1px solid rgba(92,122,92,0.2);">
-          <h2 class="font-serif text-3xl font-light text-dark mb-1">{site.plan1_name}</h2>
-          <p class="font-sans text-sm text-muted mb-4">{site.plan1_duration}</p>
-          <p class="font-serif text-5xl font-light text-dark mb-6">{site.plan1_price}</p>
-          <p class="font-sans text-sm text-muted leading-relaxed mb-8">{site.plan1_desc}</p>
-          <ul class="space-y-2 mb-8 font-sans text-sm text-muted">
-            <li class="flex items-start gap-2"><span class="iconify text-accent mt-0.5 shrink-0" data-icon="lucide:check" data-width="14"></span>Diagnostic cuir chevelu</li>
-            <li class="flex items-start gap-2"><span class="iconify text-accent mt-0.5 shrink-0" data-icon="lucide:check" data-width="14"></span>Soin exfoliant</li>
-            <li class="flex items-start gap-2"><span class="iconify text-accent mt-0.5 shrink-0" data-icon="lucide:check" data-width="14"></span>Massage acupression</li>
-          </ul>
-          <a href="/contact/" class="btn-accent block text-center py-3 text-sm font-sans">Réserver</a>
-        </div>
-        <div class="p-8 reveal reveal-d2" style="background:#5C7A5C;border:1px solid #5C7A5C;">
-          <div class="flex items-center justify-between mb-1">
-            <h2 class="font-serif text-3xl font-light text-white">{site.plan2_name}</h2>
-            <span class="text-xs font-sans text-white/70 border border-white/30 px-2 py-0.5">Populaire</span>
+<!-- Services Grid -->
+<section class="py-32" style={`background-color: ${site.color_bg};`}>
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+      {[
+        { title: site.service1_title, desc: site.service1_desc, image: site.service1_image },
+        { title: site.service2_title, desc: site.service2_desc, image: site.service2_image },
+        { title: site.service3_title, desc: site.service3_desc, image: site.service3_image },
+        { title: site.service4_title, desc: site.service4_desc, image: site.service4_image },
+      ].map((s) => (
+        <div class="group relative overflow-hidden rounded-[2rem] shadow-lg border border-gray-100 bg-white flex flex-col">
+          <div class="relative overflow-hidden h-72">
+            <img src={s.image} alt={s.title} class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent"></div>
           </div>
-          <p class="font-sans text-sm text-white/60 mb-4">{site.plan2_duration}</p>
-          <p class="font-serif text-5xl font-light text-white mb-6">{site.plan2_price}</p>
-          <p class="font-sans text-sm text-white/70 leading-relaxed mb-8">{site.plan2_desc}</p>
-          <ul class="space-y-2 mb-8 font-sans text-sm text-white/70">
-            <li class="flex items-start gap-2"><span class="iconify text-white/50 mt-0.5 shrink-0" data-icon="lucide:check" data-width="14"></span>Tout le soin Essentiel</li>
-            <li class="flex items-start gap-2"><span class="iconify text-white/50 mt-0.5 shrink-0" data-icon="lucide:check" data-width="14"></span>Vapeur & bain capillaire</li>
-            <li class="flex items-start gap-2"><span class="iconify text-white/50 mt-0.5 shrink-0" data-icon="lucide:check" data-width="14"></span>Masque nourrissant premium</li>
-          </ul>
-          <a href="/contact/" class="block text-center py-3 text-sm font-sans text-dark font-medium bg-white hover:bg-white/90 transition-colors">Réserver</a>
-        </div>
-        <div class="p-8 reveal reveal-d3" style="background:#FAFAF7;border:1px solid rgba(92,122,92,0.2);">
-          <h2 class="font-serif text-3xl font-light text-dark mb-1">{site.plan3_name}</h2>
-          <p class="font-sans text-sm text-muted mb-4">{site.plan3_duration}</p>
-          <p class="font-serif text-5xl font-light text-dark mb-6">{site.plan3_price}</p>
-          <p class="font-sans text-sm text-muted leading-relaxed mb-8">{site.plan3_desc}</p>
-          <ul class="space-y-2 mb-8 font-sans text-sm text-muted">
-            <li class="flex items-start gap-2"><span class="iconify text-accent mt-0.5 shrink-0" data-icon="lucide:check" data-width="14"></span>Tout le soin Signature</li>
-            <li class="flex items-start gap-2"><span class="iconify text-accent mt-0.5 shrink-0" data-icon="lucide:check" data-width="14"></span>Soin visage & cou</li>
-            <li class="flex items-start gap-2"><span class="iconify text-accent mt-0.5 shrink-0" data-icon="lucide:check" data-width="14"></span>Consultation tricologique</li>
-          </ul>
-          <a href="/contact/" class="btn-accent block text-center py-3 text-sm font-sans">Réserver</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Le rituel -->
-  <section class="py-20" style="background:#FAFAF7;">
-    <div class="max-w-6xl mx-auto px-6">
-      <div class="text-center mb-14 reveal">
-        <h2 class="font-serif text-3xl md:text-4xl font-light text-dark">Le Rituel en 5 Étapes</h2>
-      </div>
-      <div class="grid md:grid-cols-5 gap-8">
-        {[
-          { n: '01', t: 'Diagnostic', d: 'Analyse du cuir chevelu à la micro-caméra pour identifier vos besoins spécifiques.' },
-          { n: '02', t: 'Scaling', d: 'Exfoliation douce pour éliminer les impuretés et les résidus de produits.' },
-          { n: '03', t: 'Vapeur', d: 'Application de vapeur pour ouvrir les pores et préparer le cuir chevelu.' },
-          { n: '04', t: 'Bain', d: 'Soin nourrissant avec des ingrédients coréens sélectionnés pour votre type.' },
-          { n: '05', t: 'Nourrissement', d: 'Application du masque final et massage de finition pour sceller les bienfaits.' },
-        ].map((step, i) => (
-          <div class={`text-center reveal reveal-d${Math.min(i + 1, 4)}`}>
-            <div class="font-serif text-4xl font-light mb-3" style="color:#5C7A5C;">{step.n}</div>
-            <h3 class="font-serif text-lg font-light text-dark mb-2">{step.t}</h3>
-            <p class="font-sans text-xs text-muted leading-relaxed">{step.d}</p>
+          <div class="p-8 flex flex-col flex-1">
+            <h3 class="font-heading text-2xl font-semibold mb-3 tracking-tight" style={`color: ${site.color_dark};`}>{s.title}</h3>
+            <p class="text-gray-500 font-light leading-relaxed flex-1">{s.desc}</p>
+            <div class="mt-6">
+              <a href="/contact" class="inline-flex items-center gap-2 text-sm font-semibold border-b-2 pb-0.5 transition-all" style={`color: ${site.color_primary}; border-color: ${site.color_primary};`}>
+                Demander un devis
+                <iconify-icon icon="solar:arrow-right-linear" width="16"></iconify-icon>
+              </a>
+            </div>
           </div>
-        ))}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Feature / Brand Showcase -->
+<section class="py-32 relative overflow-hidden" style={`background-color: #111827;`}>
+  <div class="absolute inset-0 opacity-40 mix-blend-overlay" style={`background-image: url('${site.feature_bg_image}'); background-size: cover; background-position: center; background-attachment: fixed;`}></div>
+  <div class="absolute -left-1/4 top-0 w-1/2 h-full blur-3xl opacity-60" style={`background: linear-gradient(to right, ${site.color_primary}, transparent);`}></div>
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12 relative z-10">
+    <div class="grid lg:grid-cols-2 gap-20 items-center">
+      <div data-aos="fade-right">
+        <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/5 backdrop-blur-md border border-white/10 mb-8">
+          <iconify-icon icon="solar:crown-star-bold-duotone" width="20" style={`color: ${site.color_accent};`}></iconify-icon>
+          <span class="text-xs font-bold tracking-widest uppercase" style={`color: ${site.color_accent};`}>{site.feature_badge}</span>
+        </div>
+        <h2 class="font-heading text-6xl sm:text-7xl font-semibold tracking-tighter text-white mb-6 leading-none">
+          {site.feature_name}<br />
+          <span class="italic font-light" style={`color: ${site.color_accent};`}>{site.feature_subtitle}</span>
+        </h2>
+        <p class="text-xl text-gray-300 mb-10 leading-relaxed max-w-lg font-light">{site.feature_desc}</p>
+        <div class="grid grid-cols-2 gap-6 mb-12">
+          <div class="bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-sm hover:bg-white/10 transition-colors">
+            <iconify-icon icon="solar:ruler-bold-duotone" width="36" class="mb-4" style={`color: ${site.color_accent};`}></iconify-icon>
+            <h4 class="text-lg text-white font-semibold mb-1">{site.feature_point1_title}</h4>
+            <p class="text-sm text-gray-400 font-light">{site.feature_point1_sub}</p>
+          </div>
+          <div class="bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-sm hover:bg-white/10 transition-colors">
+            <iconify-icon icon="solar:hourglass-bold-duotone" width="36" class="mb-4" style={`color: ${site.color_accent};`}></iconify-icon>
+            <h4 class="text-lg text-white font-semibold mb-1">{site.feature_point2_title}</h4>
+            <p class="text-sm text-gray-400 font-light">{site.feature_point2_sub}</p>
+          </div>
+        </div>
+        <a href="/contact" class="text-base font-bold px-10 py-4 rounded-full hover:scale-105 transition-all inline-flex items-center gap-2" style={`background-color: ${site.color_accent}; color: ${site.color_dark}; box-shadow: 0 0 30px rgba(232,217,181,0.3);`}>
+          {site.feature_cta}
+          <iconify-icon icon="solar:box-bold-duotone" width="20"></iconify-icon>
+        </a>
+      </div>
+      <div class="relative flex justify-center" data-aos="zoom-in">
+        <div class="absolute inset-0 rounded-full blur-[120px] opacity-20" style={`background-color: ${site.color_accent};`}></div>
+        <div class="w-full max-w-sm relative group z-10 mx-auto">
+          <div class="transform rotate-3 group-hover:rotate-0 group-hover:-translate-y-4 group-hover:scale-105 transition-all duration-700 ease-out animate-float rounded-[2.5rem] overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.6)] border border-white/10 relative cursor-pointer">
+            <img src={site.feature_image} alt={site.feature_name} class="w-full h-auto object-cover scale-105 group-hover:scale-100 transition-transform duration-700" />
+            <div class="absolute inset-0 bg-gradient-to-tr from-black/40 via-transparent to-white/20 pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity duration-700"></div>
+          </div>
+        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section class="py-16 text-center" style="background:#5C7A5C;">
-    <div class="max-w-2xl mx-auto px-6 reveal">
-      <h2 class="font-serif text-3xl font-light text-white mb-4">Prêt pour votre renaissance ?</h2>
-      <a href="/contact/" class="inline-flex items-center gap-3 px-8 py-4 text-sm font-sans text-dark font-medium bg-white hover:bg-white/90 transition-colors mt-6">
-        {site.hero_cta}
-        <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
-      </a>
+<!-- CTA Banner -->
+<section class="py-16" style={`background-color: ${site.color_dark};`}>
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+    <div class="rounded-[2.5rem] overflow-hidden border border-white/10 p-10 sm:p-12 relative" style={`background: linear-gradient(to bottom right, ${site.color_primary}, ${site.color_dark}, #111827);`}>
+      <div class="absolute -top-24 -right-24 w-72 h-72 blur-3xl rounded-full opacity-25" style={`background-color: ${site.color_accent};`}></div>
+      <div class="relative grid lg:grid-cols-12 gap-10 items-center">
+        <div class="lg:col-span-8">
+          <h2 class="font-heading text-3xl sm:text-4xl font-semibold tracking-tight text-white">{site.cta_title}</h2>
+          <p class="text-white/70 text-lg font-light leading-relaxed mt-4 max-w-2xl">{site.cta_subtitle}</p>
+        </div>
+        <div class="lg:col-span-4 flex flex-col sm:flex-row lg:flex-col gap-4 lg:items-end">
+          <a href="/contact" class="text-sm font-semibold px-8 py-4 rounded-full transition-colors inline-flex items-center justify-center gap-2" style={`background-color: ${site.color_accent}; color: ${site.color_primary}; box-shadow: 0 0 30px rgba(232,217,181,0.25);`}>
+            {site.cta_primary}
+            <iconify-icon icon="solar:arrow-right-linear" width="18"></iconify-icon>
+          </a>
+        </div>
+      </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <Footer />
+<Footer />
 
 </Base>
