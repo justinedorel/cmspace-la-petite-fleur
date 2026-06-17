@@ -1,80 +1,20 @@
 ---
 import site from '../data/site.json';
+const nav = [
+  { href: '/services/', label: 'Nos Produits' },
+  { href: '/a-propos/', label: 'À propos' },
+  { href: '/contact/', label: 'Contact' },
+];
+const current = Astro.url?.pathname ?? '';
 ---
-<header id="nav" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-bg/90 backdrop-blur-sm border-b border-border">
-  <div class="max-w-6xl mx-auto px-6 md:px-8 h-16 md:h-20 flex items-center justify-between">
-
-    <!-- Logo -->
-    <a href="/" class="font-display text-xl md:text-2xl tracking-[0.12em] font-medium text-text hover:text-accent-dark transition-colors">
-      {site.company_name}
-    </a>
-
-    <!-- Navigation desktop -->
-    <nav class="hidden md:flex items-center gap-8">
-      <a href="/" class="font-body text-sm text-muted hover:text-text transition-colors">Accueil</a>
-      <a href="/a-propos/" class="font-body text-sm text-muted hover:text-text transition-colors">Le Salon</a>
-      <a href="/services/" class="font-body text-sm text-muted hover:text-text transition-colors">Services</a>
-      <a href="/contact/"
-        class="font-body text-sm font-medium bg-accent text-white px-5 py-2.5 hover:bg-accent-dark transition-colors duration-300">
-        Réserver
-      </a>
+<header class="sticky top-0 z-50 bg-[#F9F7F2]/95 backdrop-blur-sm border-b border-[#2D4A2D]/10">
+  <div class="max-w-6xl mx-auto px-6 h-18 flex items-center justify-between py-4">
+    <a href="/" class="font-display text-xl font-bold text-[#2D4A2D]">{site.company_name}</a>
+    <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-[#6B7C6B]">
+      {nav.map(n => (
+        <a href={n.href} class={`hover:text-[#2D4A2D] transition-colors ${current.startsWith(n.href) ? 'text-[#2D4A2D] font-semibold' : ''}`}>{n.label}</a>
+      ))}
     </nav>
-
-    <!-- Mobile toggle -->
-    <button id="mobile-toggle" class="md:hidden flex flex-col gap-[5px] p-2" aria-label="Menu">
-      <span id="m1" class="w-6 h-px bg-text block transition-all duration-300 origin-center"></span>
-      <span id="m2" class="w-4 h-px bg-text block transition-all duration-300 ml-auto"></span>
-      <span id="m3" class="w-6 h-px bg-text block transition-all duration-300 origin-center"></span>
-    </button>
+    <a href="/contact/" class="bg-[#2D4A2D] text-[#E8D5A3] text-sm font-semibold px-5 py-2.5 rounded-full hover:bg-[#1C2B1C] transition-colors">{site.nav_cta}</a>
   </div>
 </header>
-
-<!-- Mobile menu -->
-<div id="mobile-menu" class="fixed inset-0 z-40 pointer-events-none">
-  <div id="mobile-overlay" class="absolute inset-0 bg-text/40 opacity-0 transition-opacity duration-400"></div>
-  <div id="mobile-panel" class="absolute right-0 top-0 h-full w-72 bg-bg flex flex-col pt-24 px-8 pb-8 translate-x-full transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] border-l border-border">
-    <nav class="flex flex-col gap-6 mb-auto">
-      <a href="/" class="font-display text-2xl font-light text-text hover:text-accent-dark transition-colors">Accueil</a>
-      <a href="/a-propos/" class="font-display text-2xl font-light text-text hover:text-accent-dark transition-colors">Le Salon</a>
-      <a href="/services/" class="font-display text-2xl font-light text-text hover:text-accent-dark transition-colors">Services</a>
-      <a href="/contact/" class="font-display text-2xl font-light text-text hover:text-accent-dark transition-colors">Réserver</a>
-    </nav>
-    <div class="border-t border-border pt-8 space-y-2">
-      <a href={`mailto:${site.email}`} class="block font-body text-xs text-muted hover:text-text transition-colors">{site.email}</a>
-      {(site as any).phone && <a href={`tel:${(site as any).phone}`} class="block font-body text-xs text-muted hover:text-text transition-colors">{(site as any).phone}</a>}
-    </div>
-  </div>
-</div>
-
-<script is:inline>
-  var toggle  = document.getElementById('mobile-toggle');
-  var menu    = document.getElementById('mobile-menu');
-  var overlay = document.getElementById('mobile-overlay');
-  var panel   = document.getElementById('mobile-panel');
-  var m1 = document.getElementById('m1');
-  var m2 = document.getElementById('m2');
-  var m3 = document.getElementById('m3');
-  var open = false;
-
-  function openMenu() {
-    open = true;
-    menu.style.pointerEvents = 'all';
-    overlay.style.opacity = '1';
-    panel.style.transform = 'translateX(0)';
-    m1.style.transform = 'rotate(45deg) translate(3.5px, 3.5px)';
-    m2.style.opacity = '0';
-    m3.style.transform = 'rotate(-45deg) translate(3.5px, -3.5px)';
-    document.body.style.overflow = 'hidden';
-  }
-  function closeMenu() {
-    open = false;
-    menu.style.pointerEvents = 'none';
-    overlay.style.opacity = '0';
-    panel.style.transform = 'translateX(100%)';
-    m1.style.transform = ''; m2.style.opacity = ''; m3.style.transform = '';
-    document.body.style.overflow = '';
-  }
-  toggle.addEventListener('click', function() { open ? closeMenu() : openMenu(); });
-  overlay.addEventListener('click', closeMenu);
-  panel.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', closeMenu); });
-</script>

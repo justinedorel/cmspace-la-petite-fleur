@@ -4,39 +4,19 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 ---
-<Base title={`Demande reçue — ${site.company_name}`} description={`Merci pour votre message. ${site.company_name} vous contactera prochainement.`}>
-
+<Base title={`Message envoyé — ${site.company_name}`} description="">
   <Header />
-
-  <section class="min-h-screen flex items-center justify-center py-40 px-6" style="background-color:#FDFAF8;">
-    <div class="text-center max-w-xl">
-      <!-- Icône -->
-      <div class="w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-10" style="background-color:#F9F0EE;">
-        <span class="iconify" data-icon="lucide:check" data-width="28" style="color:#D4A5A5;"></span>
+  <section class="min-h-[60vh] flex items-center justify-center bg-[#F9F7F2]">
+    <div class="text-center px-6">
+      <div class="w-16 h-16 bg-[#2D4A2D] rounded-full flex items-center justify-center mx-auto mb-6">
+        <svg class="w-8 h-8 text-[#E8D5A3]" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/></svg>
       </div>
-
-      <span class="font-body text-xs tracking-[0.22em] uppercase mb-4 block" style="color:#9E6B6B;">Confirmation</span>
-      <h1 class="font-display text-5xl md:text-6xl font-medium mb-6 leading-tight" style="color:#1C1C1C;">
-        Demande <em class="italic font-normal" style="color:#D4A5A5;">reçue</em>
-      </h1>
-      <p class="font-body text-base leading-relaxed mb-4" style="color:#9B8B8B;">
-        Merci de nous avoir contactés. Nous avons bien reçu votre demande et nous vous répondrons dans les plus brefs délais.
-      </p>
-      <p class="font-body text-sm leading-relaxed mb-12" style="color:#9B8B8B;">
-        {site.footer_tagline}
-      </p>
-
-      <div class="w-12 h-px mx-auto mb-10" style="background-color:#EDE0DE;"></div>
-
-      <a href="/" class="inline-flex items-center gap-2 font-body text-sm transition-colors" style="color:#9E6B6B;"
-        onmouseover="this.style.color='#1C1C1C'"
-        onmouseout="this.style.color='#9E6B6B'">
-        <span class="iconify" data-icon="lucide:arrow-left" data-width="14"></span>
+      <h1 class="font-display text-3xl font-bold text-[#1C2B1C] mb-3">Message envoyé !</h1>
+      <p class="text-[#6B7C6B] mb-8">Nous vous répondons sous 24h. Merci de votre confiance.</p>
+      <a href="/" class="inline-block bg-[#2D4A2D] text-[#E8D5A3] font-semibold px-8 py-3 rounded-full hover:bg-[#1C2B1C] transition-colors text-sm">
         Retour à l'accueil
       </a>
     </div>
   </section>
-
   <Footer />
-
 </Base>

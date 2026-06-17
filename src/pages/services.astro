@@ -4,93 +4,37 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import site from '../data/site.json';
 ---
-<Base title={`Services — ${site.company_name}`} description={`Découvrez tous nos services : manucure, pédicure spa, pose gel, nail art. ${site.seo_description}`}>
-
+<Base title={`Nos Produits — ${site.company_name}`} description={site.seo_description}>
   <Header />
 
   <!-- Hero page -->
-  <section class="pt-32 pb-16" style="background-color:#FDFAF8;">
-    <div class="max-w-6xl mx-auto px-6 md:px-8">
-      <div class="max-w-2xl">
-        <span class="font-body text-xs tracking-[0.22em] uppercase mb-4 block" style="color:#9E6B6B;">Ce que nous proposons</span>
-        <h1 class="font-display text-5xl md:text-6xl font-medium leading-tight mb-6" style="color:#1C1C1C;">
-          Nos Services
-        </h1>
-        <p class="font-body text-base leading-relaxed" style="color:#9B8B8B;">
-          De la manucure classique au nail art sophistiqué, notre équipe vous accompagne pour des ongles toujours parfaits.
-        </p>
-      </div>
+  <section class="bg-[#2D4A2D] py-20">
+    <div class="max-w-6xl mx-auto px-6 text-center">
+      <p class="text-[#E8D5A3]/70 text-sm font-semibold tracking-widest uppercase mb-4">Ce que nous cultivons</p>
+      <h1 class="font-display text-5xl font-bold text-white mb-4">Nos Produits</h1>
+      <p class="text-white/70 max-w-xl mx-auto leading-relaxed">
+        Découvrez l'ensemble de nos productions, disponibles en vente directe à la ferme ou en commandes professionnelles.
+      </p>
     </div>
   </section>
 
-  <!-- Services principaux -->
-  <section class="py-16 md:py-24" style="background-color:#F9F0EE;">
-    <div class="max-w-6xl mx-auto px-6 md:px-8">
-
-      <div class="grid md:grid-cols-2 gap-8">
+  <!-- Grille produits -->
+  <section class="py-24 bg-[#F9F7F2]">
+    <div class="max-w-6xl mx-auto px-6">
+      <div class="grid md:grid-cols-2 gap-10">
         {[
-          {
-            name: site.service1_name,
-            duration: site.service1_duration,
-            price: site.service1_price,
-            desc: site.service1_desc,
-            img: site.service1_image,
-            details: ['Limage et mise en forme', 'Soin cuticules', 'Hydratation profonde', 'Vernis au choix'],
-          },
-          {
-            name: site.service2_name,
-            duration: site.service2_duration,
-            price: site.service2_price,
-            desc: site.service2_desc,
-            img: site.service2_image,
-            details: ['Bain relaxant aromatique', 'Gommage exfoliant', 'Soin des ongles', 'Massage des pieds 10 min'],
-          },
-          {
-            name: site.service3_name,
-            duration: site.service3_duration,
-            price: site.service3_price,
-            desc: site.service3_desc,
-            img: site.service3_image,
-            details: ['Pose ou renforcement', 'Gel UV longue tenue', 'Finition brillante ou mate', 'Conseils entretien'],
-          },
-          {
-            name: site.service4_name,
-            duration: site.service4_duration,
-            price: site.service4_price,
-            desc: site.service4_desc,
-            img: site.service4_image,
-            details: ['Consultation design incluse', 'Motifs hand-painted', 'Strass et embellissements', 'Effets spéciaux'],
-          },
-        ].map((s) => (
-          <div class="bg-bg rounded-2xl overflow-hidden border" style="border-color:#EDE0DE;">
-            <div class="overflow-hidden" style="height:220px;">
-              <img src={s.img} alt={s.name} class="w-full h-full object-cover hover:scale-105 transition-transform duration-700" loading="lazy" />
+          { name: site.product1_name, desc: site.product1_desc, img: site.product1_image },
+          { name: site.product2_name, desc: site.product2_desc, img: site.product2_image },
+          { name: site.product3_name, desc: site.product3_desc, img: site.product3_image },
+          { name: site.product4_name, desc: site.product4_desc, img: site.product4_image },
+        ].map(p => (
+          <div class="bg-white rounded-2xl overflow-hidden shadow-sm flex flex-col sm:flex-row gap-0">
+            <div class="w-full sm:w-48 h-52 sm:h-auto shrink-0 overflow-hidden">
+              <img src={p.img} alt={p.name} class="w-full h-full object-cover" />
             </div>
-            <div class="p-8">
-              <div class="flex items-start justify-between gap-4 mb-3">
-                <h2 class="font-display text-2xl font-medium" style="color:#1C1C1C;">{s.name}</h2>
-                <div class="text-right shrink-0">
-                  <p class="font-body text-sm font-medium" style="color:#D4A5A5;">{s.price}</p>
-                  <p class="font-body text-xs mt-0.5" style="color:#9B8B8B;">{s.duration}</p>
-                </div>
-              </div>
-              <p class="font-body text-sm leading-relaxed mb-6" style="color:#9B8B8B;">{s.desc}</p>
-              <ul class="space-y-2 mb-7">
-                {s.details.map((d) => (
-                  <li class="flex items-center gap-2.5 font-body text-sm" style="color:#1C1C1C;">
-                    <span class="w-1.5 h-1.5 rounded-full shrink-0" style="background-color:#D4A5A5;"></span>
-                    {d}
-                  </li>
-                ))}
-              </ul>
-              <a href="/contact/"
-                class="inline-flex items-center gap-2 font-body text-sm font-medium text-white px-6 py-3 rounded-xl transition-colors"
-                style="background-color:#D4A5A5;"
-                onmouseover="this.style.backgroundColor='#9E6B6B'"
-                onmouseout="this.style.backgroundColor='#D4A5A5'">
-                Réserver ce soin
-                <span class="iconify" data-icon="lucide:arrow-right" data-width="14"></span>
-              </a>
+            <div class="p-6 flex flex-col justify-center">
+              <h3 class="font-display text-xl font-bold text-[#1C2B1C] mb-3">{p.name}</h3>
+              <p class="text-[#6B7C6B] leading-relaxed text-sm">{p.desc}</p>
             </div>
           </div>
         ))}
@@ -98,91 +42,16 @@ import site from '../data/site.json';
     </div>
   </section>
 
-  <!-- Forfaits -->
-  <section class="py-16 md:py-24" style="background-color:#FDFAF8;">
-    <div class="max-w-6xl mx-auto px-6 md:px-8">
-      <div class="text-center mb-14">
-        <h2 class="font-display text-3xl md:text-4xl font-medium" style="color:#1C1C1C;">Nos Forfaits</h2>
-        <p class="font-body text-base mt-3 max-w-lg mx-auto" style="color:#9B8B8B;">Combinez plusieurs soins et profitez de tarifs avantageux.</p>
-      </div>
-      <div class="grid md:grid-cols-3 gap-6">
-        {[
-          { name: 'Forfait Mains', price: '65€', includes: ['Manucure complète', 'Pose vernis semi-permanent', 'Soin hydratant'], popular: false },
-          { name: 'Forfait Beauté', price: '95€', includes: ['Manucure complète', 'Pédicure express', 'Nail art 2 doigts offert'], popular: true },
-          { name: 'Forfait Prestige', price: '145€', includes: ['Manucure + Pédicure Spa', 'Pose gel', 'Nail art personnalisé'], popular: false },
-        ].map((f) => (
-          <div class={`rounded-2xl p-8 border relative ${f.popular ? 'shadow-lg' : ''}`}
-            style={`border-color:${f.popular ? '#D4A5A5' : '#EDE0DE'};background-color:${f.popular ? '#F9F0EE' : '#FDFAF8'};`}>
-            {f.popular && (
-              <span class="absolute -top-3 left-1/2 -translate-x-1/2 font-body text-xs font-medium text-white px-4 py-1 rounded-full" style="background-color:#D4A5A5;">
-                Le plus populaire
-              </span>
-            )}
-            <h3 class="font-display text-xl font-medium mb-2" style="color:#1C1C1C;">{f.name}</h3>
-            <p class="font-display text-3xl font-medium mb-6" style="color:#D4A5A5;">{f.price}</p>
-            <ul class="space-y-3 mb-8">
-              {f.includes.map((item) => (
-                <li class="flex items-center gap-2.5 font-body text-sm" style="color:#1C1C1C;">
-                  <span class="iconify shrink-0" data-icon="lucide:check" data-width="14" style="color:#D4A5A5;"></span>
-                  {item}
-                </li>
-              ))}
-            </ul>
-            <a href="/contact/"
-              class="block text-center font-body text-sm font-medium py-3 rounded-xl transition-colors"
-              style={`${f.popular ? 'background-color:#D4A5A5;color:#fff;' : 'border:1px solid #EDE0DE;color:#9E6B6B;'}`}
-              onmouseover={`this.style.backgroundColor='${f.popular ? '#9E6B6B' : '#F9F0EE'}'`}
-              onmouseout={`this.style.backgroundColor='${f.popular ? '#D4A5A5' : 'transparent'}'`}>
-              Réserver ce forfait
-            </a>
-          </div>
-        ))}
-      </div>
-    </div>
-  </section>
-
-  <!-- Horaires & Infos pratiques -->
-  <section class="py-16" style="background-color:#F9F0EE;">
-    <div class="max-w-6xl mx-auto px-6 md:px-8">
-      <div class="grid md:grid-cols-2 gap-12">
-        <div>
-          <h3 class="font-display text-2xl font-medium mb-6" style="color:#1C1C1C;">Horaires d'ouverture</h3>
-          <div class="space-y-3">
-            <div class="flex justify-between font-body text-sm py-2" style="border-bottom:1px solid #EDE0DE;color:#1C1C1C;">
-              <span>Lundi – Samedi</span>
-              <span style="color:#9E6B6B;">9h30 – 19h30</span>
-            </div>
-            <div class="flex justify-between font-body text-sm py-2" style="border-bottom:1px solid #EDE0DE;color:#1C1C1C;">
-              <span>Dimanche</span>
-              <span style="color:#9E6B6B;">10h00 – 17h00</span>
-            </div>
-          </div>
-        </div>
-        <div>
-          <h3 class="font-display text-2xl font-medium mb-6" style="color:#1C1C1C;">Infos pratiques</h3>
-          <div class="space-y-4">
-            <div class="flex gap-3">
-              <span class="iconify shrink-0 mt-0.5" data-icon="lucide:map-pin" data-width="18" style="color:#D4A5A5;"></span>
-              <p class="font-body text-sm" style="color:#9B8B8B;">{site.address}</p>
-            </div>
-            <div class="flex gap-3">
-              <span class="iconify shrink-0 mt-0.5" data-icon="lucide:phone" data-width="18" style="color:#D4A5A5;"></span>
-              <a href={`tel:${site.phone}`} class="font-body text-sm transition-colors" style="color:#9B8B8B;" onmouseover="this.style.color='#1C1C1C'" onmouseout="this.style.color='#9B8B8B'">{site.phone}</a>
-            </div>
-            <div class="flex gap-3">
-              <span class="iconify shrink-0 mt-0.5" data-icon="lucide:mail" data-width="18" style="color:#D4A5A5;"></span>
-              <a href={`mailto:${site.email}`} class="font-body text-sm transition-colors" style="color:#9B8B8B;" onmouseover="this.style.color='#1C1C1C'" onmouseout="this.style.color='#9B8B8B'">{site.email}</a>
-            </div>
-            <div class="flex gap-3">
-              <span class="iconify shrink-0 mt-0.5" data-icon="lucide:credit-card" data-width="18" style="color:#D4A5A5;"></span>
-              <p class="font-body text-sm" style="color:#9B8B8B;">CB, espèces — paiement sans contact accepté</p>
-            </div>
-          </div>
-        </div>
-      </div>
+  <!-- Commande pro -->
+  <section class="py-16 bg-[#EDE8DE]">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+      <h2 class="font-display text-3xl font-bold text-[#1C2B1C] mb-4">Commande professionnelle</h2>
+      <p class="text-[#6B7C6B] mb-8">Restaurateurs, épiceries, grandes surfaces : nous proposons des tarifs dégressifs et des livraisons régulières.</p>
+      <a href="/contact/" class="inline-block bg-[#2D4A2D] text-[#E8D5A3] font-semibold px-8 py-4 rounded-full hover:bg-[#1C2B1C] transition-colors">
+        Demander un devis
+      </a>
     </div>
   </section>
 
   <Footer />
-
 </Base>
